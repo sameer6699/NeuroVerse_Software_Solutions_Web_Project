@@ -6,6 +6,7 @@ export const create = mutation({
     name: v.string(),
     email: v.string(),
     company: v.optional(v.string()),
+    phone: v.optional(v.string()),
     message: v.string(),
     requestType: v.string(),
   },

@@ -12,6 +12,7 @@ import Home from "./pages/Home.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
+import { LenisScroll } from "@/components/LenisScroll";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
@@ -43,15 +44,17 @@ createRoot(document.getElementById("root")!).render(
     <AppToolbar />
     <InstrumentationProvider>
       <ConvexAuthProvider client={convex}>
-        <BrowserRouter>
-          <RouteSyncer />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <LenisScroll>
+          <BrowserRouter>
+            <RouteSyncer />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </LenisScroll>
         <Toaster />
       </ConvexAuthProvider>
     </InstrumentationProvider>

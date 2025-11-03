@@ -139,10 +139,12 @@
 }
 
 .glass-nav {
-  background: var(--card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .gradient-text {
@@ -174,4 +176,88 @@
   background: radial-gradient(circle at 30% 50%, oklch(0.55 0.15 165 / 0.3) 0%, transparent 50%),
               radial-gradient(circle at 70% 50%, oklch(0.62 0.20 280 / 0.3) 0%, transparent 50%);
   filter: blur(80px);
+}
+
+/* 5K Display Optimization (2560x1329) */
+@layer utilities {
+  /* Container constraints for ultra-wide displays */
+  .container-5k {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, 4vw, 6rem);
+    padding-right: clamp(1rem, 4vw, 6rem);
+  }
+
+  /* Enhanced responsive padding for ultra-wide */
+  .px-5k {
+    padding-left: clamp(1rem, 5vw, 8rem);
+    padding-right: clamp(1rem, 5vw, 8rem);
+  }
+
+  /* Max width constraints for content areas */
+  .max-w-5k-content {
+    max-width: min(90vw, 1600px);
+  }
+
+  .max-w-5k-narrow {
+    max-width: min(85vw, 1400px);
+  }
+}
+
+/* Responsive breakpoints for 5K displays */
+@media (min-width: 2560px) {
+  /* Ultra-wide display optimizations */
+  section {
+    padding-left: clamp(2rem, 8vw, 12rem);
+    padding-right: clamp(2rem, 8vw, 12rem);
+  }
+
+  /* Grid adjustments for ultra-wide */
+  .grid-5k {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  /* Text sizing for better readability on large screens */
+  .text-5k {
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+  }
+
+  /* Card spacing optimization */
+  .gap-5k {
+    gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+}
+
+/* Medium-large displays (1920px - 2559px) */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  section {
+    padding-left: clamp(2rem, 5vw, 8rem);
+    padding-right: clamp(2rem, 5vw, 8rem);
+  }
+}
+
+/* 5K Display specific adjustments (2560px width) */
+@media (min-width: 2560px) {
+  /* Hero section adjustments */
+  #home h1 {
+    font-size: clamp(3rem, 4.5vw, 5rem);
+  }
+
+  /* Grid optimizations for ultra-wide */
+  .grid-responsive-5k {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  }
+
+  /* Better spacing for ultra-wide cards */
+  .gap-responsive-5k {
+    gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  /* Sticky CTA positioning */
+  .sticky-cta-5k {
+    right: clamp(1.5rem, 8vw, 8rem) !important;
+    bottom: clamp(1.5rem, 4vh, 2rem) !important;
+  }
 }

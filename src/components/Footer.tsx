@@ -1,24 +1,23 @@
-import { Link } from "react-router";
 
 export default function Footer() {
   const footerLinks = {
     Products: [
-      { label: "AI Platform", href: "/products#platform" },
-      { label: "ML Solutions", href: "/products#ml" },
-      { label: "Data Analytics", href: "/products#analytics" },
-      { label: "Custom Development", href: "/products#custom" },
+      { label: "AI Platform", href: "#products" },
+      { label: "ML Solutions", href: "#products" },
+      { label: "Data Analytics", href: "#products" },
+      { label: "Custom Development", href: "#products" },
     ],
     Company: [
-      { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Partners", href: "/partners" },
+      { label: "Why NeuroVerse", href: "#why-neuroverse" },
+      { label: "Careers", href: "#careers" },
+      { label: "Solutions", href: "#solutions" },
       { label: "Contact", href: "/contact" },
     ],
     Resources: [
-      { label: "Blog", href: "/blog" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Documentation", href: "/docs" },
-      { label: "Support", href: "/support" },
+      { label: "Blog", href: "#blog" },
+      { label: "Case Studies", href: "#case-studies" },
+      { label: "Capabilities", href: "#capabilities" },
+      { label: "Support", href: "/contact" },
     ],
     Legal: [
       { label: "Privacy Policy", href: "/privacy" },
@@ -29,7 +28,7 @@ export default function Footer() {
 
   return (
     <footer className="glass-card border-t mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-5k-content">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
@@ -37,12 +36,25 @@ export default function Footer() {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      to={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.startsWith('#') ? (
+                      <a
+                        href={link.href}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.href = link.href;
+                        }}
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
