@@ -57,9 +57,49 @@ import {
 } from "lucide-react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
+// Typewriter animation hook with loop
+function useTypewriter(text: string, speed: number = 50, deleteSpeed: number = 30, pauseTime: number = 2000) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayedText.length < text.length) {
+      // Typing forward
+      timeout = setTimeout(() => {
+        setDisplayedText(text.slice(0, displayedText.length + 1));
+      }, speed);
+    } else if (!isDeleting && displayedText.length === text.length) {
+      // Finished typing, wait then start deleting
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseTime);
+    } else if (isDeleting && displayedText.length > 0) {
+      // Deleting backward
+      timeout = setTimeout(() => {
+        setDisplayedText(displayedText.slice(0, -1));
+      }, deleteSpeed);
+    } else if (isDeleting && displayedText.length === 0) {
+      // Finished deleting, start typing again
+      setIsDeleting(false);
+      setIsTyping(true);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, text, speed, deleteSpeed, pauseTime, isDeleting]);
+
+  return { displayedText, isTyping: isTyping && !isDeleting };
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  // Typewriter animation for badge text (faster speed, loops continuously)
+  const badgeText = "Where Innovation Meets Passion";
+  const { displayedText, isTyping } = useTypewriter(badgeText, 40, 25, 1500);
 
   // Handle path-based navigation and scroll to sections
   useEffect(() => {
@@ -122,49 +162,6 @@ export default function Home() {
     }
   }, [location.pathname, location.hash]);
 
-  const features = [
-    {
-      icon: Brain,
-      title: "AI-Powered Solutions",
-      description: "Cutting-edge machine learning models tailored to your business needs"
-    },
-    {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Optimized performance with real-time processing capabilities"
-    },
-    {
-      icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-grade security with compliance certifications"
-    },
-    {
-      icon: TrendingUp,
-      title: "Scalable Architecture",
-      description: "Built to grow with your business from startup to enterprise"
-    },
-    {
-      icon: Users,
-      title: "Expert Team",
-      description: "Dedicated AI/ML specialists with proven track records"
-    },
-    {
-      icon: Code,
-      title: "Custom Development",
-      description: "Bespoke solutions designed for your unique challenges"
-    }
-  ];
-
-
-  const capabilities = [
-    "Natural Language Processing",
-    "Computer Vision",
-    "Predictive Analytics",
-    "Recommendation Systems",
-    "Anomaly Detection",
-    "Process Automation"
-  ];
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       
@@ -186,8 +183,12 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap gap-2 mb-4"
               >
-                <Badge variant="outline" className="bg-[#faf9f7] border-border/50 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
-                  Where Innovation Meets Passion
+                <Badge variant="outline" className="bg-[#faf9f7] border-border/50 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow flex items-center gap-2">
+                  <Rocket className="w-4 h-4 text-primary" />
+                  <span>
+                    {displayedText}
+                    <span className="inline-block w-0.5 h-4 bg-primary ml-1 animate-pulse">|</span>
+                  </span>
                 </Badge>
               </motion.div>
               
@@ -430,36 +431,6 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-          </div>
-
-          {/* Features Grid */}
-          <div>
-            <h3 className="font-heading font-bold text-3xl text-center mb-12">Key Differentiators</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-5 xl:gap-6">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.08 }}
-                >
-                  <Card className="bg-[#faf9f7] border border-border/50 h-full hover:scale-105 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md">
-                    <CardHeader>
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-                        <feature.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <CardTitle className="font-heading">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base">
-                        {feature.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -850,45 +821,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Capabilities Section */}
-      <section id="capabilities" className="py-20 px-4 scroll-mt-20">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-                Our <span className="gradient-text">Capabilities</span>
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Comprehensive AI/ML solutions for every business need
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 xl:gap-4">
-              {capabilities.map((capability, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex items-center space-x-3 bg-[#faf9f7] border border-border/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="font-medium">{capability}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Case Studies Section */}
-      <section id="case-studies" className="py-20 px-4 scroll-mt-20 bg-gradient-to-b from-transparent to-primary/5">
+      <section id="case-studies" className="py-20 px-4 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1115,280 +1049,131 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Work Culture Section */}
-          <div className="mb-16 space-y-12">
+          {/* Why Join Section */}
+          <div className="mb-16">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-8 md:p-12 border border-border shadow-sm"
+              className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm"
             >
-              <div className="text-center mb-12">
-                <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
-                  Our <span className="gradient-text">Work Culture</span>
-                </h3>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  At NeuroVerse, we believe that great culture drives great innovation. Our team is built on trust, collaboration, and a shared passion for pushing the boundaries of AI technology.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 xl:gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
                 {[
                   {
-                    icon: Users,
-                    title: "Collaborative Environment",
-                    description: "We foster a culture of open communication, knowledge sharing, and cross-functional collaboration. Every team member's voice is heard and valued."
-                  },
-                  {
                     icon: Rocket,
-                    title: "Innovation First",
-                    description: "We encourage experimentation, creative problem-solving, and continuous innovation. Your ideas have the power to shape the future of AI."
+                    title: "Cutting-Edge Projects",
+                    description: "Work on innovative AI projects using state-of-the-art technology and tackle challenges at the forefront of AI."
                   },
                   {
                     icon: TrendingUp,
-                    title: "Growth Mindset",
-                    description: "We invest in your professional development with mentorship programs, learning budgets, conference opportunities, and skill-building workshops."
+                    title: "Career Growth",
+                    description: "Clear progression paths with opportunities to move into leadership roles. We promote from within."
+                  },
+                  {
+                    icon: Users,
+                    title: "Collaborative Culture",
+                    description: "Join a team where collaboration trumps competition. Share knowledge and build something amazing together."
+                  },
+                  {
+                    icon: Target,
+                    title: "Impact & Meaning",
+                    description: "Your work directly impacts businesses and lives. See your AI solutions deployed in production."
                   },
                   {
                     icon: Heart,
                     title: "Work-Life Balance",
-                    description: "We understand that sustainable innovation comes from well-rested, happy employees. Flexible hours, unlimited PTO, and mental health support are priorities."
+                    description: "We respect your time and boundaries. Sustainable productivity and personal well-being go hand in hand."
                   },
                   {
-                    icon: Globe,
-                    title: "Diverse & Inclusive",
-                    description: "We celebrate diversity in all its forms. Our inclusive culture ensures everyone feels welcome, respected, and empowered to do their best work."
-                  },
-                  {
-                    icon: Sparkles,
-                    title: "Impact-Driven",
-                    description: "Every project we work on has real-world impact. You'll see your work transforming businesses and improving lives globally."
+                    icon: Award,
+                    title: "Competitive Benefits",
+                    description: "Comprehensive health coverage, flexible PTO, stock options, and perks designed to support your success."
                   }
-                ].map((value, index) => (
+                ].map((benefit, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-white rounded-2xl p-6 hover:scale-105 transition-transform border border-border shadow-sm"
+                    className="bg-white rounded-2xl p-6 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105"
                   >
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
-                      <value.icon className="w-6 h-6 text-white" />
+                      <benefit.icon className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="font-heading font-bold text-xl mb-3">{value.title}</h4>
-                    <p className="text-muted-foreground leading-relaxed">{value.description}</p>
+                    <h3 className="font-heading font-bold text-xl mb-3">{benefit.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-
-            {/* Why Work Here */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-7xl mx-auto"
-            >
-              <div className="text-center mb-12">
-                <motion.h3 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4 flex items-center justify-center gap-3"
-                >
-                  <Target className="w-10 h-10 md:w-12 md:h-12 text-primary" />
-                  <span className="gradient-text">Why Work at NeuroVerse?</span>
-                </motion.h3>
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
-                >
-                  Join a team that values innovation, growth, and meaningful impact
-                </motion.p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 auto-rows-fr">
-                {[
-                  {
-                    title: "Cutting-Edge Projects",
-                    description: "Work on the most innovative AI projects using state-of-the-art technology. From LLMs to computer vision, you'll tackle challenges at the forefront of AI.",
-                    icon: Rocket,
-                    gradient: "from-primary to-accent",
-                    delay: 0.1
-                  },
-                  {
-                    title: "Career Growth",
-                    description: "Clear career progression paths with opportunities to move into leadership roles. We promote from within and invest in your long-term success.",
-                    icon: TrendingUp,
-                    gradient: "from-accent to-primary",
-                    delay: 0.2
-                  },
-                  {
-                    title: "Collaborative Culture",
-                    description: "Join a team where collaboration trumps competition. Share knowledge, learn from peers, and build something amazing together.",
-                    icon: Users,
-                    gradient: "from-primary via-accent to-primary",
-                    delay: 0.3
-                  },
-                  {
-                    title: "Impact & Meaning",
-                    description: "Your work directly impacts businesses and lives. See your AI solutions deployed in production, driving real-world transformation.",
-                    icon: Target,
-                    gradient: "from-accent to-primary",
-                    delay: 0.4
-                  },
-                  {
-                    title: "Work-Life Balance",
-                    description: "We respect your time and boundaries. No overwork culture. Sustainable productivity and personal well-being go hand in hand.",
-                    icon: Heart,
-                    gradient: "from-primary to-accent",
-                    delay: 0.5
-                  },
-                  {
-                    title: "Competitive Benefits",
-                    description: "Enjoy comprehensive health coverage, flexible PTO, stock options, and perks designed to support your success both professionally and personally.",
-                    icon: Award,
-                    gradient: "from-accent to-primary",
-                    delay: 0.6
-                  }
-                ].map((point, i) => {
-                  const IconComponent = point.icon;
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: point.delay }}
-                      whileHover={{ y: -8, scale: 1.02 }}
-                      className="group relative"
-                    >
-                      <Card className="bg-white h-full border-2 hover:border-primary/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl shadow-sm">
-                        <CardHeader className="pb-4">
-                          <div className="relative">
-                            <div className={`absolute inset-0 bg-gradient-to-br ${point.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-xl`}></div>
-                            <div className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${point.gradient} flex items-center justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                              <IconComponent className="w-7 h-7 text-white" />
-                            </div>
-                            <div className="absolute top-0 left-0 w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          </div>
-                          <CardTitle className="text-xl font-heading font-bold mb-2 group-hover:text-primary transition-colors duration-300">
-                            {point.title}
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <CardDescription className="text-base leading-relaxed text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
-                            {point.description}
-                          </CardDescription>
-                        </CardContent>
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.7 }}
-                className="text-center"
-              >
-                <Button 
-                  size="lg" 
-                  onClick={() => navigate("/contact")} 
-                  className="relative px-8 py-6 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group overflow-hidden"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    View Open Positions
-                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Button>
-              </motion.div>
-            </motion.div>
-            </div>
           </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
+          {/* Stats Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.02, y: -5 }}
-            className="group relative bg-[#faf9f7] border border-border/50 gradient-border rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-2xl hover:shadow-primary/20"
+            className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm mb-16"
           >
-            {/* Background gradient effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
-            
-            {/* Border glow effect */}
-            <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-primary/30 transition-all duration-300 pointer-events-none"></div>
-            
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-              {/* Left Content */}
-              <div className="flex-1 text-center lg:text-left">
-                <motion.h2 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+            <div className="grid md:grid-cols-3 gap-6 xl:gap-8">
+              {[
+                { value: "50+", label: "Team Members", icon: Users },
+                { value: "98%", label: "Satisfaction", icon: Star },
+                { value: "24/7", label: "Support", icon: Clock }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4 group-hover:text-primary transition-colors duration-300"
+                  transition={{ delay: index * 0.1 }}
+                  className="text-center"
                 >
-                  Ready to Transform Your Business?
-                </motion.h2>
-                <motion.p 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-                >
-                  Let's discuss how AI can accelerate your growth
-                </motion.p>
-              </div>
+                  <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <div className="font-heading font-bold text-3xl gradient-text mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-              {/* Right Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 flex-shrink-0"
-              >
+          {/* Browse Open Positions CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="bg-gradient-to-br from-primary/10 via-transparent to-accent/10 rounded-3xl p-8 md:p-12 border border-border/50">
+              <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
+                Browse Currently <span className="gradient-text">Open Positions</span>
+              </h3>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Explore our current job openings and find the perfect role that matches your skills and passion. We're looking for talented individuals to join our innovative team and help shape the future of AI.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
                   onClick={() => navigate("/contact")}
-                  className="relative px-6 py-6 text-base font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group/btn overflow-hidden min-w-[200px]"
+                  className="bg-primary hover:bg-primary/90 text-white group"
                 >
-                  <span className="relative z-10">Schedule a Consultation</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                  View All Openings
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => navigate("/case-studies")}
-                  className="relative px-6 py-6 text-base font-semibold bg-[#faf9f7] border-2 border-border/50 hover:border-primary/50 hover:bg-primary/5 transform hover:scale-105 transition-all duration-300 group/btn min-w-[200px] shadow-sm hover:shadow-md"
+                  onClick={() => navigate("/contact")}
+                  className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md"
                 >
-                  <span className="relative z-10">View Success Stories</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                  Learn More
+                  <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
-              </motion.div>
+              </div>
             </div>
-
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </motion.div>
         </div>
       </section>
