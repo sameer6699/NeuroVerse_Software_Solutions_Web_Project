@@ -4,6 +4,7 @@ import { Menu, X, Globe, Search } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
+import { images } from "@/assets";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,42 +41,21 @@ export default function Navbar() {
   });
 
   const navLinks = [
-    { label: "Why NeuroVerse", href: "#why-neuroverse" },
-    { label: "Products", href: "#products" },
-    { label: "Solutions", href: "#solutions" },
-    { label: "Case Studies", href: "#case-studies" },
-    { label: "Careers", href: "#careers" },
+    { label: "Why NeuroVerse", href: "/why-neuroverse", sectionId: "why-neuroverse" },
+    { label: "Products", href: "/products", sectionId: "products" },
+    { label: "Solutions", href: "/solutions", sectionId: "solutions" },
+    { label: "Case Studies", href: "/case-studies", sectionId: "case-studies" },
+    { label: "Careers", href: "/careers", sectionId: "careers" },
   ];
 
   // Handle navigation to sections
-  const handleSectionClick = (href: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleSectionClick = (href: string, sectionId: string, e?: React.MouseEvent<HTMLAnchorElement>) => {
     if (e) {
       e.preventDefault();
     }
 
-    const sectionId = href.replace("#", "");
-
-    // If we're on the contact page, navigate to home with hash
-    if (isOnContactPage) {
-      navigate(`/${href}`);
-      // The Home component's useEffect will handle scrolling when location.hash changes
-    } else {
-      // If already on home page, update URL hash and scroll to section
-      window.history.pushState(null, "", href);
-      const element = document.querySelector(`#${sectionId}`);
-      if (element) {
-        const lenis = (window as any).lenis;
-        if (lenis) {
-          lenis.scrollTo(element, {
-            offset: -80,
-            duration: 1.5,
-          });
-        } else {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-          window.scrollBy(0, -80);
-        }
-      }
-    }
+    // Navigate to clean URL (scroll will be handled by Home component based on pathname)
+    navigate(href);
   };
 
   return (
@@ -86,31 +66,34 @@ export default function Navbar() {
         opacity: isVisible ? 1 : 0,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 glass-nav border-t border-b transition-all duration-300"
+      className="fixed top-4 left-4 right-4 z-50 glass-nav border-t border-b transition-all duration-300 rounded-2xl shadow-lg"
+      style={{ maxWidth: 'calc(100% - 2rem)' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2 cursor-pointer">
+        <div className="flex items-center h-16 gap-6">
+          <Link to="/" className="flex items-center cursor-pointer flex-shrink-0">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center space-x-2"
+              className="flex items-center gap-0.5"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-white font-bold text-lg">N</span>
-              </div>
+              <img
+                src={images.logos.main}
+                alt="NeuroVerse Logo"
+                className="w-16 h-16 object-contain"
+              />
               <span className="font-sans font-semibold text-lg text-gray-900">
                 NeuroVerse
               </span>
             </motion.div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.href} 
-                href={link.href}
-                onClick={(e) => handleSectionClick(link.href, e)}
+                to={link.href}
+                onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
               >
                 <Button 
                   variant="ghost" 
@@ -119,11 +102,11 @@ export default function Navbar() {
                   {link.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
                 </Button>
-              </a>
+              </Link>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 ml-auto">
             {/* Globe Icon */}
             <button
               onClick={() => {
@@ -198,15 +181,15 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white border-t border-gray-200"
+          className="md:hidden bg-white border-t border-gray-200 rounded-b-2xl"
         >
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.href} 
-                href={link.href}
+                to={link.href}
                 onClick={(e) => {
-                  handleSectionClick(link.href, e);
+                  handleSectionClick(link.href, link.sectionId, e);
                   setMobileMenuOpen(false);
                 }}
               >
@@ -216,7 +199,7 @@ export default function Navbar() {
                 >
                   {link.label}
                 </Button>
-              </a>
+              </Link>
             ))}
             <div className="pt-4 space-y-2">
               {isAuthenticated ? (

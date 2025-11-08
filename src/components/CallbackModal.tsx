@@ -71,7 +71,7 @@ export default function CallbackModal({ open, onOpenChange }: CallbackModalProps
       <DialogContent 
         className="glass-card rounded-3xl gradient-border p-0 max-w-2xl max-h-[90vh] overflow-hidden border-border/50 backdrop-blur-xl !bg-background/98 shadow-2xl"
       >
-        <div className="p-6 md:p-8 overflow-y-auto max-h-[90vh]">
+        <div className="p-6 md:p-8 overflow-y-auto max-h-[90vh] scrollbar-hide">
           <DialogHeader className="pb-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}

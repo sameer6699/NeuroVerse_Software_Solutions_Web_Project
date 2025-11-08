@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
+import ScrollTopButton from "@/components/ScrollTopButton";
 import Footer from "@/components/Footer";
-import StickyDemoCTA from "@/components/StickyDemoCTA";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -55,18 +55,30 @@ import {
   Plane,
   Briefcase
 } from "lucide-react";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle hash navigation when component mounts or location changes
+  // Handle path-based navigation and scroll to sections
   useEffect(() => {
+    const pathToSectionId: { [key: string]: string } = {
+      "/why-neuroverse": "why-neuroverse",
+      "/products": "products",
+      "/solutions": "solutions",
+      "/case-studies": "case-studies",
+      "/careers": "careers",
+      "/capabilities": "capabilities",
+      "/industries": "industries",
+      "/blog": "blog",
+    };
+
+    // Handle hash-based navigation (for backward compatibility)
     if (location.hash) {
-      const hash = location.hash;
-      // Wait for page to render, then scroll to section
+      const hash = location.hash.replace("#", "");
       setTimeout(() => {
-        const element = document.querySelector(hash);
+        const element = document.querySelector(`#${hash}`);
         if (element) {
           const lenis = (window as any).lenis;
           if (lenis) {
@@ -77,7 +89,6 @@ export default function Home() {
               });
             }, 100);
           } else {
-            // Fallback if Lenis is not available yet
             setTimeout(() => {
               element.scrollIntoView({ behavior: "smooth", block: "start" });
               window.scrollBy(0, -80);
@@ -85,8 +96,31 @@ export default function Home() {
           }
         }
       }, 100);
+    } 
+    // Handle path-based navigation
+    else if (location.pathname !== "/" && pathToSectionId[location.pathname]) {
+      const sectionId = pathToSectionId[location.pathname];
+      setTimeout(() => {
+        const element = document.querySelector(`#${sectionId}`);
+        if (element) {
+          const lenis = (window as any).lenis;
+          if (lenis) {
+            setTimeout(() => {
+              lenis.scrollTo(element, {
+                offset: -80,
+                duration: 1.5,
+              });
+            }, 150);
+          } else {
+            setTimeout(() => {
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
+              window.scrollBy(0, -80);
+            }, 200);
+          }
+        }
+      }, 150);
     }
-  }, [location.hash]);
+  }, [location.pathname, location.hash]);
 
   const features = [
     {
@@ -121,12 +155,6 @@ export default function Home() {
     }
   ];
 
-  const stats = [
-    { value: "500+", label: "Projects Delivered" },
-    { value: "98%", label: "Client Satisfaction" },
-    { value: "50+", label: "Enterprise Clients" },
-    { value: "24/7", label: "Support Available" }
-  ];
 
   const capabilities = [
     "Natural Language Processing",
@@ -139,10 +167,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="blob-gradient fixed top-0 left-0 w-full h-full pointer-events-none" />
       
       <Navbar />
-      <StickyDemoCTA />
+
 
       {/* Hero Section */}
       <section id="home" className="relative pt-32 pb-20 px-4">
@@ -159,13 +186,8 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
                 className="flex flex-wrap gap-2 mb-4"
               >
-                <Badge variant="outline" className="glass-card px-4 py-2 text-sm font-medium">
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  AI-Powered Innovation
-                </Badge>
-                <Badge variant="outline" className="glass-card px-4 py-2 text-sm font-medium">
-                  <Star className="w-4 h-4 mr-2" />
-                  Industry Leader
+                <Badge variant="outline" className="bg-[#faf9f7] border-border/50 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow">
+                  Where Innovation Meets Passion
                 </Badge>
               </motion.div>
               
@@ -204,18 +226,11 @@ export default function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => {
-                    const element = document.querySelector("#case-studies");
-                    if (element) {
-                      const lenis = (window as any).lenis;
-                      if (lenis) {
-                        lenis.scrollTo(element, { offset: -80, duration: 1.5 });
-                      }
-                    }
-                  }}
-                  className="glass-card"
+                  onClick={() => navigate("/case-studies")}
+                  className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md hover:text-black transition-all duration-300 group"
                 >
                   See Case Studies
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform opacity-0 group-hover:opacity-100" />
                 </Button>
               </div>
             </motion.div>
@@ -226,7 +241,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative"
             >
-              <div className="glass-card rounded-3xl p-8 gradient-border">
+              <div className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 shadow-sm gradient-border">
                 <div className="grid grid-cols-2 gap-4">
                   {[Brain, Database, Zap, Shield].map((Icon, i) => (
                     <motion.div
@@ -234,7 +249,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 + i * 0.1 }}
-                      className="glass-card rounded-2xl p-6 flex items-center justify-center aspect-square"
+                      className="bg-[#faf9f7] border border-border/50 rounded-2xl p-6 flex items-center justify-center aspect-square shadow-sm hover:shadow-md transition-shadow"
                       whileHover={{ scale: 1.05, y: -4 }}
                     >
                       <Icon className="w-12 h-12 text-primary" />
@@ -247,72 +262,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 px-4" id="stats">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="glass-card rounded-3xl p-8 md:p-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="font-heading font-bold text-3xl md:text-4xl mb-3">
-                Trusted by Industry Leaders
-              </h2>
-              <p className="text-muted-foreground">
-                Our numbers speak for themselves
-              </p>
-            </motion.div>
-            <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-6 xl:gap-8 mb-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="font-heading font-bold text-4xl md:text-5xl gradient-text mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-            <div className="grid md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 xl:gap-6 mt-8">
-              {[
-                { label: "Average Project ROI", value: 250, suffix: "%" },
-                { label: "Time to Market Reduction", value: 40, suffix: "%" },
-                { label: "Client Retention Rate", value: 95, suffix: "%" }
-              ].map((metric, index) => {
-                const ref = useRef(null);
-                const isInView = useInView(ref, { once: true });
-                return (
-                  <motion.div
-                    key={index}
-                    ref={ref}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="glass-card rounded-2xl p-6"
-                  >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-medium">{metric.label}</span>
-                      <span className="font-heading font-bold text-2xl gradient-text">
-                        {isInView ? metric.value : 0}{metric.suffix}
-                      </span>
-                    </div>
-                    <Progress value={isInView ? metric.value : 0} className="h-2" />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ScrollTopButton />
 
       {/* Why NeuroVerse Section */}
       <section id="why-neuroverse" className="py-20 px-4 scroll-mt-20">
@@ -337,7 +287,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-3xl p-8 md:p-12"
+              className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-8 xl:gap-12 items-center">
                 <div>
@@ -382,7 +332,7 @@ export default function Home() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="glass-card rounded-2xl p-6 flex items-center justify-center aspect-square hover:scale-105 transition-transform"
+                      className="bg-[#faf9f7] border border-border/50 rounded-2xl p-6 flex items-center justify-center aspect-square hover:scale-105 transition-transform shadow-sm hover:shadow-md"
                     >
                       <Icon className="w-12 h-12 text-primary" />
                     </motion.div>
@@ -396,7 +346,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="glass-card rounded-3xl p-6 xl:p-8"
+                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-6 xl:p-8 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
@@ -421,7 +371,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="glass-card rounded-3xl p-6 xl:p-8"
+                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-6 xl:p-8 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
@@ -447,7 +397,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-3xl p-8 md:p-12 gradient-border"
+              className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm gradient-border"
             >
               <div className="text-center mb-8">
                 <Rocket className="w-16 h-16 text-primary mx-auto mb-4" />
@@ -494,7 +444,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
                 >
-                  <Card className="glass-card h-full hover:scale-105 transition-transform duration-300 cursor-pointer">
+                  <Card className="bg-[#faf9f7] border border-border/50 h-full hover:scale-105 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md">
                     <CardHeader>
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
                         <feature.icon className="w-6 h-6 text-white" />
@@ -571,7 +521,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="glass-card h-full hover:scale-105 transition-transform duration-300">
+                <Card className="bg-[#faf9f7] border border-border/50 h-full hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md">
                   <CardHeader>
                     <CardTitle className="font-heading text-xl mb-3">{product.title}</CardTitle>
                     <CardDescription className="text-base mb-4">
@@ -596,7 +546,7 @@ export default function Home() {
       </section>
 
       {/* Solutions Section */}
-      <section id="solutions" className="py-20 px-4 scroll-mt-20 bg-gradient-to-b from-transparent to-primary/5">
+      <section id="solutions" className="py-20 px-4 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -644,7 +594,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="glass-card rounded-2xl p-6"
+                className="bg-[#faf9f7] border border-border/50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
               >
                 <h3 className="font-heading font-bold text-2xl mb-4">{solution.industry}</h3>
                 <ul className="space-y-2">
@@ -823,7 +773,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="glass-card h-full hover:scale-105 transition-transform duration-300 cursor-pointer group">
+                <Card className="bg-[#faf9f7] border border-border/50 h-full hover:scale-105 transition-all duration-300 cursor-pointer group shadow-sm hover:shadow-md">
                   <CardHeader>
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${industry.color} flex items-center justify-center group-hover:scale-110 transition-transform`}>
@@ -863,7 +813,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 glass-card rounded-3xl p-8 md:p-12 gradient-border"
+            className="mt-16 bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm gradient-border"
           >
             <div className="text-center mb-12">
               <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
@@ -886,7 +836,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-center glass-card rounded-2xl p-6"
+                  className="text-center bg-[#faf9f7] border border-border/50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <stat.icon className="w-8 h-8 text-primary mx-auto mb-3" />
                   <div className="font-heading font-bold text-3xl gradient-text mb-2">
@@ -903,7 +853,7 @@ export default function Home() {
       {/* Capabilities Section */}
       <section id="capabilities" className="py-20 px-4 scroll-mt-20">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="glass-card rounded-3xl p-8 md:p-12">
+          <div className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -926,7 +876,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-center space-x-3 glass-card rounded-xl p-4"
+                  className="flex items-center space-x-3 bg-[#faf9f7] border border-border/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                   <span className="font-medium">{capability}</span>
@@ -955,14 +905,14 @@ export default function Home() {
           </motion.div>
 
           <Tabs defaultValue="retail" className="w-full">
-            <TabsList className="glass-card mb-8 grid w-full grid-cols-3 md:w-auto md:grid-cols-3">
+            <TabsList className="bg-[#faf9f7] border border-border/50 shadow-sm mb-8 grid w-full grid-cols-3 md:w-auto md:grid-cols-3">
               <TabsTrigger value="retail">Retail</TabsTrigger>
               <TabsTrigger value="healthcare">Healthcare</TabsTrigger>
               <TabsTrigger value="finance">Finance</TabsTrigger>
             </TabsList>
             <TabsContent value="retail">
               <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 xl:gap-8">
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">E-commerce</Badge>
@@ -994,7 +944,7 @@ export default function Home() {
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">Supply Chain</Badge>
@@ -1025,7 +975,7 @@ export default function Home() {
             </TabsContent>
             <TabsContent value="healthcare">
               <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 xl:gap-8">
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">Healthcare</Badge>
@@ -1052,7 +1002,7 @@ export default function Home() {
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">Medical Imaging</Badge>
@@ -1083,7 +1033,7 @@ export default function Home() {
             </TabsContent>
             <TabsContent value="finance">
               <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 xl:gap-8">
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">Financial Services</Badge>
@@ -1115,7 +1065,7 @@ export default function Home() {
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="glass-card">
+                <Card className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="default">Fintech</Badge>
@@ -1149,7 +1099,7 @@ export default function Home() {
       </section>
 
       {/* Careers Section */}
-      <section id="careers" className="py-20 px-4 scroll-mt-20 bg-gradient-to-b from-transparent to-primary/5">
+      <section id="careers" className="py-20 px-4 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1171,7 +1121,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-3xl p-8 md:p-12"
+              className="bg-white rounded-3xl p-8 md:p-12 border border-border shadow-sm"
             >
               <div className="text-center mb-12">
                 <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
@@ -1221,7 +1171,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="glass-card rounded-2xl p-6 hover:scale-105 transition-transform"
+                    className="bg-white rounded-2xl p-6 hover:scale-105 transition-transform border border-border shadow-sm"
                   >
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
                       <value.icon className="w-6 h-6 text-white" />
@@ -1238,96 +1188,207 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-3xl p-8 md:p-10 max-w-4xl mx-auto"
+              transition={{ duration: 0.6 }}
+              className="max-w-7xl mx-auto"
             >
-                <h3 className="font-heading font-bold text-2xl md:text-3xl mb-6 flex items-center gap-3">
-                  <Target className="w-8 h-8 text-primary" />
-                  Why Work at NeuroVerse?
-                </h3>
-                <div className="space-y-4 mb-8">
-                  {[
-                    {
-                      title: "Cutting-Edge Projects",
-                      description: "Work on the most innovative AI projects using state-of-the-art technology. From LLMs to computer vision, you'll tackle challenges at the forefront of AI."
-                    },
-                    {
-                      title: "Career Growth",
-                      description: "Clear career progression paths with opportunities to move into leadership roles. We promote from within and invest in your long-term success."
-                    },
-                    {
-                      title: "Collaborative Culture",
-                      description: "Join a team where collaboration trumps competition. Share knowledge, learn from peers, and build something amazing together."
-                    },
-                    {
-                      title: "Impact & Meaning",
-                      description: "Your work directly impacts businesses and lives. See your AI solutions deployed in production, driving real-world transformation."
-                    },
-                    {
-                      title: "Work-Life Balance",
-                      description: "We respect your time and boundaries. No overwork culture. Sustainable productivity and personal well-being go hand in hand."
-                    }
-                  ].map((point, i) => (
-                    <div key={i} className="flex gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-                        <span className="text-white font-bold">{i + 1}</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg mb-2">{point.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <Button size="lg" onClick={() => navigate("/contact")} className="w-full">
-                  View Open Positions
-                  <ArrowRight className="ml-2 h-5 w-5" />
+              <div className="text-center mb-12">
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4 flex items-center justify-center gap-3"
+                >
+                  <Target className="w-10 h-10 md:w-12 md:h-12 text-primary" />
+                  <span className="gradient-text">Why Work at NeuroVerse?</span>
+                </motion.h3>
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
+                >
+                  Join a team that values innovation, growth, and meaningful impact
+                </motion.p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 auto-rows-fr">
+                {[
+                  {
+                    title: "Cutting-Edge Projects",
+                    description: "Work on the most innovative AI projects using state-of-the-art technology. From LLMs to computer vision, you'll tackle challenges at the forefront of AI.",
+                    icon: Rocket,
+                    gradient: "from-primary to-accent",
+                    delay: 0.1
+                  },
+                  {
+                    title: "Career Growth",
+                    description: "Clear career progression paths with opportunities to move into leadership roles. We promote from within and invest in your long-term success.",
+                    icon: TrendingUp,
+                    gradient: "from-accent to-primary",
+                    delay: 0.2
+                  },
+                  {
+                    title: "Collaborative Culture",
+                    description: "Join a team where collaboration trumps competition. Share knowledge, learn from peers, and build something amazing together.",
+                    icon: Users,
+                    gradient: "from-primary via-accent to-primary",
+                    delay: 0.3
+                  },
+                  {
+                    title: "Impact & Meaning",
+                    description: "Your work directly impacts businesses and lives. See your AI solutions deployed in production, driving real-world transformation.",
+                    icon: Target,
+                    gradient: "from-accent to-primary",
+                    delay: 0.4
+                  },
+                  {
+                    title: "Work-Life Balance",
+                    description: "We respect your time and boundaries. No overwork culture. Sustainable productivity and personal well-being go hand in hand.",
+                    icon: Heart,
+                    gradient: "from-primary to-accent",
+                    delay: 0.5
+                  },
+                  {
+                    title: "Competitive Benefits",
+                    description: "Enjoy comprehensive health coverage, flexible PTO, stock options, and perks designed to support your success both professionally and personally.",
+                    icon: Award,
+                    gradient: "from-accent to-primary",
+                    delay: 0.6
+                  }
+                ].map((point, i) => {
+                  const IconComponent = point.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: point.delay }}
+                      whileHover={{ y: -8, scale: 1.02 }}
+                      className="group relative"
+                    >
+                      <Card className="bg-white h-full border-2 hover:border-primary/50 transition-all duration-300 overflow-hidden group-hover:shadow-xl shadow-sm">
+                        <CardHeader className="pb-4">
+                          <div className="relative">
+                            <div className={`absolute inset-0 bg-gradient-to-br ${point.gradient} opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-300 rounded-xl`}></div>
+                            <div className={`relative w-14 h-14 rounded-xl bg-gradient-to-br ${point.gradient} flex items-center justify-center mb-4 transform group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                              <IconComponent className="w-7 h-7 text-white" />
+                            </div>
+                            <div className="absolute top-0 left-0 w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                          <CardTitle className="text-xl font-heading font-bold mb-2 group-hover:text-primary transition-colors duration-300">
+                            {point.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <CardDescription className="text-base leading-relaxed text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                            {point.description}
+                          </CardDescription>
+                        </CardContent>
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7 }}
+                className="text-center"
+              >
+                <Button 
+                  size="lg" 
+                  onClick={() => navigate("/contact")} 
+                  className="relative px-8 py-6 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    View Open Positions
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Button>
               </motion.div>
+            </motion.div>
             </div>
           </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto max-w-5k-content">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card gradient-border rounded-3xl p-8 md:p-12 text-center"
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.02, y: -5 }}
+            className="group relative bg-[#faf9f7] border border-border/50 gradient-border rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-2xl hover:shadow-primary/20"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Let's discuss how AI can accelerate your growth
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                onClick={() => navigate("/contact")}
-                className="bg-primary hover:bg-primary/90 text-white"
+            {/* Background gradient effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
+            
+            {/* Border glow effect */}
+            <div className="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-primary/30 transition-all duration-300 pointer-events-none"></div>
+            
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+              {/* Left Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <motion.h2 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-4 group-hover:text-primary transition-colors duration-300"
+                >
+                  Ready to Transform Your Business?
+                </motion.h2>
+                <motion.p 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+                >
+                  Let's discuss how AI can accelerate your growth
+                </motion.p>
+              </div>
+
+              {/* Right Buttons */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 flex-shrink-0"
               >
-                Schedule a Consultation
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => {
-                  const element = document.querySelector("#case-studies");
-                  if (element) {
-                    const lenis = (window as any).lenis;
-                    if (lenis) {
-                      lenis.scrollTo(element, { offset: -80, duration: 1.5 });
-                    }
-                  }
-                }}
-                className="glass-card"
-              >
-                View Success Stories
-              </Button>
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/contact")}
+                  className="relative px-6 py-6 text-base font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group/btn overflow-hidden min-w-[200px]"
+                >
+                  <span className="relative z-10">Schedule a Consultation</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                </Button>
+                
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => navigate("/case-studies")}
+                  className="relative px-6 py-6 text-base font-semibold bg-[#faf9f7] border-2 border-border/50 hover:border-primary/50 hover:bg-primary/5 transform hover:scale-105 transition-all duration-300 group/btn min-w-[200px] shadow-sm hover:shadow-md"
+                >
+                  <span className="relative z-10">View Success Stories</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                </Button>
+              </motion.div>
             </div>
+
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </motion.div>
         </div>
       </section>

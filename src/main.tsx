@@ -49,6 +49,14 @@ createRoot(document.getElementById("root")!).render(
             <RouteSyncer />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/why-neuroverse" element={<Home />} />
+              <Route path="/products" element={<Home />} />
+              <Route path="/solutions" element={<Home />} />
+              <Route path="/case-studies" element={<Home />} />
+              <Route path="/careers" element={<Home />} />
+              <Route path="/capabilities" element={<Home />} />
+              <Route path="/industries" element={<Home />} />
+              <Route path="/blog" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
               <Route path="*" element={<NotFound />} />

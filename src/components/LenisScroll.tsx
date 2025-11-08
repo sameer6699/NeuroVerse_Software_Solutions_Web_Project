@@ -41,7 +41,7 @@ export function LenisScroll({ children }: { children: React.ReactNode }) {
       }
     };
 
-    // Handle anchor link clicks for smooth scrolling
+    // Handle anchor link clicks for smooth scrolling (backward compatibility)
     function handleAnchorClick(e: MouseEvent) {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href^="#"]');
@@ -55,19 +55,19 @@ export function LenisScroll({ children }: { children: React.ReactNode }) {
       }
     }
 
-    // Handle hash changes on page load
+    // Handle hash changes on page load (backward compatibility)
     if (window.location.hash) {
       scrollToHash(window.location.hash);
     }
 
-    // Handle hash changes from navigation (e.g., from contact page)
+    // Handle hash changes from navigation (backward compatibility)
     function handleHashChange() {
       if (window.location.hash) {
         scrollToHash(window.location.hash);
       }
     }
 
-    // Listen for hash changes
+    // Listen for hash changes (backward compatibility)
     window.addEventListener('hashchange', handleHashChange);
     document.addEventListener('click', handleAnchorClick);
 

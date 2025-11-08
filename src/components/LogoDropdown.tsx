@@ -11,6 +11,7 @@ import {
 import { useAuth } from "@/hooks/use-auth";
 import { Home, LogOut } from "lucide-react";
 import { useNavigate } from "react-router";
+import { images } from "@/assets";
 
 export function LogoDropdown() {
   const { isAuthenticated, signOut } = useAuth();
@@ -34,7 +35,7 @@ export function LogoDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="h-10 w-10">
           <img
-            src="/logo.svg"
+            src={images.logos.primary}
             alt="Logo"
             width={32}
             height={32}
