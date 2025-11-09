@@ -226,6 +226,46 @@ select {
   background-clip: text;
 }
 
+/* Animated gradient text with moving colors - Enhanced Version */
+.gradient-text-animated {
+  background: linear-gradient(
+    90deg,
+    oklch(0.45 0.18 240) 0%,
+    oklch(0.50 0.20 240) 15%,
+    oklch(0.55 0.22 250) 30%,
+    oklch(0.60 0.25 260) 45%,
+    oklch(0.65 0.28 270) 60%,
+    oklch(0.60 0.25 260) 75%,
+    oklch(0.55 0.22 250) 90%,
+    oklch(0.50 0.20 240) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Enhanced animation with smoother flow */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .gradient-border {
   position: relative;
   background: var(--card);
@@ -308,6 +348,26 @@ select {
     padding-left: clamp(2rem, 5vw, 8rem);
     padding-right: clamp(2rem, 5vw, 8rem);
   }
+}
+
+/* Infinite scroll animation for partner carousel */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  display: flex;
+  width: fit-content;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
 
 /* 5K Display specific adjustments (2560px width) */

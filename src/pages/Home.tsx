@@ -98,7 +98,7 @@ export default function Home() {
   const location = useLocation();
   
   // Typewriter animation for badge text (faster speed, loops continuously)
-  const badgeText = "Where Innovation Meets Passion";
+  const badgeText = "Where Innovation Meets Passion..!";
   const { displayedText, isTyping } = useTypewriter(badgeText, 40, 25, 1500);
 
   // Handle path-based navigation and scroll to sections
@@ -169,7 +169,7 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <section id="home" className="relative pt-32 pb-20 px-4">
+      <section id="home" className="relative pt-32 pb-2 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <div className="grid lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-8 xl:gap-12 items-center">
             <motion.div
@@ -193,17 +193,17 @@ export default function Home() {
               </motion.div>
               
               <h1 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight">
-                We build <span className="gradient-text">intelligence</span> into products.
+                Engineering the <span className="gradient-text-animated">Next Generation</span> of Smart Software.
               </h1>
               
-              <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                NeuroVerse partners with companies to design, deploy and scale AI-powered software — from prototypes to production. Transform your business with cutting-edge artificial intelligence solutions that drive real results.
+              <p className="text-xl text-muted-foreground mb-6 leading-relaxed text-left max-w-3xl">
+                NeuroVerse Software Solutions is a global technology studio that merges deep technical expertise with visionary thinking. We build intelligent, scalable, and human-centered software solutions that empower businesses to evolve, adapt, and lead in the age of AI.
               </p>
 
               <div className="flex flex-wrap gap-4 mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span className="text-sm text-muted-foreground">500+ Projects Delivered</span>
+                  <span className="text-sm text-muted-foreground">2+ Years of Experience</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
@@ -211,7 +211,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span className="text-sm text-muted-foreground">50+ Enterprise Clients</span>
+                  <span className="text-sm text-muted-foreground">20+ Enterprise Clients</span>
                 </div>
               </div>
               
@@ -219,19 +219,10 @@ export default function Home() {
                 <Button
                   size="lg"
                   onClick={() => navigate("/contact")}
-                  className="bg-primary hover:bg-primary/90 text-white group"
+                  className="bg-primary hover:bg-primary/90 text-white group min-w-[220px]"
                 >
                   Request Callback
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/case-studies")}
-                  className="bg-[#faf9f7] border border-border/50 shadow-sm hover:shadow-md hover:text-black transition-all duration-300 group"
-                >
-                  See Case Studies
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform opacity-0 group-hover:opacity-100" />
                 </Button>
               </div>
             </motion.div>
@@ -265,8 +256,90 @@ export default function Home() {
 
       <ScrollTopButton />
 
+      {/* Our Partners Section */}
+      <section id="partners" className="pt-2 pb-12 overflow-hidden">
+        <div className="w-full">
+          {/* Infinite Carousel Container */}
+          <div className="relative w-full overflow-hidden py-6">
+            <div className="flex animate-scroll items-center gap-12 md:gap-16 lg:gap-20">
+              {/* First set of logos */}
+              <div className="flex shrink-0 gap-12 md:gap-16 lg:gap-20 items-center">
+                {/* Replace these placeholder divs with your actual partner logo images */}
+                {/* Example structure for each logo:
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24">
+                  <img 
+                    src="/path-to-partner-logo.png" 
+                    alt="Partner Name" 
+                    className="h-full w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300" 
+                  />
+                </div>
+                */}
+                {/* Placeholder for partner logos - replace with actual logos */}
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 1</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 2</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 3</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 4</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 5</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 6</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 7</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 8</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 9</span>
+                </div>
+              </div>
+              {/* Duplicate set for seamless loop - same gap ensures spacing between Logo 9 and Logo 1 matches other logos */}
+              <div className="flex shrink-0 gap-12 md:gap-16 lg:gap-20 items-center">
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 1</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 2</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 3</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 4</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 5</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 6</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 7</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 8</span>
+                </div>
+                <div className="flex items-center justify-center shrink-0 h-16 md:h-20 lg:h-24 w-32 md:w-40 lg:w-48 bg-[#faf9f7] border border-border/50 rounded-lg">
+                  <span className="text-muted-foreground text-sm">Logo 9</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why NeuroVerse Section */}
-      <section id="why-neuroverse" className="py-20 px-4 scroll-mt-20">
+      <section id="why-neuroverse" className="pt-16 pb-20 px-4 scroll-mt-20">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,7 +347,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
+            <h2 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight">
               Why Choose <span className="gradient-text">NeuroVerse</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -282,118 +355,49 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Detailed Why NeuroVerse Content */}
+          {/* Vision and Mission Section */}
           <div className="space-y-12 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm"
-            >
-              <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-8 xl:gap-12 items-center">
-                <div>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                      <Award className="w-7 h-7 text-white" />
-                    </div>
-                    <h3 className="font-heading font-bold text-2xl xl:text-3xl">Proven Track Record</h3>
-                  </div>
-                  <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                    With over 500+ successful projects delivered across industries, NeuroVerse has established itself as a trusted partner in AI transformation. Our expertise spans from Fortune 500 enterprises to innovative startups, delivering measurable results that drive business growth.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold">Industry-Leading Success Rate</p>
-                        <p className="text-sm text-muted-foreground">98% client satisfaction with projects completed on time and within budget</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold">Global Reach</p>
-                        <p className="text-sm text-muted-foreground">Serving clients across 40+ countries with localized support and expertise</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold">Award-Winning Solutions</p>
-                        <p className="text-sm text-muted-foreground">Recognized by industry leaders for innovation in AI and machine learning</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {[Target, Globe, BarChart3, Lock].map((Icon, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="bg-[#faf9f7] border border-border/50 rounded-2xl p-6 flex items-center justify-center aspect-square hover:scale-105 transition-transform shadow-sm hover:shadow-md"
-                    >
-                      <Icon className="w-12 h-12 text-primary" />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 xl:gap-8">
+            <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-8 xl:gap-12">
+              {/* Vision Card */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-6 xl:p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <Brain className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <Lightbulb className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-heading font-bold text-xl xl:text-2xl">Cutting-Edge Technology</h3>
+                  <h3 className="font-heading font-bold text-3xl xl:text-4xl">
+                    <span className="gradient-text">Vision</span>
+                  </h3>
                 </div>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  We leverage the latest advancements in AI and machine learning, including Large Language Models (LLMs), computer vision, and advanced analytics. Our team stays at the forefront of technological innovation, ensuring your solutions are built with state-of-the-art capabilities.
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  To be the world's most trusted technology partner, empowering businesses globally to harness the transformative power of artificial intelligence. We envision a future where intelligent software solutions drive innovation, efficiency, and sustainable growth across all industries.
                 </p>
-                <ul className="space-y-2">
-                  {["Transformer-based architectures", "GPT and LLM integration", "Real-time inference pipelines", "Edge AI deployment"].map((tech, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      <span>{tech}</span>
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
 
+              {/* Mission Card */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-6 xl:p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <Users className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <Target className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="font-heading font-bold text-xl xl:text-2xl">Expert Team</h3>
+                  <h3 className="font-heading font-bold text-3xl xl:text-4xl">
+                    <span className="gradient-text">Mission</span>
+                  </h3>
                 </div>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Our team comprises world-class AI/ML engineers, data scientists, and solution architects with extensive experience. Many of our experts hold advanced degrees from top universities and have worked at leading tech companies including Google, Microsoft, and Amazon.
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  To deliver intelligent, scalable, and human-centered software solutions that solve real-world challenges. We merge deep technical expertise with visionary thinking to build AI-powered systems that enable businesses to evolve, adapt, and lead in the age of artificial intelligence.
                 </p>
-                <ul className="space-y-2">
-                  {["PhD-level researchers", "Certified ML engineers", "Industry veterans (10+ years)", "Published AI research papers"].map((expert, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      <span>{expert}</span>
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             </div>
-
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -404,30 +408,37 @@ export default function Home() {
                 <Rocket className="w-16 h-16 text-primary mx-auto mb-4" />
                 <h3 className="font-heading font-bold text-3xl mb-4">End-to-End Solutions</h3>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  From initial consultation to production deployment and ongoing support, NeuroVerse provides comprehensive AI solutions. We handle every aspect of your AI journey, ensuring seamless integration with your existing infrastructure.
+                  From initial consultation to production deployment and ongoing support, NeuroVerse provides comprehensive software solutions. We handle every aspect of your software developement journey, ensuring seamless integration with your existing infrastructure.
                 </p>
               </div>
-              <div className="grid md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 gap-4 xl:gap-6">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 xl:gap-6">
                 {[
-                  { title: "Discovery & Strategy", desc: "Understand your needs and define AI roadmap" },
+                  { title: "Discovery & Strategy", desc: "Understand your needs and define project roadmap" },
                   { title: "Design & Development", desc: "Build custom solutions tailored to your business" },
                   { title: "Deployment & Integration", desc: "Seamless implementation in your environment" },
                   { title: "Ongoing Support", desc: "24/7 monitoring, optimization, and maintenance" }
                 ].map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
-                      <span className="text-white font-bold">{i + 1}</span>
-                    </div>
-                    <h4 className="font-semibold mb-2">{step.title}</h4>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
-                  </motion.div>
+                  <>
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="text-center flex-1"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white font-bold">{i + 1}</span>
+                      </div>
+                      <h4 className="font-semibold mb-2">{step.title}</h4>
+                      <p className="text-sm text-muted-foreground">{step.desc}</p>
+                    </motion.div>
+                    {i < 3 && (
+                      <div key={`arrow-${i}`} className="hidden md:flex items-center justify-center self-start pt-6">
+                        <ChevronRight className="w-8 h-8 text-primary" />
+                      </div>
+                    )}
+                  </>
                 ))}
               </div>
             </motion.div>
