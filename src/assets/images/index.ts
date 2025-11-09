@@ -17,12 +17,14 @@ export const logos = {
   withBackgroundPng: new URL('./logos/logo_bg.png', import.meta.url).href,
   main: new URL('./logos/Main-logo-NV.png', import.meta.url).href,
   seedLink: new URL('./logos/SeedLink-1.png', import.meta.url).href,
+  seedLinkLogo: new URL('./logos/logo copy.png', import.meta.url).href,
 } as const;
 
 // Hero section images
 export const heroImages = {
   main: new URL('./hero/hero-main.jpg', import.meta.url).href,
   background: new URL('./hero/hero-bg.jpg', import.meta.url).href,
+  image: new URL('./hero/hero-img.svg', import.meta.url).href,
   pattern: new URL('./hero/hero-pattern.svg', import.meta.url).href,
 } as const;
 
@@ -52,6 +54,8 @@ export const partnerLogos = {
 // Project images
 export const projectImages = {
   placeholder: new URL('./projects/project-placeholder.jpg', import.meta.url).href,
+  latestInsights: new URL('./projects/17973908.jpg', import.meta.url).href,
+  insightsHero: new URL('./projects/Flat_openSpace_offices_13.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

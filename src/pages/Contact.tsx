@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar";
 import ScrollTopButton from "@/components/ScrollTopButton";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -52,9 +50,6 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
-      <Navbar />
-
       <section className="relative pt-32 pb-20 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
@@ -438,8 +433,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      <Footer />
       <ScrollTopButton />
     </div>
   );

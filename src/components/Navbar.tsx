@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Globe, Search } from "lucide-react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
+import { Menu, X, Globe, Search, ArrowRight, ChevronRight } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
 import { images } from "@/assets";
 
@@ -10,6 +10,9 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [dropdownTop, setDropdownTop] = useState(80); // Default: 1rem (16px) + 4rem (64px) = 80px
+  const navbarRef = useRef<HTMLElement>(null);
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,6 +20,37 @@ export default function Navbar() {
   
   // Check if we're on the contact page
   const isOnContactPage = location.pathname === "/contact";
+
+  // Calculate dropdown position based on navbar bottom
+  useEffect(() => {
+    const updateDropdownPosition = () => {
+      if (navbarRef.current) {
+        const navbarRect = navbarRef.current.getBoundingClientRect();
+        setDropdownTop(navbarRect.bottom);
+      }
+    };
+
+    // Initial calculation
+    updateDropdownPosition();
+    
+    // Update on resize
+    window.addEventListener('resize', updateDropdownPosition);
+    
+    // Update on scroll (navbar position might change)
+    const handleScroll = () => {
+      requestAnimationFrame(updateDropdownPosition);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Update when navbar visibility changes
+    const timeoutId = setTimeout(updateDropdownPosition, 100);
+
+    return () => {
+      window.removeEventListener('resize', updateDropdownPosition);
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [isVisible]);
   
 
   // Track scroll direction and hide/show navbar
@@ -41,11 +75,96 @@ export default function Navbar() {
   });
 
   const navLinks = [
-    { label: "Why NeuroVerse", href: "/why-neuroverse", sectionId: "why-neuroverse" },
-    { label: "Products", href: "/products", sectionId: "products" },
-    { label: "Solutions", href: "/solutions", sectionId: "solutions" },
-    { label: "Case Studies", href: "/case-studies", sectionId: "case-studies" },
-    { label: "Careers", href: "/careers", sectionId: "careers" },
+    { 
+      label: "Insights", 
+      href: "/insights", 
+      sectionId: "insights",
+      description: "Explore our latest thought leadership, ideas, and insights on the issues that are shaping the future of business and society.",
+      menuItems: [
+        "Hot topics",
+        "Conversations for Tomorrow",
+        "Initiatives with the World Economic Forum",
+        "Our research library",
+        "Expert perspectives"
+      ],
+      featuredTitle: "Capgemini Research Institute",
+      featuredDescription: "Our number one ranked think-tank"
+    },
+    { 
+      label: "Industries", 
+      href: "/industries", 
+      sectionId: "industries",
+      description: "Discover industry-specific solutions and insights tailored to your sector.",
+      menuItems: [
+        "Healthcare",
+        "Finance",
+        "Retail & E-commerce",
+        "Manufacturing",
+        "Technology"
+      ],
+      featuredTitle: "Industry Solutions",
+      featuredDescription: "Tailored solutions for every industry"
+    },
+    { 
+      label: "Services", 
+      href: "/services", 
+      sectionId: "services",
+      description: "Comprehensive services to help you achieve your business goals.",
+      menuItems: [
+        "AI Consulting",
+        "Custom Development",
+        "Data Analytics",
+        "Training & Support",
+        "Integration Services"
+      ],
+      featuredTitle: "Our Services",
+      featuredDescription: "End-to-end solutions for your business"
+    },
+    { 
+      label: "Products", 
+      href: "/products", 
+      sectionId: "products",
+      description: "Explore our innovative products and platforms.",
+      menuItems: [
+        "SeedLink",
+        "WelthWise",
+        "AI Platform",
+        "ML Solutions",
+        "Data Analytics"
+      ],
+      featuredTitle: "Our Products",
+      featuredDescription: "Innovative solutions for modern businesses"
+    },
+    { 
+      label: "Careers", 
+      href: "/careers", 
+      sectionId: "careers",
+      description: "Join our team and build the future of AI.",
+      menuItems: [
+        "Open Positions",
+        "Why Join Us",
+        "Culture & Values",
+        "Benefits",
+        "Apply Now"
+      ],
+      featuredTitle: "Join Our Team",
+      featuredDescription: "Build the future with us"
+    },
+    { 
+      label: "News", 
+      href: "/news", 
+      sectionId: "news",
+      description: "Stay updated with our latest news and announcements.",
+      menuItems: [
+        "Latest News",
+        "Press Releases",
+        "Blog",
+        "Events",
+        "Media Kit"
+      ],
+      featuredTitle: "Latest Updates",
+      featuredDescription: "Stay informed with our news"
+    },
   ];
 
   // Handle navigation to sections
@@ -60,6 +179,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
+      ref={navbarRef}
       initial={{ y: 0 }}
       animate={{ 
         y: isVisible ? 0 : -100,
@@ -69,7 +189,7 @@ export default function Navbar() {
       className="fixed top-4 left-4 right-4 z-50 glass-nav border-t border-b transition-all duration-300 rounded-2xl shadow-lg"
       style={{ maxWidth: 'calc(100% - 2rem)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content relative">
         <div className="flex items-center h-16 gap-6">
           <Link to="/" className="flex items-center cursor-pointer flex-shrink-0">
             <motion.div
@@ -88,23 +208,113 @@ export default function Navbar() {
             </motion.div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-4 relative">
             {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                to={link.href}
-                onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={() => setHoveredMenu(link.sectionId)}
+                onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Button 
-                  variant="ghost" 
-                  className="text-sm font-medium text-gray-700 hover:text-gray-900 relative hover:bg-transparent group px-0"
+                <Link 
+                  to={link.href}
+                  onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
                 >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
-                </Button>
-              </Link>
+                  <Button 
+                    variant="ghost" 
+                    className="text-sm font-medium text-gray-700 hover:text-gray-900 relative hover:bg-transparent group px-0"
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+                  </Button>
+                </Link>
+              </div>
             ))}
           </div>
+
+          {/* Mega Menu Dropdown - Full Width */}
+          <AnimatePresence>
+            {hoveredMenu && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="fixed left-0 right-0 w-screen bg-white shadow-2xl border-t border-gray-200 overflow-hidden z-50"
+                style={{ top: `${dropdownTop}px` }}
+                onMouseEnter={() => setHoveredMenu(hoveredMenu)}
+                onMouseLeave={() => setHoveredMenu(null)}
+              >
+                {(() => {
+                  const link = navLinks.find(l => l.sectionId === hoveredMenu);
+                  if (!link) return null;
+                  return (
+                    <div className="grid grid-cols-3 h-full">
+                      {/* Left Column - Dark Blue Background */}
+                      <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 text-white flex flex-col justify-between">
+                        <div>
+                          <h3 className="text-3xl font-bold mb-4">{link.label}</h3>
+                          <p className="text-white/90 text-sm leading-relaxed mb-6">
+                            {link.description}
+                          </p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          className="border-white bg-transparent hover:bg-white w-fit transition-all duration-300 group"
+                          style={{ color: 'white' }}
+                          onClick={() => {
+                            navigate(link.href);
+                            setHoveredMenu(null);
+                          }}
+                        >
+                          <span className="text-white group-hover:text-blue-800 transition-colors duration-300" style={{ color: 'white' }}>Learn more</span>
+                          <ArrowRight className="ml-2 h-4 w-4 text-white group-hover:text-blue-800 transition-colors duration-300" style={{ color: 'white' }} />
+                        </Button>
+                      </div>
+
+                      {/* Middle Column - Navigation Links */}
+                      <div className="bg-white p-8 border-r border-gray-200">
+                        <ul className="space-y-3">
+                          {link.menuItems.map((item, index) => (
+                            <li key={index}>
+                              <Link
+                                to={link.href}
+                                className="flex items-center justify-between text-gray-700 hover:text-primary transition-colors group"
+                                onClick={(e) => {
+                                  handleSectionClick(link.href, link.sectionId, e);
+                                  setHoveredMenu(null);
+                                }}
+                              >
+                                <span className="text-sm">{item}</span>
+                                <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Right Column - Featured Content */}
+                      <div className="bg-white p-8">
+                        <div className="w-full h-48 mb-4 rounded-lg overflow-hidden">
+                          <img
+                            src={images.logos.seedLink}
+                            alt={link.featuredTitle}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <h4 className="font-bold text-lg text-gray-900 mb-2">
+                          {link.featuredTitle}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {link.featuredDescription}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <div className="hidden md:flex items-center space-x-4 ml-auto">
             {/* Globe Icon */}

@@ -10,9 +10,11 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
 import Home from "./pages/Home.tsx";
 import Contact from "./pages/Contact.tsx";
+import Insights from "./pages/Insights.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { LenisScroll } from "@/components/LenisScroll";
+import Layout from "@/components/Layout";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
@@ -48,18 +50,23 @@ createRoot(document.getElementById("root")!).render(
           <BrowserRouter>
             <RouteSyncer />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/why-neuroverse" element={<Home />} />
-              <Route path="/products" element={<Home />} />
-              <Route path="/solutions" element={<Home />} />
-              <Route path="/case-studies" element={<Home />} />
-              <Route path="/careers" element={<Home />} />
-              <Route path="/capabilities" element={<Home />} />
-              <Route path="/industries" element={<Home />} />
-              <Route path="/blog" element={<Home />} />
-              <Route path="/contact" element={<Contact />} />
+              {/* Layout route - wraps all pages with Navbar and Footer */}
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/why-neuroverse" element={<Home />} />
+                <Route path="/products" element={<Home />} />
+                <Route path="/solutions" element={<Home />} />
+                <Route path="/case-studies" element={<Home />} />
+                <Route path="/careers" element={<Home />} />
+                <Route path="/capabilities" element={<Home />} />
+                <Route path="/industries" element={<Home />} />
+                <Route path="/blog" element={<Home />} />
+                <Route path="/insights" element={<Insights />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+              {/* Auth route - can be outside layout if needed, or keep it inside for consistency */}
               <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
-              <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
         </LenisScroll>
