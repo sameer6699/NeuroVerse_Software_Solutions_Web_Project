@@ -16,6 +16,7 @@ export const logos = {
   withBackground: new URL('./logos/logo_bg.svg', import.meta.url).href,
   withBackgroundPng: new URL('./logos/logo_bg.png', import.meta.url).href,
   main: new URL('./logos/Main-logo-NV.png', import.meta.url).href,
+  seedLink: new URL('./logos/SeedLink-1.png', import.meta.url).href,
 } as const;
 
 // Hero section images

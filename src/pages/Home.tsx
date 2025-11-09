@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, useInView } from "framer-motion";
 import { useNavigate, useLocation } from "react-router";
 import { useRef, useState, useEffect } from "react";
+import { images } from "@/assets";
 import { 
   Brain, 
   Zap, 
@@ -339,7 +340,7 @@ export default function Home() {
       </section>
 
       {/* Why NeuroVerse Section */}
-      <section id="why-neuroverse" className="pt-16 pb-20 px-4 scroll-mt-20">
+      <section id="why-neuroverse" className="pt-16 pb-0 px-4 scroll-mt-20">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -447,94 +448,316 @@ export default function Home() {
       </section>
 
       {/* Products Section */}
-      <section id="products" className="py-20 px-4 scroll-mt-20">
+      <section id="products" className="pt-0 pb-20 px-4 scroll-mt-20 bg-gradient-to-b from-background via-background to-muted/20">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
-              Our <span className="gradient-text">Products</span>
+            <Badge variant="outline" className="mb-2 px-4 py-2 text-sm font-medium bg-[#faf9f7] border-border/50">
+              <Sparkles className="w-4 h-4 mr-2 text-primary" />
+              Our Solutions
+            </Badge>
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-2 leading-tight">
+              Comprehensive AI <span className="gradient-text">Platforms & Solutions</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive AI platforms and solutions designed for modern businesses
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-0">
+              Designed for modern businesses seeking to leverage artificial intelligence for competitive advantage
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                title: "AI Platform",
-                description: "Enterprise-grade AI infrastructure for deploying and managing ML models at scale",
-                features: ["Model training pipelines", "Real-time inference", "Auto-scaling", "Model monitoring"]
-              },
-              {
-                title: "ML Solutions",
-                description: "Pre-built machine learning solutions for common business challenges",
-                features: ["NLP processing", "Computer vision", "Predictive analytics", "Recommendation engines"]
-              },
-              {
-                title: "Data Analytics",
-                description: "Advanced analytics platform with AI-powered insights and visualization",
-                features: ["Real-time dashboards", "Predictive modeling", "Anomaly detection", "Custom reports"]
-              },
-              {
-                title: "Custom Development",
-                description: "Bespoke AI solutions tailored to your unique business requirements",
-                features: ["Custom ML models", "Integration services", "API development", "Consulting"]
-              },
-              {
-                title: "AI Consulting",
-                description: "Strategic guidance to identify AI opportunities and build roadmaps",
-                features: ["AI strategy", "Feasibility studies", "Technology selection", "ROI analysis"]
-              },
-              {
-                title: "Training & Support",
-                description: "Comprehensive training programs and 24/7 support for your AI initiatives",
-                features: ["Team training", "Documentation", "24/7 support", "Best practices"]
-              }
-            ].map((product, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Card className="bg-[#faf9f7] border border-border/50 h-full hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-md">
-                  <CardHeader>
-                    <CardTitle className="font-heading text-xl mb-3">{product.title}</CardTitle>
-                    <CardDescription className="text-base mb-4">
-                      {product.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {product.features.map((feature, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* Product Cards - Two Column Layout with Alternating Image/Description */}
+          <div className="space-y-16 md:space-y-24">
+            {/* Product 1: AI Platform - Image Left, Description Right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <Card className="bg-[#faf9f7] border border-border/50 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="grid md:grid-cols-2 gap-0">
+                  {/* Left Side - Mockup Image */}
+                  <div className="relative bg-gradient-to-br from-blue-500/10 to-cyan-500/10 p-8 md:p-12 flex items-center justify-center min-h-[400px] md:min-h-[500px]">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="relative w-full max-w-md"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl blur-3xl"></div>
+                        <img
+                          src={images.logos.seedLink}
+                          alt="AI Platform Mockup"
+                          className="relative w-full h-auto object-contain rounded-lg shadow-2xl"
+                        />
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  {/* Right Side - Description */}
+                  <div className="p-8 md:p-12 flex flex-col justify-center">
+                    <div className="mb-6">
+                      <Badge variant="outline" className="mb-4 bg-background/50 border-primary/30 text-primary">
+                        <Cpu className="w-3 h-3 mr-2" />
+                        Enterprise Platform
+                      </Badge>
+                      <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4 gradient-text">
+                        AI Platform
+                      </h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                        Enterprise-grade AI infrastructure for deploying and managing ML models at scale. Built for organizations that need robust, scalable, and production-ready machine learning capabilities.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 mb-8">
+                      <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                        Key Features
+                      </p>
+                      <ul className="space-y-3">
+                        {[
+                          { name: "Model training pipelines", icon: Layers },
+                          { name: "Real-time inference", icon: Zap },
+                          { name: "Auto-scaling", icon: TrendingUp },
+                          { name: "Model monitoring", icon: BarChart3 }
+                        ].map((feature, i) => (
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 + i * 0.1 }}
+                            className="flex items-start gap-3"
+                          >
+                            <div className="mt-1 flex-shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md">
+                                <feature.icon className="w-4 h-4 text-white" />
+                              </div>
+                            </div>
+                            <span className="text-base text-muted-foreground pt-1">{feature.name}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button
+                        size="lg"
+                        onClick={() => navigate("/contact")}
+                        className="bg-primary hover:bg-primary/90 text-white group"
+                      >
+                        Learn More
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        onClick={() => navigate("/contact")}
+                        className="border-border/50 hover:bg-primary/5"
+                      >
+                        Request Demo
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Product 2: ML Solutions - Description Left, Image Right */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <Card className="bg-[#faf9f7] border border-border/50 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="grid md:grid-cols-2 gap-0">
+                  {/* Left Side - Description */}
+                  <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+                    <div className="mb-6">
+                      <Badge variant="outline" className="mb-4 bg-background/50 border-primary/30 text-primary">
+                        <Brain className="w-3 h-3 mr-2" />
+                        Pre-built Solutions
+                      </Badge>
+                      <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4 gradient-text">
+                        ML Solutions
+                      </h3>
+                      <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                        Pre-built machine learning solutions for common business challenges. Accelerate your AI journey with ready-to-deploy solutions that solve real-world problems.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4 mb-8">
+                      <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                        Key Features
+                      </p>
+                      <ul className="space-y-3">
+                        {[
+                          { name: "NLP processing", icon: FileCode },
+                          { name: "Computer vision", icon: Target },
+                          { name: "Predictive analytics", icon: TrendingUp },
+                          { name: "Recommendation engines", icon: Sparkles }
+                        ].map((feature, i) => (
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 + i * 0.1 }}
+                            className="flex items-start gap-3"
+                          >
+                            <div className="mt-1 flex-shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-md">
+                                <feature.icon className="w-4 h-4 text-white" />
+                              </div>
+                            </div>
+                            <span className="text-base text-muted-foreground pt-1">{feature.name}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button
+                        size="lg"
+                        onClick={() => navigate("/contact")}
+                        className="bg-primary hover:bg-primary/90 text-white group"
+                      >
+                        Learn More
+                        <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        onClick={() => navigate("/contact")}
+                        className="border-border/50 hover:bg-primary/5"
+                      >
+                        Request Demo
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Right Side - Mockup Image */}
+                  <div className="relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-8 md:p-12 flex items-center justify-center min-h-[400px] md:min-h-[500px] order-1 md:order-2">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="relative w-full max-w-md"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl blur-3xl"></div>
+                        <img
+                          src={images.logos.seedLink}
+                          alt="ML Solutions Mockup"
+                          className="relative w-full h-auto object-contain rounded-lg shadow-2xl"
+                        />
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
           </div>
+
+          {/* Additional Products Grid - Compact View */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <div className="text-center mb-12">
+              <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
+                More <span className="gradient-text">Solutions</span>
+              </h3>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Explore our complete suite of AI-powered solutions
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  title: "Data Analytics",
+                  description: "Advanced analytics platform with AI-powered insights",
+                  icon: BarChart3,
+                  color: "from-green-500 to-emerald-500",
+                  features: ["Real-time dashboards", "Predictive modeling", "Anomaly detection", "Custom reports"]
+                },
+                {
+                  title: "Custom Development",
+                  description: "Bespoke AI solutions tailored to your requirements",
+                  icon: Code,
+                  color: "from-orange-500 to-amber-500",
+                  features: ["Custom ML models", "Integration services", "API development", "Consulting"]
+                },
+                {
+                  title: "AI Consulting",
+                  description: "Strategic guidance to identify AI opportunities",
+                  icon: Lightbulb,
+                  color: "from-indigo-500 to-blue-500",
+                  features: ["AI strategy", "Feasibility studies", "Technology selection", "ROI analysis"]
+                },
+                {
+                  title: "Training & Support",
+                  description: "Comprehensive training and 24/7 support",
+                  icon: GraduationCap,
+                  color: "from-teal-500 to-cyan-500",
+                  features: ["Team training", "Documentation", "24/7 support", "Best practices"]
+                }
+              ].map((product, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -4 }}
+                >
+                  <Card className="bg-[#faf9f7] border border-border/50 h-full hover:shadow-lg transition-all duration-300 shadow-sm cursor-pointer group">
+                    <CardHeader>
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${product.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                        <product.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <CardTitle className="font-heading text-xl mb-2">{product.title}</CardTitle>
+                      <CardDescription className="text-sm">{product.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {product.features.map((feature, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                            <span className="text-muted-foreground">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Solutions Section */}
-      <section id="solutions" className="py-20 px-4 scroll-mt-20 bg-white">
+      <section id="solutions" className="py-12 px-4 scroll-mt-20 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
               Industry <span className="gradient-text">Solutions</span>
@@ -544,7 +767,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 xl:gap-8">
+          <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4 xl:gap-5">
             {[
               {
                 industry: "Healthcare",
@@ -594,13 +817,13 @@ export default function Home() {
       </section>
 
       {/* Industries We Served Section */}
-      <section id="industries" className="py-20 px-4 scroll-mt-20">
+      <section id="industries" className="py-12 px-4 scroll-mt-20">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">
               Industries <span className="gradient-text">We Served</span>
@@ -610,7 +833,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-4 lg:gap-5">
             {[
               {
                 icon: Heart,
@@ -795,7 +1018,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm gradient-border"
+            className="mt-8 bg-[#faf9f7] border border-border/50 rounded-3xl p-8 md:p-12 shadow-sm gradient-border"
           >
             <div className="text-center mb-12">
               <h3 className="font-heading font-bold text-3xl md:text-4xl mb-4">
