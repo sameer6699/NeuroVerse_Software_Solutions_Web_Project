@@ -11,6 +11,11 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import Contact from "./pages/Contact.tsx";
 import Insights from "./pages/Insights.tsx";
+import Industries from "./pages/Industries.tsx";
+import Services from "./pages/Services.tsx";
+import Careers from "./pages/Careers.tsx";
+import News from "./pages/News.tsx";
+import About from "./pages/About.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { LenisScroll } from "@/components/LenisScroll";
@@ -57,11 +62,14 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/products" element={<Home />} />
                 <Route path="/solutions" element={<Home />} />
                 <Route path="/case-studies" element={<Home />} />
-                <Route path="/careers" element={<Home />} />
+                <Route path="/careers" element={<Careers />} />
                 <Route path="/capabilities" element={<Home />} />
-                <Route path="/industries" element={<Home />} />
+                <Route path="/industries" element={<Industries />} />
+                <Route path="/services" element={<Services />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

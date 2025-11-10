@@ -56,6 +56,7 @@ export const projectImages = {
   placeholder: new URL('./projects/project-placeholder.jpg', import.meta.url).href,
   latestInsights: new URL('./projects/17973908.jpg', import.meta.url).href,
   insightsHero: new URL('./projects/Flat_openSpace_offices_13.jpg', import.meta.url).href,
+  hotTopicsBackground: new URL('./projects/empty-square-modern-architecture.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

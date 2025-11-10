@@ -109,16 +109,18 @@ export default function Navbar() {
       label: "Services", 
       href: "/services", 
       sectionId: "services",
-      description: "Comprehensive services to help you achieve your business goals.",
+      description: "Comprehensive services to help you achieve your business goals through innovative technology solutions.",
       menuItems: [
-        "AI Consulting",
-        "Custom Development",
-        "Data Analytics",
-        "Training & Support",
-        "Integration Services"
+        "Cloud",
+        "Customer first",
+        "Cybersecurity",
+        "Data and artificial intelligence",
+        "Enterprise management",
+        "Intelligent industry",
+        "Sustainability"
       ],
       featuredTitle: "Our Services",
-      featuredDescription: "End-to-end solutions for your business"
+      featuredDescription: "End-to-end solutions for your business transformation"
     },
     { 
       label: "Products", 
@@ -139,13 +141,14 @@ export default function Navbar() {
       label: "Careers", 
       href: "/careers", 
       sectionId: "careers",
-      description: "Join our team and build the future of AI.",
+      description: "Become part of a diverse collective of free-thinkers, entrepreneurs and experts – and help us to make a difference.",
       menuItems: [
-        "Open Positions",
-        "Why Join Us",
-        "Culture & Values",
-        "Benefits",
-        "Apply Now"
+        "Why join NeuroVerse",
+        "Life at NeuroVerse",
+        "Meet our people",
+        "Career paths",
+        "Let's connect",
+        "Join us"
       ],
       featuredTitle: "Join Our Team",
       featuredDescription: "Build the future with us"
@@ -164,6 +167,22 @@ export default function Navbar() {
       ],
       featuredTitle: "Latest Updates",
       featuredDescription: "Stay informed with our news"
+    },
+    { 
+      label: "About us", 
+      href: "/about", 
+      sectionId: "about",
+      description: "Learn about our mission, vision, values, and the team behind NeuroVerse's innovative solutions.",
+      menuItems: [
+        "Our Story",
+        "Mission & Vision",
+        "Leadership Team",
+        "Company Values",
+        "Our Culture",
+        "Partners & Alliances"
+      ],
+      featuredTitle: "About NeuroVerse",
+      featuredDescription: "Building the future of technology"
     },
   ];
 
@@ -191,18 +210,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content relative">
         <div className="flex items-center h-16 gap-6">
-          <Link to="/" className="flex items-center cursor-pointer flex-shrink-0">
+          {/* Logo and NeuroVerse Text - At the start of navbar */}
+          <Link to="/" className="flex items-center cursor-pointer flex-shrink-0 mr-auto">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-0.5"
+              className="flex items-center gap-2"
             >
               <img
                 src={images.logos.main}
                 alt="NeuroVerse Logo"
-                className="w-16 h-16 object-contain"
+                className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
               />
-              <span className="font-sans font-semibold text-lg text-gray-900">
+              <span className="font-sans font-semibold text-base md:text-lg lg:text-xl text-gray-900 whitespace-nowrap">
                 NeuroVerse
               </span>
             </motion.div>
@@ -263,7 +283,17 @@ export default function Navbar() {
                           className="border-white bg-transparent hover:bg-white w-fit transition-all duration-300 group"
                           style={{ color: 'white' }}
                           onClick={() => {
-                            navigate(link.href);
+                            if (link.sectionId === "services") {
+                              navigate("/services#services");
+                            } else if (link.sectionId === "careers") {
+                              navigate("/careers");
+                            } else if (link.sectionId === "news") {
+                              navigate("/news");
+                            } else if (link.sectionId === "about") {
+                              navigate("/about");
+                            } else {
+                              navigate(link.href);
+                            }
                             setHoveredMenu(null);
                           }}
                         >

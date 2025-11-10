@@ -305,7 +305,7 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         id="home" 
-        className="relative pt-32 pb-20 px-4 min-h-[80vh] flex items-center"
+        className="relative pt-32 pb-12 md:pb-16 px-4 min-h-[80vh] flex items-center"
         style={{
           backgroundImage: `url(${images.hero.background})`,
           backgroundSize: 'cover',
@@ -489,15 +489,15 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-6 md:mb-8"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
               Highlights
             </h2>
           </motion.div>
@@ -505,21 +505,24 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                title: "From pilot programs to power users",
-                description: "With AI adoption now mainstream, discover how organizations are scaling their advantage",
-                image: images.logos.seedLink,
+                title: "AI Adoption and Scaling",
+                subtitle: "From pilot programs to power users",
+                description: "With AI adoption now mainstream, discover how organizations are scaling their advantage with NeuroVerse's cutting-edge AI solutions and transformative technologies.",
+                image: images.projects.insightsHero || images.logos.seedLink,
                 alt: "AI Adoption and Scaling"
               },
               {
-                title: "Capgemini acquires WNS",
-                description: "Accelerating our vision for Agentic AI-powered Intelligent Operations",
-                image: images.logos.seedLink,
-                alt: "Capgemini WNS Acquisition"
+                title: "NeuroVerse Innovation Lab Launch",
+                subtitle: "Accelerating AI-powered operations",
+                description: "Accelerating our vision for Agentic AI-powered Intelligent Operations through our new Innovation Lab, driving breakthrough solutions for enterprises worldwide.",
+                image: images.projects.latestInsights || images.logos.seedLink,
+                alt: "NeuroVerse Innovation Lab Launch"
               },
               {
-                title: "Q3 2025 performance",
-                description: "Learn about our Q3 2025 revenues",
-                image: images.logos.seedLink,
+                title: "Q3 2025 Performance",
+                subtitle: "Strong growth and expansion",
+                description: "Learn about our Q3 2025 revenues and achievements as we continue to lead the industry in AI-driven innovation and digital transformation.",
+                image: images.projects.hotTopicsBackground || images.logos.seedLink,
                 alt: "Q3 2025 Performance"
               }
             ].map((highlight, index) => (
@@ -544,9 +547,14 @@ export default function Home() {
                   <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300"></div>
                 </div>
                 <div className="p-6 group-hover:bg-blue-50/50 transition-colors duration-300">
-                  <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-heading font-bold text-xl md:text-2xl mb-2 group-hover:text-primary transition-colors duration-300">
                     {highlight.title}
                   </h3>
+                  {highlight.subtitle && (
+                    <p className="text-sm md:text-base text-gray-500 mb-3 font-medium">
+                      {highlight.subtitle}
+                    </p>
+                  )}
                   <p className="text-muted-foreground leading-relaxed">
                     {highlight.description}
                   </p>
@@ -560,7 +568,7 @@ export default function Home() {
       {/* We Deliver Real Value Section */}
       <section className="relative overflow-hidden">
         {/* Top Section - Light Blue Background (70%) */}
-        <div className="relative bg-gradient-to-br from-blue-50 via-primary/10 to-cyan-50 py-20 md:py-32 px-4">
+        <div className="relative bg-gradient-to-br from-blue-50 via-primary/10 to-cyan-50 py-12 md:py-16 px-4">
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Side - Text Content */}
@@ -601,7 +609,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Section - White Background (30%) */}
-        <div className="bg-white py-12 px-4">
+        <div className="bg-white py-8 md:py-10 px-4">
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -620,15 +628,15 @@ export default function Home() {
       <ScrollTopButton />
 
       {/* Latest Insights Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-6 md:mb-8"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8 text-left">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest insights
             </h2>
           </motion.div>
@@ -755,7 +763,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 md:mt-12"
+            className="mt-6 md:mt-8"
           >
             <Button
               variant="outline"
@@ -770,15 +778,15 @@ export default function Home() {
       </section>
 
       {/* Recent Client Stories Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 flex justify-end"
+            className="mb-6 md:mb-8 flex justify-end"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8 text-right">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-right">
               Recent client stories
             </h2>
           </motion.div>
@@ -788,15 +796,15 @@ export default function Home() {
       </section>
 
       {/* Latest News Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-8 md:py-10 px-4 bg-white">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-6 md:mb-8"
           >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8 text-left">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest news
             </h2>
           </motion.div>

@@ -1,47 +1,65 @@
 import { Link, useNavigate } from "react-router";
 import { images } from "@/assets";
+import { motion } from "framer-motion";
+import { Linkedin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 
 export default function Footer() {
   const navigate = useNavigate();
 
-  // Middle Column Links (Group 1)
-  const middleColumnLinks = [
+  // Navigation Links
+  const navigationLinks = [
     { label: "Insights", href: "/insights" },
     { label: "Industries", href: "/industries" },
     { label: "Services", href: "/services" },
     { label: "Careers", href: "/careers" },
     { label: "News", href: "/news" },
-    { label: "About us", href: "/about-us" },
+    { label: "About us", href: "/about" },
     { label: "Contact us", href: "/contact" },
+  ];
+
+  // Legal & Compliance Links
+  const legalLinks = [
     { label: "Investors", href: "/investors" },
     { label: "Terms of use", href: "/terms-of-use" },
     { label: "Accessibility", href: "/accessibility" },
-  ];
-
-  // Right Column Links (Group 2)
-  const rightColumnLinks = [
     { label: "Privacy notice", href: "/privacy-notice" },
     { label: "Recruitment Disclaimer", href: "/recruitment-disclaimer" },
     { label: "Candidates Privacy Notice", href: "/candidates-privacy-notice" },
     { label: "Security vulnerability notification", href: "/security-vulnerability" },
     { label: "India Shareholders", href: "/india-shareholders" },
+  ];
+
+  // Cookies & Policies Links
+  const cookieLinks = [
     { label: "Cookie settings", href: "/cookie-settings" },
     { label: "Cookie policy", href: "/cookie-policy" },
+  ];
+
+  // Other Links
+  const otherLinks = [
     { label: "SpeakUp", href: "/speakup" },
     { label: "Fraud alert", href: "/fraud-alert" },
   ];
 
+  // Social Media Links
+  const socialLinks = [
+    { icon: Linkedin, href: "https://www.linkedin.com/company/neuroverse", label: "LinkedIn" },
+    { icon: Facebook, href: "https://www.facebook.com/neuroverse", label: "Facebook" },
+    { icon: Twitter, href: "https://www.twitter.com/neuroverse", label: "Twitter" },
+    { icon: Instagram, href: "https://www.instagram.com/neuroverse", label: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/@neuroverse", label: "YouTube" },
+  ];
+
   return (
-    <footer className="relative bg-gray-100 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-5k-content">
-        {/* Three Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+    <footer className="relative bg-white text-gray-900 mt-4 md:mt-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 max-w-5k-content">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 lg:gap-16 mb-12">
           {/* Left Column - Company Branding */}
-          <div>
-            {/* Main Logo */}
+          <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-3 group transition-all duration-300 hover:opacity-80 w-fit"
+              className="flex items-center gap-3 group transition-all duration-300 hover:opacity-80 w-fit mb-6"
               onClick={(e) => {
                 e.preventDefault();
                 navigate("/");
@@ -52,52 +70,138 @@ export default function Footer() {
                 alt="NeuroVerse Logo"
                 className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-heading font-bold text-2xl md:text-3xl text-blue-600">
+              <span className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900">
                 NeuroVerse
               </span>
             </Link>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
+              Transforming the future of technology and business through innovation, expertise, and collaboration.
+            </p>
+            
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.15, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-lg border-2 border-gray-300 hover:border-blue-600 bg-white hover:bg-blue-600 flex items-center justify-center text-gray-600 hover:text-white transition-all duration-300 cursor-pointer group shadow-sm hover:shadow-md"
+                    aria-label={social.label}
+                  >
+                    <Icon className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.a>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Middle Column - Navigation Links Group 1 */}
-          <div className="space-y-1">
-            {middleColumnLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="block text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 py-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(link.href);
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Navigation Column */}
+          <div>
+            <h3 className="font-heading font-semibold text-lg md:text-xl text-gray-900 mb-4 md:mb-6">
+              Navigation
+            </h3>
+            <ul className="space-y-2 md:space-y-3">
+              {navigationLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(link.href);
+                    }}
+                  >
+                    <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Right Column - Navigation Links Group 2 */}
-          <div className="space-y-1">
-            {rightColumnLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="block text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 py-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(link.href);
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
+          {/* Legal & Compliance Column */}
+          <div>
+            <h3 className="font-heading font-semibold text-lg md:text-xl text-gray-900 mb-4 md:mb-6">
+              Legal & Compliance
+            </h3>
+            <ul className="space-y-2 md:space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(link.href);
+                    }}
+                  >
+                    <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Cookies & Policies Column */}
+          <div>
+            <h3 className="font-heading font-semibold text-lg md:text-xl text-gray-900 mb-4 md:mb-6">
+              Policies
+            </h3>
+            <ul className="space-y-2 md:space-y-3 mb-6">
+              {cookieLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(link.href);
+                    }}
+                  >
+                    <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Other Links */}
+            <div className="space-y-2 md:space-y-3">
+              {otherLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(link.href);
+                  }}
+                >
+                  <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">
+                    {link.label}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Copyright Section */}
-        <div className="border-t border-gray-300 mt-12 pt-8">
-          <p className="text-xs text-gray-600 text-center">
-            © {new Date().getFullYear()} NeuroVerse. All rights reserved.
-          </p>
+        {/* Bottom Section - Copyright and Additional Info */}
+        <div className="border-t border-gray-200 pt-8 md:pt-10">
+          <div className="flex flex-col md:flex-row items-center justify-end gap-4 md:gap-6">
+            <p className="text-xs md:text-sm text-gray-500 text-center md:text-right">
+              © {new Date().getFullYear()} NeuroVerse. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
