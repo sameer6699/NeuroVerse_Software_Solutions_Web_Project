@@ -372,15 +372,6 @@ export default function Home() {
                   Request Callback
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate("/products")}
-                  className="border-border/50 hover:bg-primary/5 hover:text-foreground min-w-[220px] group transition-all"
-                >
-                  Explore Solutions
-                  <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
               </div>
             </motion.div>
 

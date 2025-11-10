@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud, Users, Target, Heart, Award, Handshake, Lightbulb } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
@@ -57,6 +57,52 @@ export default function About() {
 
   const typewriterText = useTypewriter("About Us.", 150, 80, 2000);
 
+  // Carousel state for Trusted By section
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel content items
+  const carouselItems = [
+    {
+      heading: "Trusted by the world's largest businesses",
+      description: "We work with 85% of the 200 largest public companies on the Forbes Global 2000 list.",
+    },
+    {
+      heading: "Global reach, local expertise",
+      description: "With offices in over 50 countries, we deliver solutions that understand local markets while leveraging global innovation.",
+    },
+    {
+      heading: "Award-winning innovation",
+      description: "Recognized by leading industry analysts and awarded for excellence in technology innovation and client satisfaction.",
+    },
+    {
+      heading: "Proven track record",
+      description: "Over 20 years of experience delivering transformative solutions that drive measurable business outcomes for our clients.",
+    },
+  ];
+
+  // Handle next slide
+  const handleNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  // Handle previous slide
+  const handlePrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  // Handle dot click
+  const handleDotClick = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Auto-play carousel (optional - uncomment if needed)
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, []);
+
   // About Us Sections
   const aboutSections = [
     {
@@ -93,30 +139,6 @@ export default function About() {
       title: "Partners & Alliances",
       description: "Discover our strategic partnerships and alliances that amplify our impact.",
       image: images.projects.insightsHero || images.projects.latestInsights,
-      icon: Handshake,
-    },
-  ];
-
-  // Company Values
-  const companyValues = [
-    {
-      title: "Innovation",
-      description: "We push boundaries and embrace cutting-edge technology to solve complex challenges.",
-      icon: Lightbulb,
-    },
-    {
-      title: "Excellence",
-      description: "We strive for excellence in everything we do, delivering quality solutions that exceed expectations.",
-      icon: Award,
-    },
-    {
-      title: "Integrity",
-      description: "We conduct business with honesty, transparency, and ethical practices.",
-      icon: Heart,
-    },
-    {
-      title: "Collaboration",
-      description: "We believe in the power of teamwork and building strong partnerships.",
       icon: Handshake,
     },
   ];
@@ -370,29 +392,33 @@ export default function About() {
               
               {/* White Overlay Box - Left Side */}
               <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 lg:w-2/5 flex items-center p-8 md:p-12 lg:p-16">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white rounded-xl p-8 md:p-10 lg:p-12 shadow-2xl max-w-lg w-full"
-                >
-                  {/* Heading */}
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Trusted by the world's largest businesses
-                  </h2>
-                  
-                  {/* Paragraph */}
-                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                    We work with 85% of the 200 largest public companies on the Forbes Global 2000 list.
-                  </p>
-                </motion.div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="bg-white rounded-xl p-8 md:p-10 lg:p-12 shadow-2xl max-w-lg w-full"
+                  >
+                    {/* Heading */}
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+                      {carouselItems[currentSlide].heading}
+                    </h2>
+                    
+                    {/* Paragraph */}
+                    <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                      {carouselItems[currentSlide].description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               {/* Carousel Navigation - Bottom Right */}
               <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 flex items-center gap-3 md:gap-4">
                 {/* Left Arrow */}
                 <motion.button
+                  onClick={handlePrevious}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300 cursor-pointer group"
@@ -403,13 +429,14 @@ export default function About() {
 
                 {/* Carousel Dots */}
                 <div className="flex items-center gap-2 md:gap-3 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-                  {[0, 1, 2, 3].map((index) => (
+                  {carouselItems.map((_, index) => (
                     <button
                       key={index}
-                      className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 ${
-                        index === 0 
-                          ? 'bg-blue-600 w-8 md:w-10' 
-                          : 'bg-white border-2 border-gray-300 hover:border-gray-400'
+                      onClick={() => handleDotClick(index)}
+                      className={`rounded-full transition-all duration-300 ${
+                        index === currentSlide
+                          ? 'bg-blue-600 w-8 md:w-10 h-2 md:h-2.5' 
+                          : 'bg-white border-2 border-gray-300 hover:border-gray-400 w-2 h-2 md:w-2.5 md:h-2.5'
                       }`}
                       aria-label={`Slide ${index + 1}`}
                     />
@@ -418,6 +445,7 @@ export default function About() {
 
                 {/* Right Arrow */}
                 <motion.button
+                  onClick={handleNext}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300 cursor-pointer group"
@@ -431,47 +459,175 @@ export default function About() {
         </div>
       </section>
 
-      {/* Company Values Section */}
+      {/* Explore More Cards Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
-              Our Values
-            </h2>
-          </motion.div>
-
-          {/* Values Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {companyValues.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3">
-                    {value.title}
+          {/* Six Card Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            {/* Card 1: Who we are */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                {/* Image Section */}
+                <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
+                  <img
+                    src={images.projects.latestInsights || images.hero.background}
+                    alt="Who we are"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    Who we are
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed flex-grow">
-                    {value.description}
-                  </p>
-                </motion.div>
-              );
-            })}
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-600 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Management & governance */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-blue-800 to-blue-900 rounded-lg overflow-hidden border border-blue-800 hover:shadow-xl transition-all duration-300 h-full flex flex-col min-h-[200px] md:min-h-[250px]">
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative h-full">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-white mb-4 group-hover:text-blue-100 transition-colors duration-300">
+                    Management & governance
+                  </h3>
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-blue-100 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3: ESG */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                {/* Image Section */}
+                <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
+                  <img
+                    src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                    alt="ESG"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    ESG
+                  </h3>
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-600 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 4: CSR */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg overflow-hidden border border-blue-600 hover:shadow-xl transition-all duration-300 h-full flex flex-col min-h-[200px] md:min-h-[250px]">
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative h-full">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-white mb-4 group-hover:text-blue-100 transition-colors duration-300">
+                    CSR
+                  </h3>
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-blue-100 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 5: Technology partners */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                {/* Image Section */}
+                <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
+                  <img
+                    src={images.projects.insightsHero || images.projects.latestInsights}
+                    alt="Technology partners"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    Technology partners
+                  </h3>
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-600 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 6: Locations */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg overflow-hidden border border-blue-600 hover:shadow-xl transition-all duration-300 h-full flex flex-col min-h-[200px] md:min-h-[250px]">
+                {/* Content Section */}
+                <div className="p-4 md:p-6 flex flex-col flex-grow relative h-full">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-white mb-4 group-hover:text-blue-100 transition-colors duration-300">
+                    Locations
+                  </h3>
+                  
+                  {/* Arrow Icon */}
+                  <div className="mt-auto flex justify-end">
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:text-blue-100 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

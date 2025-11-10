@@ -82,8 +82,8 @@ export default function Navbar() {
       description: "Explore our latest thought leadership, ideas, and insights on the issues that are shaping the future of business and society.",
       menuItems: [
         "Hot topics",
-        "Conversations for Tomorrow",
-        "Initiatives with the World Economic Forum",
+        "Industry Reports",
+        "Initiatives for research and Development",
         "Our research library",
         "Expert perspectives"
       ],
@@ -111,13 +111,13 @@ export default function Navbar() {
       sectionId: "services",
       description: "Comprehensive services to help you achieve your business goals through innovative technology solutions.",
       menuItems: [
-        "Cloud",
-        "Customer first",
-        "Cybersecurity",
-        "Data and artificial intelligence",
-        "Enterprise management",
-        "Intelligent industry",
-        "Sustainability"
+        "Cloud Services & Infrastructure",
+        "Customer Experience & Engagement",
+        "Cybersecurity & Risk Management",
+        "Data Analytics & AI Solutions",
+        "Enterprise Resource Planning",
+        "Smart Manufacturing & Industry 4.0",
+        "Sustainability & Green Technology"
       ],
       featuredTitle: "Our Services",
       featuredDescription: "End-to-end solutions for your business transformation"
