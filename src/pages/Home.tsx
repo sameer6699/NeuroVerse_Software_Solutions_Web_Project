@@ -499,21 +499,21 @@ export default function Home() {
                 title: "AI Adoption and Scaling",
                 subtitle: "From pilot programs to power users",
                 description: "With AI adoption now mainstream, discover how organizations are scaling their advantage with NeuroVerse's cutting-edge AI solutions and transformative technologies.",
-                image: images.projects.insightsHero || images.logos.seedLink,
+                image: images.banners.aiBanner || images.projects.insightsHero || images.logos.seedLink,
                 alt: "AI Adoption and Scaling"
               },
               {
                 title: "NeuroVerse Innovation Lab Launch",
                 subtitle: "Accelerating AI-powered operations",
                 description: "Accelerating our vision for Agentic AI-powered Intelligent Operations through our new Innovation Lab, driving breakthrough solutions for enterprises worldwide.",
-                image: images.projects.latestInsights || images.logos.seedLink,
+                image: images.banners.researchBanner || images.projects.latestInsights || images.logos.seedLink,
                 alt: "NeuroVerse Innovation Lab Launch"
               },
               {
                 title: "Q3 2025 Performance",
                 subtitle: "Strong growth and expansion",
                 description: "Learn about our Q3 2025 revenues and achievements as we continue to lead the industry in AI-driven innovation and digital transformation.",
-                image: images.projects.hotTopicsBackground || images.logos.seedLink,
+                image: images.banners.reportsBanner || images.projects.hotTopicsBackground || images.logos.seedLink,
                 alt: "Q3 2025 Performance"
               }
             ].map((highlight, index) => (
