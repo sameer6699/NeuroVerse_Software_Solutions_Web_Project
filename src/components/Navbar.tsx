@@ -79,8 +79,13 @@ export default function Navbar() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const currentScrollY = latest;
     
-    // Find hero section element
-    const heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
+    // Find hero section element - check for 'home' id or first section on healthcare/industries pages
+    let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
+    
+    // If not found and on healthcare or industries page, use the first section as hero
+    if (!heroSection && (location.pathname.includes('/healthcare') || location.pathname.includes('/industries'))) {
+      heroSection = document.querySelector('section:first-of-type');
+    }
     
     if (heroSection) {
       const heroTop = heroSection.offsetTop;
@@ -326,21 +331,33 @@ export default function Navbar() {
                       {/* Middle Column - Navigation Links */}
                       <div className="bg-white p-8 border-r border-gray-200">
                         <ul className="space-y-3">
-                          {link.menuItems.map((item, index) => (
-                            <li key={index}>
-                              <Link
-                                to={link.href}
-                                className="flex items-center justify-between text-gray-700 hover:text-primary transition-colors group"
-                                onClick={(e) => {
-                                  handleSectionClick(link.href, link.sectionId, e);
-                                  setHoveredMenu(null);
-                                }}
-                              >
-                                <span className="text-sm">{item}</span>
-                                <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              </Link>
-                            </li>
-                          ))}
+                          {link.menuItems.map((item, index) => {
+                            // Special handling for Healthcare in Industries menu
+                            const itemHref = link.sectionId === "industries" && item === "Healthcare" 
+                              ? "/industries/healthcare"
+                              : link.href;
+                            
+                            return (
+                              <li key={index}>
+                                <Link
+                                  to={itemHref}
+                                  className="flex items-center justify-between text-gray-700 hover:text-primary transition-colors group"
+                                  onClick={(e) => {
+                                    if (link.sectionId === "industries" && item === "Healthcare") {
+                                      e.preventDefault();
+                                      navigate("/industries/healthcare");
+                                    } else {
+                                      handleSectionClick(link.href, link.sectionId, e);
+                                    }
+                                    setHoveredMenu(null);
+                                  }}
+                                >
+                                  <span className="text-sm">{item}</span>
+                                  <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                </Link>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
 

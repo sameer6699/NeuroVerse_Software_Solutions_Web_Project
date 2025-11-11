@@ -1226,7 +1226,7 @@ export default function Home() {
                     The Future of AI-Driven Software Development 2025
                   </h3>
                   <p className="text-sm text-primary font-semibold">
-                    NEUROVERSE RESEARCH
+                    NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
               </motion.div>
@@ -1245,14 +1245,14 @@ export default function Home() {
                 <div className="flex flex-col justify-between h-full min-h-[300px] md:min-h-[350px]">
                   <div>
                     <p className="text-sm text-white/80 mb-3 font-medium">
-                      — NeuroVerse Research
+                      — NEUROVERSE RESEARCH INSTITUTE
                     </p>
                     <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-white leading-tight">
                       Transforming businesses through AI: Building intelligent software solutions for tomorrow's enterprises
                     </h3>
                   </div>
                   <p className="text-sm text-white font-semibold uppercase">
-                    NEUROVERSE RESEARCH
+                    NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
               </motion.div>
@@ -1270,14 +1270,14 @@ export default function Home() {
                   <div className="flex-1 p-8 md:p-10 lg:p-12 flex flex-col justify-between z-10">
                     <div>
                       <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
-                        — NeuroVerse Research
+                        — NEUROVERSE RESEARCH INSTITUTE
                       </p>
                       <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-gray-900 dark:text-gray-100 leading-tight">
                         Innovation and technology leadership: Navigating the AI revolution in enterprise software development
                       </h3>
                     </div>
                     <p className="text-sm text-primary font-semibold uppercase">
-                      NEUROVERSE RESEARCH
+                      NEUROVERSE RESEARCH INSTITUTE
                     </p>
                   </div>
 

@@ -76,12 +76,12 @@ export default function Footer() {
                   alt="NeuroVerse Logo"
                   className="w-12 h-12 md:w-14 md:h-14 object-contain"
                 />
-                <span className="font-bold text-xl md:text-2xl text-black whitespace-nowrap" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
+                <span className="font-heading font-bold text-xl md:text-2xl text-black whitespace-nowrap">
                   NeuroVerse Software Solutions
                 </span>
               </motion.div>
             </Link>
-            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
+            <p className="font-sans text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
               Transforming the future of technology and business through innovation, expertise, and collaboration.
             </p>
             
@@ -117,7 +117,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    className="font-sans block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(link.href);
@@ -142,7 +142,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    className="font-sans block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(link.href);
@@ -167,7 +167,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                    className="font-sans block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(link.href);
@@ -187,7 +187,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
+                  className="font-sans block text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 py-1 group"
                   onClick={(e) => {
                     e.preventDefault();
                     navigate(link.href);
@@ -205,7 +205,7 @@ export default function Footer() {
         {/* Bottom Section - Copyright and Additional Info */}
         <div className="border-t border-gray-200 pt-8 md:pt-10">
           <div className="flex flex-col md:flex-row items-center justify-end gap-4 md:gap-6">
-            <p className="text-xs md:text-sm text-gray-500 text-center md:text-right">
+            <p className="font-sans text-xs md:text-sm text-gray-500 text-center md:text-right">
               © {new Date().getFullYear()} NeuroVerse. All rights reserved.
             </p>
           </div>

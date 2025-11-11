@@ -12,6 +12,7 @@ import Home from "./pages/Home.tsx";
 import Contact from "./pages/Contact.tsx";
 import Insights from "./pages/Insights.tsx";
 import Industries from "./pages/Industries.tsx";
+import Healthcare from "./pages/Healthcare.tsx";
 import Services from "./pages/Services.tsx";
 import Careers from "./pages/Careers.tsx";
 import News from "./pages/News.tsx";
@@ -65,6 +66,7 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/capabilities" element={<Home />} />
                 <Route path="/industries" element={<Industries />} />
+                <Route path="/industries/healthcare" element={<Healthcare />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />

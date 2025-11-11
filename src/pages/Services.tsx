@@ -243,13 +243,26 @@ export default function Services() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-              className="font-heading font-bold text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] text-gray-900 leading-[0.9] mb-6 relative z-10"
+              className="font-bold text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] leading-[0.9] mb-6 relative z-10 whitespace-nowrap"
               style={{
-                textShadow: '0 2px 20px rgba(255, 255, 255, 0.8), 0 4px 40px rgba(255, 255, 255, 0.5)',
+                fontFamily: "'Poppins', 'Montserrat', sans-serif",
+                fontWeight: 700,
                 letterSpacing: '-0.02em',
+                whiteSpace: 'nowrap',
+                mixBlendMode: 'normal',
               }}
             >
-              <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent" style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              <span 
+                className="whitespace-nowrap inline-block"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.75) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  textShadow: '0 4px 30px rgba(0, 0, 0, 0.4), 0 8px 60px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.08)',
+                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))',
+                }}
+              >
                 {typewriterText}
                 <motion.span
                   animate={{ opacity: [1, 0, 1] }}
@@ -258,9 +271,11 @@ export default function Services() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="inline-block w-0.5 h-[0.9em] bg-gray-900 ml-1 align-middle"
+                  className="inline-block w-0.5 h-[0.9em] ml-1 align-middle"
                   style={{
                     verticalAlign: 'middle',
+                    background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%)',
+                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
                   }}
                 />
               </span>
