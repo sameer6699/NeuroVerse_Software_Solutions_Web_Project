@@ -74,6 +74,7 @@ export const bannerImages = {
   manufacturingHeroBanner: new URL('./banner-Images/manufacturing-hero-bg.jpg', import.meta.url).href,
   technologyHeroBanner: new URL('./banner-Images/technology-hero-bg.jpg', import.meta.url).href,
   technologyBgBanner: new URL('./banner-Images/tech-bg-img.jpg', import.meta.url).href,
+  cloudDataCenter: new URL('./banner-Images/cloud-data-center.jpg', import.meta.url).href,
   codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
 } as const;
 

@@ -53,7 +53,7 @@ export default function Industries() {
     return displayedText;
   };
 
-  const typewriterText = useTypewriter("Industries", 150, 80, 2000);
+  const typewriterText = useTypewriter("Industries.", 150, 80, 2000);
 
   // Industries Carousel State
   const [currentIndustryIndex, setCurrentIndustryIndex] = useState(0);

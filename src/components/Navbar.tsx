@@ -397,6 +397,7 @@ export default function Navbar() {
                         <ul className="space-y-3">
                           {link.menuItems.map((item, index) => {
                             // Special handling for Healthcare, Finance, Retail & E-commerce, Manufacturing, and Technology in Industries menu
+                            // Special handling for Cloud Services & Infrastructure in Services menu
                             let itemHref = link.href;
                             if (link.sectionId === "industries") {
                               if (item === "Healthcare") {
@@ -409,6 +410,12 @@ export default function Navbar() {
                                 itemHref = "/industries/manufacturing";
                               } else if (item === "Technology") {
                                 itemHref = "/industries/technology";
+                              }
+                            } else if (link.sectionId === "services") {
+                              if (item === "Cloud Services & Infrastructure") {
+                                itemHref = "/services/cloud-services-infrastructure";
+                              } else if (item === "Customer Experience & Engagement") {
+                                itemHref = "/services/customer-experience-engagement";
                               }
                             }
 
@@ -442,6 +449,12 @@ export default function Navbar() {
                                     } else if (link.sectionId === "industries" && item === "Technology") {
                                       e.preventDefault();
                                       navigate("/industries/technology");
+                                    } else if (link.sectionId === "services" && item === "Cloud Services & Infrastructure") {
+                                      e.preventDefault();
+                                      navigate("/services/cloud-services-infrastructure");
+                                    } else if (link.sectionId === "services" && item === "Customer Experience & Engagement") {
+                                      e.preventDefault();
+                                      navigate("/services/customer-experience-engagement");
                                     } else if (hasSubItems) {
                                       e.preventDefault();
                                     } else {

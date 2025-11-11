@@ -18,6 +18,8 @@ import RetailEcommerce from "./pages/RetailEcommerce.tsx";
 import Manufacturing from "./pages/Manufacturing.tsx";
 import Technology from "./pages/Technology.tsx";
 import Services from "./pages/Services.tsx";
+import CloudServicesInfrastructure from "./pages/CloudServicesInfrastructure.tsx";
+import CustomerExperienceEngagement from "./pages/CustomerExperienceEngagement.tsx";
 import Careers from "./pages/Careers.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
@@ -76,6 +78,8 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/industries/manufacturing" element={<Manufacturing />} />
                 <Route path="/industries/technology" element={<Technology />} />
                 <Route path="/services" element={<Services />} />
+                <Route path="/services/cloud-services-infrastructure" element={<CloudServicesInfrastructure />} />
+                <Route path="/services/customer-experience-engagement" element={<CustomerExperienceEngagement />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/news" element={<News />} />

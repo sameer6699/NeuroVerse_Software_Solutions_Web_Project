@@ -57,7 +57,7 @@ export default function Services() {
     return displayedText;
   };
 
-  const typewriterText = useTypewriter("Services", 150, 80, 2000);
+  const typewriterText = useTypewriter("Services.", 150, 80, 2000);
 
   // Handle navigation to services section
   useEffect(() => {
