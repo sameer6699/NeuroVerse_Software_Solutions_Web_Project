@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, useInView } from "framer-motion";
 import { useNavigate, useLocation } from "react-router";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { images } from "@/assets";
 import { 
   Brain, 
@@ -53,7 +53,13 @@ import {
   Building2,
   Car,
   Plane,
-  Briefcase
+  Briefcase,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Maximize,
+  Minimize
 } from "lucide-react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
@@ -188,42 +194,474 @@ function ClientStoriesCarousel() {
         </div>
       </motion.div>
 
-      {/* Carousel Navigation - Bottom Right */}
+      {/* Carousel Navigation - Pill-shaped Control */}
       <div className="absolute bottom-6 right-6 z-20">
-        <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 flex items-center gap-4 shadow-lg border border-gray-200">
-          {/* Previous Button */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3 }}
+          className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+          style={{
+            background: 'linear-gradient(135deg, #faf9f7 0%, #f5f4f2 100%)',
+          }}
+        >
+          {/* Previous Button (Left Arrow) */}
           <button
             onClick={prevStory}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
             aria-label="Previous story"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-700" />
+            <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
           </button>
 
           {/* Dots Indicator */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 px-1">
             {clientStories.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToStory(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                className={`transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-primary w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    ? 'bg-blue-600 w-8 h-2 rounded-full'
+                    : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
                 }`}
                 aria-label={`Go to story ${index + 1}`}
               />
             ))}
           </div>
 
-          {/* Next Button */}
+          {/* Next Button (Right Arrow) */}
           <button
             onClick={nextStory}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
             aria-label="Next story"
           >
-            <ChevronRight className="w-5 h-5 text-gray-700" />
+            <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
           </button>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+// YouTube-like Video Player Component
+function YouTubeVideoPlayer() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const volumeSliderRef = useRef<HTMLDivElement>(null);
+  
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVolumeHovered, setIsVolumeHovered] = useState(false);
+
+  // Format time helper
+  const formatTime = (seconds: number): string => {
+    if (isNaN(seconds)) return "0:00";
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+    
+    if (hrs > 0) {
+      return `${hrs}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Auto-play video on load
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Set video to autoplay and loop
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true; // Required for autoplay in most browsers
+    
+    // Try to play the video
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Video started playing
+          setIsPlaying(true);
+        })
+        .catch((error) => {
+          // Autoplay was prevented
+          console.log('Autoplay prevented:', error);
+          setIsPlaying(false);
+        });
+    }
+
+    // Handle video end to ensure looping
+    const handleEnded = () => {
+      video.currentTime = 0;
+      video.play().catch(() => {
+        setIsPlaying(false);
+      });
+    };
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    video.addEventListener('ended', handleEnded);
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+
+    return () => {
+      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
+    };
+  }, []);
+
+  // Update current time
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const updateTime = () => setCurrentTime(video.currentTime);
+    const updateDuration = () => setDuration(video.duration);
+    
+    video.addEventListener('timeupdate', updateTime);
+    video.addEventListener('loadedmetadata', updateDuration);
+    video.addEventListener('durationchange', updateDuration);
+
+    return () => {
+      video.removeEventListener('timeupdate', updateTime);
+      video.removeEventListener('loadedmetadata', updateDuration);
+      video.removeEventListener('durationchange', updateDuration);
+    };
+  }, []);
+
+  // Handle play/pause
+  const togglePlay = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  // Handle progress bar click
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const video = videoRef.current;
+    const progressBar = progressRef.current;
+    if (!video || !progressBar) return;
+
+    const rect = progressBar.getBoundingClientRect();
+    const percent = (e.clientX - rect.left) / rect.width;
+    video.currentTime = percent * video.duration;
+    setCurrentTime(video.currentTime);
+  };
+
+  // Handle volume change
+  const handleVolumeChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    const video = videoRef.current;
+    const volumeSlider = volumeSliderRef.current;
+    if (!video || !volumeSlider) return;
+
+    const rect = volumeSlider.getBoundingClientRect();
+    const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    video.volume = percent;
+    setVolume(percent);
+    setIsMuted(percent === 0);
+  };
+
+  // Toggle mute
+  const toggleMute = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.muted || volume === 0) {
+      video.muted = false;
+      video.volume = volume || 0.5;
+      setIsMuted(false);
+      setVolume(video.volume);
+    } else {
+      video.muted = true;
+      setIsMuted(true);
+    }
+  }, [volume]);
+
+  // Toggle fullscreen
+  const toggleFullscreen = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (!document.fullscreenElement) {
+      container.requestFullscreen().then(() => {
+        setIsFullscreen(true);
+      }).catch(() => {});
+    } else {
+      document.exitFullscreen().then(() => {
+        setIsFullscreen(false);
+      }).catch(() => {});
+    }
+  }, []);
+
+  // Auto-hide controls
+  useEffect(() => {
+    if (!isHovered && isPlaying) {
+      const timer = setTimeout(() => {
+        setShowControls(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowControls(true);
+    }
+  }, [isHovered, isPlaying]);
+
+  // Handle mouse movement
+  const handleMouseMove = () => {
+    setShowControls(true);
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (isPlaying) {
+      setTimeout(() => setShowControls(false), 3000);
+    }
+  };
+
+  // Handle fullscreen change
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  // Handle keyboard shortcuts (when video is focused/hovered)
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const video = videoRef.current;
+      const container = containerRef.current;
+      if (!video || !container) return;
+
+      // Only handle if hovering over video or video is playing
+      if (!isHovered && !isPlaying) return;
+
+      switch (e.code) {
+        case 'Space':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            togglePlay();
+          }
+          break;
+        case 'ArrowLeft':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            video.currentTime = Math.max(0, video.currentTime - 10);
+          }
+          break;
+        case 'ArrowRight':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            video.currentTime = Math.min(video.duration, video.currentTime + 10);
+          }
+          break;
+        case 'ArrowUp':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            video.volume = Math.min(1, video.volume + 0.1);
+            setVolume(video.volume);
+            setIsMuted(false);
+            video.muted = false;
+          }
+          break;
+        case 'ArrowDown':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            video.volume = Math.max(0, video.volume - 0.1);
+            setVolume(video.volume);
+            if (video.volume === 0) setIsMuted(true);
+          }
+          break;
+        case 'KeyM':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            toggleMute();
+          }
+          break;
+        case 'KeyF':
+          if (container.contains(document.activeElement) || isHovered) {
+            e.preventDefault();
+            toggleFullscreen();
+          }
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isHovered, isPlaying, togglePlay, toggleMute, toggleFullscreen]);
+
+  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+  const volumePercent = volume * 100;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="relative"
+    >
+      <div
+        ref={containerRef}
+        className="bg-black rounded-lg shadow-2xl overflow-hidden aspect-video relative group"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => setIsHovered(true)}
+      >
+        {/* Video Element */}
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          src={images.banners.codingVideo}
+          playsInline
+          loop
+          autoPlay
+          muted={isMuted}
+          preload="auto"
+          onClick={togglePlay}
+        >
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Center Play Button Overlay */}
+        {!isPlaying && (
+          <div
+            className="absolute inset-0 flex items-center justify-center cursor-pointer z-20 transition-opacity duration-300"
+            onClick={togglePlay}
+          >
+            <div className="bg-black/60 rounded-full p-4 hover:bg-black/80 transition-all">
+              <Play className="w-16 h-16 text-white" fill="white" />
+            </div>
+          </div>
+        )}
+
+        {/* Controls Overlay */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-300 ${
+            showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          {/* Progress Bar */}
+          <div
+            ref={progressRef}
+            className="absolute bottom-16 left-0 right-0 h-1 bg-white/30 cursor-pointer group/progress"
+            onClick={handleProgressClick}
+          >
+            <div
+              className="h-full bg-red-600 transition-all duration-150 relative group-hover/progress:h-1.5"
+              style={{ width: `${progressPercent}%` }}
+            >
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-600 rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity" />
+            </div>
+          </div>
+
+          {/* Bottom Controls Bar */}
+          <div className="absolute bottom-0 left-0 right-0 px-4 py-3 flex items-center gap-3">
+            {/* Play/Pause Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                togglePlay();
+              }}
+              className="text-white hover:text-gray-300 transition-colors p-1"
+              aria-label={isPlaying ? 'Pause' : 'Play'}
+            >
+              {isPlaying ? (
+                <Pause className="w-6 h-6" fill="currentColor" />
+              ) : (
+                <Play className="w-6 h-6" fill="currentColor" />
+              )}
+            </button>
+
+            {/* Volume Control */}
+            <div
+              className="flex items-center gap-2 group/volume"
+              onMouseEnter={() => setIsVolumeHovered(true)}
+              onMouseLeave={() => setIsVolumeHovered(false)}
+            >
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMute();
+                }}
+                className="text-white hover:text-gray-300 transition-colors p-1"
+                aria-label={isMuted ? 'Unmute' : 'Mute'}
+              >
+                {isMuted || volume === 0 ? (
+                  <VolumeX className="w-6 h-6" />
+                ) : (
+                  <Volume2 className="w-6 h-6" />
+                )}
+              </button>
+              
+              {/* Volume Slider */}
+              <div
+                ref={volumeSliderRef}
+                className={`h-1 bg-white/30 rounded-full cursor-pointer transition-all duration-300 overflow-hidden ${
+                  isVolumeHovered ? 'w-20 opacity-100' : 'w-0 opacity-0'
+                }`}
+                onClick={handleVolumeChange}
+              >
+                <div
+                  className="h-full bg-white transition-all"
+                  style={{ width: `${volumePercent}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Time Display */}
+            <div className="flex items-center gap-1 text-white text-sm font-medium ml-auto">
+              <span>{formatTime(currentTime)}</span>
+              <span>/</span>
+              <span>{formatTime(duration)}</span>
+            </div>
+
+            {/* Settings Button (Optional) */}
+            <button
+              className="text-white hover:text-gray-300 transition-colors p-1"
+              aria-label="Settings"
+            >
+              <Cog className="w-6 h-6" />
+            </button>
+
+            {/* Fullscreen Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFullscreen();
+              }}
+              className="text-white hover:text-gray-300 transition-colors p-1"
+              aria-label={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+            >
+              {isFullscreen ? (
+                <Minimize className="w-6 h-6" />
+              ) : (
+                <Maximize className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -578,40 +1016,9 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              {/* Right Side - Video/Content Placeholder */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
-              >
-                <div className="bg-white rounded-lg shadow-2xl overflow-hidden aspect-video flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <PlayCircle className="w-16 h-16 text-primary mx-auto mb-4" />
-                    <p className="text-gray-600 text-sm">
-                      Video content placeholder
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+              {/* Right Side - YouTube-like Video Player */}
+              <YouTubeVideoPlayer />
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Section - White Background (30%) */}
-        <div className="bg-white py-8 md:py-10 px-4">
-          <div className="max-w-7xl mx-auto max-w-5k-content">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center"
-            >
-              <p className="text-xl md:text-2xl text-gray-900 font-semibold max-w-4xl mx-auto leading-relaxed">
-                Our commitment to excellence drives everything we do. Every solution we deliver is engineered to create measurable impact, drive innovation, and empower your organization to achieve extraordinary results in the age of artificial intelligence.
-              </p>
-            </motion.div>
           </div>
         </div>
       </section>

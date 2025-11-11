@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Globe, Search, ArrowRight, ChevronRight } from "lucide-react";
+import { Menu, X, Globe, Search, ArrowRight, ChevronRight, ExternalLink, Sun, Moon } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
@@ -12,7 +12,11 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [dropdownTop, setDropdownTop] = useState(80); // Default: 1rem (16px) + 4rem (64px) = 80px
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,6 +24,24 @@ export default function Navbar() {
   
   // Check if we're on the contact page
   const isOnContactPage = location.pathname === "/contact";
+
+  // Toggle theme
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    // You can add theme switching logic here
+    document.documentElement.classList.toggle('dark', !isDarkMode);
+  };
+
+  // Handle search
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Navigate to search results or perform search
+      console.log("Searching for:", searchQuery);
+      // You can add your search logic here
+      // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   // Calculate dropdown position based on navbar bottom
   useEffect(() => {
@@ -53,27 +75,31 @@ export default function Navbar() {
   }, [isVisible]);
   
 
-  // Track scroll direction and hide/show navbar
+  // Show navbar only when user is in hero section
   useMotionValueEvent(scrollY, "change", (latest) => {
     const currentScrollY = latest;
-    const scrollDifference = currentScrollY - lastScrollY;
-
-    // Show navbar at the top of the page
-    if (currentScrollY < 10) {
-      setIsVisible(true);
-    } 
-    // Hide navbar when scrolling down
-    else if (scrollDifference > 0 && currentScrollY > 100) {
-      setIsVisible(false);
-    } 
-    // Show navbar when scrolling up
-    else if (scrollDifference < 0) {
+    
+    // Find hero section element
+    const heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
+    
+    if (heroSection) {
+      const heroTop = heroSection.offsetTop;
+      const heroHeight = heroSection.offsetHeight;
+      const heroBottom = heroTop + heroHeight;
+      
+      // Show navbar only if scroll position is within hero section
+      // Adding navbar height (96px) to account for fixed positioning
+      const isInHeroSection = currentScrollY >= 0 && currentScrollY <= (heroBottom - 96);
+      setIsVisible(isInHeroSection);
+    } else {
+      // If hero section not found, show navbar by default
       setIsVisible(true);
     }
-
+    
     setLastScrollY(currentScrollY);
   });
 
+  // Filter navLinks to match image (Insights, Industries, Services, Careers, News, About us)
   const navLinks = [
     { 
       label: "Insights", 
@@ -121,21 +147,6 @@ export default function Navbar() {
       ],
       featuredTitle: "Our Services",
       featuredDescription: "End-to-end solutions for your business transformation"
-    },
-    { 
-      label: "Products", 
-      href: "/products", 
-      sectionId: "products",
-      description: "Explore our innovative products and platforms.",
-      menuItems: [
-        "SeedLink",
-        "WelthWise",
-        "AI Platform",
-        "ML Solutions",
-        "Data Analytics"
-      ],
-      featuredTitle: "Our Products",
-      featuredDescription: "Innovative solutions for modern businesses"
     },
     { 
       label: "Careers", 
@@ -199,57 +210,67 @@ export default function Navbar() {
   return (
     <motion.nav
       ref={navbarRef}
-      initial={{ y: 0 }}
+      initial={{ y: 0, opacity: 1 }}
       animate={{ 
         y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-4 left-4 right-4 z-50 glass-nav border-t border-b transition-all duration-300 rounded-2xl shadow-lg"
-      style={{ maxWidth: 'calc(100% - 2rem)' }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 transition-all duration-300"
+      style={{ backgroundColor: '#ffffff', pointerEvents: isVisible ? 'auto' : 'none' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content relative">
-        <div className="flex items-center h-16 gap-6">
-          {/* Logo and NeuroVerse Text - At the start of navbar */}
-          <Link to="/" className="flex items-center cursor-pointer flex-shrink-0 mr-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
+        <div className="flex items-center justify-between h-24">
+          {/* Left Section: Logo */}
+          <Link to="/" className="flex items-center cursor-pointer flex-shrink-0">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2"
+              className="flex items-center"
+              style={{ gap: '2px' }}
             >
               <img
                 src={images.logos.main}
                 alt="NeuroVerse Logo"
-                className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain"
+                className="w-12 h-12 md:w-14 md:h-14 object-contain"
               />
-              <span className="font-sans font-semibold text-base md:text-lg lg:text-xl text-gray-900 whitespace-nowrap">
+              <span className="font-bold text-xl md:text-2xl text-black whitespace-nowrap" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
                 NeuroVerse
               </span>
             </motion.div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-4 relative">
-            {navLinks.map((link) => (
-              <div
-                key={link.href}
-                className="relative"
-                onMouseEnter={() => setHoveredMenu(link.sectionId)}
-                onMouseLeave={() => setHoveredMenu(null)}
-              >
-                <Link 
-                  to={link.href}
-                  onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
+          {/* Center Section: Main Navigation Links */}
+          <div className="hidden lg:flex items-center gap-6 relative flex-1 justify-center">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href || location.pathname.includes(link.sectionId);
+              return (
+                <div
+                  key={link.href}
+                  className="relative"
+                  onMouseEnter={() => setHoveredMenu(link.sectionId)}
+                  onMouseLeave={() => setHoveredMenu(null)}
                 >
-                  <Button 
-                    variant="ghost" 
-                    className="text-sm font-medium text-gray-700 hover:text-gray-900 relative hover:bg-transparent group px-0"
+                  <Link 
+                    to={link.href}
+                    onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
+                    className="relative"
                   >
-                    {link.label}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
-                  </Button>
-                </Link>
-              </div>
-            ))}
+                    <span 
+                      className={`text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200 relative group ${
+                        isActive ? 'text-blue-600' : ''
+                      }`}
+                    >
+                      {link.label}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600"></span>
+                      )}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </span>
+                  </Link>
+                </div>
+              );
+            })}
           </div>
 
           {/* Mega Menu Dropdown - Full Width */}
@@ -261,7 +282,7 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
                 className="fixed left-0 right-0 w-screen bg-white shadow-2xl border-t border-gray-200 overflow-hidden z-50"
-                style={{ top: `${dropdownTop}px` }}
+                style={{ backgroundColor: '#ffffff', top: `${dropdownTop}px` }}
                 onMouseEnter={() => setHoveredMenu(hoveredMenu)}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
@@ -346,70 +367,65 @@ export default function Navbar() {
             )}
           </AnimatePresence>
 
-          <div className="hidden md:flex items-center space-x-4 ml-auto">
-            {/* Globe Icon */}
-            <button
-              onClick={() => {
-                // Handle language/region selection
-                console.log("Language selector clicked");
-              }}
-              className="text-slate-600 hover:text-slate-800 transition-colors cursor-pointer p-2 rounded-md hover:bg-gray-100"
-              aria-label="Select language"
-            >
-              <Globe className="w-5 h-5" />
-            </button>
-
-            {/* Search Icon */}
-            <button
-              onClick={() => {
-                // Handle search
-                console.log("Search clicked");
-              }}
-              className="text-slate-600 hover:text-slate-800 transition-colors cursor-pointer p-2 rounded-md hover:bg-gray-100"
-              aria-label="Search"
-            >
-              <Search className="w-5 h-5" />
-            </button>
-
-            {/* Contact Us Text */}
+          {/* Right Section: Utility Links and Actions */}
+          <div className="hidden lg:flex items-center gap-6 ml-auto">
+            {/* Contact Us */}
             <Link
               to="/contact"
-              className="text-slate-600 hover:text-slate-800 transition-colors text-sm font-medium relative group px-0 py-2"
+              className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
             >
-              Contact Us
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
+              Contact us
             </Link>
 
-            {isAuthenticated ? (
-              <Button
-                onClick={() => navigate("/dashboard")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-4 py-2 text-sm font-medium"
+            {/* Search and Theme Toggle */}
+            <div className="flex items-center gap-4 border-l border-gray-200 pl-4">
+              {/* Search Box */}
+              <form onSubmit={handleSearch} className="relative">
+                <div className="relative">
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setIsSearchFocused(false)}
+                    placeholder="Search..."
+                    className={`pl-10 pr-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      isSearchFocused ? 'w-64' : 'w-48'
+                    }`}
+                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                </div>
+              </form>
+
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleTheme}
+                className="relative w-12 h-6 rounded-full bg-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="Toggle theme"
               >
-                Dashboard
-              </Button>
-            ) : (
-              <>
-                <Button
-                  variant="ghost"
-                  onClick={() => navigate("/auth")}
-                  className="relative hover:bg-transparent text-slate-600 hover:text-slate-800 group px-0"
-                >
-                  Login
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-slate-800 transition-all duration-300 group-hover:w-full"></span>
-                </Button>
-                <Button
-                  onClick={() => navigate("/contact")}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-md px-4 py-2 text-sm font-medium"
-                >
-                  Request Callback
-                </Button>
-              </>
-            )}
+                <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${
+                  isDarkMode ? 'translate-x-6' : 'translate-x-0'
+                }`}>
+                  {isDarkMode ? (
+                    <Moon className="w-3 h-3 text-gray-700" />
+                  ) : (
+                    <Sun className="w-3 h-3 text-yellow-500" />
+                  )}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-between px-1">
+                  <Sun className={`w-3 h-3 transition-opacity duration-300 ${isDarkMode ? 'opacity-30' : 'opacity-100'}`} />
+                  <Moon className={`w-3 h-3 transition-opacity duration-300 ${isDarkMode ? 'opacity-100' : 'opacity-30'}`} />
+                </div>
+              </button>
+            </div>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700"
+            className="lg:hidden text-gray-700 p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -421,7 +437,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden bg-white border-t border-gray-200 rounded-b-2xl"
+          className="lg:hidden bg-white border-t border-gray-200"
         >
           <div className="px-4 py-4 space-y-2">
             {navLinks.map((link) => (

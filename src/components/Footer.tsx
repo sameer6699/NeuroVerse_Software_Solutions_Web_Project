@@ -59,20 +59,27 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link
               to="/"
-              className="flex items-center gap-3 group transition-all duration-300 hover:opacity-80 w-fit mb-6"
+              className="flex items-center cursor-pointer flex-shrink-0 w-fit mb-6 group"
               onClick={(e) => {
                 e.preventDefault();
                 navigate("/");
               }}
             >
-              <img
-                src={images.logos.main || images.logos.primary}
-                alt="NeuroVerse Logo"
-                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-              <span className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900">
-                NeuroVerse
-              </span>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center"
+                style={{ gap: '2px' }}
+              >
+                <img
+                  src={images.logos.main}
+                  alt="NeuroVerse Logo"
+                  className="w-12 h-12 md:w-14 md:h-14 object-contain"
+                />
+                <span className="font-bold text-xl md:text-2xl text-black whitespace-nowrap" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
+                  NeuroVerse Software Solutions
+                </span>
+              </motion.div>
             </Link>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
               Transforming the future of technology and business through innovation, expertise, and collaboration.

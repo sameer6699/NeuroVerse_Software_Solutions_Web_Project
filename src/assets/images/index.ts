@@ -64,6 +64,7 @@ export const bannerImages = {
   aiBanner: new URL('./banner-Images/AI-Banner Image.jpg', import.meta.url).href,
   researchBanner: new URL('./banner-Images/Research-banner.jpg', import.meta.url).href,
   reportsBanner: new URL('./banner-Images/reports-banners.jpg', import.meta.url).href,
+  codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
