@@ -67,6 +67,10 @@ export const bannerImages = {
   healthcareBanner: new URL('./banner-Images/health-care-banner.jpg', import.meta.url).href,
   healthcareHeroBanner: new URL('./banner-Images/hero-section-health-care-banner.jpg', import.meta.url).href,
   healthcareHeroBanner1: new URL('./banner-Images/hero-section-health-care-banner-1.jpg', import.meta.url).href,
+  financeHeroBanner: new URL('./banner-Images/finance-hero-section-banner.jpg', import.meta.url).href,
+  financeBgBanner: new URL('./banner-Images/finance-bg-banner.jpg', import.meta.url).href,
+  retailEcommerceHeroBanner: new URL('./banner-Images/retail-&-Ecommerce.jpg', import.meta.url).href,
+  retailEcommerceBgBanner: new URL('./banner-Images/retail-ecomm-bg.jpg', import.meta.url).href,
   codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
 } as const;
 

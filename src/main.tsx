@@ -13,6 +13,8 @@ import Contact from "./pages/Contact.tsx";
 import Insights from "./pages/Insights.tsx";
 import Industries from "./pages/Industries.tsx";
 import Healthcare from "./pages/Healthcare.tsx";
+import Finance from "./pages/Finance.tsx";
+import RetailEcommerce from "./pages/RetailEcommerce.tsx";
 import Services from "./pages/Services.tsx";
 import Careers from "./pages/Careers.tsx";
 import News from "./pages/News.tsx";
@@ -67,6 +69,8 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/capabilities" element={<Home />} />
                 <Route path="/industries" element={<Industries />} />
                 <Route path="/industries/healthcare" element={<Healthcare />} />
+                <Route path="/industries/finance" element={<Finance />} />
+                <Route path="/industries/retail-ecommerce" element={<RetailEcommerce />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />

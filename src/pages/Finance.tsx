@@ -1,16 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Heart, ArrowRight, Stethoscope, Activity, Brain, Shield, Database, Smartphone, Users, TrendingUp, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
+import { DollarSign, ArrowRight, CreditCard, TrendingUp, Shield, Database, Smartphone, Users, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Building2, Wallet, PieChart } from "lucide-react";
 import { images } from "@/assets";
 import { useRef } from "react";
 import { Link } from "react-router";
 
 /**
- * Healthcare Page Component
+ * Finance Page Component
  * 
- * This page displays healthcare-specific solutions and insights.
+ * This page displays finance-specific solutions and insights.
  * The Navbar and Footer are automatically included via the global Layout component.
  */
-export default function Healthcare() {
+export default function Finance() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -22,43 +22,43 @@ export default function Healthcare() {
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
 
-  // Healthcare Solutions
-  const healthcareSolutions = [
+  // Finance Solutions
+  const financeSolutions = [
     {
-      icon: Stethoscope,
-      title: "Electronic Health Records (EHR)",
-      description: "Comprehensive EHR systems that streamline patient data management, improve clinical workflows, and ensure seamless information sharing across healthcare providers.",
-      features: ["Patient Data Management", "Clinical Documentation", "Interoperability", "HIPAA Compliance"]
+      icon: CreditCard,
+      title: "Digital Banking Platforms",
+      description: "Comprehensive digital banking solutions that enable seamless transactions, account management, and financial services delivery across multiple channels.",
+      features: ["Mobile Banking", "Online Banking", "Payment Processing", "Account Management"]
     },
     {
-      icon: Brain,
-      title: "AI-Powered Diagnostics",
-      description: "Advanced machine learning algorithms for medical imaging analysis, disease detection, and diagnostic support that enhance accuracy and speed up diagnosis.",
-      features: ["Medical Imaging Analysis", "Disease Detection", "Predictive Analytics", "Clinical Decision Support"]
+      icon: TrendingUp,
+      title: "AI-Powered Trading & Analytics",
+      description: "Advanced machine learning algorithms for algorithmic trading, risk analysis, fraud detection, and predictive financial modeling.",
+      features: ["Algorithmic Trading", "Risk Analysis", "Fraud Detection", "Predictive Analytics"]
     },
     {
       icon: Smartphone,
-      title: "Telemedicine Platforms",
-      description: "Secure, user-friendly telemedicine solutions that enable remote consultations, virtual care delivery, and patient engagement from anywhere.",
-      features: ["Video Consultations", "Remote Monitoring", "Patient Portals", "Mobile Health Apps"]
-    },
-    {
-      icon: Activity,
-      title: "Health Information Systems",
-      description: "Integrated health information systems that connect hospitals, clinics, and healthcare providers for coordinated patient care.",
-      features: ["Hospital Management", "Laboratory Systems", "Pharmacy Management", "Billing & Revenue"]
+      title: "FinTech Applications",
+      description: "Innovative financial technology applications for payments, lending, investment management, and personal finance tracking.",
+      features: ["Payment Apps", "Lending Platforms", "Investment Tools", "Budgeting Apps"]
     },
     {
       icon: Database,
-      title: "Healthcare Analytics",
-      description: "Data-driven insights and analytics platforms that help healthcare organizations improve outcomes, reduce costs, and enhance operational efficiency.",
-      features: ["Population Health Analytics", "Clinical Outcomes", "Cost Analysis", "Performance Metrics"]
+      title: "Financial Data Management",
+      description: "Robust data management systems for financial institutions to handle transactions, customer data, and regulatory reporting.",
+      features: ["Transaction Processing", "Customer Data Management", "Regulatory Reporting", "Data Analytics"]
+    },
+    {
+      icon: BarChart3,
+      title: "Financial Analytics & Reporting",
+      description: "Comprehensive analytics platforms that provide real-time insights, financial reporting, and business intelligence for informed decision-making.",
+      features: ["Real-time Analytics", "Financial Reporting", "Business Intelligence", "Performance Metrics"]
     },
     {
       icon: Shield,
-      title: "Healthcare Security & Compliance",
-      description: "Robust security solutions and compliance frameworks to protect sensitive patient data and meet regulatory requirements.",
-      features: ["HIPAA Compliance", "Data Encryption", "Access Controls", "Audit Trails"]
+      title: "Financial Security & Compliance",
+      description: "Enterprise-grade security solutions and compliance frameworks to protect financial data and meet regulatory requirements like PCI-DSS, SOX, and GDPR.",
+      features: ["PCI-DSS Compliance", "Data Encryption", "Access Controls", "Audit Trails"]
     },
   ];
 
@@ -66,47 +66,47 @@ export default function Healthcare() {
   const benefits = [
     {
       icon: TrendingUp,
-      title: "Improved Patient Outcomes",
-      description: "AI-powered diagnostics and personalized treatment plans lead to better health outcomes and patient satisfaction."
+      title: "Enhanced Financial Performance",
+      description: "AI-powered analytics and automation drive better investment decisions, reduce costs, and improve profitability."
     },
     {
       icon: Users,
-      title: "Enhanced Care Coordination",
-      description: "Seamless information sharing across healthcare providers ensures coordinated and comprehensive patient care."
+      title: "Improved Customer Experience",
+      description: "Seamless digital banking experiences and personalized financial services increase customer satisfaction and retention."
     },
     {
       icon: BarChart3,
       title: "Operational Efficiency",
-      description: "Automated workflows and intelligent systems reduce administrative burden and improve resource utilization."
+      description: "Automated processes and intelligent systems streamline operations, reduce manual errors, and optimize resource utilization."
     },
     {
       icon: CheckCircle2,
       title: "Regulatory Compliance",
-      description: "Built-in compliance features ensure adherence to HIPAA, HITECH, and other healthcare regulations."
+      description: "Built-in compliance features ensure adherence to financial regulations, reducing risk and ensuring regulatory readiness."
     },
   ];
 
   // Use Cases
   const useCases = [
     {
-      title: "Hospital Management System",
-      description: "Comprehensive hospital information system managing patient admissions, bed allocation, staff scheduling, and resource optimization.",
-      technologies: ["Cloud Computing", "AI/ML", "IoT", "Data Analytics"]
+      title: "Digital Banking Platform",
+      description: "Comprehensive digital banking solution enabling online and mobile banking, payments, transfers, and account management for retail and commercial customers.",
+      technologies: ["Cloud Computing", "AI/ML", "Mobile Apps", "Data Analytics"]
     },
     {
-      title: "Telemedicine Platform",
-      description: "Secure telemedicine solution enabling remote consultations, prescription management, and virtual follow-ups for patients.",
-      technologies: ["Cloud Computing", "Mobile Apps", "Video Conferencing", "EHR Integration"]
+      title: "Trading & Investment Platform",
+      description: "Advanced trading platform with real-time market data, algorithmic trading capabilities, portfolio management, and risk analysis tools.",
+      technologies: ["Cloud Computing", "AI/ML", "Real-time Processing", "Data Analytics"]
     },
     {
-      title: "Medical Imaging AI",
-      description: "AI-powered medical imaging analysis system for radiology, pathology, and diagnostic imaging with high accuracy rates.",
-      technologies: ["AI/ML", "Computer Vision", "Deep Learning", "Cloud Computing"]
+      title: "Fraud Detection System",
+      description: "AI-powered fraud detection system that analyzes transactions in real-time to identify and prevent fraudulent activities across payment channels.",
+      technologies: ["AI/ML", "Real-time Analytics", "Machine Learning", "Cloud Computing"]
     },
     {
-      title: "Patient Portal & Engagement",
-      description: "Comprehensive patient portal for appointment scheduling, medical records access, medication reminders, and health tracking.",
-      technologies: ["Mobile Apps", "Cloud Computing", "Data Analytics", "IoT"]
+      title: "Wealth Management Platform",
+      description: "Comprehensive wealth management solution for financial advisors and clients, including portfolio tracking, financial planning, and investment recommendations.",
+      technologies: ["Cloud Computing", "Data Analytics", "Mobile Apps", "AI/ML"]
     },
   ];
 
@@ -124,7 +124,7 @@ export default function Healthcare() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.healthcareHeroBanner1})`,
+            backgroundImage: `url(${images.banners.financeHeroBanner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -162,7 +162,7 @@ export default function Healthcare() {
         </motion.div>
       </section>
 
-      {/* Healthcare Card - Positioned outside hero section, extending from hero */}
+      {/* Finance Card - Positioned outside hero section, extending from hero */}
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-end">
@@ -176,7 +176,7 @@ export default function Healthcare() {
               <div 
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
-                {/* Healthcare Text - Centered in the box */}
+                {/* Finance Text - Centered in the box */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ export default function Healthcare() {
                     textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
                   }}
                 >
-                  Healthcare
+                  Finance
                 </motion.h1>
               </div>
             </motion.div>
@@ -197,11 +197,11 @@ export default function Healthcare() {
         </div>
       </div>
 
-      {/* Healthcare-Specific Solutions Section */}
+      {/* Finance-Specific Solutions Section */}
       <section className="relative bg-white py-8 md:py-10 px-4">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-red-50/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 left-0 w-96 h-96 bg-green-50/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-50/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         </div>
 
@@ -221,11 +221,11 @@ export default function Healthcare() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-red-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-red-50 hover:to-red-100 cursor-pointer group relative overflow-hidden"
+                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-green-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100 cursor-pointer group relative overflow-hidden"
                 aria-label="LinkedIn"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
                 />
                 <Linkedin className="w-7 h-7 md:w-8 md:h-8 text-gray-600 group-hover:text-white transition-colors relative z-10" />
@@ -238,11 +238,11 @@ export default function Healthcare() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-red-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-red-50 hover:to-red-100 cursor-pointer group relative overflow-hidden"
+                className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-green-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100 cursor-pointer group relative overflow-hidden"
                 aria-label="Facebook"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
                 />
                 <svg
@@ -265,19 +265,19 @@ export default function Healthcare() {
             >
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-                  Healthcare-Specific Solutions
+                  Finance-Specific Solutions
                 </h2>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-4xl">
-                  Discover how NeuroVerse delivers tailored AI and software solutions across diverse industries, addressing unique challenges and driving digital transformation.
+                  Discover how NeuroVerse delivers tailored AI and software solutions for the financial services industry, addressing unique challenges and driving digital transformation.
                 </p>
                 <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-4xl">
-                  In the healthcare sector, we understand that technology must seamlessly integrate with clinical workflows while maintaining the highest standards of security, compliance, and patient care. Our healthcare solutions are designed to enhance operational efficiency, improve patient outcomes, and enable healthcare providers to deliver exceptional care in an increasingly digital world.
+                  In the financial sector, we understand that technology must seamlessly integrate with financial operations while maintaining the highest standards of security, compliance, and customer trust. Our finance solutions are designed to enhance operational efficiency, improve customer experience, and enable financial institutions to deliver exceptional services in an increasingly digital world.
                 </p>
                 <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-4xl">
-                  From AI-powered diagnostic tools that assist clinicians in early disease detection to comprehensive electronic health record systems that streamline patient data management, NeuroVerse combines cutting-edge technology with deep healthcare domain expertise. We work closely with hospitals, clinics, research institutions, and healthcare organizations to develop solutions that are not just innovative, but also practical, scalable, and compliant with healthcare regulations.
+                  From AI-powered trading platforms that enable algorithmic trading and risk analysis to comprehensive digital banking systems that streamline customer transactions, NeuroVerse combines cutting-edge technology with deep financial domain expertise. We work closely with banks, investment firms, fintech companies, and financial organizations to develop solutions that are not just innovative, but also practical, scalable, and compliant with financial regulations.
                 </p>
                 <div className="pt-4">
-                  <div className="h-1 w-24 bg-gradient-to-r from-red-600 to-red-400 rounded-full"></div>
+                  <div className="h-1 w-24 bg-gradient-to-r from-green-600 to-green-400 rounded-full"></div>
                 </div>
               </div>
             </motion.div>
@@ -285,7 +285,7 @@ export default function Healthcare() {
         </div>
       </section>
 
-      {/* Healthcare Case Study Banner/Carousel Section - Full Width */}
+      {/* Finance Case Study Banner/Carousel Section - Full Width */}
       <section className="relative bg-white py-8 md:py-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -298,7 +298,7 @@ export default function Healthcare() {
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.banners.healthcareBanner})`,
+              backgroundImage: `url(${images.banners.financeBgBanner})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -319,26 +319,75 @@ export default function Healthcare() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
+                  className="bg-white rounded-xl p-4 md:p-6 lg:p-6 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Healthcare organizations achieve stability and security with NeuroVerse cloud solutions
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+                    Financial institutions achieve stability and security with NeuroVerse cloud solutions
                   </h3>
                   
                   {/* Body Text */}
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse supports deployment of advanced cloud and AI-powered healthcare solutions, with scalable cloud infrastructure and intelligent capabilities unlocking operational efficiencies, productivity gains, improving patient outcomes, and providing a blueprint for healthcare digital transformation across hospitals and medical institutions.
+                  <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
+                    NeuroVerse delivers advanced cloud and AI-powered financial solutions that unlock operational efficiencies, improve customer experience, and drive digital transformation across banks, investment firms, and fintech companies.
                   </p>
+
+                  {/* Key Benefits - Simplified */}
+                  <div className="space-y-2 mb-4 md:mb-5">
+                    <div className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">Security & Compliance</h4>
+                        <p className="text-xs text-gray-600 leading-snug">
+                          Enterprise-grade security with PCI-DSS, SOX, and GDPR compliance built-in.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">AI-Powered Analytics</h4>
+                        <p className="text-xs text-gray-600 leading-snug">
+                          Real-time fraud detection and predictive modeling for data-driven decisions.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">Scalable Infrastructure</h4>
+                        <p className="text-xs text-gray-600 leading-snug">
+                          Cloud-native architecture that scales with your business growth.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Solution Tags - Simplified */}
+                  <div className="flex flex-wrap gap-1.5 mb-4 md:mb-5">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+                      Digital Banking
+                    </span>
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+                      Trading Systems
+                    </span>
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+                      Fraud Detection
+                    </span>
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+                      Wealth Management
+                    </span>
+                  </div>
 
                   {/* Read More Button */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm"
                   >
                     <span>Read more</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </motion.div>
               </div>
@@ -403,7 +452,7 @@ export default function Healthcare() {
 
           {/* Three Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Card 1: Health payer */}
+            {/* Card 1: Banking & Financial Services */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -415,7 +464,7 @@ export default function Healthcare() {
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
                   src={images.banners.healthcareBanner}
-                  alt="Health payer"
+                  alt="Banking & Financial Services"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -423,20 +472,20 @@ export default function Healthcare() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Health payer
+                  Banking & Financial Services
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and Gen AI solutions enhance digital innovation, data security, and cost management in the health insurance sector. We leverage healthcare payer solutions, predictive analytics, and cybersecurity to drive personalized experiences and streamline operations.
+                    AI and Gen AI solutions enhance digital innovation, data security, and cost management in the banking sector. We leverage financial technology solutions, predictive analytics, and cybersecurity to drive personalized experiences and streamline operations.
                   </p>
                   <p className="text-sm md:text-base">
-                    Our solutions ensure data transparency, enable flexible products, improve outcomes, and ensure regulatory compliance for competitive agility in the evolving healthcare landscape.
+                    Our solutions ensure data transparency, enable flexible products, improve customer outcomes, and ensure regulatory compliance for competitive agility in the evolving financial landscape.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 2: Health and social care */}
+            {/* Card 2: Investment & Wealth Management */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -448,7 +497,7 @@ export default function Healthcare() {
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
                   src={images.banners.healthcareHeroBanner1}
-                  alt="Health and social care"
+                  alt="Investment & Wealth Management"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -456,20 +505,20 @@ export default function Healthcare() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Health and social care
+                  Investment & Wealth Management
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    New technology improves person-centered services along the care pathway. We partner with community care providers, hospitals, university clinics, and health ministries to develop personalized care plans.
+                    Advanced technology improves portfolio management and investment advisory services. We partner with investment firms, wealth management companies, and financial advisors to develop personalized investment strategies.
                   </p>
                   <p className="text-sm md:text-base">
-                    Our solutions support both home-based care and medical institutions, ensuring seamless coordination and continuity of care for patients across all settings.
+                    Our solutions support both institutional and retail investors, ensuring seamless portfolio tracking, risk management, and performance optimization across all investment vehicles.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 3: Life sciences */}
+            {/* Card 3: FinTech & Digital Payments */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -481,7 +530,7 @@ export default function Healthcare() {
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
                   src={images.banners.healthcareBanner}
-                  alt="Life sciences"
+                  alt="FinTech & Digital Payments"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -489,73 +538,20 @@ export default function Healthcare() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Life sciences
+                  FinTech & Digital Payments
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Pharma and MedTech organizations face unique challenges and opportunities in today's healthcare landscape. The expansion of patient experience into new domains and the disintegration of traditional business divides require innovative approaches.
+                    FinTech organizations face unique challenges and opportunities in today's financial landscape. The expansion of digital payment solutions and the disintegration of traditional banking boundaries require innovative approaches.
                   </p>
                   <p className="text-sm md:text-base">
-                    Data and AI-enhanced innovation, sustainability, and public purpose are driving transformation. Organizations breaking down barriers fastest will lead the next generation of health.
+                    Data and AI-enhanced innovation, security, and customer experience are driving transformation. Organizations breaking down barriers fastest will lead the next generation of financial services.
                   </p>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* Leadership Recognition Banner Section - Full Width */}
-      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
-        >
-            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
-              >
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse recognized as a leader by ISG
-                </h2>
-                
-                {/* Body Text */}
-                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We have been recognized as a leader in all five quadrants of the Life Sciences Digital Services 2024 ISG Provider Lens report.
-                </p>
-
-                {/* Read More Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            </div>
-
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
-              <img
-                src={images.banners.healthcareHeroBanner1}
-                alt="NeuroVerse leadership recognition"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
-            </div>
-          </motion.div>
       </section>
 
       {/* Research and insights Section */}
@@ -574,7 +570,7 @@ export default function Healthcare() {
               {/* Base image with reduced opacity */}
               <img
                 src={images.banners.healthcareBanner}
-                alt="Connected health research"
+                alt="Financial innovation research"
                 className="w-full h-full object-cover opacity-40"
               />
               {/* Abstract neural network overlay effect */}
@@ -583,20 +579,20 @@ export default function Healthcare() {
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
                   {/* Network lines */}
                   <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
-                      <stop offset="50%" stopColor="rgba(37, 99, 235, 0.8)" />
-                      <stop offset="100%" stopColor="rgba(96, 165, 250, 0.4)" />
+                    <linearGradient id="lineGradientFinance" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="rgba(34, 197, 94, 0.6)" />
+                      <stop offset="50%" stopColor="rgba(22, 163, 74, 0.8)" />
+                      <stop offset="100%" stopColor="rgba(74, 222, 128, 0.4)" />
                     </linearGradient>
                   </defs>
                   {/* Connecting lines */}
-                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradientFinance)" strokeWidth="1.5" opacity="0.6" />
                   {/* Network nodes (dots) */}
                   <circle cx="50" cy="80" r="3" fill="rgba(255, 255, 255, 0.9)" />
                   <circle cx="150" cy="120" r="3" fill="rgba(255, 255, 255, 0.9)" />
@@ -612,7 +608,7 @@ export default function Healthcare() {
                   <circle cx="250" cy="320" r="3" fill="rgba(255, 255, 255, 0.9)" />
                 </svg>
                 {/* Additional glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-blue-600/10"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-green-600/10"></div>
               </div>
             </div>
 
@@ -626,7 +622,7 @@ export default function Healthcare() {
                 
                 {/* Title */}
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight">
-                  Connected health research
+                  Financial innovation research
                 </h3>
               </div>
 
@@ -651,10 +647,10 @@ export default function Healthcare() {
             className="mb-8 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
-              Healthcare Use Cases
+              Finance Use Cases
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
-              Real-world applications of our healthcare technology solutions
+              Real-world applications of our financial technology solutions
             </p>
           </motion.div>
 

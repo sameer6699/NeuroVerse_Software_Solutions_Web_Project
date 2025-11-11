@@ -82,8 +82,8 @@ export default function Navbar() {
     // Find hero section element - check for 'home' id or first section on healthcare/industries pages
     let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
     
-    // If not found and on healthcare or industries page, use the first section as hero
-    if (!heroSection && (location.pathname.includes('/healthcare') || location.pathname.includes('/industries'))) {
+    // If not found and on healthcare, finance, retail-ecommerce or industries page, use the first section as hero
+    if (!heroSection && (location.pathname.includes('/healthcare') || location.pathname.includes('/finance') || location.pathname.includes('/retail-ecommerce') || location.pathname.includes('/industries'))) {
       heroSection = document.querySelector('section:first-of-type');
     }
     
@@ -332,10 +332,17 @@ export default function Navbar() {
                       <div className="bg-white p-8 border-r border-gray-200">
                         <ul className="space-y-3">
                           {link.menuItems.map((item, index) => {
-                            // Special handling for Healthcare in Industries menu
-                            const itemHref = link.sectionId === "industries" && item === "Healthcare" 
-                              ? "/industries/healthcare"
-                              : link.href;
+                            // Special handling for Healthcare, Finance, and Retail & E-commerce in Industries menu
+                            let itemHref = link.href;
+                            if (link.sectionId === "industries") {
+                              if (item === "Healthcare") {
+                                itemHref = "/industries/healthcare";
+                              } else if (item === "Finance") {
+                                itemHref = "/industries/finance";
+                              } else if (item === "Retail & E-commerce") {
+                                itemHref = "/industries/retail-ecommerce";
+                              }
+                            }
                             
                             return (
                               <li key={index}>
@@ -346,6 +353,12 @@ export default function Navbar() {
                                     if (link.sectionId === "industries" && item === "Healthcare") {
                                       e.preventDefault();
                                       navigate("/industries/healthcare");
+                                    } else if (link.sectionId === "industries" && item === "Finance") {
+                                      e.preventDefault();
+                                      navigate("/industries/finance");
+                                    } else if (link.sectionId === "industries" && item === "Retail & E-commerce") {
+                                      e.preventDefault();
+                                      navigate("/industries/retail-ecommerce");
                                     } else {
                                       handleSectionClick(link.href, link.sectionId, e);
                                     }
