@@ -204,7 +204,10 @@ export default function Navbar() {
       sectionId: "products",
       description: "Innovative technology products and platforms designed to accelerate your digital transformation and drive business growth.",
       menuItems: [
-        "Our Products"
+        "Our Products",
+        "AI Solutions Platform",
+        "Cloud Infrastructure",
+        "Analytics & Insights"
       ],
       featuredTitle: "Our Products",
       featuredDescription: "Cutting-edge technology products for modern businesses"
