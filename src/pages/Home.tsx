@@ -244,6 +244,153 @@ function ClientStoriesCarousel() {
   );
 }
 
+// Annual Report Carousel Component
+function AnnualReportCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const annualReports = [
+    {
+      title: "Discover our 2024 Integrated Annual Report",
+      description: "Partner for a digital and sustainable world.",
+      buttonText: "Discover more",
+      image: images.projects.latestInsights,
+    },
+    {
+      title: "Explore our 2023 Sustainability Report",
+      description: "Building a better future through responsible innovation and sustainable practices.",
+      buttonText: "Learn more",
+      image: images.projects.insightsHero,
+    },
+    {
+      title: "2024 Technology Innovation Report",
+      description: "Leading the digital transformation with cutting-edge AI and machine learning solutions.",
+      buttonText: "View report",
+      image: images.projects.hotTopicsBackground,
+    },
+  ];
+
+  const nextReport = () => {
+    setCurrentIndex((prev) => (prev + 1) % annualReports.length);
+  };
+
+  const prevReport = () => {
+    setCurrentIndex((prev) => (prev - 1 + annualReports.length) % annualReports.length);
+  };
+
+  const goToReport = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const currentReport = annualReports[currentIndex];
+
+  return (
+    <section className="relative w-full overflow-hidden">
+      <div className="flex flex-col md:flex-row h-auto md:h-[600px] lg:h-[700px] relative">
+        {/* Left Side - Blue Background with Content (60%) */}
+        <div className="w-full md:w-[60%] bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex items-center justify-center relative">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl z-10"
+          >
+            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 text-white leading-tight">
+              {currentReport.title}
+            </h2>
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
+              {currentReport.description}
+            </p>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:border-white rounded-full px-8 py-6 text-base md:text-lg font-semibold group"
+            >
+              {currentReport.buttonText}
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+        </div>
+
+        {/* Right Side - Abstract Image (40%) */}
+        <div className="w-full md:w-[40%] relative h-[400px] md:h-auto overflow-hidden">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full h-full relative"
+          >
+            {/* Abstract painting background - using gradient to simulate the painting */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-teal-500 via-green-400 to-orange-500 opacity-90">
+              {/* Abstract shapes to simulate painting */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-blue-800/50 to-transparent"></div>
+                <div className="absolute top-0 right-0 w-1/2 h-2/3 bg-gradient-to-l from-teal-600/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-1/3 w-1/3 h-1/2 bg-gradient-to-t from-green-500/30 to-transparent"></div>
+                <div className="absolute top-1/3 right-1/4 w-1/4 h-1/3 bg-gradient-to-br from-orange-400/40 to-transparent rounded-full blur-xl"></div>
+              </div>
+            </div>
+            {/* You can replace this with an actual image */}
+            <img
+              src={currentReport.image}
+              alt={currentReport.title}
+              className="w-full h-full object-cover mix-blend-overlay opacity-60"
+            />
+          </motion.div>
+        </div>
+
+        {/* Carousel Navigation - Pill-shaped Control */}
+        <div className="absolute bottom-6 right-6 z-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+            style={{
+              background: 'linear-gradient(135deg, #faf9f7 0%, #f5f4f2 100%)',
+            }}
+          >
+            {/* Previous Button (Left Arrow) */}
+            <button
+              onClick={prevReport}
+              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+              aria-label="Previous report"
+            >
+              <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex items-center gap-1.5 px-1">
+              {annualReports.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToReport(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'bg-blue-600 w-8 h-2 rounded-full'
+                      : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to report ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Next Button (Right Arrow) */}
+            <button
+              onClick={nextReport}
+              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+              aria-label="Next report"
+            >
+              <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+            </button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // YouTube-like Video Player Component
 function YouTubeVideoPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -1424,100 +1571,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Annual Report Hero Section */}
-      <section className="relative w-full overflow-hidden">
-        <div className="flex flex-col md:flex-row h-auto md:h-[600px] lg:h-[700px]">
-          {/* Left Side - Blue Background with Content (60%) */}
-          <div className="w-full md:w-[60%] bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex items-center justify-center relative">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="max-w-2xl z-10"
-            >
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 text-white leading-tight">
-                Discover our 2024 Integrated Annual Report
-              </h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
-                Partner for a digital and sustainable world.
-              </p>
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:border-white rounded-full px-8 py-6 text-base md:text-lg font-semibold group"
-              >
-                Discover more
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-          </div>
-
-          {/* Right Side - Abstract Image (40%) */}
-          <div className="w-full md:w-[40%] relative h-[400px] md:h-auto overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="w-full h-full relative"
-            >
-              {/* Abstract painting background - using gradient to simulate the painting */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-teal-500 via-green-400 to-orange-500 opacity-90">
-                {/* Abstract shapes to simulate painting */}
-                <div className="absolute inset-0">
-                  <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-blue-800/50 to-transparent"></div>
-                  <div className="absolute top-0 right-0 w-1/2 h-2/3 bg-gradient-to-l from-teal-600/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-1/3 w-1/3 h-1/2 bg-gradient-to-t from-green-500/30 to-transparent"></div>
-                  <div className="absolute top-1/3 right-1/4 w-1/4 h-1/3 bg-gradient-to-br from-orange-400/40 to-transparent rounded-full blur-xl"></div>
-                </div>
-              </div>
-              {/* You can replace this with an actual image */}
-              <img
-                src={images.projects.latestInsights}
-                alt="Abstract Art"
-                className="w-full h-full object-cover mix-blend-overlay opacity-60"
-              />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Carousel Navigation - Bottom Center */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 flex items-center gap-4 shadow-lg"
-          >
-            <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-5 h-5 text-gray-700" />
-            </button>
-            <div className="flex items-center gap-2">
-              {[0, 1, 2, 3, 4].map((index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === 1
-                      ? "bg-blue-600 w-8"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-            <button
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-5 h-5 text-gray-700" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      {/* Annual Report Hero Section - Carousel */}
+      <AnnualReportCarousel />
     </div>
   );
 }

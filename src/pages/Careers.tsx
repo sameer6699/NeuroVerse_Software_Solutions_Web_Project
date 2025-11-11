@@ -83,7 +83,7 @@ export default function Careers() {
                 transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
                 className="font-heading font-bold text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl text-white"
                 style={{
-                  fontFamily: 'cursive, serif',
+                  fontFamily: "'Poppins', 'Montserrat', sans-serif",
                   fontStyle: 'italic',
                   letterSpacing: '-0.02em',
                 }}
@@ -536,7 +536,7 @@ export default function Careers() {
                 className="mb-8 md:mb-10"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white" style={{ fontFamily: 'cursive, serif', fontStyle: 'italic' }}>
+                  <span className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontStyle: 'italic', letterSpacing: '-0.02em' }}>
                     NeuroVerse
                   </span>
                   <div className="w-2 h-2 bg-white rounded-full"></div>
