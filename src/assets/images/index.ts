@@ -71,6 +71,9 @@ export const bannerImages = {
   financeBgBanner: new URL('./banner-Images/finance-bg-banner.jpg', import.meta.url).href,
   retailEcommerceHeroBanner: new URL('./banner-Images/retail-&-Ecommerce.jpg', import.meta.url).href,
   retailEcommerceBgBanner: new URL('./banner-Images/retail-ecomm-bg.jpg', import.meta.url).href,
+  manufacturingHeroBanner: new URL('./banner-Images/manufacturing-hero-bg.jpg', import.meta.url).href,
+  technologyHeroBanner: new URL('./banner-Images/technology-hero-bg.jpg', import.meta.url).href,
+  technologyBgBanner: new URL('./banner-Images/tech-bg-img.jpg', import.meta.url).href,
   codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
 } as const;
 

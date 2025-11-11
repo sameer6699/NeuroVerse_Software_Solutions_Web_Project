@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Cloud, Users, Shield, Database, Building2, Factory, Leaf } from "lucide-react";
+import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Cloud, Users, Shield, Database, Building2, Factory, Leaf, Code } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
@@ -89,46 +89,52 @@ export default function Services() {
 
   const servicesData = [
     {
-      title: "Cloud Services",
+      title: "Cloud Services & Infrastructure",
       description: "Transform your infrastructure with scalable cloud solutions. From migration to optimization, we help you leverage the full power of cloud computing for agility, cost-efficiency, and innovation.",
       icon: Cloud,
       color: "from-blue-500 to-cyan-600"
     },
     {
-      title: "Customer First",
+      title: "Customer Experience & Engagement",
       description: "Deliver exceptional customer experiences through AI-powered personalization, omnichannel engagement, and data-driven insights that build lasting relationships and drive loyalty.",
       icon: Users,
       color: "from-purple-500 to-pink-600"
     },
     {
-      title: "Cybersecurity",
+      title: "Cybersecurity & Risk Management",
       description: "Protect your digital assets with advanced security solutions. Our comprehensive approach includes threat detection, vulnerability assessment, and proactive defense strategies.",
       icon: Shield,
       color: "from-red-500 to-orange-600"
     },
     {
-      title: "Data and AI",
+      title: "Data Analytics & AI Solutions",
       description: "Unlock the power of your data with artificial intelligence and machine learning. From predictive analytics to intelligent automation, we turn data into actionable insights.",
       icon: Database,
       color: "from-green-500 to-emerald-600"
     },
     {
-      title: "Enterprise Management",
+      title: "Enterprise Resource Planning",
       description: "Streamline operations and drive efficiency with enterprise-grade solutions. We help you optimize processes, integrate systems, and scale your business operations seamlessly.",
       icon: Building2,
       color: "from-indigo-500 to-blue-600"
     },
     {
-      title: "Intelligent Industry",
+      title: "Smart Manufacturing & Industry 4.0",
       description: "Drive Industry 4.0 transformation with smart manufacturing, IoT integration, and predictive maintenance solutions that optimize production and reduce downtime.",
       icon: Factory,
       color: "from-orange-500 to-amber-600"
     },
     {
-      title: "Sustainability",
+      title: "Sustainability & Green Technology",
       description: "Build sustainable technology solutions that reduce environmental impact while driving business value. From green IT to carbon footprint optimization, we help you achieve your sustainability goals.",
       icon: Leaf,
       color: "from-teal-500 to-green-600"
+    },
+    {
+      title: "Software Development & Engineering",
+      description: "Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.",
+      icon: Code,
+      color: "from-violet-500 to-purple-600"
     },
   ];
 
@@ -147,64 +153,44 @@ export default function Services() {
   // Service cards data
   const serviceCards = [
     {
-      name: "Cloud Services",
+      name: "Cloud Services & Infrastructure",
       description: "Comprehensive cloud transformation services including migration, architecture design, DevOps implementation, and cloud-native application development. Multi-cloud strategies and hybrid solutions.",
-      technologies: ["AWS", "Azure", "GCP", "Kubernetes", "Docker"]
+      technologies: ["AWS", "Azure", "GCP"]
     },
     {
-      name: "Customer First Solutions",
+      name: "Customer Experience & Engagement",
       description: "End-to-end customer experience transformation through CRM implementation, customer analytics, personalization engines, and omnichannel engagement platforms.",
-      technologies: ["CRM", "AI/ML", "Analytics", "Personalization"]
+      technologies: ["CRM", "AI/ML", "Analytics"]
     },
     {
-      name: "Cybersecurity Services",
+      name: "Cybersecurity & Risk Management",
       description: "Advanced security solutions including threat intelligence, penetration testing, security architecture, compliance management, and incident response services.",
-      technologies: ["SIEM", "Zero Trust", "Encryption", "Compliance"]
+      technologies: ["SIEM", "Zero Trust", "Encryption"]
     },
     {
-      name: "Data and Artificial Intelligence",
+      name: "Data Analytics & AI Solutions",
       description: "AI and ML solutions including data engineering, machine learning model development, MLOps, predictive analytics, and intelligent automation platforms.",
-      technologies: ["Python", "TensorFlow", "PyTorch", "Data Engineering"]
+      technologies: ["Python", "TensorFlow", "PyTorch"]
     },
     {
-      name: "Enterprise Management",
+      name: "Enterprise Resource Planning",
       description: "Enterprise resource planning, business process optimization, system integration, and digital transformation consulting services.",
-      technologies: ["ERP", "Integration", "Process Automation", "Digital Transformation"]
+      technologies: ["ERP", "Integration", "Process Automation"]
     },
     {
-      name: "Intelligent Industry",
+      name: "Smart Manufacturing & Industry 4.0",
       description: "Industry 4.0 solutions including IoT implementation, smart manufacturing, predictive maintenance, and industrial automation systems.",
-      technologies: ["IoT", "Edge Computing", "Predictive Analytics", "Automation"]
+      technologies: ["IoT", "Edge Computing", "Predictive Analytics"]
     },
     {
-      name: "Sustainability Solutions",
+      name: "Sustainability & Green Technology",
       description: "Green IT services, carbon footprint reduction, sustainable technology implementation, and ESG reporting solutions for environmentally conscious organizations.",
-      technologies: ["Green IT", "ESG", "Carbon Analytics", "Sustainable Tech"]
+      technologies: ["Green IT", "ESG", "Carbon Analytics"]
     },
     {
-      name: "Digital Transformation",
-      description: "Comprehensive digital transformation consulting including strategy development, technology roadmap planning, and change management services.",
-      technologies: ["Strategy", "Change Management", "Digital Roadmap", "Innovation"]
-    },
-    {
-      name: "Application Development",
-      description: "Custom software development services including web applications, mobile apps, microservices architecture, and API development.",
-      technologies: ["React", "Node.js", "Microservices", "API Development"]
-    },
-    {
-      name: "Managed Services",
-      description: "24/7 managed IT services including infrastructure management, application support, monitoring, and maintenance services.",
-      technologies: ["ITIL", "Monitoring", "Support", "Maintenance"]
-    },
-    {
-      name: "Consulting Services",
-      description: "Strategic consulting services including technology assessment, architecture review, process improvement, and innovation workshops.",
-      technologies: ["Strategy", "Architecture", "Process Improvement", "Innovation"]
-    },
-    {
-      name: "Training and Enablement",
-      description: "Comprehensive training programs including technology upskilling, certification programs, and knowledge transfer services.",
-      technologies: ["Training", "Certification", "Upskilling", "Knowledge Transfer"]
+      name: "Software Development & Engineering",
+      description: "Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.",
+      technologies: ["React", "Node.js", "Microservices"]
     },
   ];
 
@@ -520,7 +506,7 @@ export default function Services() {
             </h2>
           </motion.div>
 
-          {/* Service Grid - 4 columns */}
+          {/* Service Grid - 3 columns for 8 cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {serviceCards.map((service, index) => (
               <motion.div

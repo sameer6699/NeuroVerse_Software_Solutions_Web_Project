@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
   const [dropdownTop, setDropdownTop] = useState(80); // Default: 1rem (16px) + 4rem (64px) = 80px
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -74,16 +75,58 @@ export default function Navbar() {
     };
   }, [isVisible]);
   
+  // Initial check for hero section visibility on mount and route change
+  useEffect(() => {
+    const checkHeroSection = () => {
+      // Find hero section element - universal detection for all pages
+      let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
+      
+      if (!heroSection) {
+        heroSection = document.querySelector('section[class*="hero"], section[class*="Hero"]');
+      }
+      
+      if (!heroSection) {
+        heroSection = document.querySelector('section:first-of-type');
+      }
+      
+      if (heroSection) {
+        const heroTop = heroSection.offsetTop;
+        const heroHeight = heroSection.offsetHeight;
+        const heroBottom = heroTop + heroHeight;
+        const currentScrollY = window.scrollY || 0;
+        const isInHeroSection = currentScrollY >= 0 && currentScrollY <= (heroBottom - 96);
+        setIsVisible(isInHeroSection);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    
+    // Check immediately
+    checkHeroSection();
+    
+    // Also check after a short delay to ensure DOM is fully loaded
+    const timeoutId = setTimeout(checkHeroSection, 100);
+    
+    return () => clearTimeout(timeoutId);
+  }, [location.pathname]);
 
-  // Show navbar only when user is in hero section
+  // Show navbar only when user is in hero section - works across all pages
   useMotionValueEvent(scrollY, "change", (latest) => {
     const currentScrollY = latest;
     
-    // Find hero section element - check for 'home' id or first section on healthcare/industries pages
+    // Find hero section element - universal detection for all pages
+    // Priority 1: Check for 'home' id (most common pattern)
     let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
     
-    // If not found and on healthcare, finance, retail-ecommerce or industries page, use the first section as hero
-    if (!heroSection && (location.pathname.includes('/healthcare') || location.pathname.includes('/finance') || location.pathname.includes('/retail-ecommerce') || location.pathname.includes('/industries'))) {
+    // Priority 2: If not found, check for first section with hero-related classes or attributes
+    if (!heroSection) {
+      heroSection = document.querySelector('section[class*="hero"], section[class*="Hero"]');
+    }
+    
+    // Priority 3: If still not found, use the first section on the page (universal fallback)
+    // This works for all pages: Home, Industries, Healthcare, Finance, RetailEcommerce, 
+    // Manufacturing, Insights, Services, Careers, News, About, Contact
+    if (!heroSection) {
       heroSection = document.querySelector('section:first-of-type');
     }
     
@@ -97,8 +140,9 @@ export default function Navbar() {
       const isInHeroSection = currentScrollY >= 0 && currentScrollY <= (heroBottom - 96);
       setIsVisible(isInHeroSection);
     } else {
-      // If hero section not found, show navbar by default
-      setIsVisible(true);
+      // If hero section not found (shouldn't happen), hide navbar by default
+      // This ensures navbar only shows when we can detect a hero section
+      setIsVisible(false);
     }
     
     setLastScrollY(currentScrollY);
@@ -148,10 +192,22 @@ export default function Navbar() {
         "Data Analytics & AI Solutions",
         "Enterprise Resource Planning",
         "Smart Manufacturing & Industry 4.0",
-        "Sustainability & Green Technology"
+        "Sustainability & Green Technology",
+        "Software Development & Engineering"
       ],
       featuredTitle: "Our Services",
       featuredDescription: "End-to-end solutions for your business transformation"
+    },
+    { 
+      label: "Products", 
+      href: "/products", 
+      sectionId: "products",
+      description: "Innovative technology products and platforms designed to accelerate your digital transformation and drive business growth.",
+      menuItems: [
+        "Our Products"
+      ],
+      featuredTitle: "Our Products",
+      featuredDescription: "Cutting-edge technology products for modern businesses"
     },
     { 
       label: "Careers", 
@@ -222,7 +278,10 @@ export default function Navbar() {
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 transition-all duration-300"
-      style={{ backgroundColor: '#ffffff', pointerEvents: isVisible ? 'auto' : 'none' }}
+      style={{ 
+        backgroundColor: '#ffffff',
+        pointerEvents: isVisible ? 'auto' : 'none' 
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
         <div className="flex items-center justify-between h-24">
@@ -239,7 +298,7 @@ export default function Navbar() {
                 alt="NeuroVerse Logo"
                 className="w-12 h-12 md:w-14 md:h-14 object-contain"
               />
-              <span className="font-bold text-xl md:text-2xl text-black whitespace-nowrap" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
+              <span className="font-bold text-xl md:text-2xl whitespace-nowrap text-black transition-colors duration-300" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
                 NeuroVerse
               </span>
             </motion.div>
@@ -262,13 +321,13 @@ export default function Navbar() {
                     className="relative"
                   >
                     <span 
-                      className={`text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200 relative group ${
-                        isActive ? 'text-blue-600' : ''
+                      className={`text-sm font-medium transition-colors duration-200 relative group ${
+                        isActive ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
                       }`}
                     >
                       {link.label}
                       {isActive && (
-                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 transition-colors duration-300"></span>
                       )}
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                     </span>
@@ -310,7 +369,9 @@ export default function Navbar() {
                           style={{ color: 'white' }}
                           onClick={() => {
                             if (link.sectionId === "services") {
-                              navigate("/services#services");
+                              navigate("/services");
+                            } else if (link.sectionId === "products") {
+                              navigate("/products");
                             } else if (link.sectionId === "careers") {
                               navigate("/careers");
                             } else if (link.sectionId === "news") {
@@ -329,10 +390,10 @@ export default function Navbar() {
                       </div>
 
                       {/* Middle Column - Navigation Links */}
-                      <div className="bg-white p-8 border-r border-gray-200">
+                      <div className="bg-white p-8 border-r border-gray-200 relative">
                         <ul className="space-y-3">
                           {link.menuItems.map((item, index) => {
-                            // Special handling for Healthcare, Finance, and Retail & E-commerce in Industries menu
+                            // Special handling for Healthcare, Finance, Retail & E-commerce, Manufacturing, and Technology in Industries menu
                             let itemHref = link.href;
                             if (link.sectionId === "industries") {
                               if (item === "Healthcare") {
@@ -341,14 +402,27 @@ export default function Navbar() {
                                 itemHref = "/industries/finance";
                               } else if (item === "Retail & E-commerce") {
                                 itemHref = "/industries/retail-ecommerce";
+                              } else if (item === "Manufacturing") {
+                                itemHref = "/industries/manufacturing";
+                              } else if (item === "Technology") {
+                                itemHref = "/industries/technology";
                               }
                             }
+
+                            // Check if this item has sub-items (Products menu)
+                            const hasSubItems = link.sectionId === "products" && item === "Our Products";
+                            const subItems = hasSubItems ? ["SeedLink", "WelthWise"] : [];
                             
                             return (
-                              <li key={index}>
+                              <li 
+                                key={index}
+                                className="relative"
+                                onMouseEnter={() => hasSubItems && setHoveredMenuItem(item)}
+                                onMouseLeave={() => hasSubItems && setHoveredMenuItem(null)}
+                              >
                                 <Link
                                   to={itemHref}
-                                  className="flex items-center justify-between text-gray-700 hover:text-primary transition-colors group"
+                                  className="relative flex items-center justify-between text-gray-700 hover:text-blue-600 transition-colors group py-2"
                                   onClick={(e) => {
                                     if (link.sectionId === "industries" && item === "Healthcare") {
                                       e.preventDefault();
@@ -359,15 +433,59 @@ export default function Navbar() {
                                     } else if (link.sectionId === "industries" && item === "Retail & E-commerce") {
                                       e.preventDefault();
                                       navigate("/industries/retail-ecommerce");
+                                    } else if (link.sectionId === "industries" && item === "Manufacturing") {
+                                      e.preventDefault();
+                                      navigate("/industries/manufacturing");
+                                    } else if (link.sectionId === "industries" && item === "Technology") {
+                                      e.preventDefault();
+                                      navigate("/industries/technology");
+                                    } else if (hasSubItems) {
+                                      e.preventDefault();
                                     } else {
                                       handleSectionClick(link.href, link.sectionId, e);
                                     }
-                                    setHoveredMenu(null);
+                                    if (!hasSubItems) {
+                                      setHoveredMenu(null);
+                                    }
                                   }}
                                 >
-                                  <span className="text-sm">{item}</span>
-                                  <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <span className="relative text-sm group">
+                                    {item}
+                                    {/* Animated Line - Same as main navigation */}
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                  </span>
+                                  <ChevronRight className={`h-4 w-4 transition-opacity ${hasSubItems ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
                                 </Link>
+
+                                {/* Sub-items inline under "Our Products" */}
+                                {hasSubItems && hoveredMenuItem === item && (
+                                  <motion.ul
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="ml-4 mt-1 space-y-1 overflow-hidden"
+                                  >
+                                    {subItems.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <Link
+                                          to={`/products/${subItem.toLowerCase()}`}
+                                          className="block py-1.5 text-xs text-gray-600 hover:text-blue-600 transition-colors group relative"
+                                          onClick={() => {
+                                            setHoveredMenu(null);
+                                            setHoveredMenuItem(null);
+                                          }}
+                                        >
+                                          <span className="relative">
+                                            {subItem}
+                                            {/* Animated Line for sub-items */}
+                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                          </span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </motion.ul>
+                                )}
                               </li>
                             );
                           })}
@@ -408,7 +526,7 @@ export default function Navbar() {
             </Link>
 
             {/* Search and Theme Toggle */}
-            <div className="flex items-center gap-4 border-l border-gray-200 pl-4">
+            <div className="flex items-center gap-4 border-l border-gray-200 pl-4 transition-colors duration-300">
               {/* Search Box */}
               <form onSubmit={handleSearch} className="relative">
                 <div className="relative">

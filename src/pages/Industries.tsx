@@ -106,79 +106,34 @@ export default function Industries() {
   // Industry cards data with software technology content
   const industryCards = [
     {
-      name: "Aerospace and defense",
-      description: "Advanced software solutions for flight systems, mission-critical applications, and defense technologies. AI-powered predictive maintenance, simulation software, and secure communication systems.",
-      technologies: ["AI/ML", "IoT", "Cloud Computing", "Cybersecurity"]
-    },
-    {
-      name: "Automotive",
-      description: "Connected vehicle platforms, autonomous driving systems, and smart manufacturing solutions. Real-time data analytics, vehicle-to-everything (V2X) communication, and electric vehicle management.",
-      technologies: ["IoT", "AI/ML", "Edge Computing", "Blockchain"]
-    },
-    {
-      name: "Banking and capital markets",
-      description: "Digital banking platforms, fraud detection systems, and algorithmic trading solutions. Real-time transaction processing, risk management software, and regulatory compliance automation.",
-      technologies: ["AI/ML", "Blockchain", "Cloud Computing", "Data Analytics"]
-    },
-    {
-      name: "Consumer products",
-      description: "E-commerce platforms, supply chain optimization, and customer engagement solutions. Personalization engines, inventory management systems, and omnichannel retail technology.",
-      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps", "Data Analytics"]
-    },
-    {
-      name: "Energy and utilities",
-      description: "Smart grid management, renewable energy optimization, and utility operations software. IoT sensors, predictive analytics for maintenance, and energy trading platforms.",
-      technologies: ["IoT", "AI/ML", "Cloud Computing", "Data Analytics"]
-    },
-    {
       name: "Healthcare",
       description: "Electronic health records (EHR), telemedicine platforms, and AI-powered diagnostics. Patient management systems, medical imaging software, and healthcare analytics solutions.",
-      technologies: ["AI/ML", "Cloud Computing", "IoT", "Data Analytics"]
+      technologies: ["AI/ML", "Cloud Computing", "IoT"]
     },
     {
-      name: "High-tech",
-      description: "Software development tools, cloud infrastructure, and enterprise technology solutions. DevOps platforms, microservices architecture, and scalable cloud-native applications.",
-      technologies: ["Cloud Computing", "DevOps", "AI/ML", "Microservices"]
+      name: "Finance",
+      description: "Digital banking platforms, fraud detection systems, and algorithmic trading solutions. Real-time transaction processing, risk management software, and regulatory compliance automation.",
+      technologies: ["AI/ML", "Blockchain", "Cloud Computing"]
     },
     {
-      name: "Hospitality and travel",
-      description: "Booking platforms, property management systems, and customer experience solutions. Revenue management software, mobile apps, and AI-powered recommendation engines.",
-      technologies: ["Mobile Apps", "AI/ML", "Cloud Computing", "Data Analytics"]
-    },
-    {
-      name: "Insurance",
-      description: "Claims processing automation, underwriting platforms, and risk assessment tools. AI-powered fraud detection, customer portals, and policy management systems.",
-      technologies: ["AI/ML", "Cloud Computing", "Data Analytics", "Blockchain"]
-    },
-    {
-      name: "Life sciences",
-      description: "Clinical trial management, drug discovery platforms, and regulatory compliance software. Laboratory information systems, bioinformatics tools, and research data analytics.",
-      technologies: ["AI/ML", "Cloud Computing", "Data Analytics", "IoT"]
+      name: "Retail & E-commerce",
+      description: "E-commerce platforms, supply chain optimization, and customer engagement solutions. Personalization engines, inventory management systems, and omnichannel retail technology.",
+      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"]
     },
     {
       name: "Manufacturing",
       description: "Industrial IoT solutions, smart factory systems, and production optimization software. Predictive maintenance, quality control systems, and supply chain management platforms.",
-      technologies: ["IoT", "AI/ML", "Cloud Computing", "Robotics"]
+      technologies: ["IoT", "AI/ML", "Cloud Computing"]
     },
     {
-      name: "Media and entertainment",
-      description: "Content management systems, streaming platforms, and digital media solutions. Video processing software, recommendation algorithms, and audience analytics tools.",
-      technologies: ["Cloud Computing", "AI/ML", "Data Analytics", "Mobile Apps"]
+      name: "Technology",
+      description: "Software development tools, cloud infrastructure, and enterprise technology solutions. DevOps platforms, microservices architecture, and scalable cloud-native applications.",
+      technologies: ["Cloud Computing", "DevOps", "AI/ML"]
     },
     {
-      name: "Public sector",
-      description: "Digital government services, citizen portals, and public safety systems. Data management platforms, cybersecurity solutions, and smart city technologies.",
-      technologies: ["Cloud Computing", "Cybersecurity", "Data Analytics", "IoT"]
-    },
-    {
-      name: "Retail",
-      description: "Point-of-sale systems, inventory management, and e-commerce platforms. Customer analytics, personalization engines, and omnichannel retail solutions.",
-      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps", "Data Analytics"]
-    },
-    {
-      name: "Telecoms",
-      description: "Network management systems, 5G infrastructure software, and customer experience platforms. Billing systems, network optimization tools, and IoT connectivity solutions.",
-      technologies: ["Cloud Computing", "IoT", "AI/ML", "Edge Computing"]
+      name: "Education Technology",
+      description: "Learning management systems, online education platforms, and AI-powered personalized learning solutions. Student information systems, virtual classrooms, and educational analytics tools.",
+      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"]
     },
   ];
 
