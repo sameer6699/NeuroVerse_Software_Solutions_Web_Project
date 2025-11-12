@@ -21,6 +21,11 @@ import Services from "./pages/Services.tsx";
 import CloudServicesInfrastructure from "./pages/CloudServicesInfrastructure.tsx";
 import CustomerExperienceEngagement from "./pages/CustomerExperienceEngagement.tsx";
 import CybersecurityRiskManagement from "./pages/CybersecurityRiskManagement.tsx";
+import DataAnalyticsAISolutions from "./pages/DataAnalyticsAISolutions.tsx";
+import EnterpriseResourcePlanning from "./pages/EnterpriseResourcePlanning.tsx";
+import SmartManufacturingIndustry4 from "./pages/SmartManufacturingIndustry4.tsx";
+import SustainabilityGreenTechnology from "./pages/SustainabilityGreenTechnology.tsx";
+import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineering.tsx";
 import Careers from "./pages/Careers.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
@@ -82,6 +87,11 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/services/cloud-services-infrastructure" element={<CloudServicesInfrastructure />} />
                 <Route path="/services/customer-experience-engagement" element={<CustomerExperienceEngagement />} />
                 <Route path="/services/CyberSecurity-and-risk-management" element={<CybersecurityRiskManagement />} />
+                <Route path="/services/data-analytics-ai-solutions" element={<DataAnalyticsAISolutions />} />
+                <Route path="/services/enterprise-resource-planning" element={<EnterpriseResourcePlanning />} />
+                <Route path="/services/smart-manufacturing-industry-4" element={<SmartManufacturingIndustry4 />} />
+                <Route path="/services/sustainability-green-technology" element={<SustainabilityGreenTechnology />} />
+                <Route path="/services/software-development-engineering" element={<SoftwareDevelopmentEngineering />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/news" element={<News />} />

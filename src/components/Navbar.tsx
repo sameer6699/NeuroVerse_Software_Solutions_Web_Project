@@ -410,6 +410,16 @@ export default function Navbar() {
                                 itemHref = "/services/customer-experience-engagement";
                               } else if (item === "Cybersecurity & Risk Management") {
                                 itemHref = "/services/CyberSecurity-and-risk-management";
+                              } else if (item === "Data Analytics & AI Solutions") {
+                                itemHref = "/services/data-analytics-ai-solutions";
+                              } else if (item === "Enterprise Resource Planning") {
+                                itemHref = "/services/enterprise-resource-planning";
+                              } else if (item === "Smart Manufacturing & Industry 4.0") {
+                                itemHref = "/services/smart-manufacturing-industry-4";
+                              } else if (item === "Sustainability & Green Technology") {
+                                itemHref = "/services/sustainability-green-technology";
+                              } else if (item === "Software Development & Engineering") {
+                                itemHref = "/services/software-development-engineering";
                               }
                             }
 
@@ -452,6 +462,21 @@ export default function Navbar() {
                                     } else if (link.sectionId === "services" && item === "Cybersecurity & Risk Management") {
                                       e.preventDefault();
                                       navigate("/services/CyberSecurity-and-risk-management");
+                                    } else if (link.sectionId === "services" && item === "Data Analytics & AI Solutions") {
+                                      e.preventDefault();
+                                      navigate("/services/data-analytics-ai-solutions");
+                                    } else if (link.sectionId === "services" && item === "Enterprise Resource Planning") {
+                                      e.preventDefault();
+                                      navigate("/services/enterprise-resource-planning");
+                                    } else if (link.sectionId === "services" && item === "Smart Manufacturing & Industry 4.0") {
+                                      e.preventDefault();
+                                      navigate("/services/smart-manufacturing-industry-4");
+                                    } else if (link.sectionId === "services" && item === "Sustainability & Green Technology") {
+                                      e.preventDefault();
+                                      navigate("/services/sustainability-green-technology");
+                                    } else if (link.sectionId === "services" && item === "Software Development & Engineering") {
+                                      e.preventDefault();
+                                      navigate("/services/software-development-engineering");
                                     } else if (hasSubItems) {
                                       e.preventDefault();
                                     } else {
