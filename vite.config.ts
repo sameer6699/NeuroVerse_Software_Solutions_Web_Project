@@ -16,19 +16,4 @@ export default defineConfig({
     port: 5173, // Default Vite port (you can change this if needed)
     strictPort: false, // If port is in use, try next available port
   },
-  build: {
-    // Increase chunk size warning limit (default is 500kb)
-    chunkSizeWarningLimit: 1000,
-    // Optimize chunk splitting
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Separate vendor chunks for better caching
-          'react-vendor': ['react', 'react-dom', 'react-router'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-        },
-      },
-    },
-  },
 });
