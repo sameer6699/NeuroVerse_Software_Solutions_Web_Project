@@ -20,6 +20,7 @@ import Technology from "./pages/Technology.tsx";
 import Services from "./pages/Services.tsx";
 import CloudServicesInfrastructure from "./pages/CloudServicesInfrastructure.tsx";
 import CustomerExperienceEngagement from "./pages/CustomerExperienceEngagement.tsx";
+import CybersecurityRiskManagement from "./pages/CybersecurityRiskManagement.tsx";
 import Careers from "./pages/Careers.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
@@ -80,6 +81,7 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/services" element={<Services />} />
                 <Route path="/services/cloud-services-infrastructure" element={<CloudServicesInfrastructure />} />
                 <Route path="/services/customer-experience-engagement" element={<CustomerExperienceEngagement />} />
+                <Route path="/services/CyberSecurity-and-risk-management" element={<CybersecurityRiskManagement />} />
                 <Route path="/blog" element={<Home />} />
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/news" element={<News />} />

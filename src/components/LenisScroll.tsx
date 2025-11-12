@@ -10,7 +10,6 @@ export function LenisScroll({ children }: { children: React.ReactNode }) {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
     });
@@ -29,7 +28,7 @@ export function LenisScroll({ children }: { children: React.ReactNode }) {
     // Function to scroll to hash element
     const scrollToHash = (hash: string) => {
       if (hash) {
-        const element = document.querySelector(hash);
+        const element = document.querySelector(hash) as HTMLElement;
         if (element) {
           setTimeout(() => {
             lenis.scrollTo(element, {

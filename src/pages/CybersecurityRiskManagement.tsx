@@ -1,16 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Users, ArrowRight, MessageCircle, ShoppingCart, Headphones, Heart, BarChart3, Smartphone, TrendingUp, CheckCircle2, Linkedin, ChevronLeft, ChevronRight, Target, Zap } from "lucide-react";
+import { Shield, ArrowRight, Lock, AlertTriangle, Eye, ShieldCheck, TrendingUp, CheckCircle2, Linkedin, ChevronLeft, ChevronRight, Target, Zap, Network, Database } from "lucide-react";
 import { images } from "@/assets";
 import { useRef } from "react";
 import { Link } from "react-router";
 
 /**
- * Customer Experience & Engagement Page Component
+ * Cybersecurity & Risk Management Page Component
  * 
- * This page displays customer experience and engagement-specific solutions.
+ * This page displays cybersecurity and risk management-specific solutions.
  * The Navbar and Footer are automatically included via the global Layout component.
  */
-export default function CustomerExperienceEngagement() {
+export default function CybersecurityRiskManagement() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -21,91 +21,91 @@ export default function CustomerExperienceEngagement() {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  // Customer Experience Solutions
-  const customerExperienceSolutions = [
+  // Cybersecurity Solutions
+  const cybersecuritySolutions = [
     {
-      icon: MessageCircle,
-      title: "Customer Relationship Management (CRM)",
-      description: "Comprehensive CRM systems that centralize customer data, streamline interactions, and enable personalized engagement across all touchpoints.",
-      features: ["Customer Data Management", "Sales Automation", "Marketing Automation", "Service Management"]
+      icon: Shield,
+      title: "Threat Detection & Response",
+      description: "Advanced threat detection systems that identify and respond to security incidents in real-time, protecting your digital assets from evolving cyber threats.",
+      features: ["SIEM Solutions", "Threat Intelligence", "Incident Response", "Security Monitoring"]
     },
     {
-      icon: ShoppingCart,
-      title: "E-commerce & Digital Commerce",
-      description: "End-to-end e-commerce solutions that create seamless shopping experiences, from discovery to purchase and beyond.",
-      features: ["Online Storefronts", "Shopping Cart", "Payment Processing", "Order Management"]
+      icon: Lock,
+      title: "Identity & Access Management",
+      description: "Comprehensive identity and access management solutions that ensure only authorized users can access critical systems and data.",
+      features: ["Single Sign-On (SSO)", "Multi-Factor Authentication", "Privileged Access Management", "Identity Governance"]
     },
     {
-      icon: Headphones,
-      title: "Customer Support & Service",
-      description: "Omnichannel customer support platforms that deliver exceptional service experiences through multiple communication channels.",
-      features: ["Live Chat", "Help Desk", "Ticketing System", "Knowledge Base"]
+      icon: ShieldCheck,
+      title: "Data Protection & Encryption",
+      description: "End-to-end data protection solutions that safeguard sensitive information through encryption, data loss prevention, and privacy controls.",
+      features: ["Data Encryption", "Data Loss Prevention", "Privacy Controls", "Compliance Management"]
     },
     {
-      icon: Heart,
-      title: "Customer Engagement Platforms",
-      description: "Engagement solutions that build lasting relationships through personalized experiences, loyalty programs, and customer communities.",
-      features: ["Loyalty Programs", "Personalization", "Email Marketing", "Social Engagement"]
+      icon: Network,
+      title: "Network Security",
+      description: "Robust network security solutions that protect your infrastructure from unauthorized access, malware, and network-based attacks.",
+      features: ["Firewall Management", "Intrusion Detection", "Network Segmentation", "VPN Solutions"]
     },
     {
-      icon: BarChart3,
-      title: "Customer Analytics & Insights",
-      description: "Data-driven customer analytics platforms that provide actionable insights to improve experiences and drive business growth.",
-      features: ["Customer Segmentation", "Behavior Analytics", "Predictive Analytics", "Performance Metrics"]
+      icon: Eye,
+      title: "Security Assessment & Auditing",
+      description: "Comprehensive security assessments and audits that identify vulnerabilities, assess risks, and ensure compliance with security standards.",
+      features: ["Vulnerability Assessment", "Penetration Testing", "Security Audits", "Compliance Assessment"]
     },
     {
-      icon: Smartphone,
-      title: "Mobile Customer Experience",
-      description: "Mobile-first customer experience solutions that deliver seamless experiences across iOS, Android, and web platforms.",
-      features: ["Mobile Apps", "Progressive Web Apps", "Mobile Commerce", "Push Notifications"]
+      icon: AlertTriangle,
+      title: "Risk Management & Compliance",
+      description: "Integrated risk management platforms that help organizations identify, assess, and mitigate security risks while maintaining regulatory compliance.",
+      features: ["Risk Assessment", "Compliance Management", "Governance", "Security Policies"]
     },
   ];
 
   // Key Benefits
   const benefits = [
     {
-      icon: TrendingUp,
-      title: "Increased Customer Satisfaction",
-      description: "Personalized experiences and seamless interactions lead to higher customer satisfaction scores and improved brand loyalty."
-    },
-    {
-      icon: Users,
-      title: "Enhanced Customer Retention",
-      description: "Proactive engagement and exceptional service experiences help retain customers and reduce churn rates."
-    },
-    {
-      icon: BarChart3,
-      title: "Data-Driven Insights",
-      description: "Comprehensive analytics provide deep insights into customer behavior, preferences, and journey patterns."
+      icon: Shield,
+      title: "Enhanced Security Posture",
+      description: "Comprehensive security solutions strengthen your defense against cyber threats and reduce the risk of security breaches."
     },
     {
       icon: CheckCircle2,
-      title: "Omnichannel Consistency",
-      description: "Unified customer experience across all channels ensures consistent brand interactions and seamless transitions."
+      title: "Regulatory Compliance",
+      description: "Ensure compliance with industry regulations and standards including GDPR, HIPAA, PCI-DSS, and SOC 2."
+    },
+    {
+      icon: TrendingUp,
+      title: "Reduced Security Risks",
+      description: "Proactive threat detection and risk management help identify and mitigate security vulnerabilities before they become incidents."
+    },
+    {
+      icon: Zap,
+      title: "24/7 Security Monitoring",
+      description: "Continuous security monitoring and rapid incident response capabilities ensure round-the-clock protection of your digital assets."
     },
   ];
 
   // Use Cases
   const useCases = [
     {
-      title: "Omnichannel Customer Engagement Platform",
-      description: "Unified customer engagement platform integrating CRM, marketing automation, and customer service across web, mobile, and social channels.",
-      technologies: ["CRM", "Marketing Automation", "AI/ML", "Cloud Computing"]
+      title: "Enterprise Security Operations Center (SOC)",
+      description: "Comprehensive SOC solution with advanced threat detection, security monitoring, and incident response capabilities for enterprise-wide security operations.",
+      technologies: ["SIEM", "Threat Intelligence", "Security Analytics", "Cloud Computing"]
     },
     {
-      title: "E-commerce Personalization Engine",
-      description: "AI-powered personalization solution that delivers tailored product recommendations, content, and offers to enhance shopping experiences.",
-      technologies: ["AI/ML", "E-commerce", "Data Analytics", "Cloud Computing"]
+      title: "Zero Trust Security Architecture",
+      description: "Implementation of zero trust security model with identity verification, network segmentation, and continuous monitoring for enhanced security posture.",
+      technologies: ["Identity Management", "Network Security", "Access Control", "Cloud Computing"]
     },
     {
-      title: "Customer Service Excellence Platform",
-      description: "Comprehensive customer service solution with AI chatbots, knowledge base, and omnichannel support for exceptional service delivery.",
-      technologies: ["AI/ML", "Chatbots", "Help Desk", "Cloud Computing"]
+      title: "Data Protection & Privacy Platform",
+      description: "End-to-end data protection solution with encryption, data loss prevention, and privacy controls to safeguard sensitive information and ensure compliance.",
+      technologies: ["Data Encryption", "DLP", "Privacy Controls", "Compliance Management"]
     },
     {
-      title: "Customer Loyalty & Rewards Program",
-      description: "Digital loyalty platform enabling personalized rewards, gamification, and customer engagement programs to drive retention and advocacy.",
-      technologies: ["Mobile Apps", "Data Analytics", "Gamification", "Cloud Computing"]
+      title: "Security Risk Management Platform",
+      description: "Integrated risk management platform enabling organizations to identify, assess, and mitigate security risks while maintaining regulatory compliance.",
+      technologies: ["Risk Assessment", "Compliance", "Governance", "Security Analytics"]
     },
   ];
 
@@ -123,7 +123,7 @@ export default function CustomerExperienceEngagement() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.userExperience})`,
+            backgroundImage: `url(${images.banners.cybersecurityHeroBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -135,9 +135,10 @@ export default function CustomerExperienceEngagement() {
           style={{ y: backgroundY }}
           className="absolute inset-0"
         >
-          {/* Enhanced gradient overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"></div>
+          {/* Enhanced gradient overlay for better text readability with blue tint */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-blue-900/20 to-black/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/10 via-transparent to-transparent"></div>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -150,18 +151,18 @@ export default function CustomerExperienceEngagement() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gray-400/70 rounded-full flex items-start justify-center p-2 bg-white/80 backdrop-blur-sm shadow-md"
+            className="w-6 h-10 border-2 border-blue-400/70 rounded-full flex items-start justify-center p-2 bg-white/80 backdrop-blur-sm shadow-md hover:border-blue-500 transition-colors duration-300"
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gray-600 rounded-full"
+              className="w-1.5 h-1.5 bg-blue-600 rounded-full"
             />
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Customer Experience Card - Positioned outside hero section, extending from hero */}
+      {/* Cybersecurity Card - Positioned outside hero section, extending from hero */}
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-end">
@@ -173,22 +174,35 @@ export default function CustomerExperienceEngagement() {
             >
               {/* Blue Background Box - Overlay on right side */}
               <div 
-                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
+                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 group"
               >
-                {/* Customer Experience Text - Centered in the box */}
+                {/* Animated background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
+                  <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2 group-hover:scale-125 transition-transform duration-1000"></div>
+                  <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-300 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-110 transition-transform duration-1000"></div>
+                </div>
+                
+                {/* Decorative gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Shine effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                
+                {/* Cybersecurity Text - Centered in the box */}
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
+                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap group-hover:text-blue-100 transition-colors duration-300"
                   style={{
                     fontFamily: "'Poppins', 'Montserrat', sans-serif",
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
-                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2)',
                   }}
                 >
-                  Customer Experience & Engagement
+                  Cybersecurity & Risk Management
                 </motion.h1>
               </div>
             </motion.div>
@@ -196,7 +210,7 @@ export default function CustomerExperienceEngagement() {
         </div>
       </div>
 
-      {/* Customer Experience-Specific Solutions Section */}
+      {/* Cybersecurity-Specific Solutions Section */}
       <section className="relative bg-white py-8 md:py-10 px-4">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -264,10 +278,10 @@ export default function CustomerExperienceEngagement() {
             >
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-                  Customer Experience & Engagement Solutions
+                  Cybersecurity & Risk Management Solutions
                 </h2>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-4xl">
-                  Discover how NeuroVerse delivers tailored customer experience and engagement solutions that help organizations build lasting relationships, drive loyalty, and accelerate business growth.
+                  Discover how NeuroVerse delivers comprehensive cybersecurity and risk management solutions that protect your digital assets, ensure regulatory compliance, and mitigate security risks.
                 </p>
                 <div className="pt-4">
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"></div>
@@ -278,60 +292,64 @@ export default function CustomerExperienceEngagement() {
         </div>
       </section>
 
-      {/* Customer Experience Case Study Banner/Carousel Section - Full Width */}
+      {/* Cybersecurity Case Study Banner/Carousel Section - Full Width */}
       <section className="relative bg-white py-8 md:py-12 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
+          className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl"
         >
-          {/* Background Image with Blur - Full Width */}
+          {/* Background Image - Full Width with Cyber Theme */}
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.banners.customerSatisfaction})`,
+              backgroundImage: `url(${images.banners.cyberBg})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              filter: 'blur(2px)',
             }}
           >
-            {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-transparent"></div>
+            {/* Enhanced Overlay for better text readability with blue tint */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-transparent to-black/40"></div>
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-900/20 to-transparent"></div>
           </div>
 
           {/* Content Container - Centered with max-width */}
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="flex items-center justify-start">
-                {/* White Text Box - Centered */}
+                {/* White Text Box with Enhanced Styling */}
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
+                  className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
                 >
+                  {/* Decorative blue accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 rounded-t-xl"></div>
+                  
                   {/* Headline */}
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Transform customer relationships with AI-powered engagement solutions
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
+                    Protect your digital assets with advanced cybersecurity solutions
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to deliver exceptional customer experiences through advanced AI-powered personalization, omnichannel engagement platforms, and comprehensive customer analytics. Our intelligent solutions enable deeper customer relationships, increased loyalty, and accelerated business growth.
+                    NeuroVerse empowers organizations to safeguard their digital infrastructure through comprehensive cybersecurity solutions, advanced threat detection, and proactive risk management. Our security expertise enables robust protection, regulatory compliance, and peace of mind in an evolving threat landscape.
                   </p>
 
                   {/* Read More Button */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-700 transition-all duration-300 shadow-sm group/btn"
                   >
-                    <span>Read more</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <span className="group-hover/btn:translate-x-1 transition-transform duration-300">Read more</span>
+                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
                   </motion.button>
                 </motion.div>
               </div>
@@ -396,7 +414,7 @@ export default function CustomerExperienceEngagement() {
 
           {/* Three Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Card 1: Customer Engagement */}
+            {/* Card 1: Threat Detection & Response */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -407,8 +425,8 @@ export default function CustomerExperienceEngagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.customerExperience}
-                  alt="Customer Engagement"
+                  src={images.features.security}
+                  alt="Threat Detection & Response"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -416,20 +434,20 @@ export default function CustomerExperienceEngagement() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Customer Engagement
+                  Threat Detection & Response
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and personalization solutions enhance customer engagement, loyalty, and satisfaction across all touchpoints. We leverage customer data, behavioral analytics, and AI-powered insights to drive personalized experiences and streamline customer interactions.
+                    Advanced threat detection and response solutions that identify and mitigate security incidents in real-time. We leverage security analytics, threat intelligence, and automated response capabilities to protect your digital assets from evolving cyber threats.
                   </p>
                   <p className="text-sm md:text-base">
-                    Our solutions ensure seamless engagement, enable personalized experiences, improve satisfaction, and ensure consistent brand interactions for competitive advantage in the evolving customer experience landscape.
+                    Our solutions ensure proactive threat detection, rapid incident response, and continuous security monitoring for comprehensive protection against cyber attacks.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 2: Digital Commerce */}
+            {/* Card 2: Identity & Access Management */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -440,8 +458,8 @@ export default function CustomerExperienceEngagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.digitalMarketing}
-                  alt="Digital Commerce"
+                  src={images.banners.cloudDataCenter}
+                  alt="Identity & Access Management"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -449,20 +467,20 @@ export default function CustomerExperienceEngagement() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Digital Commerce
+                  Identity & Access Management
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Comprehensive e-commerce and digital commerce solutions that create seamless shopping experiences. We partner with retailers and brands to develop commerce strategies that optimize conversion and customer satisfaction.
+                    Comprehensive identity and access management solutions that ensure only authorized users can access critical systems and data. We partner with organizations to implement secure authentication, authorization, and identity governance.
                   </p>
                   <p className="text-sm md:text-base">
-                    Our solutions support both B2C and B2B commerce, ensuring seamless shopping experiences and continuity of customer relationships across all digital channels.
+                    Our solutions support single sign-on, multi-factor authentication, privileged access management, and identity governance for enhanced security and user experience.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Card 3: Customer Service Excellence */}
+            {/* Card 3: Risk Management & Compliance */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -474,7 +492,7 @@ export default function CustomerExperienceEngagement() {
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
                   src={images.banners.softwareServices}
-                  alt="Customer Service Excellence"
+                  alt="Risk Management & Compliance"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -482,73 +500,20 @@ export default function CustomerExperienceEngagement() {
               {/* Content */}
               <div className="p-6 md:p-8">
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Customer Service Excellence
+                  Risk Management & Compliance
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Omnichannel customer service solutions using AI chatbots, knowledge bases, and service automation. The expansion of customer expectations and the disintegration of traditional service boundaries require innovative approaches.
+                    Integrated risk management and compliance solutions that help organizations identify, assess, and mitigate security risks while maintaining regulatory compliance. The expansion of security threats and regulatory requirements demands comprehensive risk management approaches.
                   </p>
                   <p className="text-sm md:text-base">
-                    AI-powered service, omnichannel support, and proactive engagement are driving transformation. Organizations delivering exceptional service fastest will lead the next generation of customer experience.
+                    Proactive risk assessment, compliance management, and security governance are driving transformation. Organizations implementing comprehensive risk management fastest will lead the next generation of cybersecurity.
                   </p>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* Leadership Recognition Banner Section - Full Width */}
-      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
-        >
-            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
-              >
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse Software Solutions recognized as a leader in Customer Experience
-                </h2>
-                
-                {/* Body Text */}
-                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We have been recognized as a leader in Customer Experience & Engagement Solutions and Omnichannel Platforms by leading industry analysts.
-                </p>
-
-                {/* Read More Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            </div>
-
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
-              <img
-                src={images.banners.retailEcommerceHeroBanner}
-                alt="NeuroVerse customer experience leadership recognition"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
-            </div>
-          </motion.div>
       </section>
 
       {/* Research and insights Section */}
@@ -560,15 +525,15 @@ export default function CustomerExperienceEngagement() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden shadow-xl"
+            className="grid grid-cols-1 md:grid-cols-2 rounded-xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
           >
             {/* Left Side - Image with Neural Network Effect */}
-            <div className="relative w-full h-64 md:h-80 lg:h-96 bg-black overflow-hidden">
+            <div className="relative w-full h-64 md:h-80 lg:h-96 bg-black overflow-hidden group-hover:scale-105 transition-transform duration-700">
               {/* Base image with reduced opacity */}
               <img
-                src={images.banners.retailEcommerceBgBanner}
-                alt="Customer experience research"
-                className="w-full h-full object-cover opacity-40"
+                src={images.banners.cloudDataCenter}
+                alt="Cybersecurity research"
+                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-500"
               />
               {/* Abstract neural network overlay effect */}
               <div className="absolute inset-0">
@@ -576,20 +541,20 @@ export default function CustomerExperienceEngagement() {
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
                   {/* Network lines */}
                   <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="lineGradientBlue" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
                       <stop offset="50%" stopColor="rgba(37, 99, 235, 0.8)" />
                       <stop offset="100%" stopColor="rgba(96, 165, 250, 0.4)" />
                     </linearGradient>
                   </defs>
                   {/* Connecting lines */}
-                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
+                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
                   {/* Network nodes (dots) */}
                   <circle cx="50" cy="80" r="3" fill="rgba(255, 255, 255, 0.9)" />
                   <circle cx="150" cy="120" r="3" fill="rgba(255, 255, 255, 0.9)" />
@@ -610,23 +575,50 @@ export default function CustomerExperienceEngagement() {
             </div>
 
             {/* Right Side - Blue Box */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden group-hover:from-blue-800 group-hover:via-blue-700 group-hover:to-blue-800 transition-all duration-500">
+              {/* Decorative gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Animated background pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2 group-hover:scale-125 transition-transform duration-1000"></div>
+              </div>
+              
               {/* Top Text */}
-              <div>
-                <p className="text-sm md:text-base text-white/80 mb-4 md:mb-6 font-medium">
+              <div className="relative z-10">
+                <motion.p 
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-sm md:text-base text-white/80 mb-4 md:mb-6 font-medium"
+                >
                   — NeuroVerse Research Institute
-                </p>
+                </motion.p>
                 
                 {/* Title */}
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight">
-                  Customer experience innovation research
-                </h3>
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight group-hover:text-blue-100 transition-colors duration-300"
+                >
+                  Cybersecurity innovation research
+                </motion.h3>
               </div>
 
               {/* Bottom Text */}
-              <p className="text-xs md:text-sm text-white font-semibold uppercase tracking-wider">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-xs md:text-sm text-white/90 font-semibold uppercase tracking-wider relative z-10"
+              >
                 NEUROVERSE RESEARCH INSTITUTE
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         </div>
@@ -644,10 +636,10 @@ export default function CustomerExperienceEngagement() {
             className="mb-8 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
-              Customer Experience Use Cases
+              Cybersecurity Use Cases
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
-              Real-world applications of our customer experience and engagement solutions
+              Real-world applications of our cybersecurity and risk management solutions
             </p>
           </motion.div>
 
@@ -666,7 +658,7 @@ export default function CustomerExperienceEngagement() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.retailEcommerceHeroBanner}
+                      src={images.banners.researchBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -713,7 +705,70 @@ export default function CustomerExperienceEngagement() {
         </div>
       </section>
 
+      {/* Leadership Recognition Banner Section - Full Width */}
+      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-5 w-full"
+        >
+            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
+              {/* Animated background pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
+                <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-500 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2 group-hover:scale-125 transition-transform duration-1000"></div>
+              </div>
+              
+              {/* Decorative gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-6 relative z-10"
+              >
+                {/* Headline */}
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight group-hover:text-blue-100 transition-colors duration-300">
+                  NeuroVerse Software Solutions recognized as a leader in Cybersecurity
+                </h2>
+                
+                {/* Body Text */}
+                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl group-hover:text-white transition-colors duration-300">
+                  We have been recognized as a leader in Cybersecurity & Risk Management Solutions and Security Operations by leading industry analysts.
+                </p>
+
+                {/* Read More Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 hover:border-blue-300 transition-all duration-300 w-fit mt-4 group/btn"
+                >
+                  <span className="group-hover/btn:translate-x-1 transition-transform duration-300">Read more</span>
+                  <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Right Section - Image (40% - 2 columns) */}
+            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+              <img
+                src={images.banners.researchBanner}
+                alt="NeuroVerse cybersecurity leadership recognition"
+                className="w-full h-full object-cover object-center"
+              />
+              {/* Subtle overlay for better text contrast if needed */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
+            </div>
+          </motion.div>
+      </section>
+
     </div>
   );
 }
+
 

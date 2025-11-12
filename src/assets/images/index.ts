@@ -76,6 +76,13 @@ export const bannerImages = {
   technologyBgBanner: new URL('./banner-Images/tech-bg-img.jpg', import.meta.url).href,
   cloudDataCenter: new URL('./banner-Images/cloud-data-center.jpg', import.meta.url).href,
   codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
+  userExperience: new URL('./banner-Images/user-experience.jpg', import.meta.url).href,
+  customerSatisfaction: new URL('./banner-Images/bg-customer-satisfaction.jpg', import.meta.url).href,
+  customerExperience: new URL('./banner-Images/customer-experience.jpg', import.meta.url).href,
+  digitalMarketing: new URL('./banner-Images/digital-marketing.jpg', import.meta.url).href,
+  softwareServices: new URL('./banner-Images/software-services.jpg', import.meta.url).href,
+  cybersecurityHeroBg: new URL('./banner-Images/cybersecurity-hero-bg.jpg', import.meta.url).href,
+  cyberBg: new URL('./banner-Images/cyber-bg.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, X, Globe, Search, ArrowRight, ChevronRight, ExternalLink, Sun, Moon } from "lucide-react";
+import { Menu, X, Globe, Search, ArrowRight, ChevronRight, ExternalLink } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router";
@@ -13,7 +13,6 @@ export default function Navbar() {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
   const [dropdownTop, setDropdownTop] = useState(80); // Default: 1rem (16px) + 4rem (64px) = 80px
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
@@ -25,13 +24,6 @@ export default function Navbar() {
   
   // Check if we're on the contact page
   const isOnContactPage = location.pathname === "/contact";
-
-  // Toggle theme
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    // You can add theme switching logic here
-    document.documentElement.classList.toggle('dark', !isDarkMode);
-  };
 
   // Handle search
   const handleSearch = (e: React.FormEvent) => {
@@ -416,6 +408,8 @@ export default function Navbar() {
                                 itemHref = "/services/cloud-services-infrastructure";
                               } else if (item === "Customer Experience & Engagement") {
                                 itemHref = "/services/customer-experience-engagement";
+                              } else if (item === "Cybersecurity & Risk Management") {
+                                itemHref = "/services/CyberSecurity-and-risk-management";
                               }
                             }
 
@@ -455,6 +449,9 @@ export default function Navbar() {
                                     } else if (link.sectionId === "services" && item === "Customer Experience & Engagement") {
                                       e.preventDefault();
                                       navigate("/services/customer-experience-engagement");
+                                    } else if (link.sectionId === "services" && item === "Cybersecurity & Risk Management") {
+                                      e.preventDefault();
+                                      navigate("/services/CyberSecurity-and-risk-management");
                                     } else if (hasSubItems) {
                                       e.preventDefault();
                                     } else {
@@ -561,27 +558,6 @@ export default function Navbar() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </div>
               </form>
-
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="relative w-12 h-6 rounded-full bg-gray-200 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                aria-label="Toggle theme"
-              >
-                <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 flex items-center justify-center ${
-                  isDarkMode ? 'translate-x-6' : 'translate-x-0'
-                }`}>
-                  {isDarkMode ? (
-                    <Moon className="w-3 h-3 text-gray-700" />
-                  ) : (
-                    <Sun className="w-3 h-3 text-yellow-500" />
-                  )}
-                </div>
-                <div className="absolute inset-0 flex items-center justify-between px-1">
-                  <Sun className={`w-3 h-3 transition-opacity duration-300 ${isDarkMode ? 'opacity-30' : 'opacity-100'}`} />
-                  <Moon className={`w-3 h-3 transition-opacity duration-300 ${isDarkMode ? 'opacity-100' : 'opacity-30'}`} />
-                </div>
-              </button>
             </div>
           </div>
 
