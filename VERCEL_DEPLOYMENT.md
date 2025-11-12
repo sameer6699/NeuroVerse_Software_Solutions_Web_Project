@@ -81,6 +81,20 @@ The `vercel.json` file includes a rewrite rule that ensures all routes serve `in
 3. Add your custom domain
 4. Follow the DNS configuration instructions
 
+## Build Configuration
+
+### Build Scripts Warning (Fixed)
+
+The project includes `.npmrc` configuration to allow build scripts from:
+- `@tailwindcss/oxide` - Required for Tailwind CSS v4
+- `esbuild` - Required for Vite builds
+
+These are automatically allowed via the `.npmrc` file, so you won't see the "Ignored build scripts" warning.
+
+### Chunk Size Warning (Fixed)
+
+The `vite.config.ts` includes optimized chunk splitting and increased chunk size warning limit (1000kb) to prevent warnings during build. Large dependencies are automatically split into separate chunks for better caching.
+
 ## Troubleshooting
 
 ### Build Fails
@@ -88,6 +102,7 @@ The `vercel.json` file includes a rewrite rule that ensures all routes serve `in
 - Check that all dependencies are in `package.json`
 - Verify the build command works locally: `pnpm build`
 - Check build logs in Vercel dashboard for specific errors
+- Ensure `.npmrc` file is committed to your repository
 
 ### Routes Return 404
 
