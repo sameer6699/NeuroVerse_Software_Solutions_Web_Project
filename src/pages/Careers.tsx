@@ -340,11 +340,7 @@ export default function Careers() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
               onClick={() => {
-                // Navigate or scroll to section
-                const section = document.getElementById('why-join-section');
-                if (section) {
-                  section.scrollIntoView({ behavior: 'smooth' });
-                }
+                navigate("/careers/WhyJoinNeuroVerse");
               }}
             >
               {/* Background Image */}
@@ -374,11 +370,7 @@ export default function Careers() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
               onClick={() => {
-                // Scroll to Life at NeuroVerse gallery section
-                const gallerySection = document.getElementById('life-at-neuroverse-gallery');
-                if (gallerySection) {
-                  gallerySection.scrollIntoView({ behavior: 'smooth' });
-                }
+                navigate("/careers/lifeAtNeuroVerse");
               }}
             >
               <span className="text-base md:text-lg lg:text-xl font-heading font-bold text-white">
@@ -470,7 +462,7 @@ export default function Careers() {
               </div>
             </motion.div>
 
-            {/* Card 6: Meet our people - Solid Blue Background */}
+            {/* Card 6: Meet our team - Solid Blue Background */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -478,12 +470,11 @@ export default function Careers() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
               onClick={() => {
-                // Navigate to meet our people section
-                console.log("Navigate to Meet our people");
+                navigate("/careers/Meet-our-team");
               }}
             >
               <span className="text-base md:text-lg lg:text-xl font-heading font-bold text-white">
-                Meet our people
+                Meet our team
               </span>
               <div className="flex justify-end">
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
@@ -769,10 +760,7 @@ export default function Careers() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="relative cursor-pointer group"
               onClick={() => {
-                const section = document.getElementById('why-join-section');
-                if (section) {
-                  section.scrollIntoView({ behavior: 'smooth' });
-                }
+                navigate("/careers/WhyJoinNeuroVerse");
               }}
             >
               {/* Image */}

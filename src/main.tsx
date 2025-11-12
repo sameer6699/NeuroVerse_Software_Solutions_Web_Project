@@ -18,6 +18,9 @@ import RetailEcommerce from "./pages/RetailEcommerce.tsx";
 import Manufacturing from "./pages/Manufacturing.tsx";
 import Technology from "./pages/Technology.tsx";
 import Services from "./pages/Services.tsx";
+import Products from "./pages/Products.tsx";
+import SeedLink from "./pages/SeedLink.tsx";
+import WelthWise from "./pages/WelthWise.tsx";
 import CloudServicesInfrastructure from "./pages/CloudServicesInfrastructure.tsx";
 import CustomerExperienceEngagement from "./pages/CustomerExperienceEngagement.tsx";
 import CybersecurityRiskManagement from "./pages/CybersecurityRiskManagement.tsx";
@@ -27,6 +30,9 @@ import SmartManufacturingIndustry4 from "./pages/SmartManufacturingIndustry4.tsx
 import SustainabilityGreenTechnology from "./pages/SustainabilityGreenTechnology.tsx";
 import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineering.tsx";
 import Careers from "./pages/Careers.tsx";
+import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
+import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
+import MeetOurTeam from "./pages/MeetOurTeam.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -72,10 +78,15 @@ createRoot(document.getElementById("root")!).render(
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="/why-neuroverse" element={<Home />} />
-                <Route path="/products" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/SeedLink" element={<SeedLink />} />
+                <Route path="/products/WelthWise" element={<WelthWise />} />
                 <Route path="/solutions" element={<Home />} />
                 <Route path="/case-studies" element={<Home />} />
                 <Route path="/careers" element={<Careers />} />
+                <Route path="/careers/WhyJoinNeuroVerse" element={<WhyJoinNeuroVerse />} />
+                <Route path="/careers/lifeAtNeuroVerse" element={<LifeAtNeuroVerse />} />
+                <Route path="/careers/Meet-our-team" element={<MeetOurTeam />} />
                 <Route path="/capabilities" element={<Home />} />
                 <Route path="/industries" element={<Industries />} />
                 <Route path="/industries/healthcare" element={<Healthcare />} />

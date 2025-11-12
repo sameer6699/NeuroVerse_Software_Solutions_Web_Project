@@ -196,10 +196,8 @@ export default function Navbar() {
       sectionId: "products",
       description: "Innovative technology products and platforms designed to accelerate your digital transformation and drive business growth.",
       menuItems: [
-        "Our Products",
-        "AI Solutions Platform",
-        "Cloud Infrastructure",
-        "Analytics & Insights"
+        "SeedLink",
+        "WelthWise"
       ],
       featuredTitle: "Our Products",
       featuredDescription: "Cutting-edge technology products for modern businesses"
@@ -212,7 +210,7 @@ export default function Navbar() {
       menuItems: [
         "Why join NeuroVerse",
         "Life at NeuroVerse",
-        "Meet our people",
+        "Meet our team",
         "Career paths",
         "Let's connect",
         "Join us"
@@ -421,18 +419,26 @@ export default function Navbar() {
                               } else if (item === "Software Development & Engineering") {
                                 itemHref = "/services/software-development-engineering";
                               }
+                            } else if (link.sectionId === "products") {
+                              if (item === "SeedLink") {
+                                itemHref = "/products/SeedLink";
+                              } else if (item === "WelthWise") {
+                                itemHref = "/products/WelthWise";
+                              }
+                            } else if (link.sectionId === "careers") {
+                              if (item === "Why join NeuroVerse") {
+                                itemHref = "/careers/WhyJoinNeuroVerse";
+                              } else if (item === "Life at NeuroVerse") {
+                                itemHref = "/careers/lifeAtNeuroVerse";
+                              } else if (item === "Meet our team") {
+                                itemHref = "/careers/Meet-our-team";
+                              }
                             }
-
-                            // Check if this item has sub-items (Products menu)
-                            const hasSubItems = link.sectionId === "products" && item === "Our Products";
-                            const subItems = hasSubItems ? ["SeedLink", "WelthWise"] : [];
                             
                             return (
                               <li 
                                 key={index}
                                 className="relative"
-                                onMouseEnter={() => hasSubItems && setHoveredMenuItem(item)}
-                                onMouseLeave={() => hasSubItems && setHoveredMenuItem(null)}
                               >
                                 <Link
                                   to={itemHref}
@@ -477,14 +483,25 @@ export default function Navbar() {
                                     } else if (link.sectionId === "services" && item === "Software Development & Engineering") {
                                       e.preventDefault();
                                       navigate("/services/software-development-engineering");
-                                    } else if (hasSubItems) {
+                                    } else if (link.sectionId === "products" && item === "SeedLink") {
                                       e.preventDefault();
+                                      navigate("/products/SeedLink");
+                                    } else if (link.sectionId === "products" && item === "WelthWise") {
+                                      e.preventDefault();
+                                      navigate("/products/WelthWise");
+                                    } else if (link.sectionId === "careers" && item === "Why join NeuroVerse") {
+                                      e.preventDefault();
+                                      navigate("/careers/WhyJoinNeuroVerse");
+                                    } else if (link.sectionId === "careers" && item === "Life at NeuroVerse") {
+                                      e.preventDefault();
+                                      navigate("/careers/lifeAtNeuroVerse");
+                                    } else if (link.sectionId === "careers" && item === "Meet our team") {
+                                      e.preventDefault();
+                                      navigate("/careers/Meet-our-team");
                                     } else {
                                       handleSectionClick(link.href, link.sectionId, e);
                                     }
-                                    if (!hasSubItems) {
-                                      setHoveredMenu(null);
-                                    }
+                                    setHoveredMenu(null);
                                   }}
                                 >
                                   <span className="relative text-sm group">
@@ -492,38 +509,8 @@ export default function Navbar() {
                                     {/* Animated Line - Same as main navigation */}
                                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
                                   </span>
-                                  <ChevronRight className={`h-4 w-4 transition-opacity ${hasSubItems ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                                  <ChevronRight className="h-4 w-4 transition-opacity opacity-0 group-hover:opacity-100" />
                                 </Link>
-
-                                {/* Sub-items inline under "Our Products" */}
-                                {hasSubItems && hoveredMenuItem === item && (
-                                  <motion.ul
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="ml-4 mt-1 space-y-1 overflow-hidden"
-                                  >
-                                    {subItems.map((subItem, subIndex) => (
-                                      <li key={subIndex}>
-                                        <Link
-                                          to={`/products/${subItem.toLowerCase()}`}
-                                          className="block py-1.5 text-xs text-gray-600 hover:text-blue-600 transition-colors group relative"
-                                          onClick={() => {
-                                            setHoveredMenu(null);
-                                            setHoveredMenuItem(null);
-                                          }}
-                                        >
-                                          <span className="relative">
-                                            {subItem}
-                                            {/* Animated Line for sub-items */}
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                                          </span>
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </motion.ul>
-                                )}
                               </li>
                             );
                           })}
