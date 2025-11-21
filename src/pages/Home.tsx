@@ -1,15 +1,11 @@
 import ScrollTopButton from "@/components/ScrollTopButton";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { images } from "@/assets";
 import { 
-  Brain, 
   Zap, 
   Shield, 
   TrendingUp, 
@@ -102,6 +98,7 @@ function useTypewriter(text: string, speed: number = 50, deleteSpeed: number = 3
 // Client Stories Carousel Component
 function ClientStoriesCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const clientStories = [
     {
@@ -131,6 +128,10 @@ function ClientStoriesCarousel() {
 
   const goToStory = (index: number) => {
     setCurrentIndex(index);
+  };
+
+  const handleReadMore = () => {
+    navigate('/news');
   };
 
   const currentStory = clientStories[currentIndex];
@@ -186,10 +187,11 @@ function ClientStoriesCarousel() {
           <Button
             variant="outline"
             size="lg"
-            className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 text-gray-900 font-semibold px-6 py-5 rounded-full group"
+            onClick={handleReadMore}
+            className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-6 py-5 rounded-full group"
           >
             Read more
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </motion.div>
@@ -244,27 +246,28 @@ function ClientStoriesCarousel() {
   );
 }
 
-// Annual Report Carousel Component
+// Startup Journey Carousel Component
 function AnnualReportCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const annualReports = [
     {
-      title: "Discover our 2024 Integrated Annual Report",
-      description: "Partner for a digital and sustainable world.",
-      buttonText: "Discover more",
+      title: "Join Our Journey: Building the Future of AI",
+      description: "We're a fast-growing startup transforming businesses through innovative AI solutions. Partner with us to shape tomorrow's digital landscape.",
+      buttonText: "Partner with us",
       image: images.projects.latestInsights,
     },
     {
-      title: "Explore our 2023 Sustainability Report",
-      description: "Building a better future through responsible innovation and sustainable practices.",
+      title: "Innovation Starts Here",
+      description: "As a dynamic startup, we're pushing boundaries in AI-powered software development. Discover how we're revolutionizing enterprise solutions.",
       buttonText: "Learn more",
       image: images.projects.insightsHero,
     },
     {
-      title: "2024 Technology Innovation Report",
-      description: "Leading the digital transformation with cutting-edge AI and machine learning solutions.",
-      buttonText: "View report",
+      title: "Growing Fast, Building Smart",
+      description: "Join us on our mission to democratize AI technology and make intelligent software accessible to businesses of all sizes.",
+      buttonText: "Explore our vision",
       image: images.projects.hotTopicsBackground,
     },
   ];
@@ -279,6 +282,23 @@ function AnnualReportCarousel() {
 
   const goToReport = (index: number) => {
     setCurrentIndex(index);
+  };
+
+  // Handle button click based on current report
+  const handleButtonClick = () => {
+    const currentReport = annualReports[currentIndex];
+    
+    // Navigate to vision section if it's the "Explore our vision" button
+    if (currentReport.buttonText === "Explore our vision") {
+      // Navigate to about page with state to scroll to vision section (no hash in URL)
+      navigate("/about", { state: { scrollToVision: true } });
+    } else if (currentReport.buttonText === "Partner with us") {
+      // Navigate to contact page for partnership
+      navigate("/contact");
+    } else if (currentReport.buttonText === "Learn more") {
+      // Navigate to insights or about page
+      navigate("/insights");
+    }
   };
 
   const currentReport = annualReports[currentIndex];
@@ -304,6 +324,7 @@ function AnnualReportCarousel() {
             <Button
               variant="outline"
               size="lg"
+              onClick={handleButtonClick}
               className="bg-transparent border-2 border-white text-white hover:bg-white/10 hover:border-white rounded-full px-8 py-6 text-base md:text-lg font-semibold group"
             >
               {currentReport.buttonText}
@@ -821,7 +842,7 @@ export default function Home() {
   
   // Typewriter animation for badge text (faster speed, loops continuously)
   const badgeText = "Where Innovation Meets Passion..!";
-  const { displayedText, isTyping } = useTypewriter(badgeText, 40, 25, 1500);
+  const { displayedText } = useTypewriter(badgeText, 40, 25, 1500);
 
 
   // Handle path-based navigation and scroll to sections
@@ -843,10 +864,10 @@ export default function Home() {
       setTimeout(() => {
         const element = document.querySelector(`#${hash}`);
         if (element) {
-          const lenis = (window as any).lenis;
+          const lenis = window.lenis;
           if (lenis) {
             setTimeout(() => {
-              lenis.scrollTo(element, {
+              lenis.scrollTo(element as HTMLElement, {
                 offset: -80,
                 duration: 1.5,
               });
@@ -866,10 +887,10 @@ export default function Home() {
       setTimeout(() => {
         const element = document.querySelector(`#${sectionId}`);
         if (element) {
-          const lenis = (window as any).lenis;
+          const lenis = window.lenis;
           if (lenis) {
             setTimeout(() => {
-              lenis.scrollTo(element, {
+              lenis.scrollTo(element as HTMLElement, {
                 offset: -80,
                 duration: 1.5,
               });
@@ -936,15 +957,15 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 md:gap-6 mb-6">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">1+ Years of Experience</span>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">Proven Industry Experience</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">98% Client Satisfaction</span>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">Client-Focused Approach</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">20+ Enterprise Clients</span>
+                  <span className="text-sm text-muted-foreground whitespace-nowrap">Enterprise Solutions</span>
                 </div>
               </div>
               
@@ -1083,23 +1104,23 @@ export default function Home() {
               {
                 title: "AI Adoption and Scaling",
                 subtitle: "From pilot programs to power users",
-                description: "With AI adoption now mainstream, discover how organizations are scaling their advantage with NeuroVerse's cutting-edge AI solutions and transformative technologies.",
+                description: "With AI adoption now mainstream, discover how organizations are scaling their advantage with cutting-edge AI solutions and transformative technologies.",
                 image: images.banners.aiBanner || images.projects.insightsHero || images.logos.seedLink,
                 alt: "AI Adoption and Scaling"
               },
               {
-                title: "NeuroVerse Innovation Lab Launch",
+                title: "Innovation and Technology",
                 subtitle: "Accelerating AI-powered operations",
-                description: "Accelerating our vision for Agentic AI-powered Intelligent Operations through our new Innovation Lab, driving breakthrough solutions for enterprises worldwide.",
+                description: "Exploring the potential of AI-powered intelligent operations and innovative approaches to drive solutions for modern businesses.",
                 image: images.banners.researchBanner || images.projects.latestInsights || images.logos.seedLink,
-                alt: "NeuroVerse Innovation Lab Launch"
+                alt: "Innovation and Technology"
               },
               {
-                title: "Q3 2025 Performance",
-                subtitle: "Strong growth and expansion",
-                description: "Learn about our Q3 2025 revenues and achievements as we continue to lead the industry in AI-driven innovation and digital transformation.",
+                title: "Industry Insights",
+                subtitle: "Trends and developments",
+                description: "Stay informed about the latest trends and developments in AI-driven innovation and digital transformation across industries.",
                 image: images.banners.reportsBanner || images.projects.hotTopicsBackground || images.logos.seedLink,
-                alt: "Q3 2025 Performance"
+                alt: "Industry Insights"
               }
             ].map((highlight, index) => (
               <motion.div
@@ -1158,9 +1179,59 @@ export default function Home() {
                 <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
                   We Deliver <span className="gradient-text">Real Value</span>
                 </h2>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium">
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium mb-6">
                   Through our people centric approach and unique human AI chemistry, we transform businesses by combining cutting-edge artificial intelligence with deep human expertise. Our solutions don't just automate they amplify human potential, creating intelligent systems that learn, adapt, and evolve with your organization.
                 </p>
+                
+                {/* Additional Content */}
+                <div className="space-y-4 max-w-xl">
+                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                    At NeuroVerse, we understand that true digital transformation goes beyond technology implementation. We focus on creating sustainable value by aligning AI capabilities with your business objectives, ensuring every solution delivers measurable results and drives long-term growth.
+                  </p>
+                  
+                  {/* Key Value Points */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Proven Results</h4>
+                        <p className="text-sm text-gray-600">Deliver measurable outcomes that drive business success and ROI</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Scalable Solutions</h4>
+                        <p className="text-sm text-gray-600">Build systems that grow and adapt with your evolving needs</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Expert Partnership</h4>
+                        <p className="text-sm text-gray-600">Work with industry experts who understand your challenges</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Innovation Focus</h4>
+                        <p className="text-sm text-gray-600">Leverage cutting-edge AI technologies and best practices</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Right Side - YouTube-like Video Player */}
@@ -1173,8 +1244,8 @@ export default function Home() {
       <ScrollTopButton />
 
       {/* Latest Insights Section */}
-      <section className="py-8 md:py-10 px-4 bg-white">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
+      <section className="py-8 md:py-10 px-4 bg-white relative">
+        <div className="max-w-7xl mx-auto max-w-5k-content relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1187,14 +1258,14 @@ export default function Home() {
           </motion.div>
 
           {/* Three Card Layout */}
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-6 md:space-y-8 relative z-0">
             {/* Card 1: Large Background Image with White Overlay Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl"
+              className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl z-10"
             >
               {/* Background Image */}
               <div
@@ -1216,16 +1287,16 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-11/12 md:w-1/2 lg:w-[45%] flex items-center justify-center p-6 md:p-8 lg:p-10"
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-11/12 md:w-1/2 lg:w-[45%] flex items-center justify-center p-6 md:p-8 lg:p-10 z-20"
               >
-                <div className="bg-white rounded-lg shadow-xl p-6 md:p-8 lg:p-10 w-full max-w-md">
-                  <p className="text-sm text-gray-600 dark:text-gray-500 mb-2 font-medium">
+                <div className="bg-white rounded-lg shadow-xl p-6 md:p-8 lg:p-10 w-full max-w-md relative z-30">
+                  <p className="text-sm text-gray-600 dark:text-gray-500 mb-2 font-medium relative z-10 opacity-100 visible">
                     — Research Report
                   </p>
-                  <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-4 text-gray-900 dark:text-gray-100 leading-tight">
+                  <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-4 text-gray-900 dark:text-gray-100 leading-tight relative z-10 opacity-100 visible">
                     The Future of AI-Driven Software Development 2025
                   </h3>
-                  <p className="text-sm text-primary font-semibold">
+                  <p className="text-sm text-primary font-semibold relative z-10 opacity-100 visible">
                     NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
@@ -1233,25 +1304,26 @@ export default function Home() {
             </motion.div>
 
             {/* Card 2 and Card 3 Container */}
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 relative z-10">
               {/* Card 2: Solid Blue Background with White Text */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 rounded-lg p-8 md:p-10 lg:p-12 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+                className="relative bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 rounded-lg p-8 md:p-10 lg:p-12 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-pointer group z-10"
+                onClick={() => navigate("/insights")}
               >
-                <div className="flex flex-col justify-between h-full min-h-[300px] md:min-h-[350px]">
-                  <div>
-                    <p className="text-sm text-white/80 mb-3 font-medium">
+                <div className="flex flex-col justify-between h-full min-h-[300px] md:min-h-[350px] relative z-10">
+                  <div className="relative z-10 opacity-100 visible">
+                    <p className="text-sm text-white/80 mb-3 font-medium opacity-100 visible">
                       — NEUROVERSE RESEARCH INSTITUTE
                     </p>
-                    <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-white leading-tight">
+                    <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-white leading-tight opacity-100 visible">
                       Transforming businesses through AI: Building intelligent software solutions for tomorrow's enterprises
                     </h3>
                   </div>
-                  <p className="text-sm text-white font-semibold uppercase">
+                  <p className="text-sm text-white font-semibold uppercase relative z-10 opacity-100 visible">
                     NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
@@ -1263,26 +1335,27 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 cursor-pointer group"
+                className="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 cursor-pointer group z-10"
+                onClick={() => navigate("/insights")}
               >
                 <div className="relative flex h-full min-h-[300px] md:min-h-[350px]">
                   {/* Left Side - Text Content */}
-                  <div className="flex-1 p-8 md:p-10 lg:p-12 flex flex-col justify-between z-10">
-                    <div>
-                      <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
+                  <div className="flex-1 p-8 md:p-10 lg:p-12 flex flex-col justify-between relative z-20">
+                    <div className="relative z-10 opacity-100 visible">
+                      <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium opacity-100 visible">
                         — NEUROVERSE RESEARCH INSTITUTE
                       </p>
-                      <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-gray-900 dark:text-gray-100 leading-tight">
+                      <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-6 text-gray-900 dark:text-gray-100 leading-tight opacity-100 visible">
                         Innovation and technology leadership: Navigating the AI revolution in enterprise software development
                       </h3>
                     </div>
-                    <p className="text-sm text-primary font-semibold uppercase">
+                    <p className="text-sm text-primary font-semibold uppercase relative z-10 opacity-100 visible">
                       NEUROVERSE RESEARCH INSTITUTE
                     </p>
                   </div>
 
                   {/* Right Side - Abstract Background Image */}
-                  <div className="w-1/3 md:w-2/5 lg:w-2/5 relative overflow-hidden">
+                  <div className="w-1/3 md:w-2/5 lg:w-2/5 relative overflow-hidden z-0">
                     <div 
                       className="absolute inset-0 opacity-80"
                       style={{
@@ -1308,15 +1381,20 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-6 md:mt-8"
+            className="mt-6 md:mt-8 relative z-0 isolate"
           >
             <Button
               variant="outline"
               size="lg"
-              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 text-gray-900 font-semibold px-8 py-6 text-base group"
+              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-8 py-6 text-base group relative z-0 isolate"
+              onClick={() => navigate("/insights")}
+              onMouseEnter={(e) => {
+                // Ensure cards remain visible on button hover
+                e.stopPropagation();
+              }}
             >
               More Insights
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>
@@ -1389,10 +1467,11 @@ export default function Home() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 text-gray-900 font-semibold px-6 py-5 rounded-lg group"
+                  onClick={() => navigate('/news')}
+                  className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 text-gray-900 hover:text-black font-semibold px-6 py-5 rounded-lg group"
                 >
                   See all news
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-5 w-5 text-gray-900 group-hover:text-black group-hover:translate-x-1 transition-all duration-300" />
                 </Button>
               </motion.div>
             </motion.div>
@@ -1451,7 +1530,7 @@ export default function Home() {
                   — Partners
                 </p>
                 <h3 className="font-heading font-bold text-xl md:text-2xl lg:text-3xl mb-4 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
-                  Microsoft and NeuroVerse deepen partnership to empower enterprises for the next era of AI-driven software development
+                  School of Stock Market and NeuroVerse deepen partnership to empower Stock Market Learning for the next era of AI-driven software development
                 </h3>
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-500">
                   <Calendar className="w-4 h-4" />
@@ -1571,7 +1650,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Annual Report Hero Section - Carousel */}
+      {/* Startup Journey Hero Section - Carousel */}
       <AnnualReportCarousel />
     </div>
   );

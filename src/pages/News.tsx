@@ -266,6 +266,173 @@ export default function News() {
         </div>
       </section>
 
+      {/* Recent Client Stories Section */}
+      <section className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16 md:py-20 px-4">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
+          {/* Section Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
+              Recent client stories
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+          </motion.div>
+
+          {/* Featured Client Story Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Left Side - Image */}
+              <div className="relative h-64 md:h-80 lg:h-full min-h-[400px] overflow-hidden">
+                <img
+                  src={images.projects.latestInsights}
+                  alt="Enterprise AI Transformation"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Right Side - Content */}
+              <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                {/* Category Badge */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="mb-6"
+                >
+                  <div className="w-16 h-0.5 bg-gray-400 mb-3"></div>
+                  <span className="text-sm md:text-base text-gray-600 font-semibold uppercase tracking-wide">
+                    Client Success Story
+                  </span>
+                </motion.div>
+
+                {/* Headline */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-6 leading-tight"
+                >
+                  NeuroVerse supports enterprise transformation in spearheading AI-powered digital infrastructure modernization
+                </motion.h3>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="text-base md:text-lg text-gray-700 leading-relaxed mb-8"
+                >
+                  The company worked with NeuroVerse, its long-term partner, to move from a legacy system to a modern AI-driven platform by establishing a Data Integration Center of Excellence (DICoE) underpinned by advanced machine learning solutions.
+                </motion.p>
+
+                {/* Read More Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all duration-300 group"
+                  >
+                    Read more
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </motion.button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Additional Client Stories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16">
+            {/* Story 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                  alt="Financial Services Transformation"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <div className="w-12 h-0.5 bg-gray-400 mb-3"></div>
+                <p className="text-xs text-gray-600 font-medium mb-2 uppercase tracking-wide">Client News</p>
+                <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 leading-tight">
+                  NeuroVerse enables financial services leader to revolutionize customer experience through intelligent automation
+                </h4>
+                <p className="text-sm text-gray-500 mb-4">Nov 4, 2025</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group"
+                >
+                  Read more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Story 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={images.projects.insightsHero || images.projects.latestInsights}
+                  alt="Healthcare Transformation"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
+              <div className="p-6">
+                <div className="w-12 h-0.5 bg-gray-400 mb-3"></div>
+                <p className="text-xs text-gray-600 font-medium mb-2 uppercase tracking-wide">Client News</p>
+                <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 leading-tight">
+                  NeuroVerse transforms healthcare provider's operations with predictive analytics and intelligent systems
+                </h4>
+                <p className="text-sm text-gray-500 mb-4">Oct 28, 2025</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group"
+                >
+                  Read more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Latest News Section - Two Column Layout */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
@@ -319,11 +486,44 @@ export default function News() {
                   // Navigate to press releases or scroll to section
                   console.log("Navigate to press releases");
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 w-fit group"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 w-fit group mb-8"
               >
                 See all press releases
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </motion.button>
+
+              {/* Additional Generic News Items */}
+              <div className="space-y-6 mt-8 pt-8 border-t border-gray-200">
+                {/* Additional News Item 1 */}
+                <div className="pb-4 border-b border-gray-200">
+                  <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                  <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Market developments</p>
+                  <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                    Industry leaders discuss opportunities in next-generation technology solutions
+                  </h4>
+                  <p className="text-sm text-gray-500">Oct 28, 2025</p>
+                </div>
+
+                {/* Additional News Item 2 */}
+                <div className="pb-4 border-b border-gray-200">
+                  <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                  <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Thought leadership</p>
+                  <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                    Perspectives on the evolving landscape of enterprise technology adoption
+                  </h4>
+                  <p className="text-sm text-gray-500">Oct 22, 2025</p>
+                </div>
+
+                {/* Additional News Item 3 */}
+                <div className="pb-4">
+                  <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                  <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Community engagement</p>
+                  <h4 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                    Upcoming events and webinars focused on digital transformation strategies
+                  </h4>
+                  <p className="text-sm text-gray-500">Oct 18, 2025</p>
+                </div>
+              </div>
             </motion.div>
 
             {/* Right Column - Smaller News Items */}
@@ -339,7 +539,7 @@ export default function News() {
                 <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
                 <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Client news</p>
                 <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
-                  NeuroVerse and Orano deploy the first intelligent humanoid robot in the nuclear sector
+                  NeuroVerse and enterprise partners deploy the first intelligent AI-powered automation system in the financial sector
                 </h4>
                 <p className="text-xs md:text-sm text-gray-500">Nov 4, 2025</p>
               </div>
@@ -349,19 +549,52 @@ export default function News() {
                 <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
                 <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Corporate news</p>
                 <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
-                  NeuroVerse announces the closing of the acquisition of Cloud4C
+                  NeuroVerse announces the closing of strategic partnerships to expand AI capabilities
                 </h4>
                 <p className="text-xs md:text-sm text-gray-500">Nov 3, 2025</p>
               </div>
 
               {/* News Item 3 */}
-              <div className="pb-4">
+              <div className="pb-4 border-b border-gray-200">
                 <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
                 <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Partners</p>
                 <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
-                  Siemens and NeuroVerse deepen partnership to empower industries for the next era of manufacturing
+                  NeuroVerse partners with leading financial education institutions to advance AI-powered trading and market analysis solutions
                 </h4>
-                <p className="text-xs md:text-sm text-gray-500">Oct 30, 2025</p>
+                <p className="text-xs md:text-sm text-gray-500 mb-3">Oct 30, 2025</p>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                  This strategic collaboration focuses on developing innovative educational programs and research initiatives that combine cutting-edge artificial intelligence with financial market expertise, empowering the next generation of traders and analysts.
+                </p>
+              </div>
+
+              {/* News Item 4 */}
+              <div className="pb-4 border-b border-gray-200">
+                <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Industry insights</p>
+                <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                  New research highlights emerging trends in digital transformation across various sectors
+                </h4>
+                <p className="text-xs md:text-sm text-gray-500">Oct 25, 2025</p>
+              </div>
+
+              {/* News Item 5 */}
+              <div className="pb-4 border-b border-gray-200">
+                <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Technology updates</p>
+                <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                  Advancements in cloud computing infrastructure enable enhanced scalability for enterprise solutions
+                </h4>
+                <p className="text-xs md:text-sm text-gray-500">Oct 20, 2025</p>
+              </div>
+
+              {/* News Item 6 */}
+              <div className="pb-4">
+                <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
+                <p className="text-sm md:text-base text-gray-600 font-medium mb-2">Innovation</p>
+                <h4 className="text-lg md:text-xl lg:text-2xl font-heading font-bold text-gray-900 mb-2 leading-tight">
+                  Exploring new methodologies for improving software development lifecycle efficiency
+                </h4>
+                <p className="text-xs md:text-sm text-gray-500">Oct 15, 2025</p>
               </div>
             </motion.div>
           </div>

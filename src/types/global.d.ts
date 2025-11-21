@@ -5,6 +5,21 @@ declare global {
      * @param redirectUrl - URL to redirect to after successful authentication
      */
     navigateToAuth: (redirectUrl: string) => void;
+    /**
+     * Lenis smooth scroll instance
+     */
+    lenis?: {
+      scrollTo: (
+        target: HTMLElement | number,
+        options?: {
+          offset?: number;
+          duration?: number;
+          easing?: (t: number) => number;
+        }
+      ) => void;
+      raf: (time: number) => void;
+      destroy: () => void;
+    };
   }
 }
 

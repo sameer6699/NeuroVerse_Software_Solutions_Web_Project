@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Linkedin, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Factory, Network, Battery, TrendingUp, Leaf, ShoppingCart, Calendar, FileText, Download } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 
@@ -15,6 +15,19 @@ export default function Insights() {
     target: heroRef,
     offset: ["start start", "end start"]
   });
+
+  // Scroll to top instantly when component mounts (when navigating to this page)
+  useEffect(() => {
+    // Instant scroll to top (no animation)
+    window.scrollTo(0, 0);
+    
+    // Also ensure scroll after a small delay to handle any async rendering
+    const timeoutId = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+    
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -404,133 +417,231 @@ export default function Insights() {
       </section>
 
       {/* The Latest Reports Section */}
-      <section className="relative bg-white py-8 md:py-10 px-4">
+      <section className="relative bg-gradient-to-b from-white via-gray-50/30 to-white py-12 md:py-16 lg:py-20 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Section Title */}
+          {/* Section Title with Description */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-6 md:mb-8"
+            className="mb-8 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
-              The latest reports from NEUROVERSE RESEARCH INSTITUTE Institute
-            </h2>
+            <div className="mb-4">
+              <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mb-4"></div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
+                The latest reports from NEUROVERSE RESEARCH INSTITUTE
+              </h2>
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed">
+                Comprehensive research and insights on emerging trends, industry transformations, and technological innovations shaping the future of business and society.
+              </p>
+            </div>
           </motion.div>
 
           {/* Report Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
-            {/* Report Card 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-8 md:mb-12">
+            {/* Report Card 1: Reindustrialization of Europe and US */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
-                <div className="absolute inset-0 opacity-80">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700">
+                <div className="absolute inset-0 opacity-90">
                   <div className="absolute inset-0" style={{
                     backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)`,
                   }}></div>
                 </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Factory className="w-20 h-20 text-white/80 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Manufacturing
+                  </span>
+                </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>January 2025</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                   Reindustrialization of Europe and US
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
                   The resurgence of manufacturing: Reindustrialization strategies in Europe and the US - 2025. NeuroVerse's AI-driven solutions are transforming manufacturing operations and enabling smart industrial ecosystems.
                 </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Report Card 2 */}
+            {/* Report Card 2: The B2B Pulse */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-green-400 via-blue-500 to-teal-600">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-700">
                 <div className="absolute inset-0">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full border-4 border-white/30"></div>
+                    <div className="w-32 h-32 rounded-full border-4 border-white/30 animate-pulse"></div>
                     <div className="absolute w-24 h-24 rounded-full border-4 border-white/20"></div>
+                    <Network className="w-16 h-16 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Telecommunications
+                  </span>
+                </div>
+              </div>
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>December 2024</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300 leading-tight">
+                  The B2B Pulse
+                </h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
+                  Top six expectations of telecom's business customers. NeuroVerse's intelligent automation and AI solutions are reshaping B2B telecommunications and customer engagement strategies.
+                </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
                   </div>
                 </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                  The B2B Pulse
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  Top six expectations of telecom's business customers. NeuroVerse's intelligent automation and AI solutions are reshaping B2B telecommunications and customer engagement strategies.
-                </p>
-              </div>
             </motion.div>
 
-            {/* Report Card 3 */}
+            {/* Report Card 3: The battery revolution */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-gray-800 via-gray-900 to-black">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-gray-800 via-gray-900 to-black">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-40 h-40 border-2 border-blue-400/50 rounded-lg transform rotate-45"></div>
+                  <div className="w-40 h-40 border-2 border-blue-400/50 rounded-lg transform rotate-45 group-hover:rotate-90 transition-transform duration-500"></div>
                   <div className="absolute w-32 h-32 border-2 border-blue-300/30 rounded-lg transform rotate-45"></div>
+                  <Battery className="w-16 h-16 text-blue-400/80 absolute group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Energy Storage
+                  </span>
                 </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>November 2024</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                   The battery revolution
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
                   Exploring the future of energy storage and sustainable power solutions. NeuroVerse's predictive analytics and AI optimization are driving innovation in energy management and sustainable technology.
                 </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Report Card 4 */}
+            {/* Report Card 4: Investment trends 2025 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
                 <div className="absolute inset-0">
                   <div className="absolute inset-0" style={{
                     backgroundImage: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%),
                                      radial-gradient(circle at 70% 70%, rgba(255,255,255,0.15) 0%, transparent 50%)`,
                   }}></div>
                 </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <TrendingUp className="w-20 h-20 text-white/80 group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Finance & Investment
+                  </span>
+                </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>January 2025</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors duration-300 leading-tight">
                   Investment trends 2025
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
                   Navigating uncertainty with confidence: Investment priorities for 2025. NeuroVerse's data-driven insights help organizations make informed investment decisions in AI and digital transformation.
                 </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Report Card 5 */}
+            {/* Report Card 5: Sustainable Gen AI */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-orange-400 via-yellow-500 to-amber-600">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-green-500 via-emerald-600 to-teal-700">
                 <div className="absolute inset-0">
                   <div className="absolute inset-0 flex items-center justify-center">
                     {[10, 20, 30, 40, 50, 60, 70, 80, 15, 25, 35, 45, 55, 65, 75, 85, 12, 22, 32, 42].map((pos, i) => (
@@ -544,61 +655,117 @@ export default function Insights() {
                         }}
                       ></div>
                     ))}
+                    <Leaf className="w-20 h-20 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Sustainability
+                  </span>
+                </div>
+              </div>
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>December 2024</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300 leading-tight">
+                  Sustainable Gen AI
+                </h3>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
+                  The environmental Impact of Gen AI and a roadmap for developing sustainable Gen AI practices. NeuroVerse is leading the way in creating energy-efficient AI solutions and sustainable machine learning frameworks.
+                </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
                   </div>
                 </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                  Sustainable Gen AI
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                  The environmental Impact of Gen AI and a roadmap for developing sustainable Gen AI practices. NeuroVerse is leading the way in creating energy-efficient AI solutions and sustainable machine learning frameworks.
-                </p>
-              </div>
             </motion.div>
 
-            {/* Report Card 6 */}
+            {/* Report Card 6: What matters to today's consumer */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
+              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden bg-gradient-to-br from-red-400 via-orange-500 via-yellow-400 via-blue-500 to-green-500">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700">
                 <div className="absolute inset-0">
                   <div className="absolute inset-0" style={{
                     background: `conic-gradient(from 0deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,255,0,0.3), rgba(0,0,255,0.3), rgba(255,0,0,0.3))`,
                     filter: 'blur(20px)',
                   }}></div>
                 </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <ShoppingCart className="w-20 h-20 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
+                    Consumer Insights
+                  </span>
+                </div>
               </div>
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
+                  <Calendar className="w-4 h-4" />
+                  <span>November 2024</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300 leading-tight">
                   What matters to today's consumer
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
                   Consumer preferences and purchasing behaviors are constantly evolving. NeuroVerse's AI-powered analytics provide deep insights into consumer behavior and enable personalized customer experiences.
                 </p>
+                <div className="pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
+                    <motion.button
+                      whileHover={{ x: 5 }}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
+                    >
+                      Read Report
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
 
-          {/* See All Reports Button */}
+          {/* Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex justify-start"
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-8 py-4 bg-white border-2 border-gray-300 text-gray-900 font-semibold rounded-lg hover:border-gray-400 hover:bg-gray-50 transition-colors duration-300"
+              className="flex items-center gap-2 px-8 py-4 bg-white border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 hover:border-gray-700 transition-all duration-300 group"
             >
+              <FileText className="w-5 h-5" />
               See all our reports
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 group"
+            >
+              <Download className="w-5 h-5" />
+              Download Report Bundle
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </motion.div>
         </div>
@@ -762,7 +929,7 @@ export default function Insights() {
         </div>
       </section>
 
-      {/* Initiatives with the World Economic Forum Section */}
+      {/* Startup Ecosystem & Innovation Initiatives Section */}
       <section className="relative py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <div className="grid grid-cols-1 lg:grid-cols-5 rounded-2xl overflow-hidden shadow-2xl">
@@ -775,22 +942,25 @@ export default function Insights() {
               className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center"
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 md:mb-8">
-                Initiatives with the World Economic Forum
+                Empowering the Startup Ecosystem
               </h2>
-              <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed mb-8 md:mb-10">
-                As a strategic partner of the World Economic Forum, we engage with the Forum to develop solutions to the world's most pressing challenges. NeuroVerse collaborates with global leaders to drive innovation and create sustainable impact.
+              <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed mb-6 md:mb-8">
+                As a fast-growing startup ourselves, NeuroVerse is committed to supporting and collaborating with innovative startups worldwide. We partner with emerging companies, accelerators, and incubators to drive technological innovation and create transformative solutions for tomorrow's challenges.
+              </p>
+              <p className="text-base md:text-lg text-white/80 leading-relaxed mb-8 md:mb-10">
+                Through our startup initiatives, we provide mentorship, technical expertise, and AI-powered solutions to help startups scale faster and achieve their vision of transforming industries through intelligent technology.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 w-fit"
               >
-                Discover our joint initiatives
+                Explore our startup programs
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
             </motion.div>
 
-            {/* Right Column - Cityscape Image (3/5 width) */}
+            {/* Right Column - Startup/Innovation Image (3/5 width) */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -807,8 +977,16 @@ export default function Insights() {
                   filter: 'blur(0.5px)',
                 }}
               >
+                {/* Gradient Overlay for better text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-transparent"></div>
                 {/* Motion Blur Overlay Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+              </div>
+              {/* Floating Startup Icons/Shapes Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 animate-pulse"></div>
+                <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform rotate-45 animate-pulse delay-300"></div>
+                <div className="absolute bottom-1/3 left-1/3 w-14 h-14 bg-white/10 rounded-full backdrop-blur-sm border border-white/20 animate-pulse delay-700"></div>
               </div>
             </motion.div>
           </div>
@@ -955,7 +1133,7 @@ export default function Insights() {
                   Stay informed
                 </h2>
                 <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  Subscribe to have the latest reports from the NEUROVERSE RESEARCH INSTITUTE Institute delivered direct to your inbox.
+                  Subscribe to have the latest reports from the NEUROVERSE RESEARCH INSTITUTE delivered direct to your inbox.
                 </p>
               </div>
 

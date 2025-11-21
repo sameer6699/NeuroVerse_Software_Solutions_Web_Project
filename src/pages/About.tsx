@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud, Users, Target, Heart, Award, Handshake, Lightbulb } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 /**
  * About Us Page Component
@@ -17,9 +17,64 @@ export default function About() {
     offset: ["start start", "end start"]
   });
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  // Handle navigation to scroll to vision section (from location state or hash)
+  useEffect(() => {
+    // Check if we should scroll to vision from location state (clean URL approach)
+    const state = location.state as { scrollToVision?: boolean } | null;
+    if (state?.scrollToVision) {
+      setTimeout(() => {
+        const visionElement = document.querySelector("#vision");
+        if (visionElement) {
+          const lenis = window.lenis;
+          if (lenis) {
+            setTimeout(() => {
+              lenis.scrollTo(visionElement as HTMLElement, {
+                offset: -80,
+                duration: 1.5,
+              });
+            }, 200);
+          } else {
+            setTimeout(() => {
+              visionElement.scrollIntoView({ behavior: "smooth", block: "start" });
+              window.scrollBy(0, -80);
+            }, 200);
+          }
+        }
+        // Clear the state to prevent re-scrolling on refresh
+        window.history.replaceState({}, document.title, location.pathname);
+      }, 300);
+      return;
+    }
+
+    // Fallback: Handle hash-based navigation (for direct links with hash)
+    if (location.hash) {
+      const hash = location.hash.replace("#", "");
+      setTimeout(() => {
+        const element = document.querySelector(`#${hash}`);
+        if (element) {
+          const lenis = window.lenis;
+          if (lenis) {
+            setTimeout(() => {
+              lenis.scrollTo(element as HTMLElement, {
+                offset: -80,
+                duration: 1.5,
+              });
+            }, 100);
+          } else {
+            setTimeout(() => {
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
+              window.scrollBy(0, -80);
+            }, 150);
+          }
+        }
+      }, 100);
+    }
+  }, [location.hash, location.state, location.pathname]);
 
   // Typewriter effect hook with infinite loop
   const useTypewriter = (text: string, speed: number = 100, deleteSpeed: number = 50, pauseTime: number = 2000) => {
@@ -324,7 +379,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
+      <section id="vision" className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
           <motion.div
