@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Factory, Network, Battery, TrendingUp, Leaf, ShoppingCart, Calendar, FileText, Download } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 /**
  * Insights Page Component
@@ -10,6 +11,7 @@ import { useRef, useState, useEffect } from "react";
  * The Navbar and Footer are automatically included via the global Layout component.
  */
 export default function Insights() {
+  const navigate = useNavigate();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -365,6 +367,7 @@ export default function Insights() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate("/insights/hot-topic")}
                     className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
                   >
                     Read more

@@ -149,7 +149,6 @@ export default function Navbar() {
       description: "Explore our latest thought leadership, ideas, and insights on the issues that are shaping the future of business and society.",
       menuItems: [
         "Hot topics",
-        "Industry Reports",
         "Initiatives for research and Development",
         "Our research library",
         "Expert perspectives"
@@ -358,7 +357,7 @@ export default function Navbar() {
                         </div>
                         <Button
                           variant="outline"
-                          className="border-white bg-transparent hover:bg-white w-fit transition-all duration-300 group"
+                          className="border-white bg-transparent hover:bg-transparent w-fit group"
                           style={{ color: 'white' }}
                           onClick={() => {
                             if (link.sectionId === "services") {
@@ -377,8 +376,8 @@ export default function Navbar() {
                             setHoveredMenu(null);
                           }}
                         >
-                          <span className="text-white group-hover:text-blue-800 transition-colors duration-300" style={{ color: 'white' }}>Learn more</span>
-                          <ArrowRight className="ml-2 h-4 w-4 text-white group-hover:text-blue-800 transition-colors duration-300" style={{ color: 'white' }} />
+                          <span className="text-white" style={{ color: 'white' }}>Learn more</span>
+                          <ArrowRight className="ml-2 h-4 w-4 text-white" style={{ color: 'white' }} />
                         </Button>
                       </div>
 
@@ -389,7 +388,11 @@ export default function Navbar() {
                             // Special handling for Healthcare, Finance, Retail & E-commerce, Manufacturing, and Technology in Industries menu
                             // Special handling for Cloud Services & Infrastructure in Services menu
                             let itemHref = link.href;
-                            if (link.sectionId === "industries") {
+                            if (link.sectionId === "insights") {
+                              if (item === "Hot topics") {
+                                itemHref = "/insights/hot-topic";
+                              }
+                            } else if (link.sectionId === "industries") {
                               if (item === "Healthcare") {
                                 itemHref = "/industries/healthcare";
                               } else if (item === "Finance") {
@@ -444,7 +447,10 @@ export default function Navbar() {
                                   to={itemHref}
                                   className="relative flex items-center justify-between text-gray-700 hover:text-blue-600 transition-colors group py-2"
                                   onClick={(e) => {
-                                    if (link.sectionId === "industries" && item === "Healthcare") {
+                                    if (link.sectionId === "insights" && item === "Hot topics") {
+                                      e.preventDefault();
+                                      navigate("/insights/hot-topic");
+                                    } else if (link.sectionId === "industries" && item === "Healthcare") {
                                       e.preventDefault();
                                       navigate("/industries/healthcare");
                                     } else if (link.sectionId === "industries" && item === "Finance") {

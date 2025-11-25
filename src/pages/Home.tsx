@@ -290,8 +290,8 @@ function AnnualReportCarousel() {
     
     // Navigate to vision section if it's the "Explore our vision" button
     if (currentReport.buttonText === "Explore our vision") {
-      // Navigate to about page with state to scroll to vision section (no hash in URL)
-      navigate("/about", { state: { scrollToVision: true } });
+      // Navigate to about page with hash and state to scroll to vision section
+      navigate("/about#vision", { state: { scrollToVision: true } });
     } else if (currentReport.buttonText === "Partner with us") {
       // Navigate to contact page for partnership
       navigate("/contact");
@@ -1112,7 +1112,7 @@ export default function Home() {
                 title: "Innovation and Technology",
                 subtitle: "Accelerating AI-powered operations",
                 description: "Exploring the potential of AI-powered intelligent operations and innovative approaches to drive solutions for modern businesses.",
-                image: images.banners.researchBanner || images.projects.latestInsights || images.logos.seedLink,
+                image: images.banners.technologyInnovation || images.banners.researchBanner || images.projects.latestInsights || images.logos.seedLink,
                 alt: "Innovation and Technology"
               },
               {
@@ -1182,56 +1182,6 @@ export default function Home() {
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium mb-6">
                   Through our people centric approach and unique human AI chemistry, we transform businesses by combining cutting-edge artificial intelligence with deep human expertise. Our solutions don't just automate they amplify human potential, creating intelligent systems that learn, adapt, and evolve with your organization.
                 </p>
-                
-                {/* Additional Content */}
-                <div className="space-y-4 max-w-xl">
-                  <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-                    At NeuroVerse, we understand that true digital transformation goes beyond technology implementation. We focus on creating sustainable value by aligning AI capabilities with your business objectives, ensuring every solution delivers measurable results and drives long-term growth.
-                  </p>
-                  
-                  {/* Key Value Points */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Proven Results</h4>
-                        <p className="text-sm text-gray-600">Deliver measurable outcomes that drive business success and ROI</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Scalable Solutions</h4>
-                        <p className="text-sm text-gray-600">Build systems that grow and adapt with your evolving needs</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Expert Partnership</h4>
-                        <p className="text-sm text-gray-600">Work with industry experts who understand your challenges</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-1">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Innovation Focus</h4>
-                        <p className="text-sm text-gray-600">Leverage cutting-edge AI technologies and best practices</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
 
               {/* Right Side - YouTube-like Video Player */}
@@ -1567,7 +1517,7 @@ export default function Home() {
             >
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden">
                 <img
-                  src={images.projects.latestInsights}
+                  src={images.banners.aiFuture || images.projects.latestInsights}
                   alt="AI-Powered Innovation"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -1598,8 +1548,8 @@ export default function Home() {
               >
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
-                    src={images.projects.latestInsights}
-                    alt="Sustainable Technology"
+                    src={images.banners.innovation || images.projects.latestInsights}
+                    alt="How to power innovation"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
@@ -1627,8 +1577,8 @@ export default function Home() {
               >
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
-                    src={images.projects.latestInsights}
-                    alt="Team Collaboration"
+                    src={images.banners.techLesson || images.projects.latestInsights}
+                    alt="Tech lessons for positive futures"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>

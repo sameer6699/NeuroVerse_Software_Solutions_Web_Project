@@ -108,32 +108,38 @@ export default function Industries() {
     {
       name: "Healthcare",
       description: "Electronic health records (EHR), telemedicine platforms, and AI-powered diagnostics. Patient management systems, medical imaging software, and healthcare analytics solutions.",
-      technologies: ["AI/ML", "Cloud Computing", "IoT"]
+      technologies: ["AI/ML", "Cloud Computing", "IoT"],
+      image: images.banners.healthcareIndustry
     },
     {
       name: "Finance",
       description: "Digital banking platforms, fraud detection systems, and algorithmic trading solutions. Real-time transaction processing, risk management software, and regulatory compliance automation.",
-      technologies: ["AI/ML", "Blockchain", "Cloud Computing"]
+      technologies: ["AI/ML", "Blockchain", "Cloud Computing"],
+      image: images.banners.financeIndustry
     },
     {
       name: "Retail & E-commerce",
       description: "E-commerce platforms, supply chain optimization, and customer engagement solutions. Personalization engines, inventory management systems, and omnichannel retail technology.",
-      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"]
+      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"],
+      image: images.banners.ecommerceIndustry
     },
     {
       name: "Manufacturing",
       description: "Industrial IoT solutions, smart factory systems, and production optimization software. Predictive maintenance, quality control systems, and supply chain management platforms.",
-      technologies: ["IoT", "AI/ML", "Cloud Computing"]
+      technologies: ["IoT", "AI/ML", "Cloud Computing"],
+      image: images.banners.manufacturingIndustry
     },
     {
       name: "Technology",
       description: "Software development tools, cloud infrastructure, and enterprise technology solutions. DevOps platforms, microservices architecture, and scalable cloud-native applications.",
-      technologies: ["Cloud Computing", "DevOps", "AI/ML"]
+      technologies: ["Cloud Computing", "DevOps", "AI/ML"],
+      image: images.banners.technologyIndustry
     },
     {
       name: "Education Technology",
       description: "Learning management systems, online education platforms, and AI-powered personalized learning solutions. Student information systems, virtual classrooms, and educational analytics tools.",
-      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"]
+      technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"],
+      image: images.banners.educationTechnologyIndustry
     },
   ];
 
@@ -460,7 +466,7 @@ export default function Industries() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.projects.latestInsights}
+                      src={industry.image || images.projects.latestInsights}
                       alt={industry.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
