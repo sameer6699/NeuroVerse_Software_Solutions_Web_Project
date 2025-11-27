@@ -1088,6 +1088,7 @@ export default function Insights() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              onClick={() => navigate("/insights/research-library")}
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
             >
               {/* Image */}

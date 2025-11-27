@@ -391,6 +391,10 @@ export default function Navbar() {
                             if (link.sectionId === "insights") {
                               if (item === "Hot topics") {
                                 itemHref = "/insights/hot-topic";
+                              } else if (item === "Our research library") {
+                                itemHref = "/insights/research-library";
+                              } else if (item === "Initiatives for research and Development") {
+                                itemHref = "/insights/research-and-development";
                               }
                             } else if (link.sectionId === "industries") {
                               if (item === "Healthcare") {
@@ -450,6 +454,9 @@ export default function Navbar() {
                                     if (link.sectionId === "insights" && item === "Hot topics") {
                                       e.preventDefault();
                                       navigate("/insights/hot-topic");
+                                    } else if (link.sectionId === "insights" && item === "Our research library") {
+                                      e.preventDefault();
+                                      navigate("/insights/research-library");
                                     } else if (link.sectionId === "insights" && item === "Initiatives for research and Development") {
                                       e.preventDefault();
                                       navigate("/insights/research-and-development");

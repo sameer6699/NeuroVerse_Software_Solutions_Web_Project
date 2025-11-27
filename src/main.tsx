@@ -13,6 +13,7 @@ import Contact from "./pages/Contact.tsx";
 import Insights from "./pages/Insights.tsx";
 import HotTopic from "./pages/HotTopic.tsx";
 import ResearchAndDevelopment from "./pages/ResearchAndDevelopment.tsx";
+import ResearchLibrary from "./pages/ResearchLibrary.tsx";
 import Industries from "./pages/Industries.tsx";
 import Healthcare from "./pages/Healthcare.tsx";
 import Finance from "./pages/Finance.tsx";
@@ -109,6 +110,7 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/insights" element={<Insights />} />
                 <Route path="/insights/hot-topic" element={<HotTopic />} />
                 <Route path="/insights/research-and-development" element={<ResearchAndDevelopment />} />
+                <Route path="/insights/research-library" element={<ResearchLibrary />} />
                 <Route path="/news" element={<News />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
