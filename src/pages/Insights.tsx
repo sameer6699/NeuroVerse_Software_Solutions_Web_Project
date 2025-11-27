@@ -419,6 +419,74 @@ export default function Insights() {
         </div>
       </section>
 
+      {/* Initiatives for Research and Development Section */}
+      <section className="relative bg-white py-8 md:py-10 px-4">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
+          {/* Initiatives Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 md:mb-6"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900">
+              Initiatives for research and Development
+            </h2>
+          </motion.div>
+
+          {/* Banner Container */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
+            {/* Background Banner with Image */}
+            <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden">
+              {/* Background Image */}
+              <div 
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${images.banners.researchBanner})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
+
+              {/* White Content Card - Left Side */}
+              <div className="absolute inset-0 flex items-center justify-start px-4 md:px-8 lg:px-12">
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white rounded-2xl p-8 md:p-10 lg:p-12 max-w-xl md:max-w-2xl w-full shadow-2xl -ml-2 md:ml-0 lg:ml-4"
+                >
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6">
+                    As a strategic partner, we engage to develop solutions to some of the world's most pressing challenges.
+                  </h3>
+                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
+                    We work together on structured, multi-year initiatives involving private, public, and multistakeholder collaborations to address large-scale global challenges. These efforts create a space to engage, share knowledge and ideas, and address emerging issues.
+                  </p>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => navigate("/insights/research-and-development")}
+                    className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
+                  >
+                    Explore initiatives
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* The Latest Reports Section */}
       <section className="relative bg-gradient-to-b from-white via-gray-50/30 to-white py-12 md:py-16 lg:py-20 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">

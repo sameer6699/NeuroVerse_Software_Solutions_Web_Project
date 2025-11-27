@@ -450,6 +450,9 @@ export default function Navbar() {
                                     if (link.sectionId === "insights" && item === "Hot topics") {
                                       e.preventDefault();
                                       navigate("/insights/hot-topic");
+                                    } else if (link.sectionId === "insights" && item === "Initiatives for research and Development") {
+                                      e.preventDefault();
+                                      navigate("/insights/research-and-development");
                                     } else if (link.sectionId === "industries" && item === "Healthcare") {
                                       e.preventDefault();
                                       navigate("/industries/healthcare");
