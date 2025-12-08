@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Factory, ArrowRight, Cpu, TrendingUp, Shield, Database, Smartphone, Users, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Wrench, Settings, Zap } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,46 @@ export default function Manufacturing() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Manufacturing Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Manufacturing organizations achieve operational excellence with NeuroVerse Industry 4.0 solutions",
+      description: "NeuroVerse empowers manufacturers to transform their operations through cutting-edge Industry 4.0 technologies. Our intelligent solutions enable smart factories, predictive maintenance, and real-time production optimization that drives efficiency, reduces costs, and maximizes productivity across all manufacturing processes.",
+      backgroundImage: images.banners.researchBanner
+    },
+    {
+      title: "Drive smart manufacturing with AI-powered automation and intelligent systems",
+      description: "Leverage advanced artificial intelligence and machine learning to optimize production lines, automate quality control, and enhance manufacturing intelligence. Our solutions enable real-time decision-making, predictive analytics, and autonomous operations that transform traditional factories into intelligent production facilities.",
+      backgroundImage: images.banners.researchBanner
+    },
+    {
+      title: "Optimize supply chain and production with predictive analytics and IoT integration",
+      description: "Transform your manufacturing operations with integrated IoT sensors, predictive analytics, and real-time monitoring systems. Our solutions provide end-to-end visibility across production processes, enabling proactive maintenance, demand forecasting, and supply chain optimization that reduces waste and improves efficiency.",
+      backgroundImage: images.banners.researchBanner
+    },
+    {
+      title: "Enable digital transformation with Industry 4.0 technologies and cloud-native solutions",
+      description: "Accelerate your digital transformation journey with cloud-native manufacturing platforms, digital twin technology, and advanced analytics. We help manufacturers modernize legacy systems, integrate smart devices, and leverage data-driven insights to achieve operational excellence and competitive advantage in the Industry 4.0 era.",
+      backgroundImage: images.banners.factoryImg
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarouselSlide = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
 
   // Manufacturing Solutions
@@ -300,7 +340,7 @@ export default function Manufacturing() {
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.banners.researchBanner})`,
+              backgroundImage: `url(${carouselItems[currentCarouselIndex].backgroundImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -317,20 +357,20 @@ export default function Manufacturing() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={`content-${currentCarouselIndex}`}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Manufacturing organizations achieve operational excellence with NeuroVerse Industry 4.0 solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers manufacturers to transform their operations through cutting-edge Industry 4.0 technologies. Our intelligent solutions enable smart factories, predictive maintenance, and real-time production optimization that drives efficiency, reduces costs, and maximizes productivity across all manufacturing processes.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -357,6 +397,7 @@ export default function Manufacturing() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -365,18 +406,23 @@ export default function Manufacturing() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'bg-blue-600 w-8 h-2'
+                          : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -429,10 +475,7 @@ export default function Manufacturing() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and Industry 4.0 solutions enhance digital innovation, operational efficiency, and production optimization in the manufacturing sector. We leverage smart factory technologies, IoT integration, and predictive analytics to drive intelligent automation and streamline operations.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions ensure connected manufacturing, enable flexible production, improve quality outcomes, and ensure regulatory compliance for competitive agility in the evolving industrial landscape.
+                    AI-powered Industry 4.0 solutions that enhance digital innovation, optimize production, and drive intelligent automation. We leverage smart factory technologies, IoT integration, and predictive analytics to streamline operations and ensure competitive agility in the evolving industrial landscape.
                   </p>
                 </div>
               </div>
@@ -462,10 +505,7 @@ export default function Manufacturing() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Advanced technology improves production planning and quality control processes. We partner with manufacturers, production facilities, and industrial companies to develop integrated production management systems.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions support both discrete and process manufacturing, ensuring seamless production tracking, quality assurance, and performance optimization across all production lines.
+                    Integrated production management systems that optimize planning, quality control, and performance tracking. Our solutions support both discrete and process manufacturing, ensuring seamless production workflows and quality assurance across all production lines.
                   </p>
                 </div>
               </div>
@@ -495,10 +535,7 @@ export default function Manufacturing() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Manufacturing organizations face unique challenges and opportunities in today's global supply chain landscape. The expansion of digital supply networks and the disintegration of traditional manufacturing boundaries require innovative approaches.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Data and AI-enhanced innovation, supply chain visibility, and operational efficiency are driving transformation. Organizations breaking down barriers fastest will lead the next generation of manufacturing.
+                    AI-enhanced supply chain solutions that provide end-to-end visibility and operational efficiency. We deliver data-driven insights and digital supply network integration to optimize logistics, reduce costs, and drive transformation in global manufacturing operations.
                   </p>
                 </div>
               </div>

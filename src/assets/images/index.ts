@@ -103,6 +103,20 @@ export const bannerImages = {
   manufacturingIndustry: new URL('./banner-Images/Manufacturing-card-img.jpg', import.meta.url).href,
   technologyIndustry: new URL('./banner-Images/tech-card-img.jpg', import.meta.url).href,
   educationTechnologyIndustry: new URL('./banner-Images/edu-tech-card.jpg', import.meta.url).href,
+  wealthManagementStockImage: new URL('./banner-Images/welth-management-stock-image.jpg', import.meta.url).href,
+  fintechDigitalPaymentImg: new URL('./banner-Images/fintech-digital-payment-img.jpg', import.meta.url).href,
+  digitalBankingPlatformImg: new URL('./banner-Images/digital-banking-platform-img.jpg', import.meta.url).href,
+  tradingInvestmentImg: new URL('./banner-Images/trading-investment-img.jpg', import.meta.url).href,
+  fraudDetectionSystem: new URL('./banner-Images/fraud-detection-system.jpg', import.meta.url).href,
+  wealthManagementPosterImg: new URL('./banner-Images/welth-management-poster-img.jpg', import.meta.url).href,
+  ecomImg: new URL('./banner-Images/ecom-img.jpg', import.meta.url).href,
+  ecomNew2Img: new URL('./banner-Images/ecom-new-2-img.jpg', import.meta.url).href,
+  retailAnalysisImg: new URL('./banner-Images/retail-analysis-img.jpg', import.meta.url).href,
+  omnichannelRetailImg: new URL('./banner-Images/omnical-retail-img.jpg', import.meta.url).href,
+  aiRecommendationSystemImg: new URL('./banner-Images/ai-recommendation system img.jpeg', import.meta.url).href,
+  inventoryManagementSystemImg: new URL('./banner-Images/inventory-management-system-img.jpeg', import.meta.url).href,
+  cepImg: new URL('./banner-Images/CEP-img.jpeg', import.meta.url).href,
+  factoryImg: new URL('./banner-Images/factory-img.jpeg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

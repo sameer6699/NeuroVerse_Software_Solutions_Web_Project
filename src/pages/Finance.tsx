@@ -191,22 +191,26 @@ export default function Finance() {
     {
       title: "Digital Banking Platform",
       description: "Comprehensive digital banking solution enabling online and mobile banking, payments, transfers, and account management for retail and commercial customers.",
-      technologies: ["Cloud Computing", "AI/ML", "Mobile Apps", "Data Analytics"]
+      technologies: ["Cloud Computing", "AI/ML", "Mobile Apps", "Data Analytics"],
+      image: images.banners.digitalBankingPlatformImg
     },
     {
       title: "Trading & Investment Platform",
       description: "Advanced trading platform with real-time market data, algorithmic trading capabilities, portfolio management, and risk analysis tools.",
-      technologies: ["Cloud Computing", "AI/ML", "Real-time Processing", "Data Analytics"]
+      technologies: ["Cloud Computing", "AI/ML", "Real-time Processing", "Data Analytics"],
+      image: images.banners.tradingInvestmentImg
     },
     {
       title: "Fraud Detection System",
       description: "AI-powered fraud detection system that analyzes transactions in real-time to identify and prevent fraudulent activities across payment channels.",
-      technologies: ["AI/ML", "Real-time Analytics", "Machine Learning", "Cloud Computing"]
+      technologies: ["AI/ML", "Real-time Analytics", "Machine Learning", "Cloud Computing"],
+      image: images.banners.fraudDetectionSystem
     },
     {
       title: "Wealth Management Platform",
       description: "Comprehensive wealth management solution for financial advisors and clients, including portfolio tracking, financial planning, and investment recommendations.",
-      technologies: ["Cloud Computing", "Data Analytics", "Mobile Apps", "AI/ML"]
+      technologies: ["Cloud Computing", "Data Analytics", "Mobile Apps", "AI/ML"],
+      image: images.banners.wealthManagementPosterImg
     },
   ];
 
@@ -563,15 +567,17 @@ export default function Finance() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareHeroBanner1}
+                  src={images.banners.wealthManagementStockImage}
                   alt="Investment & Wealth Management"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -593,15 +599,17 @@ export default function Finance() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareBanner}
+                  src={images.banners.fintechDigitalPaymentImg}
                   alt="FinTech & Digital Payments"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -654,7 +662,7 @@ export default function Finance() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.healthcareBanner}
+                      src={useCase.image || images.banners.healthcareBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />

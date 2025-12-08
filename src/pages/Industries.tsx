@@ -26,7 +26,6 @@ export default function Industries() {
     const routeMap: { [key: string]: string } = {
       "Healthcare": "/industries/healthcare",
       "Finance": "/industries/finance",
-      "Retail & E-commerce": "/industries/retail-ecommerce",
       "Manufacturing": "/industries/manufacturing",
       "Technology": "/industries/technology",
       "Education Technology": "/industries/education-technology", // Add route if page exists

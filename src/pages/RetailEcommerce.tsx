@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ShoppingCart, ArrowRight, Store, TrendingUp, Shield, Database, Smartphone, Users, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Package, CreditCard, Search } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,42 @@ export default function RetailEcommerce() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Retail Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Transform customer experiences with AI-driven personalization and intelligent retail solutions",
+      description: "NeuroVerse empowers retailers to deliver exceptional shopping experiences through cutting-edge AI and machine learning technologies. Our intelligent solutions enable real-time product recommendations, predictive inventory management, and seamless omnichannel integration that drives customer loyalty, increases conversion rates, and maximizes revenue across all touchpoints."
+    },
+    {
+      title: "Optimize supply chain operations with intelligent automation and predictive analytics",
+      description: "Streamline your retail operations with AI-powered supply chain management solutions. Our technology enables real-time inventory tracking, demand forecasting, automated replenishment, and logistics optimization that reduces costs, minimizes stockouts, and ensures products reach customers faster and more efficiently."
+    },
+    {
+      title: "Drive revenue growth through data-driven insights and customer intelligence",
+      description: "Leverage advanced analytics and machine learning to understand customer behavior, predict trends, and optimize pricing strategies. Our solutions provide actionable insights that help retailers make informed decisions, personalize marketing campaigns, and maximize profitability across all sales channels."
+    },
+    {
+      title: "Enhance omnichannel retail experiences with seamless integration",
+      description: "Create unified shopping experiences across online, mobile, and physical stores with our integrated retail platform. Enable customers to browse online, purchase in-store, or use buy-online-pickup-in-store (BOPIS) seamlessly, while maintaining consistent inventory visibility and customer data across all channels."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarouselSlide = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
 
   // Retail & E-commerce Solutions
@@ -91,22 +127,26 @@ export default function RetailEcommerce() {
     {
       title: "Omnichannel Retail Platform",
       description: "Comprehensive retail solution enabling seamless shopping across online, mobile, and physical stores with unified inventory and customer data.",
-      technologies: ["Cloud Computing", "AI/ML", "Mobile Apps", "Data Analytics"]
+      technologies: ["Cloud Computing", "AI/ML", "Mobile Apps", "Data Analytics"],
+      image: images.banners.omnichannelRetailImg
     },
     {
       title: "AI-Powered Recommendation Engine",
       description: "Advanced recommendation system with real-time personalization, cross-selling, and upselling capabilities that boost sales and customer engagement.",
-      technologies: ["AI/ML", "Machine Learning", "Real-time Processing", "Data Analytics"]
+      technologies: ["AI/ML", "Machine Learning", "Real-time Processing", "Data Analytics"],
+      image: images.banners.aiRecommendationSystemImg
     },
     {
       title: "Inventory Optimization System",
       description: "Intelligent inventory management system that predicts demand, optimizes stock levels, and reduces overstock and stockouts across all channels.",
-      technologies: ["AI/ML", "Predictive Analytics", "IoT", "Cloud Computing"]
+      technologies: ["AI/ML", "Predictive Analytics", "IoT", "Cloud Computing"],
+      image: images.banners.inventoryManagementSystemImg
     },
     {
       title: "Customer Engagement Platform",
       description: "Comprehensive customer engagement solution including loyalty programs, personalized marketing, and omnichannel customer service.",
-      technologies: ["Cloud Computing", "Data Analytics", "Mobile Apps", "AI/ML"]
+      technologies: ["Cloud Computing", "Data Analytics", "Mobile Apps", "AI/ML"],
+      image: images.banners.cepImg
     },
   ];
 
@@ -315,20 +355,20 @@ export default function RetailEcommerce() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={`content-${currentCarouselIndex}`}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Transform customer experiences with AI-driven personalization and intelligent retail solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers retailers to deliver exceptional shopping experiences through cutting-edge AI and machine learning technologies. Our intelligent solutions enable real-time product recommendations, predictive inventory management, and seamless omnichannel integration that drives customer loyalty, increases conversion rates, and maximizes revenue across all touchpoints.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -355,6 +395,7 @@ export default function RetailEcommerce() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -363,18 +404,23 @@ export default function RetailEcommerce() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'bg-blue-600 w-8 h-2'
+                          : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -409,15 +455,17 @@ export default function RetailEcommerce() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.aiBanner}
+                  src={images.banners.ecomImg}
                   alt="E-commerce & Online Retail"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -427,10 +475,7 @@ export default function RetailEcommerce() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and Gen AI solutions enhance digital innovation, customer experience, and sales optimization in the e-commerce sector. We leverage retail technology solutions, predictive analytics, and personalization to drive customer engagement and streamline operations.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions ensure seamless shopping experiences, enable flexible product catalogs, improve conversion rates, and ensure data security for competitive agility in the evolving retail landscape.
+                    AI-powered solutions that enhance digital innovation, optimize sales, and deliver personalized shopping experiences. We leverage predictive analytics and advanced retail technology to drive engagement and streamline operations for competitive advantage.
                   </p>
                 </div>
               </div>
@@ -442,15 +487,17 @@ export default function RetailEcommerce() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.ecomNew2Img}
                   alt="Omnichannel Retail"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -460,10 +507,7 @@ export default function RetailEcommerce() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    New technology improves customer experiences across all touchpoints. We partner with retailers, brands, and e-commerce companies to develop unified shopping experiences that connect online and offline channels.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions support both digital and physical retail, ensuring seamless coordination and continuity of customer experiences across all shopping channels.
+                    Unified shopping experiences that seamlessly connect online and offline channels. We develop integrated solutions that ensure consistent customer experiences across all touchpoints, from digital platforms to physical stores.
                   </p>
                 </div>
               </div>
@@ -475,15 +519,17 @@ export default function RetailEcommerce() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.reportsBanner}
+                  src={images.banners.retailAnalysisImg}
                   alt="Retail Analytics & Intelligence"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -493,10 +539,7 @@ export default function RetailEcommerce() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Retail organizations face unique challenges and opportunities in today's market landscape. The expansion of customer data and the disintegration of traditional retail boundaries require innovative approaches.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Data and AI-enhanced innovation, customer insights, and operational efficiency are driving transformation. Organizations breaking down barriers fastest will lead the next generation of retail.
+                    Data-driven insights and AI-powered analytics that transform retail operations. We deliver actionable intelligence for customer behavior, market trends, and operational efficiency to drive informed decision-making and competitive advantage.
                   </p>
                 </div>
               </div>
@@ -539,7 +582,7 @@ export default function RetailEcommerce() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.aiBanner}
+                      src={useCase.image || images.banners.aiBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
