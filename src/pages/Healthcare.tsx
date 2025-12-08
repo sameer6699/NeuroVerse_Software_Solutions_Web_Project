@@ -131,22 +131,26 @@ export default function Healthcare() {
     {
       title: "Hospital Management System",
       description: "Comprehensive hospital information system managing patient admissions, bed allocation, staff scheduling, and resource optimization.",
-      technologies: ["Cloud Computing", "AI/ML", "IoT", "Data Analytics"]
+      technologies: ["Cloud Computing", "AI/ML", "IoT", "Data Analytics"],
+      image: images.banners.hospitalManagementImg
     },
     {
       title: "Telemedicine Platform",
       description: "Secure telemedicine solution enabling remote consultations, prescription management, and virtual follow-ups for patients.",
-      technologies: ["Cloud Computing", "Mobile Apps", "Video Conferencing", "EHR Integration"]
+      technologies: ["Cloud Computing", "Mobile Apps", "Video Conferencing", "EHR Integration"],
+      image: images.banners.telemedicinePosterImg
     },
     {
       title: "Medical Imaging AI",
       description: "AI-powered medical imaging analysis system for radiology, pathology, and diagnostic imaging with high accuracy rates.",
-      technologies: ["AI/ML", "Computer Vision", "Deep Learning", "Cloud Computing"]
+      technologies: ["AI/ML", "Computer Vision", "Deep Learning", "Cloud Computing"],
+      image: images.banners.medicalAiImg
     },
     {
       title: "Patient Portal & Engagement",
       description: "Comprehensive patient portal for appointment scheduling, medical records access, medication reminders, and health tracking.",
-      technologies: ["Mobile Apps", "Cloud Computing", "Data Analytics", "IoT"]
+      technologies: ["Mobile Apps", "Cloud Computing", "Data Analytics", "IoT"],
+      image: images.banners.medicalEngagementPicture
     },
   ];
 
@@ -629,7 +633,7 @@ export default function Healthcare() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.healthcareBanner}
+                      src={useCase.image || images.banners.healthcareBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
