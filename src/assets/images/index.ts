@@ -117,6 +117,13 @@ export const bannerImages = {
   inventoryManagementSystemImg: new URL('./banner-Images/inventory-management-system-img.jpeg', import.meta.url).href,
   cepImg: new URL('./banner-Images/CEP-img.jpeg', import.meta.url).href,
   factoryImg: new URL('./banner-Images/factory-img.jpeg', import.meta.url).href,
+  industry40Img: new URL('./banner-Images/industry-4.0-img.jpeg', import.meta.url).href,
+  productionAndQualityImg: new URL('./banner-Images/production-and-quality-img.jpeg', import.meta.url).href,
+  logisticsImg: new URL('./banner-Images/logistics-img.jpeg', import.meta.url).href,
+  smartFactoryImg: new URL('./banner-Images/smart-factory-img.jpeg', import.meta.url).href,
+  predictiveMaintenanceImg: new URL('./banner-Images/predictive-maintainance-img.jpeg', import.meta.url).href,
+  supplyChainOptimizationImg: new URL('./banner-Images/supply-chain-optimization-img.jpeg', import.meta.url).href,
+  qualityManagementImg: new URL('./banner-Images/quality-management-img.jpeg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

@@ -131,22 +131,26 @@ export default function Manufacturing() {
     {
       title: "Smart Factory Platform",
       description: "Comprehensive Industry 4.0 solution enabling connected manufacturing, real-time monitoring, and intelligent automation across production facilities.",
-      technologies: ["IoT", "AI/ML", "Cloud Computing", "Data Analytics"]
+      technologies: ["IoT", "AI/ML", "Cloud Computing", "Data Analytics"],
+      image: images.banners.smartFactoryImg
     },
     {
       title: "Predictive Maintenance System",
       description: "AI-powered maintenance solution with real-time equipment monitoring, failure prediction, and automated maintenance scheduling that reduces downtime.",
-      technologies: ["AI/ML", "IoT Sensors", "Predictive Analytics", "Cloud Computing"]
+      technologies: ["AI/ML", "IoT Sensors", "Predictive Analytics", "Cloud Computing"],
+      image: images.banners.predictiveMaintenanceImg
     },
     {
       title: "Supply Chain Optimization",
       description: "Intelligent supply chain management system that predicts demand, optimizes inventory, and streamlines logistics across the manufacturing network.",
-      technologies: ["AI/ML", "Predictive Analytics", "Cloud Computing", "Data Analytics"]
+      technologies: ["AI/ML", "Predictive Analytics", "Cloud Computing", "Data Analytics"],
+      image: images.banners.supplyChainOptimizationImg
     },
     {
       title: "Quality Management System",
       description: "Comprehensive quality control solution including real-time inspection, defect detection, and quality analytics for consistent product excellence.",
-      technologies: ["AI/ML", "Computer Vision", "Data Analytics", "Cloud Computing"]
+      technologies: ["AI/ML", "Computer Vision", "Data Analytics", "Cloud Computing"],
+      image: images.banners.qualityManagementImg
     },
   ];
 
@@ -457,15 +461,17 @@ export default function Manufacturing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.aiBanner}
+                  src={images.banners.industry40Img}
                   alt="Smart Manufacturing & Industry 4.0"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -487,15 +493,17 @@ export default function Manufacturing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.productionAndQualityImg}
                   alt="Production & Quality Management"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -517,15 +525,17 @@ export default function Manufacturing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.reportsBanner}
+                  src={images.banners.logisticsImg}
                   alt="Supply Chain & Logistics"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -578,7 +588,7 @@ export default function Manufacturing() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.aiBanner}
+                      src={useCase.image || images.banners.aiBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
