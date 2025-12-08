@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Code, ArrowRight, Cpu, TrendingUp, Shield, Database, Smartphone, Users, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Cloud, Zap, Network } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,42 @@ export default function Technology() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Technology Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Transform your business with cutting-edge technology solutions and AI-powered innovation",
+      description: "NeuroVerse empowers organizations to achieve digital excellence through advanced cloud infrastructure, AI and machine learning platforms, and comprehensive software engineering services. Our intelligent solutions enable rapid innovation, scalable architectures, and data-driven decision making that drives competitive advantage, operational efficiency, and business growth."
+    },
+    {
+      title: "Accelerate digital transformation with cloud-native platforms and intelligent automation",
+      description: "Leverage advanced cloud technologies, microservices architecture, and DevOps practices to build scalable, resilient applications. Our solutions enable rapid deployment, continuous integration, and automated infrastructure management that accelerates time-to-market and reduces operational overhead."
+    },
+    {
+      title: "Drive innovation with AI and machine learning solutions that transform business operations",
+      description: "Harness the power of artificial intelligence and machine learning to automate processes, gain actionable insights, and deliver personalized experiences. Our AI solutions enable predictive analytics, natural language processing, and computer vision capabilities that transform how businesses operate and compete."
+    },
+    {
+      title: "Build secure and scalable software solutions with enterprise-grade engineering practices",
+      description: "Develop robust, secure, and scalable applications using modern software engineering methodologies. We deliver end-to-end software development services including architecture design, full-stack development, quality assurance, and deployment that ensure reliable, high-performance solutions."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarouselSlide = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
 
   // Technology Solutions
@@ -91,17 +127,20 @@ export default function Technology() {
     {
       title: "Cloud-Native Platform",
       description: "Comprehensive cloud infrastructure solution enabling scalable applications, microservices architecture, and seamless cloud migration for modern enterprises.",
-      technologies: ["Cloud Computing", "Kubernetes", "Microservices", "DevOps"]
+      technologies: ["Cloud Computing", "Kubernetes", "Microservices", "DevOps"],
+      image: images.banners.cloudNativePlatform
     },
     {
       title: "AI-Powered Analytics Platform",
       description: "Advanced analytics solution with machine learning capabilities, real-time data processing, and predictive insights that drive data-driven decision making.",
-      technologies: ["AI/ML", "Big Data", "Real-time Processing", "Data Analytics"]
+      technologies: ["AI/ML", "Big Data", "Real-time Processing", "Data Analytics"],
+      image: images.banners.aiPoweredAnalytics
     },
     {
       title: "Enterprise Software Modernization",
       description: "Digital transformation solution that modernizes legacy systems, implements cloud-native architectures, and enables agile development practices.",
-      technologies: ["Cloud Computing", "Microservices", "API Integration", "DevOps"]
+      technologies: ["Cloud Computing", "Microservices", "API Integration", "DevOps"],
+      image: images.banners.enterpriseSoftwareImg
     },
     {
       title: "Cybersecurity Operations Center",
@@ -300,7 +339,7 @@ export default function Technology() {
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.banners.technologyBgBanner})`,
+              backgroundImage: `url(${images.banners.technologyBgCardImg})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -317,20 +356,20 @@ export default function Technology() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={`content-${currentCarouselIndex}`}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Transform your business with cutting-edge technology solutions and AI-powered innovation
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to achieve digital excellence through advanced cloud infrastructure, AI and machine learning platforms, and comprehensive software engineering services. Our intelligent solutions enable rapid innovation, scalable architectures, and data-driven decision making that drives competitive advantage, operational efficiency, and business growth.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -357,6 +396,7 @@ export default function Technology() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -365,18 +405,23 @@ export default function Technology() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'bg-blue-600 w-8 h-2'
+                          : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -411,15 +456,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.aiBanner}
+                  src={images.banners.cloudInfraImg}
                   alt="Cloud & Infrastructure"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -444,15 +491,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.aiAndMlImg}
                   alt="AI & Machine Learning"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -477,15 +526,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.reportsBanner}
+                  src={images.banners.swEngineeringImg}
                   alt="Software Engineering"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -510,15 +561,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.aiBanner}
+                  src={images.banners.blockchainImg}
                   alt="Blockchain"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -543,15 +596,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.cybersecurityCardImg}
                   alt="Cybersecurity"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -576,15 +631,17 @@ export default function Technology() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.reportsBanner}
+                  src={images.banners.iotEdgeComputing}
                   alt="IoT & Edge Computing"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
@@ -640,7 +697,7 @@ export default function Technology() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.aiBanner}
+                      src={useCase.image || images.banners.aiBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />

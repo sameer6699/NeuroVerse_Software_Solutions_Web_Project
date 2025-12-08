@@ -124,6 +124,16 @@ export const bannerImages = {
   predictiveMaintenanceImg: new URL('./banner-Images/predictive-maintainance-img.jpeg', import.meta.url).href,
   supplyChainOptimizationImg: new URL('./banner-Images/supply-chain-optimization-img.jpeg', import.meta.url).href,
   qualityManagementImg: new URL('./banner-Images/quality-management-img.jpeg', import.meta.url).href,
+  technologyBgCardImg: new URL('./banner-Images/technology-bg-card-img.jpeg', import.meta.url).href,
+  aiAndMlImg: new URL('./banner-Images/AI-and-ML-inmg.jpeg', import.meta.url).href,
+  cloudInfraImg: new URL('./banner-Images/cloud-infra-img.jpeg', import.meta.url).href,
+  swEngineeringImg: new URL('./banner-Images/sw-engineering-img.jpeg', import.meta.url).href,
+  blockchainImg: new URL('./banner-Images/blockchain-img.jpeg', import.meta.url).href,
+  cybersecurityCardImg: new URL('./banner-Images/cybersecurity-card-img.jpeg', import.meta.url).href,
+  iotEdgeComputing: new URL('./banner-Images/IOT-edge-computing.jpeg', import.meta.url).href,
+  cloudNativePlatform: new URL('./banner-Images/cloud-native-platform.jpeg', import.meta.url).href,
+  aiPoweredAnalytics: new URL('./banner-Images/AI_powered-Analytics.jpeg', import.meta.url).href,
+  enterpriseSoftwareImg: new URL('./banner-Images/enterprise-software-img.jpeg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
