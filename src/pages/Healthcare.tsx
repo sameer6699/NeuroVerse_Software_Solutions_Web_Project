@@ -164,7 +164,7 @@ export default function Healthcare() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.healthcareHeroBanner1})`,
+            backgroundImage: `url(${images.banners.healthcareHeroBannerNew})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -460,7 +460,7 @@ export default function Healthcare() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareBanner}
+                  src={images.banners.healthcareTechBanner}
                   alt="Health payer"
                   className="w-full h-full object-cover"
                 />
@@ -490,7 +490,7 @@ export default function Healthcare() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareHeroBanner1}
+                  src={images.banners.healthcareTech2Banner}
                   alt="Health and social care"
                   className="w-full h-full object-cover"
                 />
@@ -520,7 +520,7 @@ export default function Healthcare() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareBanner}
+                  src={images.banners.healthcareCardImg}
                   alt="Life sciences"
                   className="w-full h-full object-cover"
                 />
@@ -549,10 +549,10 @@ export default function Healthcare() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -562,12 +562,12 @@ export default function Healthcare() {
               >
                 {/* Headline */}
                 <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse recognized as a leader by ISG
+                  Transforming healthcare through innovation
                 </h2>
                 
                 {/* Body Text */}
                 <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We have been recognized as a leader in all five quadrants of the Life Sciences Digital Services 2024 ISG Provider Lens report.
+                  At NeuroVerse, we're committed to revolutionizing healthcare delivery through cutting-edge AI and cloud technologies. Our mission is to empower healthcare organizations with intelligent solutions that improve patient outcomes, enhance operational efficiency, and drive digital transformation across the healthcare ecosystem.
                 </p>
 
                 {/* Read More Button */}
@@ -576,17 +576,17 @@ export default function Healthcare() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
                 >
-                  <span>Read more</span>
+                  <span>Learn more</span>
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </motion.div>
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.healthcareHeroBanner1}
-                alt="NeuroVerse leadership recognition"
+                src={images.banners.healthcareImageBgImg}
+                alt="NeuroVerse healthcare innovation"
                 className="w-full h-full object-cover object-center"
               />
               {/* Subtle overlay for better text contrast if needed */}
