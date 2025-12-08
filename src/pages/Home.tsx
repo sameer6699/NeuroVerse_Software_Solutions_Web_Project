@@ -6,50 +6,13 @@ import { useNavigate, useLocation } from "react-router";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { images } from "@/assets";
 import { 
-  Zap, 
-  Shield, 
-  TrendingUp, 
-  Users, 
-  Code, 
-  Database, 
-  Sparkles,
   ArrowRight,
   CheckCircle2,
-  Award,
-  Target,
   Rocket,
-  Globe,
-  BarChart3,
-  Lock,
-  Star,
-  Clock,
-  Layers,
-  Cpu,
-  Network,
-  FileCode,
-  TrendingDown,
-  PlayCircle,
   Calendar,
-  Mail,
-  Phone,
-  MapPin,
-  Github,
-  Linkedin,
-  Twitter,
   ChevronRight,
   ChevronLeft,
-  Lightbulb,
   Cog,
-  Palette,
-  Heart,
-  DollarSign,
-  ShoppingCart,
-  Factory,
-  GraduationCap,
-  Building2,
-  Car,
-  Plane,
-  Briefcase,
   Play,
   Pause,
   Volume2,
@@ -57,7 +20,6 @@ import {
   Maximize,
   Minimize
 } from "lucide-react";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 // Typewriter animation hook with loop
 function useTypewriter(text: string, speed: number = 50, deleteSpeed: number = 30, pauseTime: number = 2000) {
