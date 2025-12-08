@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle2, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef } from "react"; 
 
 /**
  * Hot Topic Page Component
@@ -517,59 +517,6 @@ export default function HotTopic() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Leadership Recognition Banner Section - Full Width */}
-      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
-        >
-            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
-              >
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse Research Institute
-                </h2>
-                
-                {/* Body Text */}
-                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  Leading the conversation on hot topics and emerging trends in technology, business, and innovation through comprehensive research and thought leadership. Our institute brings together leading researchers, industry experts, and data scientists to analyze global trends, conduct primary research, and deliver insights that help organizations make informed strategic decisions in an increasingly complex and interconnected world.
-                </p>
-
-                {/* Read More Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            </div>
-
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-80 md:h-96 lg:h-[500px] xl:h-[600px] overflow-hidden">
-              <img
-                src={images.projects.hotTopicsBackground}
-                alt="NeuroVerse Research Institute"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
-            </div>
-          </motion.div>
       </section>
 
     </div>

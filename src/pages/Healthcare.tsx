@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Heart, ArrowRight, Stethoscope, Activity, Brain, Shield, Database, Smartphone, Users, TrendingUp, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,46 @@ export default function Healthcare() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Healthcare Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Healthcare organizations achieve stability and security with NeuroVerse cloud solutions",
+      description: "NeuroVerse supports deployment of advanced cloud and AI-powered healthcare solutions, with scalable cloud infrastructure and intelligent capabilities unlocking operational efficiencies, productivity gains, improving patient outcomes, and providing a blueprint for healthcare digital transformation across hospitals and medical institutions.",
+      backgroundImage: images.banners.healthcareBanner
+    },
+    {
+      title: "AI-powered diagnostics transform patient care delivery",
+      description: "Our cutting-edge AI and machine learning solutions enable healthcare providers to deliver faster, more accurate diagnoses. By leveraging advanced medical imaging analysis and predictive analytics, we help reduce diagnostic errors, improve treatment outcomes, and enhance the overall quality of patient care.",
+      backgroundImage: images.banners.healthcareHeroBanner1
+    },
+    {
+      title: "Telemedicine platforms connect patients with care anywhere",
+      description: "NeuroVerse's comprehensive telemedicine solutions break down geographical barriers, enabling healthcare providers to reach patients remotely. Our secure, HIPAA-compliant platforms support video consultations, remote monitoring, and virtual care delivery, ensuring continuity of care regardless of location.",
+      backgroundImage: images.banners.healthcareBanner
+    },
+    {
+      title: "Electronic Health Records streamline clinical workflows",
+      description: "Transform your healthcare operations with our integrated EHR systems that seamlessly connect hospitals, clinics, and healthcare providers. Our solutions improve data accessibility, reduce administrative burden, and enable better care coordination across the entire healthcare ecosystem.",
+      backgroundImage: images.banners.healthcareHeroBanner1
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarouselSlide = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
 
   // Healthcare Solutions
@@ -296,9 +336,9 @@ export default function Healthcare() {
         >
           {/* Background Image with Blur - Full Width */}
           <div 
-            className="absolute inset-0 w-full"
+            className="absolute inset-0 w-full transition-all duration-500"
             style={{
-              backgroundImage: `url(${images.banners.healthcareBanner})`,
+              backgroundImage: `url(${carouselItems[currentCarouselIndex].backgroundImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -315,20 +355,20 @@ export default function Healthcare() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={currentCarouselIndex}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Healthcare organizations achieve stability and security with NeuroVerse cloud solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse supports deployment of advanced cloud and AI-powered healthcare solutions, with scalable cloud infrastructure and intelligent capabilities unlocking operational efficiencies, productivity gains, improving patient outcomes, and providing a blueprint for healthcare digital transformation across hospitals and medical institutions.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -355,6 +395,7 @@ export default function Healthcare() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -363,18 +404,23 @@ export default function Healthcare() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'bg-blue-600 w-8 h-2'
+                          : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -427,10 +473,7 @@ export default function Healthcare() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and Gen AI solutions enhance digital innovation, data security, and cost management in the health insurance sector. We leverage healthcare payer solutions, predictive analytics, and cybersecurity to drive personalized experiences and streamline operations.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions ensure data transparency, enable flexible products, improve outcomes, and ensure regulatory compliance for competitive agility in the evolving healthcare landscape.
+                    AI and Gen AI solutions transform health insurance through digital innovation, predictive analytics, and enhanced cybersecurity. We deliver personalized experiences, streamline operations, and ensure regulatory compliance for competitive advantage.
                   </p>
                 </div>
               </div>
@@ -460,10 +503,7 @@ export default function Healthcare() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    New technology improves person-centered services along the care pathway. We partner with community care providers, hospitals, university clinics, and health ministries to develop personalized care plans.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions support both home-based care and medical institutions, ensuring seamless coordination and continuity of care for patients across all settings.
+                    We partner with hospitals, clinics, and community care providers to deliver person-centered services. Our technology enables seamless coordination between home-based care and medical institutions, ensuring continuity of care across all settings.
                   </p>
                 </div>
               </div>
@@ -493,10 +533,7 @@ export default function Healthcare() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Pharma and MedTech organizations face unique challenges and opportunities in today's healthcare landscape. The expansion of patient experience into new domains and the disintegration of traditional business divides require innovative approaches.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Data and AI-enhanced innovation, sustainability, and public purpose are driving transformation. Organizations breaking down barriers fastest will lead the next generation of health.
+                    We help Pharma and MedTech organizations navigate evolving healthcare challenges through AI-enhanced innovation, data-driven insights, and sustainable solutions. Our approach breaks down traditional barriers to accelerate transformation and drive the next generation of health outcomes.
                   </p>
                 </div>
               </div>
@@ -556,87 +593,6 @@ export default function Healthcare() {
               <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
             </div>
           </motion.div>
-      </section>
-
-      {/* Research and insights Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Content Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden shadow-xl"
-          >
-            {/* Left Side - Image with Neural Network Effect */}
-            <div className="relative w-full h-64 md:h-80 lg:h-96 bg-black overflow-hidden">
-              {/* Base image with reduced opacity */}
-              <img
-                src={images.banners.healthcareBanner}
-                alt="Connected health research"
-                className="w-full h-full object-cover opacity-40"
-              />
-              {/* Abstract neural network overlay effect */}
-              <div className="absolute inset-0">
-                {/* Glowing blue lines and dots pattern */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-                  {/* Network lines */}
-                  <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
-                      <stop offset="50%" stopColor="rgba(37, 99, 235, 0.8)" />
-                      <stop offset="100%" stopColor="rgba(96, 165, 250, 0.4)" />
-                    </linearGradient>
-                  </defs>
-                  {/* Connecting lines */}
-                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  {/* Network nodes (dots) */}
-                  <circle cx="50" cy="80" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="150" cy="120" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="100" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="100" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="200" cy="180" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="300" cy="220" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="80" cy="250" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="180" cy="280" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="220" cy="150" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="320" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="120" cy="300" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="320" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                </svg>
-                {/* Additional glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-blue-600/10"></div>
-              </div>
-            </div>
-
-            {/* Right Side - Blue Box */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-between">
-              {/* Top Text */}
-              <div>
-                <p className="text-sm md:text-base text-white/80 mb-4 md:mb-6 font-medium">
-                  — NeuroVerse Research Institute
-                </p>
-                
-                {/* Title */}
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight">
-                  Connected health research
-                </h3>
-              </div>
-
-              {/* Bottom Text */}
-              <p className="text-xs md:text-sm text-white font-semibold uppercase tracking-wider">
-                NEUROVERSE RESEARCH INSTITUTE
-              </p>
-            </div>
-          </motion.div>
-        </div>
       </section>
 
       {/* Use Cases Section */}

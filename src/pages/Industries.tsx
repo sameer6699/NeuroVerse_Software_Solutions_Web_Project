@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Heart, DollarSign, ShoppingCart, Factory, Cpu } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 /**
  * Industries Page Component
@@ -10,6 +11,7 @@ import { useRef, useState, useEffect } from "react";
  * The Navbar and Footer are automatically included via the global Layout component.
  */
 export default function Industries() {
+  const navigate = useNavigate();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -18,6 +20,33 @@ export default function Industries() {
 
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  // Function to get route for industry name
+  const getIndustryRoute = (industryName: string): string | null => {
+    const routeMap: { [key: string]: string } = {
+      "Healthcare": "/industries/healthcare",
+      "Finance": "/industries/finance",
+      "Retail & E-commerce": "/industries/retail-ecommerce",
+      "Manufacturing": "/industries/manufacturing",
+      "Technology": "/industries/technology",
+      "Education Technology": "/industries/education-technology", // Add route if page exists
+      // Map carousel titles to routes
+      "Healthcare & Life Sciences": "/industries/healthcare",
+      "Financial Services": "/industries/finance",
+      "Retail & E-commerce": "/industries/retail-ecommerce",
+      "Manufacturing & Industrial": "/industries/manufacturing",
+      "Technology & Software": "/industries/technology",
+    };
+    return routeMap[industryName] || null;
+  };
+
+  // Function to handle navigation
+  const handleLearnMore = (industryName: string) => {
+    const route = getIndustryRoute(industryName);
+    if (route) {
+      navigate(route);
+    }
+  };
 
   // Typewriter effect hook with infinite loop
   const useTypewriter = (text: string, speed: number = 100, deleteSpeed: number = 50, pauseTime: number = 2000) => {
@@ -384,6 +413,7 @@ export default function Industries() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    onClick={() => handleLearnMore(industries[currentIndustryIndex].title)}
                     className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
                   >
                     Learn more
@@ -461,6 +491,7 @@ export default function Industries() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="group cursor-pointer"
+                onClick={() => handleLearnMore(industry.name)}
               >
                 <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   {/* Image Section */}
