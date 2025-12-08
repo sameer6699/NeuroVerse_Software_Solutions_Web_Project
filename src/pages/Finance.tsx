@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { DollarSign, ArrowRight, CreditCard, TrendingUp, Shield, Database, Smartphone, Users, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Building2, Wallet, PieChart } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,106 @@ export default function Finance() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Finance Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Financial institutions achieve stability and security with NeuroVerse cloud solutions",
+      description: "NeuroVerse delivers advanced cloud and AI-powered financial solutions that unlock operational efficiencies, improve customer experience, and drive digital transformation across banks, investment firms, and fintech companies.",
+      benefits: [
+        {
+          title: "Security & Compliance",
+          description: "Enterprise-grade security with PCI-DSS, SOX, and GDPR compliance built-in."
+        },
+        {
+          title: "AI-Powered Analytics",
+          description: "Real-time fraud detection and predictive modeling for data-driven decisions."
+        },
+        {
+          title: "Scalable Infrastructure",
+          description: "Cloud-native architecture that scales with your business growth."
+        }
+      ],
+      solutions: ["Digital Banking", "Trading Systems", "Fraud Detection", "Wealth Management"],
+      backgroundImage: images.banners.financeBgBanner
+    },
+    {
+      title: "Transform your financial operations with AI-driven insights",
+      description: "Leverage cutting-edge artificial intelligence and machine learning to optimize trading strategies, enhance risk management, and deliver personalized financial services that drive customer engagement and business growth.",
+      benefits: [
+        {
+          title: "Advanced Risk Management",
+          description: "Real-time risk assessment and portfolio optimization using predictive analytics."
+        },
+        {
+          title: "Automated Trading Systems",
+          description: "Algorithmic trading platforms that execute trades with precision and speed."
+        },
+        {
+          title: "Customer Personalization",
+          description: "AI-powered recommendation engines for tailored financial products and services."
+        }
+      ],
+      solutions: ["Algorithmic Trading", "Risk Analytics", "Portfolio Management", "Customer Insights"],
+      backgroundImage: images.banners.financeHeroBanner
+    },
+    {
+      title: "Secure and compliant financial technology solutions",
+      description: "Build trust with enterprise-grade security, regulatory compliance, and data protection. Our solutions ensure your financial operations meet the highest standards of security and regulatory requirements.",
+      benefits: [
+        {
+          title: "Regulatory Compliance",
+          description: "Automated compliance monitoring for PCI-DSS, SOX, GDPR, and other regulations."
+        },
+        {
+          title: "Data Protection",
+          description: "End-to-end encryption and secure data handling for sensitive financial information."
+        },
+        {
+          title: "Audit & Reporting",
+          description: "Comprehensive audit trails and automated regulatory reporting capabilities."
+        }
+      ],
+      solutions: ["Compliance Automation", "Data Encryption", "Audit Trails", "Regulatory Reporting"],
+      backgroundImage: images.banners.financeBgBanner
+    },
+    {
+      title: "Digital banking transformation for the modern era",
+      description: "Enable seamless digital banking experiences with mobile-first solutions, real-time transaction processing, and innovative payment systems that meet the evolving needs of today's customers.",
+      benefits: [
+        {
+          title: "Mobile Banking Excellence",
+          description: "Feature-rich mobile banking apps with intuitive user interfaces and secure authentication."
+        },
+        {
+          title: "Real-time Processing",
+          description: "Instant transaction processing and account updates for enhanced customer experience."
+        },
+        {
+          title: "Payment Innovation",
+          description: "Modern payment solutions including digital wallets, P2P transfers, and contactless payments."
+        }
+      ],
+      solutions: ["Mobile Banking", "Payment Processing", "Account Management", "Digital Wallets"],
+      backgroundImage: images.banners.financeHeroBanner
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarouselSlide = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
 
   // Finance Solutions
@@ -287,14 +387,8 @@ export default function Finance() {
 
       {/* Finance Case Study Banner/Carousel Section - Full Width */}
       <section className="relative bg-white py-8 md:py-12 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
-        >
-          {/* Background Image with Blur - Full Width */}
+        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+          {/* Background Image with Blur - Full Width - Constant Image */}
           <div 
             className="absolute inset-0 w-full"
             style={{
@@ -315,69 +409,44 @@ export default function Finance() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={`content-${currentCarouselIndex}`}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="bg-white rounded-xl p-4 md:p-6 lg:p-6 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
-                    Financial institutions achieve stability and security with NeuroVerse cloud solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-sm md:text-base text-gray-700 leading-relaxed mb-4 md:mb-5">
-                    NeuroVerse delivers advanced cloud and AI-powered financial solutions that unlock operational efficiencies, improve customer experience, and drive digital transformation across banks, investment firms, and fintech companies.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Key Benefits - Simplified */}
                   <div className="space-y-2 mb-4 md:mb-5">
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">Security & Compliance</h4>
-                        <p className="text-xs text-gray-600 leading-snug">
-                          Enterprise-grade security with PCI-DSS, SOX, and GDPR compliance built-in.
-                        </p>
+                    {carouselItems[currentCarouselIndex].benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">{benefit.title}</h4>
+                          <p className="text-xs text-gray-600 leading-snug">
+                            {benefit.description}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">AI-Powered Analytics</h4>
-                        <p className="text-xs text-gray-600 leading-snug">
-                          Real-time fraud detection and predictive modeling for data-driven decisions.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-0.5 text-xs md:text-sm">Scalable Infrastructure</h4>
-                        <p className="text-xs text-gray-600 leading-snug">
-                          Cloud-native architecture that scales with your business growth.
-                        </p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
 
                   {/* Solution Tags - Simplified */}
                   <div className="flex flex-wrap gap-1.5 mb-4 md:mb-5">
-                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-                      Digital Banking
-                    </span>
-                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-                      Trading Systems
-                    </span>
-                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-                      Fraud Detection
-                    </span>
-                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
-                      Wealth Management
-                    </span>
+                    {carouselItems[currentCarouselIndex].solutions.map((solution, index) => (
+                      <span key={index} className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100">
+                        {solution}
+                      </span>
+                    ))}
                   </div>
 
                   {/* Read More Button */}
@@ -404,6 +473,7 @@ export default function Finance() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -412,18 +482,23 @@ export default function Finance() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarouselSlide(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? 'bg-blue-600 w-8 h-2'
+                          : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -431,7 +506,7 @@ export default function Finance() {
                 </button>
               </motion.div>
             </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* What we do Section */}
@@ -463,7 +538,7 @@ export default function Finance() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.healthcareBanner}
+                  src={images.banners.bankingFinancialServiceSection}
                   alt="Banking & Financial Services"
                   className="w-full h-full object-cover"
                 />
@@ -476,10 +551,7 @@ export default function Finance() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    AI and Gen AI solutions enhance digital innovation, data security, and cost management in the banking sector. We leverage financial technology solutions, predictive analytics, and cybersecurity to drive personalized experiences and streamline operations.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions ensure data transparency, enable flexible products, improve customer outcomes, and ensure regulatory compliance for competitive agility in the evolving financial landscape.
+                    AI and Gen AI solutions transform banking through digital innovation, predictive analytics, and enhanced cybersecurity. We deliver personalized experiences, streamline operations, and ensure regulatory compliance for competitive advantage.
                   </p>
                 </div>
               </div>
@@ -509,10 +581,7 @@ export default function Finance() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    Advanced technology improves portfolio management and investment advisory services. We partner with investment firms, wealth management companies, and financial advisors to develop personalized investment strategies.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions support both institutional and retail investors, ensuring seamless portfolio tracking, risk management, and performance optimization across all investment vehicles.
+                    We partner with investment firms and wealth management companies to deliver advanced portfolio management solutions. Our technology enables personalized investment strategies, risk management, and performance optimization for institutional and retail investors.
                   </p>
                 </div>
               </div>
@@ -542,10 +611,7 @@ export default function Finance() {
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
                   <p className="text-sm md:text-base">
-                    FinTech organizations face unique challenges and opportunities in today's financial landscape. The expansion of digital payment solutions and the disintegration of traditional banking boundaries require innovative approaches.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Data and AI-enhanced innovation, security, and customer experience are driving transformation. Organizations breaking down barriers fastest will lead the next generation of financial services.
+                    We help FinTech organizations navigate evolving financial challenges through AI-enhanced innovation, secure digital payment solutions, and superior customer experiences. Our approach accelerates transformation to drive the next generation of financial services.
                   </p>
                 </div>
               </div>

@@ -97,6 +97,7 @@ export const bannerImages = {
   telemedicinePosterImg: new URL('./banner-Images/telemedicine-poster-img.jpg', import.meta.url).href,
   medicalAiImg: new URL('./banner-Images/medial-ai.jpg', import.meta.url).href,
   medicalEngagementPicture: new URL('./banner-Images/medical-engagement-picture.jpg', import.meta.url).href,
+  bankingFinancialServiceSection: new URL('./banner-Images/banking-financial-service-section.jpg', import.meta.url).href,
   financeIndustry: new URL('./banner-Images/finance-industry.jpg', import.meta.url).href,
   ecommerceIndustry: new URL('./banner-Images/ecom.jpg', import.meta.url).href,
   manufacturingIndustry: new URL('./banner-Images/Manufacturing-card-img.jpg', import.meta.url).href,
