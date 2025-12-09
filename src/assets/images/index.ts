@@ -141,6 +141,11 @@ export const bannerImages = {
   dataAnalyticsBannerImg: new URL('./banner-Images/data-analytics-banner-img.jpeg', import.meta.url).href,
   devOpsAutomationImg: new URL('./banner-Images/dev-ops-automation-img.jpeg', import.meta.url).href,
   enterpriseSoftwareImg: new URL('./banner-Images/enterprise-software-img.jpeg', import.meta.url).href,
+  multiCloud: new URL('./banner-Images/multi-cloud.jpeg', import.meta.url).href,
+  cloudNative: new URL('./banner-Images/cloud-native.jpeg', import.meta.url).href,
+  cloudMigration: new URL('./banner-Images/cloud-migration.jpeg', import.meta.url).href,
+  multiCloudMigration: new URL('./banner-Images/multi-cloud-migration.jpg', import.meta.url).href,
+  cloudNativeDevelopment: new URL('./banner-Images/cloud-native-development.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

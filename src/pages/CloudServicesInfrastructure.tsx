@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Cloud, ArrowRight, Server, Database, Shield, Zap, Network, Users, TrendingUp, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Code, Lock } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,38 @@ export default function CloudServicesInfrastructure() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Cloud Services Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Transform your business with cutting-edge cloud infrastructure solutions",
+      description: "NeuroVerse empowers organizations to achieve digital excellence through advanced cloud infrastructure, scalable architectures, and comprehensive cloud services. Our intelligent solutions enable rapid innovation, cost optimization, and operational efficiency that drives competitive advantage and business growth."
+    },
+    {
+      title: "Accelerate innovation with scalable cloud-native architectures",
+      description: "Build modern, resilient applications using cloud-native technologies and microservices architecture. Our solutions enable rapid deployment, automatic scaling, and seamless integration across multi-cloud environments, reducing time-to-market and operational overhead."
+    },
+    {
+      title: "Optimize costs and maximize cloud investment returns",
+      description: "Leverage intelligent cloud cost management and optimization strategies to reduce infrastructure spending by up to 40%. Our automated resource management and right-sizing recommendations ensure you pay only for what you need, when you need it."
+    },
+    {
+      title: "Ensure enterprise-grade security and compliance in the cloud",
+      description: "Protect your critical assets with comprehensive cloud security solutions including identity management, data encryption, threat detection, and automated compliance monitoring. Meet regulatory requirements while maintaining operational agility."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
 
   // Cloud Services Solutions
   const cloudSolutions = [
@@ -90,17 +122,20 @@ export default function CloudServicesInfrastructure() {
     {
       title: "Enterprise Cloud Migration",
       description: "Comprehensive cloud migration solution enabling large enterprises to move legacy systems to AWS, Azure, and GCP with zero downtime and minimal disruption.",
-      technologies: ["Cloud Computing", "Migration Tools", "Data Analytics", "DevOps"]
+      technologies: ["Cloud Computing", "Migration Tools", "Data Analytics", "DevOps"],
+      image: images.banners.cloudMigration
     },
     {
       title: "Multi-Cloud Infrastructure Platform",
       description: "Unified multi-cloud management platform providing centralized control, cost optimization, and performance monitoring across AWS, Azure, and GCP environments.",
-      technologies: ["Multi-Cloud", "Cloud Orchestration", "Cost Management", "Monitoring"]
+      technologies: ["Multi-Cloud", "Cloud Orchestration", "Cost Management", "Monitoring"],
+      image: images.banners.multiCloudMigration
     },
     {
       title: "Cloud-Native Application Development",
       description: "Modern application development using Kubernetes, microservices, and serverless computing for scalable, resilient, and agile cloud applications.",
-      technologies: ["Kubernetes", "Microservices", "Serverless", "CI/CD"]
+      technologies: ["Kubernetes", "Microservices", "Serverless", "CI/CD"],
+      image: images.banners.cloudNativeDevelopment
     },
     {
       title: "Hybrid Cloud Architecture",
@@ -312,20 +347,20 @@ export default function CloudServicesInfrastructure() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={currentCarouselIndex}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Transform your business with cutting-edge cloud infrastructure solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to achieve digital excellence through advanced cloud infrastructure, scalable architectures, and comprehensive cloud services. Our intelligent solutions enable rapid innovation, cost optimization, and operational efficiency that drives competitive advantage and business growth.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -352,6 +387,7 @@ export default function CloudServicesInfrastructure() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -360,18 +396,23 @@ export default function CloudServicesInfrastructure() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentCarouselIndex(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -411,7 +452,7 @@ export default function CloudServicesInfrastructure() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.aiBanner}
+                  src={images.banners.cloudMigration}
                   alt="Cloud Migration"
                   className="w-full h-full object-cover"
                 />
@@ -444,7 +485,7 @@ export default function CloudServicesInfrastructure() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.multiCloud}
                   alt="Multi-Cloud Management"
                   className="w-full h-full object-cover"
                 />
@@ -477,7 +518,7 @@ export default function CloudServicesInfrastructure() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.reportsBanner}
+                  src={images.banners.cloudNative}
                   alt="Cloud-Native Development"
                   className="w-full h-full object-cover"
                 />
@@ -562,7 +603,7 @@ export default function CloudServicesInfrastructure() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.aiBanner}
+                      src={useCase.image || images.banners.aiBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
