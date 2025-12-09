@@ -145,7 +145,8 @@ export default function Technology() {
     {
       title: "Cybersecurity Operations Center",
       description: "Comprehensive security solution including threat detection, incident response, and compliance management for enterprise-level protection.",
-      technologies: ["Cybersecurity", "Threat Intelligence", "SIEM", "Compliance"]
+      technologies: ["Cybersecurity", "Threat Intelligence", "SIEM", "Compliance"],
+      image: images.banners.cybersecurityCardImgNew
     },
   ];
 
@@ -774,7 +775,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.aiBanner}
+                    src={images.banners.swDevelopmentCardImg}
                     alt="Software Development"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -783,26 +784,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     Software Development
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> Full-stack development, Progressive Web Apps (PWA), Native and cross-platform mobile apps, RESTful and GraphQL APIs, System integration, Legacy modernization, and Agile development methodologies.
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       React
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Node.js
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Microservices
                     </span>
                   </div>
@@ -830,7 +836,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.researchBanner}
+                    src={images.banners.cloudInfraCardImg}
                     alt="Cloud Infrastructure"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -839,26 +845,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     Cloud Infrastructure
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    Comprehensive cloud transformation services including migration, architecture design, DevOps implementation, and cloud-native application development.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      Comprehensive cloud transformation services including migration, architecture design, DevOps implementation, and cloud-native application development.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> Cloud strategy and consulting, Multi-cloud and hybrid cloud solutions, Serverless architecture, Container orchestration (Kubernetes, Docker), Cloud security and compliance, Cost optimization, Disaster recovery, and 24/7 cloud monitoring and support.
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       AWS
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Azure
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       GCP
                     </span>
                   </div>
@@ -886,7 +897,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.reportsBanner}
+                    src={images.banners.cyberSecurityCardImg}
                     alt="Cybersecurity"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -895,26 +906,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     Cybersecurity
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    Advanced security solutions including threat intelligence, penetration testing, security architecture, compliance management, and incident response services.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      Advanced security solutions including threat intelligence, penetration testing, security architecture, compliance management, and incident response services.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> Security assessments and audits, Vulnerability management, Security Information and Event Management (SIEM), Identity and Access Management (IAM), Endpoint protection, Network security, Security training, and Compliance (GDPR, HIPAA, SOC 2, ISO 27001).
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       SIEM
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Zero Trust
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Encryption
                     </span>
                   </div>
@@ -942,7 +958,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.aiBanner}
+                    src={images.banners.aiMlBannerImg}
                     alt="AI & Machine Learning"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -951,26 +967,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     AI & Machine Learning
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    AI and ML solutions including data engineering, machine learning model development, MLOps, predictive analytics, and intelligent automation platforms.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      AI and ML solutions including data engineering, machine learning model development, MLOps, predictive analytics, and intelligent automation platforms.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> Custom ML model development, Natural Language Processing (NLP), Computer Vision, Deep Learning, AI-powered chatbots and virtual assistants, Recommendation systems, Predictive maintenance, Fraud detection, and MLOps pipeline implementation.
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Python
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       TensorFlow
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       PyTorch
                     </span>
                   </div>
@@ -998,7 +1019,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.researchBanner}
+                    src={images.banners.dataAnalyticsBannerImg}
                     alt="Data Analytics"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -1007,26 +1028,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     Data Analytics
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    Comprehensive data analytics solutions including business intelligence, data warehousing, real-time analytics, and data visualization for data-driven decision making.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      Comprehensive data analytics solutions including business intelligence, data warehousing, real-time analytics, and data visualization for data-driven decision making.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> Data warehouse design and implementation, ETL/ELT pipelines, Real-time data streaming, Business Intelligence dashboards, Data visualization and reporting, Data governance and quality, Big Data processing (Hadoop, Spark), and Advanced analytics and forecasting.
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Big Data
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Analytics
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       BI Tools
                     </span>
                   </div>
@@ -1054,7 +1080,7 @@ export default function Technology() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.reportsBanner}
+                    src={images.banners.devOpsAutomationImg}
                     alt="DevOps & Automation"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -1063,26 +1089,31 @@ export default function Technology() {
                 </div>
                 
                 {/* Content Section */}
-                <div className="p-4 md:p-6 flex flex-col flex-grow">
+                <div className="p-5 md:p-6 lg:p-6 flex flex-col flex-grow">
                   {/* Title */}
-                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">
                     DevOps & Automation
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow">
-                    DevOps and automation services including CI/CD pipeline implementation, infrastructure as code, containerization, and automated testing for streamlined development workflows.
-                  </p>
+                  <div className="flex-grow mb-4 space-y-2.5">
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+                      DevOps and automation services including CI/CD pipeline implementation, infrastructure as code, containerization, and automated testing for streamlined development workflows.
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                      <span className="font-medium text-gray-600">Our services include:</span> CI/CD pipeline setup (Jenkins, GitLab CI, GitHub Actions), Infrastructure as Code (Terraform, CloudFormation), Container orchestration, Automated testing frameworks, Configuration management, Monitoring and logging solutions, Performance optimization, and DevOps culture transformation.
+                    </p>
+                  </div>
                   
                   {/* Technologies Tags */}
                   <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       CI/CD
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Kubernetes
                     </span>
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
+                    <span className="px-2.5 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300">
                       Docker
                     </span>
                   </div>

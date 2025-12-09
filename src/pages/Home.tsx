@@ -18,7 +18,13 @@ import {
   Volume2,
   VolumeX,
   Maximize,
-  Minimize
+  Minimize,
+  Cloud,
+  Brain,
+  Code,
+  Shield,
+  Network,
+  Cpu
 } from "lucide-react";
 
 // Typewriter animation hook with loop
@@ -1149,6 +1155,196 @@ export default function Home() {
               {/* Right Side - YouTube-like Video Player */}
               <YouTubeVideoPlayer />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Do Section */}
+      <section className="py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 md:mb-16 text-center"
+          >
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
+              What we do
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive technology solutions that drive innovation and transform businesses
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {/* Cloud & Infrastructure */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Cloud className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  Cloud & Infrastructure
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                AI and cloud solutions enhance digital innovation, scalability, and operational efficiency in the technology sector. We leverage cloud-native architectures, containerization, and DevOps practices to drive rapid deployment and seamless scaling.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Our solutions ensure high availability, enable flexible infrastructure, improve performance, and ensure security compliance for competitive agility in the evolving technology landscape.
+              </p>
+            </motion.div>
+
+            {/* AI & Machine Learning */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Brain className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  AI & Machine Learning
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Advanced AI and ML technologies improve intelligent automation and data-driven decision making. We partner with enterprises, startups, and technology companies to develop AI-powered solutions that transform business processes.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Our solutions support both predictive analytics and real-time intelligence, ensuring seamless integration and continuity of AI capabilities across all business functions.
+              </p>
+            </motion.div>
+
+            {/* Software Engineering */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Code className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  Software Engineering
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Technology organizations face unique challenges and opportunities in today's digital landscape. The expansion of software capabilities and the disintegration of traditional technology boundaries require innovative approaches.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Data and AI-enhanced innovation, cloud-native development, and agile practices are driving transformation. Organizations breaking down barriers fastest will lead the next generation of technology.
+              </p>
+            </motion.div>
+
+            {/* Blockchain */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Cpu className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  Blockchain
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Blockchain and distributed ledger technologies enable secure, transparent, and decentralized solutions for various business applications. We leverage smart contracts, DeFi platforms, and enterprise blockchain solutions to drive innovation and trust.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Our solutions ensure immutability, enable transparent transactions, improve security, and ensure compliance for competitive advantage in the evolving digital economy landscape.
+              </p>
+            </motion.div>
+
+            {/* Cybersecurity */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-red-500 to-orange-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  Cybersecurity
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Advanced cybersecurity solutions protect digital assets, networks, and data from evolving threats. We partner with enterprises to develop comprehensive security strategies, threat detection systems, and incident response capabilities.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Our solutions support both proactive threat prevention and real-time security monitoring, ensuring seamless protection and continuity of security operations across all digital infrastructure.
+              </p>
+            </motion.div>
+
+            {/* IoT & Edge Computing */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                  <Network className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                </div>
+                <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
+                  IoT & Edge Computing
+                </h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Internet of Things and edge computing solutions enable real-time data processing, device connectivity, and intelligent automation at the network edge. We develop IoT platforms, edge computing infrastructure, and smart device ecosystems.
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Data processing at the edge, low-latency computing, and AI-enhanced IoT capabilities are driving transformation. Organizations leveraging edge intelligence fastest will lead the next generation of connected technology.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
