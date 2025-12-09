@@ -82,3 +82,9 @@ coverage/
 *.pem
 *.key
 *.cert
+
+# Security - GitHub tokens and credentials
+*_token.md
+*_credentials.md
+*.token
+*.secret

@@ -140,7 +140,8 @@ export default function CloudServicesInfrastructure() {
     {
       title: "Hybrid Cloud Architecture",
       description: "Seamless hybrid cloud solution connecting on-premises infrastructure with public cloud services for optimal performance and cost efficiency.",
-      technologies: ["Hybrid Cloud", "Cloud Connectivity", "Data Integration", "Security"]
+      technologies: ["Hybrid Cloud", "Cloud Connectivity", "Data Integration", "Security"],
+      image: images.banners.hybridCloud
     },
   ];
 
@@ -657,10 +658,10 @@ export default function CloudServicesInfrastructure() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -691,9 +692,9 @@ export default function CloudServicesInfrastructure() {
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.aiBanner}
+                src={images.banners.cloudFooterBanner}
                 alt="NeuroVerse cloud leadership recognition"
                 className="w-full h-full object-cover object-center"
               />

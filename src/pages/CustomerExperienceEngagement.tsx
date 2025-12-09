@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Users, ArrowRight, MessageCircle, ShoppingCart, Headphones, Heart, BarChart3, Smartphone, TrendingUp, CheckCircle2, Linkedin, ChevronLeft, ChevronRight, Target, Zap } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,42 @@ export default function CustomerExperienceEngagement() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Customer Experience Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Transform customer relationships with AI-powered engagement solutions",
+      description: "NeuroVerse empowers organizations to deliver exceptional customer experiences through advanced AI-powered personalization, omnichannel engagement platforms, and comprehensive customer analytics. Our intelligent solutions enable deeper customer relationships, increased loyalty, and accelerated business growth."
+    },
+    {
+      title: "Drive customer loyalty through personalized experiences",
+      description: "Leverage AI-driven personalization to create tailored customer journeys that resonate with individual preferences. Our solutions analyze customer behavior, predict needs, and deliver relevant experiences across all touchpoints, resulting in higher engagement and long-term loyalty."
+    },
+    {
+      title: "Optimize customer service with intelligent automation",
+      description: "Enhance customer support operations with AI-powered chatbots, automated workflows, and intelligent routing. Our platforms reduce response times, improve resolution rates, and enable your team to focus on complex issues while automation handles routine inquiries."
+    },
+    {
+      title: "Unify customer data for 360-degree insights",
+      description: "Integrate customer data from all channels into a single, comprehensive view. Our analytics platforms provide real-time insights into customer behavior, preferences, and journey patterns, enabling data-driven decisions that improve experiences and drive revenue growth."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarousel = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
   // Customer Experience Solutions
   const customerExperienceSolutions = [
@@ -287,7 +323,14 @@ export default function CustomerExperienceEngagement() {
           transition={{ duration: 0.8 }}
           className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
         >
-          {/* Background Image with Blur - Full Width */}
+          {/* Light Gradient Background - Full Width */}
+          <div className="absolute inset-0 w-full bg-gradient-to-br from-blue-50 via-cyan-50/50 to-blue-100/30">
+            {/* Additional subtle gradient layers for depth */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-blue-50/40"></div>
+          </div>
+
+          {/* Background Image Overlay - On top of gradient */}
           <div 
             className="absolute inset-0 w-full"
             style={{
@@ -295,11 +338,12 @@ export default function CustomerExperienceEngagement() {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              filter: 'blur(2px)',
+              opacity: 0.3,
             }}
           >
-            {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-transparent"></div>
+            {/* Additional overlay to blend image with gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-50/60 via-transparent to-blue-100/40"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-50/30 to-blue-50/50"></div>
           </div>
 
           {/* Content Container - Centered with max-width */}
@@ -308,20 +352,20 @@ export default function CustomerExperienceEngagement() {
               <div className="flex items-center justify-start">
                 {/* White Text Box - Centered */}
                 <motion.div
+                  key={currentCarouselIndex}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                 >
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Transform customer relationships with AI-powered engagement solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to deliver exceptional customer experiences through advanced AI-powered personalization, omnichannel engagement platforms, and comprehensive customer analytics. Our intelligent solutions enable deeper customer relationships, increased loyalty, and accelerated business growth.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -348,6 +392,7 @@ export default function CustomerExperienceEngagement() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -356,18 +401,23 @@ export default function CustomerExperienceEngagement() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarousel(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -498,140 +548,6 @@ export default function CustomerExperienceEngagement() {
         </div>
       </section>
 
-      {/* Leadership Recognition Banner Section - Full Width */}
-      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
-        >
-            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
-              >
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse Software Solutions recognized as a leader in Customer Experience
-                </h2>
-                
-                {/* Body Text */}
-                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We have been recognized as a leader in Customer Experience & Engagement Solutions and Omnichannel Platforms by leading industry analysts.
-                </p>
-
-                {/* Read More Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            </div>
-
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
-              <img
-                src={images.banners.retailEcommerceHeroBanner}
-                alt="NeuroVerse customer experience leadership recognition"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
-            </div>
-          </motion.div>
-      </section>
-
-      {/* Research and insights Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Content Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 rounded-lg overflow-hidden shadow-xl"
-          >
-            {/* Left Side - Image with Neural Network Effect */}
-            <div className="relative w-full h-64 md:h-80 lg:h-96 bg-black overflow-hidden">
-              {/* Base image with reduced opacity */}
-              <img
-                src={images.banners.retailEcommerceBgBanner}
-                alt="Customer experience research"
-                className="w-full h-full object-cover opacity-40"
-              />
-              {/* Abstract neural network overlay effect */}
-              <div className="absolute inset-0">
-                {/* Glowing blue lines and dots pattern */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-                  {/* Network lines */}
-                  <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
-                      <stop offset="50%" stopColor="rgba(37, 99, 235, 0.8)" />
-                      <stop offset="100%" stopColor="rgba(96, 165, 250, 0.4)" />
-                    </linearGradient>
-                  </defs>
-                  {/* Connecting lines */}
-                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradient)" strokeWidth="1.5" opacity="0.6" />
-                  {/* Network nodes (dots) */}
-                  <circle cx="50" cy="80" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="150" cy="120" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="100" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="100" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="200" cy="180" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="300" cy="220" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="80" cy="250" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="180" cy="280" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="220" cy="150" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="320" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="120" cy="300" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="320" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                </svg>
-                {/* Additional glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-blue-600/10"></div>
-              </div>
-            </div>
-
-            {/* Right Side - Blue Box */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-between">
-              {/* Top Text */}
-              <div>
-                <p className="text-sm md:text-base text-white/80 mb-4 md:mb-6 font-medium">
-                  — NeuroVerse Research Institute
-                </p>
-                
-                {/* Title */}
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight">
-                  Customer experience innovation research
-                </h3>
-              </div>
-
-              {/* Bottom Text */}
-              <p className="text-xs md:text-sm text-white font-semibold uppercase tracking-wider">
-                NEUROVERSE RESEARCH INSTITUTE
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Use Cases Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
@@ -711,6 +627,59 @@ export default function CustomerExperienceEngagement() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Leadership Recognition Banner Section - Full Width */}
+      <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
+        >
+            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-6"
+              >
+                {/* Headline */}
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
+                  NeuroVerse Software Solutions recognized as a leader in Customer Experience
+                </h2>
+                
+                {/* Body Text */}
+                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
+                  We have been recognized as a leader in Customer Experience & Engagement Solutions and Omnichannel Platforms by leading industry analysts.
+                </p>
+
+                {/* Read More Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
+                >
+                  <span>Read more</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Right Section - Image (40% - 2 columns) */}
+            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
+              <img
+                src={images.banners.retailEcommerceHeroBanner}
+                alt="NeuroVerse customer experience leadership recognition"
+                className="w-full h-full object-cover object-center"
+              />
+              {/* Subtle overlay for better text contrast if needed */}
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
+            </div>
+          </motion.div>
       </section>
 
     </div>
