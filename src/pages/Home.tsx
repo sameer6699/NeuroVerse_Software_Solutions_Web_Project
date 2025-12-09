@@ -937,7 +937,8 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 mb-0">
+              {/* Request Callback Button - Commented Out */}
+              {/* <div className="flex flex-col sm:flex-row gap-4 mb-0">
                 <Button
                   size="lg"
                   onClick={() => navigate("/contact")}
@@ -946,7 +947,7 @@ export default function Home() {
                   Request Callback
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </div>
+              </div> */}
             </motion.div>
 
             {/* Right Side - SVG Illustration */}
@@ -966,90 +967,136 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Infinite Carousel Section */}
+          {/* 
+          ====================================================================
+          INFINITE LOGO CAROUSEL SECTION - COMMENTED OUT
+          ====================================================================
+          This section contains the infinite scrolling logo carousel that was
+          displayed in the hero section. It has been commented out but kept in
+          the codebase for future use. To re-enable, simply uncomment this
+          entire section.
+          
+          Features of this carousel:
+          - Infinite scrolling animation (30s linear infinite)
+          - Pauses on hover
+          - Gradient fade effects on left and right edges
+          - Responsive design (mobile, tablet, desktop)
+          - Hover effects on individual logos
+          - Seamless loop (duplicate set ensures no gaps)
+          
+          To re-enable: Remove the outer comment block markers {* ... *}
+          ====================================================================
+          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-2 md:mt-3"
           >
-            <div className="relative w-full overflow-hidden py-4">
-              {/* Infinite Carousel Container */}
+            <div className="relative w-full overflow-hidden py-6 md:py-8">
+              <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 lg:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 lg:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+              
               <div className="flex animate-scroll items-center gap-8 md:gap-12 lg:gap-16">
-                {/* First set of logos */}
                 <div className="flex shrink-0 gap-8 md:gap-12 lg:gap-16 items-center">
-                  {/* Replace these placeholder divs with your actual logo images */}
-                  {/* Example structure for each logo:
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14">
-                    <img 
-                      src="/path-to-logo.png" 
-                      alt="Logo Name" 
-                      className="h-full w-auto object-contain grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300" 
-                    />
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 1</span>
+                    </div>
                   </div>
-                  */}
-                  {/* Placeholder for logos - replace with actual logos */}
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 1</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 2</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 2</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 3</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 3</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 4</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 4</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 5</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 5</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 6</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 6</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 7</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 7</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 8</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 8</span>
-                  </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 9</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 9</span>
+                    </div>
                   </div>
                 </div>
-                {/* Duplicate set for seamless loop - same gap ensures spacing between Logo 9 and Logo 1 matches other logos */}
+                
                 <div className="flex shrink-0 gap-8 md:gap-12 lg:gap-16 items-center">
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 1</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 1</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 2</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 2</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 3</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 3</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 4</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 4</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 5</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 5</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 6</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 6</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 7</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 7</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 8</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 8</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center shrink-0 h-10 md:h-12 lg:h-14 w-24 md:w-28 lg:w-32 bg-[#faf9f7] border border-border/50 rounded-lg">
-                    <span className="text-muted-foreground text-xs">Logo 9</span>
+                  <div className="flex items-center justify-center shrink-0 h-12 md:h-16 lg:h-20 w-32 md:w-40 lg:w-48 bg-white border border-border/30 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group">
+                    <div className="w-full h-full p-4 flex items-center justify-center">
+                      <span className="text-muted-foreground text-xs md:text-sm font-medium group-hover:text-foreground transition-colors">Logo 9</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
+          */}
         </div>
       </section>
 

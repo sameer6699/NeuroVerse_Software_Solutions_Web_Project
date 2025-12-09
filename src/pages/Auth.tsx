@@ -19,6 +19,7 @@ import { ArrowRight, Loader2, Mail, UserX } from "lucide-react";
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { images } from "@/assets";
+import { toast } from "sonner";
 
 interface AuthProps {
   redirectAfterAuth?: string;
@@ -44,8 +45,12 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
     setError(null);
     try {
       const formData = new FormData(event.currentTarget);
-      await signIn("email-otp", formData);
-      setStep({ email: formData.get("email") as string });
+      const email = formData.get("email") as string;
+      
+      // Mock: In production, this would send OTP to email via backend
+      // For frontend-only, we'll simulate sending the OTP
+      toast.success("Verification code sent to your email (mock mode)");
+      setStep({ email });
       setIsLoading(false);
     } catch (error) {
       console.error("Email sign-in error:", error);
@@ -64,18 +69,23 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
     setError(null);
     try {
       const formData = new FormData(event.currentTarget);
-      await signIn("email-otp", formData);
-
-      console.log("signed in");
-
-      const redirect = redirectAfterAuth || "/";
-      navigate(redirect);
+      const email = formData.get("email") as string;
+      const code = otp;
+      
+      // Mock: Accept any 6-digit code for frontend-only mode
+      // In production, this would verify with backend
+      if (code.length === 6) {
+        await signIn("email-otp", formData);
+        toast.success("Successfully signed in!");
+        const redirect = redirectAfterAuth || "/";
+        navigate(redirect);
+      } else {
+        throw new Error("Code must be 6 digits");
+      }
     } catch (error) {
       console.error("OTP verification error:", error);
-
       setError("The verification code you entered is incorrect.");
       setIsLoading(false);
-
       setOtp("");
     }
   };
@@ -84,14 +94,12 @@ function Auth({ redirectAfterAuth }: AuthProps = {}) {
     setIsLoading(true);
     setError(null);
     try {
-      console.log("Attempting anonymous sign in...");
       await signIn("anonymous");
-      console.log("Anonymous sign in successful");
+      toast.success("Signed in as guest");
       const redirect = redirectAfterAuth || "/";
       navigate(redirect);
     } catch (error) {
       console.error("Guest login error:", error);
-      console.error("Error details:", JSON.stringify(error, null, 2));
       setError(`Failed to sign in as guest: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setIsLoading(false);
     }

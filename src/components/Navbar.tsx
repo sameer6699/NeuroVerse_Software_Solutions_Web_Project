@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/use-auth";
 import { Menu, X, Globe, Search, ArrowRight, ChevronRight, ExternalLink } from "lucide-react";
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
@@ -17,7 +16,6 @@ export default function Navbar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const { scrollY } = useScroll();
@@ -329,7 +327,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Mega Menu Dropdown - Full Width */}
+          {/* Mega Menu Dropdown - Full Width with Consistent Size */}
           <AnimatePresence>
             {hoveredMenu && (
               <motion.div
@@ -338,7 +336,13 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
                 className="fixed left-0 right-0 w-screen bg-white shadow-2xl border-t border-gray-200 overflow-hidden z-50"
-                style={{ backgroundColor: '#ffffff', top: `${dropdownTop}px` }}
+                style={{ 
+                  backgroundColor: '#ffffff', 
+                  top: `${dropdownTop}px`,
+                  height: '480px', // Fixed height for consistent dropdown size
+                  minHeight: '480px',
+                  maxHeight: '480px'
+                }}
                 onMouseEnter={() => setHoveredMenu(hoveredMenu)}
                 onMouseLeave={() => setHoveredMenu(null)}
               >
@@ -346,9 +350,9 @@ export default function Navbar() {
                   const link = navLinks.find(l => l.sectionId === hoveredMenu);
                   if (!link) return null;
                   return (
-                    <div className="grid grid-cols-3 h-full">
+                    <div className="grid grid-cols-3 h-full" style={{ height: '100%' }}>
                       {/* Left Column - Dark Blue Background */}
-                      <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 text-white flex flex-col justify-between">
+                      <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-8 text-white flex flex-col justify-between" style={{ height: '100%' }}>
                         <div>
                           <h3 className="text-3xl font-bold mb-4">{link.label}</h3>
                           <p className="text-white/90 text-sm leading-relaxed mb-6">
@@ -382,8 +386,8 @@ export default function Navbar() {
                       </div>
 
                       {/* Middle Column - Navigation Links */}
-                      <div className="bg-white p-8 border-r border-gray-200 relative">
-                        <ul className="space-y-3">
+                      <div className="bg-white p-8 border-r border-gray-200 relative overflow-y-auto" style={{ height: '100%' }}>
+                        <ul className="space-y-3" style={{ maxHeight: '100%', overflowY: 'auto' }}>
                           {link.menuItems.map((item, index) => {
                             // Special handling for Healthcare, Finance, Retail & E-commerce, Manufacturing, and Technology in Industries menu
                             // Special handling for Cloud Services & Infrastructure in Services menu
@@ -534,20 +538,22 @@ export default function Navbar() {
                       </div>
 
                       {/* Right Column - Featured Content */}
-                      <div className="bg-white p-8">
-                        <div className="w-full h-48 mb-4 rounded-lg overflow-hidden">
+                      <div className="bg-white p-8 flex flex-col" style={{ height: '100%' }}>
+                        <div className="w-full h-48 mb-4 rounded-lg overflow-hidden flex-shrink-0">
                           <img
                             src={images.logos.seedLink}
                             alt={link.featuredTitle}
                             className="w-full h-full object-cover"
                           />
                         </div>
-                        <h4 className="font-bold text-lg text-gray-900 mb-2">
-                          {link.featuredTitle}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {link.featuredDescription}
-                        </p>
+                        <div className="flex flex-col flex-grow">
+                          <h4 className="font-bold text-lg text-gray-900 mb-2">
+                            {link.featuredTitle}
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            {link.featuredDescription}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -608,57 +614,50 @@ export default function Navbar() {
           className="lg:hidden bg-white border-t border-gray-200"
         >
           <div className="px-4 py-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                to={link.href}
-                onClick={(e) => {
-                  handleSectionClick(link.href, link.sectionId, e);
-                  setMobileMenuOpen(false);
-                }}
-              >
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start"
-                >
-                  {link.label}
-                </Button>
-              </Link>
-            ))}
-            <div className="pt-4 space-y-2">
-              {isAuthenticated ? (
-                <Button
-                  onClick={() => {
-                    navigate("/dashboard");
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href || location.pathname.includes(link.sectionId);
+              return (
+                <Link 
+                  key={link.href} 
+                  to={link.href}
+                  onClick={(e) => {
+                    handleSectionClick(link.href, link.sectionId, e);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full bg-primary hover:bg-primary/90 text-white"
                 >
-                  Dashboard
-                </Button>
-              ) : (
-                <>
                   <Button
-                    variant="outline"
-                    onClick={() => {
-                      navigate("/auth");
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full"
+                    variant="ghost"
+                    className={`w-full justify-start transition-all duration-200 ${
+                      isActive 
+                        ? 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700' 
+                        : 'text-gray-900 hover:text-blue-600 hover:bg-blue-50'
+                    }`}
                   >
-                    Sign In
+                    {link.label}
                   </Button>
-                  <Button
-                    onClick={() => {
-                      navigate("/contact");
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-                  >
-                    Request Callback
-                  </Button>
-                </>
-              )}
+                </Link>
+              );
+            })}
+            <div className="pt-4 space-y-2">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  navigate("/auth");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full transition-all duration-200 text-gray-900 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-600"
+              >
+                Sign In
+              </Button>
+              <Button
+                onClick={() => {
+                  navigate("/contact");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200"
+              >
+                Request Callback
+              </Button>
             </div>
           </div>
         </motion.div>

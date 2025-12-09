@@ -9,8 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Clock, Send, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { useState } from "react";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 
 export default function Contact() {
@@ -23,15 +21,21 @@ export default function Contact() {
     requestType: "callback"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const createRequest = useMutation(api.contactRequests.create);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      await createRequest(formData);
+      // Frontend-only: Store in localStorage or log to console
+      // In production, this would send to your backend API
+      console.log("Contact request submitted:", formData);
+      
+      // Optionally store in localStorage for demo purposes
+      const requests = JSON.parse(localStorage.getItem("contactRequests") || "[]");
+      requests.push({ ...formData, id: Date.now(), timestamp: new Date().toISOString() });
+      localStorage.setItem("contactRequests", JSON.stringify(requests));
+      
       toast.success("Callback request submitted successfully! We'll call you back within 24 hours.");
       setFormData({
         name: "",
@@ -42,6 +46,7 @@ export default function Contact() {
         requestType: "callback"
       });
     } catch (error) {
+      console.error("Error submitting request:", error);
       toast.error("Failed to submit request. Please try again.");
     } finally {
       setIsSubmitting(false);

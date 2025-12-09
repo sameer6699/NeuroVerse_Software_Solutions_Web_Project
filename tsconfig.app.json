@@ -27,5 +27,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "app-toolbar-readonly.tsx"]
+  "include": ["src", "app-toolbar-readonly.tsx"],
+  "exclude": ["node_modules", "src/convex"]
 }

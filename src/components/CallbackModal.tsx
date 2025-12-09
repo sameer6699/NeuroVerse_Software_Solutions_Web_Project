@@ -1,7 +1,5 @@
 import { useState } from "react";
 import * as React from "react";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -33,8 +31,6 @@ export default function CallbackModal({ open, onOpenChange }: CallbackModalProps
     requestType: "callback"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const createRequest = useMutation(api.contactRequests.create);
 
   // Debug: Log when modal opens/closes
   React.useEffect(() => {
@@ -48,7 +44,15 @@ export default function CallbackModal({ open, onOpenChange }: CallbackModalProps
     setIsSubmitting(true);
     
     try {
-      await createRequest(formData);
+      // Frontend-only: Store in localStorage or log to console
+      // In production, this would send to your backend API
+      console.log("Callback request submitted:", formData);
+      
+      // Optionally store in localStorage for demo purposes
+      const requests = JSON.parse(localStorage.getItem("contactRequests") || "[]");
+      requests.push({ ...formData, id: Date.now(), timestamp: new Date().toISOString() });
+      localStorage.setItem("contactRequests", JSON.stringify(requests));
+      
       toast.success("Callback request submitted successfully! We'll call you back within 24 hours.");
       setFormData({
         name: "",
@@ -60,6 +64,7 @@ export default function CallbackModal({ open, onOpenChange }: CallbackModalProps
       });
       onOpenChange(false); // Close modal on success
     } catch (error) {
+      console.error("Error submitting request:", error);
       toast.error("Failed to submit request. Please try again.");
     } finally {
       setIsSubmitting(false);

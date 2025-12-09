@@ -5,12 +5,10 @@ This guide provides detailed step-by-step instructions to set up and run the Neu
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Installation Steps](#installation-steps)
-3. [Environment Variables Setup](#environment-variables-setup)
-4. [Running the Development Server](#running-the-development-server)
-5. [Running Convex Backend](#running-convex-backend)
-6. [Accessing the Application](#accessing-the-application)
-7. [Available Scripts](#available-scripts)
-8. [Troubleshooting](#troubleshooting)
+3. [Running the Development Server](#running-the-development-server)
+4. [Accessing the Application](#accessing-the-application)
+5. [Available Scripts](#available-scripts)
+6. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -41,16 +39,6 @@ Before you begin, ensure you have the following installed on your system:
   npm install -g pnpm
   ```
 
-### 3. Convex CLI (for backend)
-- **Install Convex CLI:** Run:
-  ```bash
-  npm install -g convex
-  ```
-  Or:
-  ```bash
-  pnpm add -g convex
-  ```
-
 ---
 
 ## Installation Steps
@@ -60,7 +48,7 @@ Before you begin, ensure you have the following installed on your system:
 If you have the project already, navigate to the project directory:
 
 ```bash
-cd D:\project\neuroglass
+cd /path/to/neuroglass
 ```
 
 Or if you're cloning from a repository:
@@ -86,111 +74,11 @@ This will:
 
 ---
 
-## Environment Variables Setup
-
-The project requires environment variables to connect to the Convex backend.
-
-### Step 3: Create Environment File
-
-Create a `.env.local` file in the root directory of the project (same level as `package.json`).
-
-**On Windows PowerShell:**
-```powershell
-New-Item -Path .env.local -ItemType File
-```
-
-**On Windows Command Prompt:**
-```cmd
-type nul > .env.local
-```
-
-**On Linux/Mac:**
-```bash
-touch .env.local
-```
-
-### Step 4: Configure Environment Variables
-
-Open the `.env.local` file and add the following variables:
-
-```env
-VITE_CONVEX_URL=your_convex_url_here
-CONVEX_DEPLOYMENT=your_deployment_id_here
-```
-
-**Where to find these values:**
-
-1. **If using an existing Convex deployment:**
-   - Check your Convex dashboard at [dashboard.convex.dev](https://dashboard.convex.dev)
-   - Find your deployment URL and deployment ID
-
-2. **If setting up a new Convex project:**
-   - Run `npx convex dev` (see Step 5 below)
-   - This will prompt you to create a new project or use an existing one
-   - The Convex CLI will provide you with the necessary URL
-
-### Example `.env.local` file:
-```env
-VITE_CONVEX_URL=https://your-project.convex.cloud
-CONVEX_DEPLOYMENT=your-deployment-id-abc123
-```
-
-**Important:** 
-- Never commit `.env.local` to version control (it should be in `.gitignore`)
-- These are client-side environment variables
-- The Convex backend has separate environment variables (configured in Convex dashboard)
-
----
-
-## Running Convex Backend
-
-### Step 5: Start Convex Development Server
-
-The project uses Convex for backend and database. You need to run the Convex development server.
-
-**Option A: Using Convex CLI directly**
-```bash
-npx convex dev
-```
-
-**Option B: If Convex CLI is installed globally**
-```bash
-convex dev
-```
-
-**What happens:**
-- If this is your first time, Convex will prompt you to:
-  - Login to Convex (or create an account)
-  - Create a new project or select an existing one
-  - Configure your deployment
-- The CLI will watch for changes in `src/convex/` directory
-- It will automatically sync your functions to Convex
-- You'll see deployment logs in the terminal
-
-**Keep this terminal open** - Convex needs to run continuously in the background.
-
-### Step 6: Configure Convex Backend Environment Variables
-
-If you need to set backend environment variables (like `JWKS`, `JWT_PRIVATE_KEY`, `SITE_URL`), you can do so in the Convex dashboard or using the CLI:
-
-```bash
-npx convex env set VARIABLE_NAME "value"
-```
-
-Or set multiple variables:
-```bash
-npx convex env set JWKS "your_jwks_value"
-npx convex env set JWT_PRIVATE_KEY "your_private_key"
-npx convex env set SITE_URL "http://localhost:5173"
-```
-
----
-
 ## Running the Development Server
 
-### Step 7: Start the Frontend Development Server
+### Step 3: Start the Frontend Development Server
 
-Open a **new terminal window** (keep the Convex terminal running), navigate to the project directory, and run:
+Navigate to the project directory and run:
 
 ```bash
 pnpm dev
@@ -214,19 +102,21 @@ pnpm dev
 
 ## Accessing the Application
 
-### Step 8: Open in Browser
+### Step 4: Open in Browser
 
 1. Open your web browser (Chrome, Firefox, Edge, etc.)
 2. Navigate to the URL shown in your terminal (usually `http://localhost:5173`)
 3. You should see the application homepage
 
-### Step 9: Test Authentication
+### Step 5: Test Authentication
 
 1. Navigate to `/auth` in your browser or click the auth link
 2. Test the authentication flow:
-   - Email OTP login/signup
+   - Email OTP login/signup (frontend-only mock mode)
    - Anonymous user authentication
 3. The auth page is located at `src/pages/Auth.tsx`
+
+**Note:** This is a frontend-only application. Authentication and data storage are handled client-side using localStorage. In production, you would integrate with your backend API.
 
 ### Available Routes:
 - `/` - Home page
@@ -293,15 +183,6 @@ pnpm install
 pnpm dev --port 3000
 ```
 
-### Issue: Convex connection errors
-**Solution:** 
-1. Verify your `.env.local` file has the correct `VITE_CONVEX_URL`
-2. Ensure Convex dev server is running (`npx convex dev`)
-3. Check that you're logged into Convex:
-   ```bash
-   npx convex login
-   ```
-
 ### Issue: Environment variables not loading
 **Solution:**
 1. Ensure the file is named `.env.local` (not `.env`)
@@ -319,18 +200,17 @@ pnpm dev --port 3000
 
 ### Issue: Authentication not working
 **Solution:**
-1. Verify Convex backend is running
-2. Check that Convex auth environment variables are set (JWKS, JWT_PRIVATE_KEY, SITE_URL)
-3. Ensure the auth configuration files are not modified:
-   - `src/convex/auth.config.ts`
-   - `src/convex/auth.ts`
-   - `src/convex/auth/emailOtp.ts`
+1. This is a frontend-only application using localStorage
+2. Clear browser localStorage if you encounter issues:
+   ```javascript
+   localStorage.clear()
+   ```
+3. In production, integrate with your backend authentication API
 
 ### Issue: CORS errors
 **Solution:**
-1. Verify `VITE_CONVEX_URL` matches your Convex deployment URL
-2. Check that SITE_URL in Convex matches your local URL
-3. Ensure you're accessing the app from the URL shown in the terminal
+1. Ensure you're accessing the app from the URL shown in the terminal
+2. If integrating with a backend API, configure CORS on your backend server
 
 ---
 
@@ -342,16 +222,10 @@ For a quick reference, here's the minimal setup:
 # 1. Install dependencies
 pnpm install
 
-# 2. Set up environment variables (create .env.local)
-# Add: VITE_CONVEX_URL=your_url
-
-# 3. Start Convex backend (in one terminal)
-npx convex dev
-
-# 4. Start frontend (in another terminal)
+# 2. Start frontend development server
 pnpm dev
 
-# 5. Open browser to http://localhost:5173
+# 3. Open browser to http://localhost:5173
 ```
 
 ---
@@ -360,7 +234,6 @@ pnpm dev
 
 - **Vite Documentation:** [vitejs.dev](https://vitejs.dev/)
 - **React Documentation:** [react.dev](https://react.dev/)
-- **Convex Documentation:** [docs.convex.dev](https://docs.convex.dev/)
 - **Tailwind CSS:** [tailwindcss.com](https://tailwindcss.com/)
 - **Shadcn UI:** [ui.shadcn.com](https://ui.shadcn.com/)
 
@@ -373,10 +246,24 @@ Key directories:
   - `src/pages/` - Page components
   - `src/components/` - Reusable components
   - `src/components/ui/` - Shadcn UI components
-  - `src/convex/` - Backend functions and schema
   - `src/hooks/` - Custom React hooks
-- `public/` - Static assets
-- `.env.local` - Environment variables (create this)
+  - `src/assets/` - Static assets (images, fonts, etc.)
+- `public/` - Public static assets
+
+---
+
+## Frontend-Only Notes
+
+This is a **frontend-only application**. The following features work client-side:
+
+- **Authentication:** Uses localStorage for session management (mock mode)
+- **Contact Forms:** Data is stored in localStorage (for demo purposes)
+- **User Data:** Stored in browser localStorage
+
+**For Production:**
+- Integrate with your backend API for authentication
+- Connect contact forms to your backend service
+- Replace localStorage with proper backend data storage
 
 ---
 
@@ -385,11 +272,8 @@ Key directories:
 If you encounter issues not covered in this guide:
 1. Check the main `README.md` for project conventions
 2. Review error messages in the terminal carefully
-3. Check the Convex dashboard for backend status
-4. Verify all prerequisites are installed correctly
+3. Verify all prerequisites are installed correctly
 
 ---
 
 **Happy Coding! 🚀**
-
-
