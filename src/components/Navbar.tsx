@@ -138,7 +138,7 @@ export default function Navbar() {
     setLastScrollY(currentScrollY);
   });
 
-  // Filter navLinks to match image (Insights, Industries, Services, Careers, News, About us)
+  // Filter navLinks to match image (Insights, Industries, Services, About us, Products, Careers, News)
   const navLinks = [
     { 
       label: "Insights", 
@@ -188,6 +188,21 @@ export default function Navbar() {
       featuredDescription: "End-to-end solutions for your business transformation"
     },
     { 
+      label: "About us", 
+      href: "/about", 
+      sectionId: "about",
+      description: "Learn about our mission, vision, values, and the team behind NeuroVerse's innovative solutions.",
+      menuItems: [
+        "Our Story",
+        "Mission & Vision",
+        "Company Values",
+        "Our Culture",
+        "Partners & Alliances"
+      ],
+      featuredTitle: "About NeuroVerse",
+      featuredDescription: "Building the future of technology"
+    },
+    { 
       label: "Products", 
       href: "/products", 
       sectionId: "products",
@@ -228,22 +243,6 @@ export default function Navbar() {
       ],
       featuredTitle: "Latest Updates",
       featuredDescription: "Stay informed with our news"
-    },
-    { 
-      label: "About us", 
-      href: "/about", 
-      sectionId: "about",
-      description: "Learn about our mission, vision, values, and the team behind NeuroVerse's innovative solutions.",
-      menuItems: [
-        "Our Story",
-        "Mission & Vision",
-        "Leadership Team",
-        "Company Values",
-        "Our Culture",
-        "Partners & Alliances"
-      ],
-      featuredTitle: "About NeuroVerse",
-      featuredDescription: "Building the future of technology"
     },
   ];
 
