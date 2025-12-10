@@ -172,6 +172,9 @@ export const bannerImages = {
   businessIntelligenceDataAnalytics: new URL('./banner-Images/business-intelligence-data-analytics.jpg', import.meta.url).href,
   aiPoweredAutomation: new URL('./banner-Images/ai-powered-automation.png', import.meta.url).href,
   dataAnalyticsFooter: new URL('./banner-Images/data-analytics-footer image.png', import.meta.url).href,
+  erpCardImg: new URL('./banner-Images/erp-card-img.png', import.meta.url).href,
+  financialManagementBgImg: new URL('./banner-Images/financial-management-bg-img.png', import.meta.url).href,
+  supplyChainManagement: new URL('./banner-Images/supplychain-management.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

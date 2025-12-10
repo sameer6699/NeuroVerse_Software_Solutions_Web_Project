@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Building2, ArrowRight, Package, TrendingUp, CheckCircle2, Linkedin, ChevronLeft, ChevronRight, Target, Zap, Database, Settings, Users, BarChart3, FileText } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -108,6 +108,46 @@ export default function EnterpriseResourcePlanning() {
       technologies: ["HRIS", "Payroll Systems", "Talent Management", "Performance Analytics"]
     },
   ];
+
+  // Carousel Content Data
+  const carouselItems = [
+    {
+      title: "Streamline operations with comprehensive ERP solutions",
+      description: "NeuroVerse empowers organizations to optimize business processes through comprehensive ERP solutions, system integration, and process automation. Our expertise enables operational efficiency, real-time visibility, and scalable growth.",
+      buttonText: "Read more"
+    },
+    {
+      title: "Transform your business with integrated ERP systems",
+      description: "Experience seamless integration across all business functions with our advanced ERP solutions. From finance to supply chain, we deliver unified systems that drive productivity and reduce operational costs.",
+      buttonText: "Learn more"
+    },
+    {
+      title: "Accelerate growth with intelligent ERP automation",
+      description: "Leverage AI-powered automation and real-time analytics to make data-driven decisions faster. Our ERP solutions provide actionable insights that help you stay ahead of the competition.",
+      buttonText: "Discover more"
+    },
+    {
+      title: "Scale effortlessly with cloud-based ERP platforms",
+      description: "Modernize your operations with scalable cloud ERP solutions that grow with your business. Enjoy enhanced security, flexibility, and accessibility while reducing infrastructure costs.",
+      buttonText: "Explore solutions"
+    }
+  ];
+
+  // Carousel State Management
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Navigation Functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -321,37 +361,37 @@ export default function EnterpriseResourcePlanning() {
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="flex items-center justify-start">
-                {/* White Text Box with Enhanced Styling */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
-                >
-                  {/* Decorative blue accent line */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 rounded-t-xl"></div>
-                  
-                  {/* Headline */}
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
-                    Streamline operations with comprehensive ERP solutions
-                  </h3>
-                  
-                  {/* Body Text */}
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to optimize business processes through comprehensive ERP solutions, system integration, and process automation. Our expertise enables operational efficiency, real-time visibility, and scalable growth.
-                  </p>
-
-                  {/* Read More Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-700 transition-all duration-300 shadow-sm group/btn"
+                {/* White Text Box with Enhanced Styling - Dynamic Content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
                   >
-                    <span className="group-hover/btn:translate-x-1 transition-transform duration-300">Read more</span>
-                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
-                </motion.div>
+                    {/* Headline */}
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
+                      {carouselItems[currentSlide].title}
+                    </h3>
+                    
+                    {/* Body Text */}
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
+                      {carouselItems[currentSlide].description}
+                    </p>
+
+                    {/* Read More Button */}
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-700 transition-all duration-300 shadow-sm group/btn"
+                    >
+                      <span className="group-hover/btn:translate-x-1 transition-transform duration-300">{carouselItems[currentSlide].buttonText}</span>
+                      <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    </motion.button>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
@@ -366,7 +406,8 @@ export default function EnterpriseResourcePlanning() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                  onClick={prevSlide}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
                   aria-label="Previous"
                 >
                   <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
@@ -374,19 +415,24 @@ export default function EnterpriseResourcePlanning() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        index === currentSlide
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                  onClick={nextSlide}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
                   aria-label="Next"
                 >
                   <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
@@ -425,7 +471,7 @@ export default function EnterpriseResourcePlanning() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.softwareServices}
+                  src={images.banners.erpCardImg}
                   alt="ERP Implementation"
                   className="w-full h-full object-cover"
                 />
@@ -458,7 +504,7 @@ export default function EnterpriseResourcePlanning() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.cloudDataCenter}
+                  src={images.banners.financialManagementBgImg}
                   alt="Financial Management"
                   className="w-full h-full object-cover"
                 />
@@ -491,7 +537,7 @@ export default function EnterpriseResourcePlanning() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.researchBanner}
+                  src={images.banners.supplyChainManagement}
                   alt="Supply Chain Management"
                   className="w-full h-full object-cover"
                 />
