@@ -33,7 +33,6 @@ import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineeri
 import Careers from "./pages/Careers.tsx";
 import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
 import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
-import MeetOurTeam from "./pages/MeetOurTeam.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -84,7 +83,6 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/WhyJoinNeuroVerse" element={<WhyJoinNeuroVerse />} />
               <Route path="/careers/lifeAtNeuroVerse" element={<LifeAtNeuroVerse />} />
-              <Route path="/careers/Meet-our-team" element={<MeetOurTeam />} />
               <Route path="/capabilities" element={<Home />} />
               <Route path="/industries" element={<Industries />} />
               <Route path="/industries/healthcare" element={<Healthcare />} />

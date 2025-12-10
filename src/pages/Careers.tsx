@@ -461,25 +461,6 @@ export default function Careers() {
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.div>
-
-            {/* Card 6: Meet our team - Solid Blue Background */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
-              onClick={() => {
-                navigate("/careers/Meet-our-team");
-              }}
-            >
-              <span className="text-base md:text-lg lg:text-xl font-heading font-bold text-white">
-                Meet our team
-              </span>
-              <div className="flex justify-end">
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>

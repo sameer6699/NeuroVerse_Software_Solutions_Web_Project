@@ -207,7 +207,6 @@ export default function Navbar() {
       menuItems: [
         "Why join NeuroVerse",
         "Life at NeuroVerse",
-        "Meet our team",
         "Career paths",
         "Let's connect",
         "Join us"
@@ -441,8 +440,6 @@ export default function Navbar() {
                                 itemHref = "/careers/WhyJoinNeuroVerse";
                               } else if (item === "Life at NeuroVerse") {
                                 itemHref = "/careers/lifeAtNeuroVerse";
-                              } else if (item === "Meet our team") {
-                                itemHref = "/careers/Meet-our-team";
                               }
                             }
                             
@@ -515,9 +512,6 @@ export default function Navbar() {
                                     } else if (link.sectionId === "careers" && item === "Life at NeuroVerse") {
                                       e.preventDefault();
                                       navigate("/careers/lifeAtNeuroVerse");
-                                    } else if (link.sectionId === "careers" && item === "Meet our team") {
-                                      e.preventDefault();
-                                      navigate("/careers/Meet-our-team");
                                     } else {
                                       handleSectionClick(link.href, link.sectionId, e);
                                     }
