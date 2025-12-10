@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, ArrowRight, Lock, AlertTriangle, Eye, ShieldCheck, TrendingUp, CheckCircle2, Linkedin, ChevronLeft, ChevronRight, Target, Zap, Network, Database } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 /**
@@ -20,6 +20,42 @@ export default function CybersecurityRiskManagement() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state for Cybersecurity Case Study Banner
+  const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
+
+  // Carousel items data
+  const carouselItems = [
+    {
+      title: "Protect your digital assets with advanced cybersecurity solutions",
+      description: "NeuroVerse empowers organizations to safeguard their digital infrastructure through comprehensive cybersecurity solutions, advanced threat detection, and proactive risk management. Our security expertise enables robust protection, regulatory compliance, and peace of mind in an evolving threat landscape."
+    },
+    {
+      title: "Advanced threat detection and real-time security monitoring",
+      description: "Leverage cutting-edge SIEM solutions and threat intelligence platforms to detect, analyze, and respond to security incidents in real-time. Our advanced monitoring systems provide 24/7 protection and rapid incident response capabilities that minimize security risks and business impact."
+    },
+    {
+      title: "Zero Trust security architecture for comprehensive protection",
+      description: "Implement a zero trust security model that verifies every user, device, and network connection. Our solutions ensure that no entity is trusted by default, providing enhanced security posture through identity verification, network segmentation, and continuous monitoring."
+    },
+    {
+      title: "Regulatory compliance and risk management solutions",
+      description: "Ensure compliance with industry regulations including GDPR, HIPAA, PCI-DSS, and SOC 2. Our comprehensive risk management platforms help identify vulnerabilities, assess risks, and maintain regulatory compliance while protecting your critical digital assets."
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+  };
+
+  const prevCarousel = () => {
+    setCurrentCarouselIndex((prev) => (prev - 1 + carouselItems.length) % carouselItems.length);
+  };
+
+  const goToCarousel = (index: number) => {
+    setCurrentCarouselIndex(index);
+  };
 
   // Cybersecurity Solutions
   const cybersecuritySolutions = [
@@ -321,25 +357,22 @@ export default function CybersecurityRiskManagement() {
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="flex items-center justify-start">
-                {/* White Text Box with Enhanced Styling */}
+                {/* White Text Box with Enhanced Styling - Content changes with carousel */}
                 <motion.div
+                  key={currentCarouselIndex}
                   initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
                   className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
                 >
-                  {/* Decorative blue accent line */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 rounded-t-xl"></div>
-                  
                   {/* Headline */}
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
-                    Protect your digital assets with advanced cybersecurity solutions
+                    {carouselItems[currentCarouselIndex].title}
                   </h3>
                   
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers organizations to safeguard their digital infrastructure through comprehensive cybersecurity solutions, advanced threat detection, and proactive risk management. Our security expertise enables robust protection, regulatory compliance, and peace of mind in an evolving threat landscape.
+                    {carouselItems[currentCarouselIndex].description}
                   </p>
 
                   {/* Read More Button */}
@@ -366,6 +399,7 @@ export default function CybersecurityRiskManagement() {
               >
                 {/* Previous Button (Left Arrow) */}
                 <button
+                  onClick={prevCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Previous"
                 >
@@ -374,18 +408,23 @@ export default function CybersecurityRiskManagement() {
 
                 {/* Dots Indicator */}
                 <div className="flex items-center gap-1.5 px-1">
-                  <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
-                  />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
+                  {carouselItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToCarousel(index)}
+                      className={`transition-all duration-300 rounded-full ${
+                        index === currentCarouselIndex
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
                 </div>
 
                 {/* Next Button (Right Arrow) */}
                 <button
+                  onClick={nextCarousel}
                   className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
                   aria-label="Next"
                 >
@@ -425,7 +464,7 @@ export default function CybersecurityRiskManagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.features.security}
+                  src={images.banners.threatDetectionAndResponse}
                   alt="Threat Detection & Response"
                   className="w-full h-full object-cover"
                 />
@@ -458,7 +497,7 @@ export default function CybersecurityRiskManagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.cloudDataCenter}
+                  src={images.banners.identityAndAccessManagement}
                   alt="Identity & Access Management"
                   className="w-full h-full object-cover"
                 />
@@ -513,114 +552,6 @@ export default function CybersecurityRiskManagement() {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Research and insights Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Content Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 rounded-xl overflow-hidden shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
-          >
-            {/* Left Side - Image with Neural Network Effect */}
-            <div className="relative w-full h-64 md:h-80 lg:h-96 bg-black overflow-hidden group-hover:scale-105 transition-transform duration-700">
-              {/* Base image with reduced opacity */}
-              <img
-                src={images.banners.cloudDataCenter}
-                alt="Cybersecurity research"
-                className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-500"
-              />
-              {/* Abstract neural network overlay effect */}
-              <div className="absolute inset-0">
-                {/* Glowing blue lines and dots pattern */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
-                  {/* Network lines */}
-                  <defs>
-                    <linearGradient id="lineGradientBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
-                      <stop offset="50%" stopColor="rgba(37, 99, 235, 0.8)" />
-                      <stop offset="100%" stopColor="rgba(96, 165, 250, 0.4)" />
-                    </linearGradient>
-                  </defs>
-                  {/* Connecting lines */}
-                  <line x1="50" y1="80" x2="150" y2="120" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="150" y1="120" x2="250" y2="100" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="100" y1="200" x2="200" y2="180" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="200" y1="180" x2="300" y2="220" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="80" y1="250" x2="180" y2="280" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="220" y1="150" x2="320" y2="200" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  <line x1="120" y1="300" x2="250" y2="320" stroke="url(#lineGradientBlue)" strokeWidth="1.5" opacity="0.6" />
-                  {/* Network nodes (dots) */}
-                  <circle cx="50" cy="80" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="150" cy="120" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="100" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="100" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="200" cy="180" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="300" cy="220" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="80" cy="250" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="180" cy="280" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="220" cy="150" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="320" cy="200" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="120" cy="300" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                  <circle cx="250" cy="320" r="3" fill="rgba(255, 255, 255, 0.9)" />
-                </svg>
-                {/* Additional glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-blue-600/10"></div>
-              </div>
-            </div>
-
-            {/* Right Side - Blue Box */}
-            <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden group-hover:from-blue-800 group-hover:via-blue-700 group-hover:to-blue-800 transition-all duration-500">
-              {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/5 via-transparent to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              {/* Animated background pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2 group-hover:scale-125 transition-transform duration-1000"></div>
-              </div>
-              
-              {/* Top Text */}
-              <div className="relative z-10">
-                <motion.p 
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-sm md:text-base text-white/80 mb-4 md:mb-6 font-medium"
-                >
-                  — NeuroVerse Research Institute
-                </motion.p>
-                
-                {/* Title */}
-                <motion.h3 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight group-hover:text-blue-100 transition-colors duration-300"
-                >
-                  Cybersecurity innovation research
-                </motion.h3>
-              </div>
-
-              {/* Bottom Text */}
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xs md:text-sm text-white/90 font-semibold uppercase tracking-wider relative z-10"
-              >
-                NEUROVERSE RESEARCH INSTITUTE
-              </motion.p>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -712,10 +643,10 @@ export default function CybersecurityRiskManagement() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px] relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
               {/* Animated background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
@@ -755,7 +686,7 @@ export default function CybersecurityRiskManagement() {
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
                 src={images.banners.researchBanner}
                 alt="NeuroVerse cybersecurity leadership recognition"

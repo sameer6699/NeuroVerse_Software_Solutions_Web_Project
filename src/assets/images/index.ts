@@ -156,6 +156,8 @@ export const bannerImages = {
   customerExperiencePlatform: new URL('./banner-Images/customer-experience-platform.png', import.meta.url).href,
   customerRoyaltyPlatform: new URL('./banner-Images/customer-royalty-platform.png', import.meta.url).href,
   customerFooterBannerImage: new URL('./banner-Images/customer-footer-banner-image.png', import.meta.url).href,
+  threatDetectionAndResponse: new URL('./banner-Images/threat-detection-and-response.png', import.meta.url).href,
+  identityAndAccessManagement: new URL('./banner-Images/identity-and-access-management.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
