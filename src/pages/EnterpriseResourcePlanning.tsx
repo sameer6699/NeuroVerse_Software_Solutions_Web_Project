@@ -90,22 +90,26 @@ export default function EnterpriseResourcePlanning() {
     {
       title: "Enterprise ERP Platform",
       description: "Comprehensive ERP platform with integrated modules for finance, HR, supply chain, and business intelligence for enterprise-wide process optimization and data-driven decision making.",
-      technologies: ["ERP Systems", "System Integration", "Business Intelligence", "Cloud Computing"]
+      technologies: ["ERP Systems", "System Integration", "Business Intelligence", "Cloud Computing"],
+      image: images.banners.erpBannerCardImg
     },
     {
       title: "Financial Management & Accounting",
       description: "Advanced financial management solution with automated accounting processes, real-time financial reporting, and compliance management for improved financial control and visibility.",
-      technologies: ["Financial Systems", "Accounting Automation", "Financial Reporting", "Compliance Management"]
+      technologies: ["Financial Systems", "Accounting Automation", "Financial Reporting", "Compliance Management"],
+      image: images.banners.financialPlanningCardImg
     },
     {
       title: "Supply Chain & Operations",
       description: "End-to-end supply chain management platform with procurement, inventory management, logistics, and distribution optimization for operational excellence.",
-      technologies: ["SCM", "Inventory Management", "Logistics", "Procurement"]
+      technologies: ["SCM", "Inventory Management", "Logistics", "Procurement"],
+      image: images.banners.supplyChainManagementBgImg
     },
     {
       title: "HR & Workforce Management",
       description: "Integrated HR management platform with payroll processing, talent acquisition, performance management, and employee engagement for comprehensive workforce optimization.",
-      technologies: ["HRIS", "Payroll Systems", "Talent Management", "Performance Analytics"]
+      technologies: ["HRIS", "Payroll Systems", "Talent Management", "Performance Analytics"],
+      image: images.banners.hrmsBgImg
     },
   ];
 
@@ -596,7 +600,7 @@ export default function EnterpriseResourcePlanning() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.researchBanner}
+                      src={useCase.image || images.banners.researchBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -653,7 +657,7 @@ export default function EnterpriseResourcePlanning() {
           className="grid grid-cols-1 md:grid-cols-5 w-full"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
               {/* Animated background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
@@ -693,9 +697,9 @@ export default function EnterpriseResourcePlanning() {
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            <div className="md:col-span-2 relative min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.researchBanner}
+                src={images.banners.erpFooterBanner}
                 alt="NeuroVerse ERP leadership recognition"
                 className="w-full h-full object-cover object-center"
               />
