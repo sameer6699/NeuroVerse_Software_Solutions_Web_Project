@@ -180,6 +180,12 @@ export const bannerImages = {
   supplyChainManagementBgImg: new URL('./banner-Images/supply-chain-management-bg-img.png', import.meta.url).href,
   hrmsBgImg: new URL('./banner-Images/hrms-bg-img.png', import.meta.url).href,
   erpFooterBanner: new URL('./banner-Images/erp-footer-banner.png', import.meta.url).href,
+  iotBannerImg: new URL('./banner-Images/iot-banner-img.png', import.meta.url).href,
+  factoryAutomation: new URL('./banner-Images/factory-automation.png', import.meta.url).href,
+  smartFactoryAutomationBgImg: new URL('./banner-Images/smart-factory-automation-bg-img.png', import.meta.url).href,
+  digitalTwin: new URL('./banner-Images/digital-twin.png', import.meta.url).href,
+  predictiveMaintenanceSystem: new URL('./banner-Images/predictive-maintainance-system.png', import.meta.url).href,
+  powerBiAnalytics: new URL('./banner-Images/power-bi-analytics.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
