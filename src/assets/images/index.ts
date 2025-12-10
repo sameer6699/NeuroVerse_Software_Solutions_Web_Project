@@ -148,6 +148,9 @@ export const bannerImages = {
   cloudNativeDevelopment: new URL('./banner-Images/cloud-native-development.png', import.meta.url).href,
   hybridCloud: new URL('./banner-Images/hybrid-cloud.png', import.meta.url).href,
   cloudFooterBanner: new URL('./banner-Images/Cloud-footer-banner-img.png', import.meta.url).href,
+  userEngagementCustomerExperience: new URL('./banner-Images/user-engagement-customer-experience.png', import.meta.url).href,
+  digitalConsumer: new URL('./banner-Images/digital-consumer.png', import.meta.url).href,
+  customerExcellence: new URL('./banner-Images/customer-excellance.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

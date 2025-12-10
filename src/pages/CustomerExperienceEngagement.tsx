@@ -457,7 +457,7 @@ export default function CustomerExperienceEngagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.customerExperience}
+                  src={images.banners.userEngagementCustomerExperience}
                   alt="Customer Engagement"
                   className="w-full h-full object-cover"
                 />
@@ -490,7 +490,7 @@ export default function CustomerExperienceEngagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.digitalMarketing}
+                  src={images.banners.digitalConsumer}
                   alt="Digital Commerce"
                   className="w-full h-full object-cover"
                 />
@@ -523,7 +523,7 @@ export default function CustomerExperienceEngagement() {
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.banners.softwareServices}
+                  src={images.banners.customerExcellence}
                   alt="Customer Service Excellence"
                   className="w-full h-full object-cover"
                 />
