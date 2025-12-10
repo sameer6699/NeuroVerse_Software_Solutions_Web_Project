@@ -126,22 +126,26 @@ export default function DataAnalyticsAISolutions() {
     {
       title: "Enterprise AI Platform",
       description: "Comprehensive AI platform with machine learning, natural language processing, and computer vision capabilities for enterprise-wide AI adoption and innovation.",
-      technologies: ["Machine Learning", "NLP", "Computer Vision", "Cloud Computing"]
+      technologies: ["Machine Learning", "NLP", "Computer Vision", "Cloud Computing"],
+      image: images.banners.aiPlatformEnterprise
     },
     {
       title: "Predictive Analytics & Forecasting",
       description: "Advanced predictive analytics solution with forecasting models, risk analysis, and demand planning capabilities for proactive business decision-making.",
-      technologies: ["Predictive Modeling", "Time Series Analysis", "Risk Analytics", "Data Science"]
+      technologies: ["Predictive Modeling", "Time Series Analysis", "Risk Analytics", "Data Science"],
+      image: images.banners.predictiveAnalysis
     },
     {
       title: "Business Intelligence & Data Visualization",
       description: "Enterprise business intelligence platform with interactive dashboards, custom reports, and self-service analytics for data-driven insights and reporting.",
-      technologies: ["BI Tools", "Data Visualization", "Dashboard Design", "Reporting"]
+      technologies: ["BI Tools", "Data Visualization", "Dashboard Design", "Reporting"],
+      image: images.banners.businessIntelligenceDataAnalytics
     },
     {
       title: "AI-Powered Automation Platform",
       description: "Intelligent automation platform with AI-driven process automation, document processing, and workflow optimization for operational efficiency.",
-      technologies: ["RPA", "AI Automation", "Document Processing", "Workflow Management"]
+      technologies: ["RPA", "AI Automation", "Document Processing", "Workflow Management"],
+      image: images.banners.aiPoweredAutomation
     },
   ];
 
@@ -589,7 +593,7 @@ export default function DataAnalyticsAISolutions() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.researchBanner}
+                      src={useCase.image || images.banners.researchBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -646,7 +650,7 @@ export default function DataAnalyticsAISolutions() {
           className="grid grid-cols-1 md:grid-cols-5 w-full"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
               {/* Animated background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
@@ -686,9 +690,9 @@ export default function DataAnalyticsAISolutions() {
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            <div className="md:col-span-2 relative min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.researchBanner}
+                src={images.banners.dataAnalyticsFooter}
                 alt="NeuroVerse data analytics leadership recognition"
                 className="w-full h-full object-cover object-center"
               />

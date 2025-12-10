@@ -167,6 +167,11 @@ export const bannerImages = {
   cloudComputingFooterImage: new URL('./banner-Images/xloud-computing-footer image.png', import.meta.url).href,
   bigDataAnalyticsImg: new URL('./banner-Images/big-data-analytics-img.png', import.meta.url).href,
   businessIntelligenceBannerImg: new URL('./banner-Images/business-intelligance-banner-img.jpg', import.meta.url).href,
+  aiPlatformEnterprise: new URL('./banner-Images/AI-platform-enterprise.png', import.meta.url).href,
+  predictiveAnalysis: new URL('./banner-Images/predictive-analysis.png', import.meta.url).href,
+  businessIntelligenceDataAnalytics: new URL('./banner-Images/business-intelligence-data-analytics.jpg', import.meta.url).href,
+  aiPoweredAutomation: new URL('./banner-Images/ai-powered-automation.png', import.meta.url).href,
+  dataAnalyticsFooter: new URL('./banner-Images/data-analytics-footer image.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
