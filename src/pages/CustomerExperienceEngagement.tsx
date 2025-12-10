@@ -126,22 +126,26 @@ export default function CustomerExperienceEngagement() {
     {
       title: "Omnichannel Customer Engagement Platform",
       description: "Unified customer engagement platform integrating CRM, marketing automation, and customer service across web, mobile, and social channels.",
-      technologies: ["CRM", "Marketing Automation", "AI/ML", "Cloud Computing"]
+      technologies: ["CRM", "Marketing Automation", "AI/ML", "Cloud Computing"],
+      image: images.banners.omnicalCrmFunnel
     },
     {
       title: "E-commerce Personalization Engine",
       description: "AI-powered personalization solution that delivers tailored product recommendations, content, and offers to enhance shopping experiences.",
-      technologies: ["AI/ML", "E-commerce", "Data Analytics", "Cloud Computing"]
+      technologies: ["AI/ML", "E-commerce", "Data Analytics", "Cloud Computing"],
+      image: images.banners.ecomEngineImg
     },
     {
       title: "Customer Service Excellence Platform",
       description: "Comprehensive customer service solution with AI chatbots, knowledge base, and omnichannel support for exceptional service delivery.",
-      technologies: ["AI/ML", "Chatbots", "Help Desk", "Cloud Computing"]
+      technologies: ["AI/ML", "Chatbots", "Help Desk", "Cloud Computing"],
+      image: images.banners.customerExperiencePlatform
     },
     {
       title: "Customer Loyalty & Rewards Program",
       description: "Digital loyalty platform enabling personalized rewards, gamification, and customer engagement programs to drive retention and advocacy.",
-      technologies: ["Mobile Apps", "Data Analytics", "Gamification", "Cloud Computing"]
+      technologies: ["Mobile Apps", "Data Analytics", "Gamification", "Cloud Computing"],
+      image: images.banners.customerRoyaltyPlatform
     },
   ];
 
@@ -582,7 +586,7 @@ export default function CustomerExperienceEngagement() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.retailEcommerceHeroBanner}
+                      src={useCase.image || images.banners.retailEcommerceHeroBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -672,7 +676,7 @@ export default function CustomerExperienceEngagement() {
             {/* Right Section - Image (40% - 2 columns) */}
             <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.retailEcommerceHeroBanner}
+                src={images.banners.customerFooterBannerImage}
                 alt="NeuroVerse customer experience leadership recognition"
                 className="w-full h-full object-cover object-center"
               />

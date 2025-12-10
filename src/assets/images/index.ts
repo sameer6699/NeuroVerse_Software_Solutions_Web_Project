@@ -151,6 +151,11 @@ export const bannerImages = {
   userEngagementCustomerExperience: new URL('./banner-Images/user-engagement-customer-experience.png', import.meta.url).href,
   digitalConsumer: new URL('./banner-Images/digital-consumer.png', import.meta.url).href,
   customerExcellence: new URL('./banner-Images/customer-excellance.png', import.meta.url).href,
+  omnicalCrmFunnel: new URL('./banner-Images/omnical-crm-funnel.png', import.meta.url).href,
+  ecomEngineImg: new URL('./banner-Images/e-com-engine-img.png', import.meta.url).href,
+  customerExperiencePlatform: new URL('./banner-Images/customer-experience-platform.png', import.meta.url).href,
+  customerRoyaltyPlatform: new URL('./banner-Images/customer-royalty-platform.png', import.meta.url).href,
+  customerFooterBannerImage: new URL('./banner-Images/customer-footer-banner-image.png', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
