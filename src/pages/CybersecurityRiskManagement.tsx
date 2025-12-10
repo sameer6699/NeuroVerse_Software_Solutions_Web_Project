@@ -126,22 +126,26 @@ export default function CybersecurityRiskManagement() {
     {
       title: "Enterprise Security Operations Center (SOC)",
       description: "Comprehensive SOC solution with advanced threat detection, security monitoring, and incident response capabilities for enterprise-wide security operations.",
-      technologies: ["SIEM", "Threat Intelligence", "Security Analytics", "Cloud Computing"]
+      technologies: ["SIEM", "Threat Intelligence", "Security Analytics", "Cloud Computing"],
+      image: images.banners.socImg
     },
     {
       title: "Zero Trust Security Architecture",
       description: "Implementation of zero trust security model with identity verification, network segmentation, and continuous monitoring for enhanced security posture.",
-      technologies: ["Identity Management", "Network Security", "Access Control", "Cloud Computing"]
+      technologies: ["Identity Management", "Network Security", "Access Control", "Cloud Computing"],
+      image: images.banners.zeroTrustSecurityArchitecture
     },
     {
       title: "Data Protection & Privacy Platform",
       description: "End-to-end data protection solution with encryption, data loss prevention, and privacy controls to safeguard sensitive information and ensure compliance.",
-      technologies: ["Data Encryption", "DLP", "Privacy Controls", "Compliance Management"]
+      technologies: ["Data Encryption", "DLP", "Privacy Controls", "Compliance Management"],
+      image: images.banners.dataSecurityPlatform
     },
     {
       title: "Security Risk Management Platform",
       description: "Integrated risk management platform enabling organizations to identify, assess, and mitigate security risks while maintaining regulatory compliance.",
-      technologies: ["Risk Assessment", "Compliance", "Governance", "Security Analytics"]
+      technologies: ["Risk Assessment", "Compliance", "Governance", "Security Analytics"],
+      image: images.banners.securityRiskManagementImg
     },
   ];
 
@@ -589,7 +593,7 @@ export default function CybersecurityRiskManagement() {
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.banners.researchBanner}
+                      src={useCase.image || images.banners.researchBanner}
                       alt={useCase.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -688,7 +692,7 @@ export default function CybersecurityRiskManagement() {
             {/* Right Section - Image (40% - 2 columns) */}
             <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
               <img
-                src={images.banners.researchBanner}
+                src={images.banners.cloudComputingFooterImage}
                 alt="NeuroVerse cybersecurity leadership recognition"
                 className="w-full h-full object-cover object-center"
               />

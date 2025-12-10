@@ -138,7 +138,9 @@ export const bannerImages = {
   iotEdgeComputing: new URL('./banner-Images/IOT-edge-computing.jpeg', import.meta.url).href,
   cloudNativePlatform: new URL('./banner-Images/cloud-native-platform.jpeg', import.meta.url).href,
   aiPoweredAnalytics: new URL('./banner-Images/AI_powered-Analytics.jpeg', import.meta.url).href,
-  dataAnalyticsBannerImg: new URL('./banner-Images/data-analytics-banner-img.jpeg', import.meta.url).href,
+  dataAnalyticsBannerImg: new URL('./banner-Images/data-analytics-hero-banner-img.jpg', import.meta.url).href,
+  dataAnalyticsSubHeroImg: new URL('./banner-Images/data-analytics-sub-hero-img.jpg', import.meta.url).href,
+  mlAiBannerImg: new URL('./banner-Images/ML-AI-banner-img.png', import.meta.url).href,
   devOpsAutomationImg: new URL('./banner-Images/dev-ops-automation-img.jpeg', import.meta.url).href,
   enterpriseSoftwareImg: new URL('./banner-Images/enterprise-software-img.jpeg', import.meta.url).href,
   multiCloud: new URL('./banner-Images/multi-cloud.jpeg', import.meta.url).href,
@@ -158,6 +160,13 @@ export const bannerImages = {
   customerFooterBannerImage: new URL('./banner-Images/customer-footer-banner-image.png', import.meta.url).href,
   threatDetectionAndResponse: new URL('./banner-Images/threat-detection-and-response.png', import.meta.url).href,
   identityAndAccessManagement: new URL('./banner-Images/identity-and-access-management.png', import.meta.url).href,
+  socImg: new URL('./banner-Images/SOC-img.png', import.meta.url).href,
+  zeroTrustSecurityArchitecture: new URL('./banner-Images/zero-trust-security-architecture.png', import.meta.url).href,
+  dataSecurityPlatform: new URL('./banner-Images/data-security-platform.png', import.meta.url).href,
+  securityRiskManagementImg: new URL('./banner-Images/security-riskmanagement-img.png', import.meta.url).href,
+  cloudComputingFooterImage: new URL('./banner-Images/xloud-computing-footer image.png', import.meta.url).href,
+  bigDataAnalyticsImg: new URL('./banner-Images/big-data-analytics-img.png', import.meta.url).href,
+  businessIntelligenceBannerImg: new URL('./banner-Images/business-intelligance-banner-img.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
