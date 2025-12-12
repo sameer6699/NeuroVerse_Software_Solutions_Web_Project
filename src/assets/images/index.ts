@@ -186,6 +186,9 @@ export const bannerImages = {
   digitalTwin: new URL('./banner-Images/digital-twin.png', import.meta.url).href,
   predictiveMaintenanceSystem: new URL('./banner-Images/predictive-maintainance-system.png', import.meta.url).href,
   powerBiAnalytics: new URL('./banner-Images/power-bi-analytics.png', import.meta.url).href,
+  insightsHeroSection: new URL('./banner-Images/insights-hero-section.png', import.meta.url).href,
+  industriesHeroSection: new URL('./banner-Images/Industries-hero-section-image.png', import.meta.url).href,
+  servicesHeroBanner: new URL('./banner-Images/services-hero-banner-img.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

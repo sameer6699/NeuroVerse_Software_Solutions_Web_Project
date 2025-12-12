@@ -11,7 +11,7 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
-  const [dropdownTop, setDropdownTop] = useState(80); // Default: 1rem (16px) + 4rem (64px) = 80px
+  const [dropdownTop, setDropdownTop] = useState(128); // Default: 8rem (128px) - dynamically updated based on navbar height
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
@@ -272,7 +272,7 @@ export default function Navbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-32">
           {/* Left Section: Logo */}
           <Link to="/" className="flex items-center cursor-pointer flex-shrink-0">
             <motion.div
@@ -531,22 +531,292 @@ export default function Navbar() {
                       </div>
 
                       {/* Right Column - Featured Content */}
-                      <div className="bg-white p-8 flex flex-col" style={{ height: '100%' }}>
-                        <div className="w-full h-48 mb-4 rounded-lg overflow-hidden flex-shrink-0">
-                          <img
-                            src={images.logos.seedLink}
-                            alt={link.featuredTitle}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="flex flex-col flex-grow">
-                          <h4 className="font-bold text-lg text-gray-900 mb-2">
-                            {link.featuredTitle}
-                          </h4>
-                          <p className="text-sm text-gray-600">
-                            {link.featuredDescription}
-                          </p>
-                        </div>
+                      <div className="bg-white p-8 flex flex-col overflow-y-auto" style={{ height: '100%' }}>
+                        {link.sectionId === "insights" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Stay Informed
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Discover cutting-edge insights and thought leadership that drive innovation and shape the future of business.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Latest Research
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Access our comprehensive research reports and analysis on emerging technologies and business trends.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Industry Trends
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Explore the latest trends and developments across industries, from AI to sustainability.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Expert Analysis
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Gain valuable perspectives from industry leaders and subject matter experts.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "industries" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Industry Expertise
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Tailored solutions and deep industry knowledge to help your business thrive in today's competitive landscape.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Sector Solutions
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Specialized technology solutions designed to address unique challenges within your industry vertical.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Industry Best Practices
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Leverage proven methodologies and industry-specific frameworks to accelerate your digital transformation.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Customized Approach
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Every industry has unique requirements. We deliver solutions that align with your sector's specific needs and regulations.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "services" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Comprehensive Solutions
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                End-to-end technology services designed to transform your business operations and drive sustainable growth.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Technology Expertise
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Leverage cutting-edge technologies including cloud, AI, cybersecurity, and data analytics to modernize your infrastructure.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Business Transformation
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Strategic consulting and implementation services to help you navigate digital transformation and achieve your business objectives.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Scalable Solutions
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                From startups to enterprises, we provide scalable services that grow with your business and adapt to changing market demands.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "about" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Our Journey
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Learn about our mission, vision, and the values that drive our commitment to innovation and excellence.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Our Mission
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Empowering businesses through innovative technology solutions that drive growth and create lasting value.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Company Values
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Integrity, innovation, and excellence guide everything we do, from client relationships to product development.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Our Culture
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                A collaborative environment where creativity thrives, diversity is celebrated, and every team member can make an impact.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "products" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Innovative Platforms
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Cutting-edge technology products designed to accelerate your digital transformation and drive measurable business growth.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Technology Solutions
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Comprehensive platforms that integrate seamlessly with your existing infrastructure to enhance productivity and efficiency.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Business Growth
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Products engineered to scale with your business, providing the tools you need to stay competitive in today's market.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Digital Transformation
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Transform your operations with our innovative products that leverage the latest technologies to solve complex business challenges.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "careers" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Join Our Team
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Be part of a diverse collective of innovators, entrepreneurs, and experts working together to shape the future of technology.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Career Growth
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Opportunities for professional development, mentorship, and career advancement in a supportive and dynamic environment.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Work Culture
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                A collaborative workplace where creativity is encouraged, diversity is valued, and every voice matters in driving innovation.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Make an Impact
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Work on meaningful projects that solve real-world challenges and contribute to building transformative technology solutions.
+                              </p>
+                            </div>
+                          </div>
+                        ) : link.sectionId === "news" ? (
+                          <div className="flex flex-col flex-grow space-y-4">
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-3">
+                                Stay Updated
+                              </h4>
+                              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                                Keep up with our latest news, announcements, and insights from the world of technology and innovation.
+                              </p>
+                            </div>
+                            
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Latest Updates
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Get the most recent news about our company, products, partnerships, and industry developments.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Press & Media
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Access press releases, media kits, and official announcements covering our latest initiatives and achievements.
+                              </p>
+                            </div>
+
+                            <div className="border-t border-gray-200 pt-4">
+                              <h5 className="font-semibold text-sm text-gray-900 mb-2">
+                                Events & Blog
+                              </h5>
+                              <p className="text-xs text-gray-600 leading-relaxed">
+                                Explore our blog articles, event coverage, and thought leadership content on technology trends and innovations.
+                              </p>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="w-full h-48 mb-4 rounded-lg overflow-hidden flex-shrink-0">
+                              <img
+                                src={images.logos.seedLink}
+                                alt={link.featuredTitle}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="flex flex-col flex-grow">
+                              <h4 className="font-bold text-lg text-gray-900 mb-2">
+                                {link.featuredTitle}
+                              </h4>
+                              <p className="text-sm text-gray-600">
+                                {link.featuredDescription}
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   );
