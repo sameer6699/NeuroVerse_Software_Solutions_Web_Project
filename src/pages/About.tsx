@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud, Users, Target, Heart, Award, Handshake, Lightbulb } from "lucide-react";
+import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud, Users, Target, Heart, Award, Handshake, Lightbulb, Cpu } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
@@ -21,6 +21,7 @@ export default function About() {
 
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   // Handle navigation to scroll to vision section (from location state or hash)
   useEffect(() => {
@@ -76,41 +77,6 @@ export default function About() {
     }
   }, [location.hash, location.state, location.pathname]);
 
-  // Typewriter effect hook with infinite loop
-  const useTypewriter = (text: string, speed: number = 100, deleteSpeed: number = 50, pauseTime: number = 2000) => {
-    const [displayedText, setDisplayedText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-      let timeout: NodeJS.Timeout;
-
-      if (!isDeleting && displayedText.length < text.length) {
-        // Typing forward
-        timeout = setTimeout(() => {
-          setDisplayedText(text.slice(0, displayedText.length + 1));
-        }, speed);
-      } else if (!isDeleting && displayedText.length === text.length) {
-        // Finished typing, wait then start deleting
-        timeout = setTimeout(() => {
-          setIsDeleting(true);
-        }, pauseTime);
-      } else if (isDeleting && displayedText.length > 0) {
-        // Deleting backward
-        timeout = setTimeout(() => {
-          setDisplayedText(displayedText.slice(0, -1));
-        }, deleteSpeed);
-      } else if (isDeleting && displayedText.length === 0) {
-        // Finished deleting, start typing again
-        setIsDeleting(false);
-      }
-
-      return () => clearTimeout(timeout);
-    }, [displayedText, text, speed, deleteSpeed, pauseTime, isDeleting]);
-
-    return displayedText;
-  };
-
-  const typewriterText = useTypewriter("About Us.", 150, 80, 2000);
 
   // Carousel state for Trusted By section
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -163,124 +129,78 @@ export default function About() {
     {
       title: "Our Story",
       description: "Discover the journey of NeuroVerse from its inception to becoming a leading technology innovator.",
-      image: images.projects.latestInsights,
+      image: images.banners.ourStoryCardImg,
       icon: FileText,
     },
     {
       title: "Mission & Vision",
       description: "Learn about our mission to transform businesses and our vision for the future of technology.",
-      image: images.projects.hotTopicsBackground || images.projects.latestInsights,
+      image: images.banners.missionVision,
       icon: Target,
     },
     {
-      title: "Leadership Team",
-      description: "Meet the visionary leaders driving NeuroVerse's innovation and strategic direction.",
-      image: images.projects.insightsHero || images.projects.latestInsights,
-      icon: Users,
+      title: "Innovation & Technology",
+      description: "Explore our cutting-edge technologies, innovative solutions, and breakthrough innovations that drive digital transformation and shape the future of business.",
+      image: images.banners.innovationTechnology,
+      icon: Cpu,
     },
     {
       title: "Company Values",
       description: "Explore the core values that guide our decisions and shape our company culture.",
-      image: images.projects.latestInsights,
+      image: images.banners.companyValues,
       icon: Heart,
     },
     {
       title: "Our Culture",
       description: "Experience the collaborative, innovative, and inclusive culture that defines NeuroVerse.",
-      image: images.projects.hotTopicsBackground || images.projects.latestInsights,
+      image: images.banners.ourCulture,
       icon: Lightbulb,
     },
     {
       title: "Partners & Alliances",
       description: "Discover our strategic partnerships and alliances that amplify our impact.",
-      image: images.projects.insightsHero || images.projects.latestInsights,
+      image: images.banners.partnership,
       icon: Handshake,
     },
   ];
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden overflow-y-auto">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
       <section 
+        id="home"
         ref={heroRef}
-        className="relative pt-32 pb-20 px-4 min-h-[85vh] md:min-h-[90vh] flex items-end overflow-x-visible overflow-y-hidden"
-        style={{
-          backgroundImage: `url(${images.projects.insightsHero || images.hero.background})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
+        className="relative pt-32 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
-        {/* Subtle Parallax Effect - No Overlay */}
+        {/* Background Image with Improved Positioning and Zoom Effect */}
+        <motion.div 
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            scale: backgroundScale,
+            y: backgroundY,
+            backgroundImage: `url(${images.banners.aboutUsBanner})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        
+        {/* Subtle Parallax Effect */}
         <motion.div
           style={{ y: backgroundY }}
           className="absolute inset-0"
         >
-          {/* Very subtle gradient for slight depth - almost transparent */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5"></div>
+          {/* Enhanced gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"></div>
         </motion.div>
-
-        {/* Content Container */}
-        <div className="max-w-7xl mx-auto max-w-5k-content relative z-10 w-full pb-0 -mb-12 md:-mb-16 lg:-mb-20 overflow-visible">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full md:w-3/4 lg:w-2/3 xl:w-3/5 min-w-0 overflow-visible"
-          >
-            {/* Large "About Us" Text with Typewriter Effect */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-              className="font-bold text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] leading-[0.9] mb-6 relative z-10 whitespace-nowrap overflow-visible"
-              style={{
-                fontFamily: "'Poppins', 'Montserrat', sans-serif",
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                width: 'max-content',
-                maxWidth: '100%',
-                mixBlendMode: 'normal',
-              }}
-            >
-              <span 
-                className="inline-flex items-baseline"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.75) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textShadow: '0 4px 30px rgba(0, 0, 0, 0.4), 0 8px 60px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.08)',
-                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))',
-                }}
-              >
-                <span className="inline-block">{typewriterText}</span>
-                <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="inline-block w-0.5 h-[0.9em] ml-1 align-middle"
-                  style={{
-                    verticalAlign: 'baseline',
-                    marginLeft: '0.25rem',
-                    background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%)',
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
-                  }}
-                />
-              </span>
-            </motion.h1>
-          </motion.div>
-        </div>
 
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -295,6 +215,41 @@ export default function About() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* About Us Card - Positioned outside hero section, extending from hero */}
+      <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
+        <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
+          <div className="flex justify-start">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative"
+            >
+              {/* Blue Background Box - Overlay on left side */}
+              <div 
+                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
+              >
+                {/* About Us Text - Centered in the box */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Poppins', 'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                  }}
+                >
+                  About Us
+                </motion.h1>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       {/* Content Section Below Hero */}
       <section className="relative bg-white py-8 md:py-10 px-4">
@@ -588,7 +543,7 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Card 3: ESG */}
+            {/* Card 3: Our Culture */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -601,15 +556,21 @@ export default function About() {
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
                     src={images.projects.hotTopicsBackground || images.projects.latestInsights}
-                    alt="ESG"
+                    alt="Our Culture"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Icon overlay */}
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Lightbulb className="w-5 h-5 text-blue-600" />
+                  </div>
                 </div>
                 
                 {/* Content Section */}
                 <div className="p-4 md:p-6 flex flex-col flex-grow relative">
                   <h3 className="text-lg md:text-xl lg:text-2xl font-heading font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    ESG
+                    Our Culture
                   </h3>
                   
                   {/* Arrow Icon */}
@@ -655,7 +616,7 @@ export default function About() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.projects.insightsHero || images.projects.latestInsights}
+                    src={images.banners.techPartner}
                     alt="Technology partners"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
