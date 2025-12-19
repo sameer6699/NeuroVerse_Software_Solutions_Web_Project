@@ -559,7 +559,7 @@ export default function Insights() {
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
                   <Calendar className="w-4 h-4" />
-                  <span>December 2024</span>
+                  <span>December 2025</span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300 leading-tight">
                   The B2B Pulse
@@ -605,7 +605,7 @@ export default function Insights() {
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
                   <Calendar className="w-4 h-4" />
-                  <span>November 2024</span>
+                  <span>November 2025</span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                   The battery revolution
@@ -712,7 +712,7 @@ export default function Insights() {
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
                   <Calendar className="w-4 h-4" />
-                  <span>December 2024</span>
+                  <span>December 2025</span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors duration-300 leading-tight">
                   Sustainable Gen AI
@@ -762,7 +762,7 @@ export default function Insights() {
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
                   <Calendar className="w-4 h-4" />
-                  <span>November 2024</span>
+                  <span>November 2025</span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300 leading-tight">
                   What matters to today's consumer

@@ -34,6 +34,8 @@ import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
 import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
+import OurStory from "./pages/OurStory.tsx";
+import ManagementGovernance from "./pages/ManagementGovernance.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { LenisScroll } from "@/components/LenisScroll";
@@ -104,6 +106,8 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/insights/research-library" element={<ResearchLibrary />} />
               <Route path="/news" element={<News />} />
               <Route path="/about" element={<About />} />
+              <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="/about/management-governance" element={<ManagementGovernance />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Route>

@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, Twitter, Github, Users, Target, Heart, Award, Handshake, Lightbulb, Cpu, FileText } from "lucide-react";
+import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, Twitter, Github, Target, Heart, Handshake, Lightbulb, Cpu, FileText } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
@@ -536,6 +536,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="group cursor-pointer"
+              onClick={() => navigate("/about/management-governance")}
             >
               <div className="bg-gradient-to-br from-blue-800 to-blue-900 rounded-lg overflow-hidden border border-blue-800 hover:shadow-xl transition-all duration-300 h-full flex flex-col min-h-[200px] md:min-h-[250px]">
                 {/* Content Section */}
@@ -699,6 +700,11 @@ export default function About() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group cursor-pointer"
+                  onClick={() => {
+                    if (item.title === "Our Story") {
+                      navigate("/about/our-story");
+                    }
+                  }}
                 >
                   <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                     {/* Image Section */}
