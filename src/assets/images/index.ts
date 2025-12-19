@@ -79,6 +79,7 @@ export const bannerImages = {
   technologyBgBanner: new URL('./banner-Images/tech-bg-img.jpg', import.meta.url).href,
   cloudDataCenter: new URL('./banner-Images/cloud-data-center.jpg', import.meta.url).href,
   codingVideo: new URL('./banner-Images/codig-video.mp4', import.meta.url).href,
+  softwareDevelopmentVideo: new URL('./banner-Images/software-development.mp4', import.meta.url).href,
   userExperience: new URL('./banner-Images/user-experience.jpg', import.meta.url).href,
   customerSatisfaction: new URL('./banner-Images/bg-customer-satisfaction.jpg', import.meta.url).href,
   customerExperience: new URL('./banner-Images/customer-experience.jpg', import.meta.url).href,
@@ -205,6 +206,15 @@ export const bannerImages = {
   innovationCardImg: new URL('./banner-Images/innovation-card-img.jpg', import.meta.url).href,
   teamImg: new URL('./banner-Images/team-img.jpg', import.meta.url).href,
   aboutUsSecondBanner: new URL('./banner-Images/about-us-second-banner-img.jpg', import.meta.url).href,
+  swDevelopmentSmallHeroBanner: new URL('./banner-Images/sw-development-small-hero banner.jpg', import.meta.url).href,
+  customSoftwareDevelopment: new URL('./banner-Images/custom-software-development.jpg', import.meta.url).href,
+  fullStackDevelopmentBannerImg: new URL('./banner-Images/full-stack-development-banner-img.jpg', import.meta.url).href,
+  devopsCICDBannerImg: new URL('./banner-Images/devops-CI-CD_banner_img.jpg', import.meta.url).href,
+  enterpriseSoftwareDevelopmentBannerImg: new URL('./banner-Images/enterprise-software-development-banner-img.jpg', import.meta.url).href,
+  cloudNativeBannerImg: new URL('./banner-Images/Cloud-Native-banner-img.jpg', import.meta.url).href,
+  systemModernizationBannerImg: new URL('./banner-Images/system-modernization-banner-img.jpg', import.meta.url).href,
+  devopsBannerImg: new URL('./banner-Images/devops-banner-img.jpg', import.meta.url).href,
+  swDeveloperFooterBannerImg: new URL('./banner-Images/sw-develper-footer banner-img.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
