@@ -28,7 +28,6 @@ import CybersecurityRiskManagement from "./pages/CybersecurityRiskManagement.tsx
 import DataAnalyticsAISolutions from "./pages/DataAnalyticsAISolutions.tsx";
 import EnterpriseResourcePlanning from "./pages/EnterpriseResourcePlanning.tsx";
 import SmartManufacturingIndustry4 from "./pages/SmartManufacturingIndustry4.tsx";
-import SustainabilityGreenTechnology from "./pages/SustainabilityGreenTechnology.tsx";
 import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineering.tsx";
 import Careers from "./pages/Careers.tsx";
 import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
@@ -97,7 +96,6 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/services/data-analytics-ai-solutions" element={<DataAnalyticsAISolutions />} />
               <Route path="/services/enterprise-resource-planning" element={<EnterpriseResourcePlanning />} />
               <Route path="/services/smart-manufacturing-industry-4" element={<SmartManufacturingIndustry4 />} />
-              <Route path="/services/sustainability-green-technology" element={<SustainabilityGreenTechnology />} />
               <Route path="/services/software-development-engineering" element={<SoftwareDevelopmentEngineering />} />
               <Route path="/blog" element={<Home />} />
               <Route path="/insights" element={<Insights />} />

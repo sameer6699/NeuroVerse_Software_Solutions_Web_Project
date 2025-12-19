@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Cloud, Users, Shield, Database, Building2, Factory, Leaf, Code } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
@@ -103,12 +103,6 @@ export default function Services() {
       color: "from-orange-500 to-amber-600"
     },
     {
-      title: "Sustainability & Green Technology",
-      description: "Build sustainable technology solutions that reduce environmental impact while driving business value. From green IT to carbon footprint optimization, we help you achieve your sustainability goals.",
-      icon: Leaf,
-      color: "from-teal-500 to-green-600"
-    },
-    {
       title: "Software Development & Engineering",
       description: "Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.",
       icon: Code,
@@ -159,11 +153,6 @@ export default function Services() {
       name: "Smart Manufacturing & Industry 4.0",
       description: "Industry 4.0 solutions including IoT implementation, smart manufacturing, predictive maintenance, and industrial automation systems.",
       technologies: ["IoT", "Edge Computing", "Predictive Analytics"]
-    },
-    {
-      name: "Sustainability & Green Technology",
-      description: "Green IT services, carbon footprint reduction, sustainable technology implementation, and ESG reporting solutions for environmentally conscious organizations.",
-      technologies: ["Green IT", "ESG", "Carbon Analytics"]
     },
     {
       name: "Software Development & Engineering",
@@ -360,103 +349,120 @@ export default function Services() {
               Our Services
             </h2>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Carousel Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Background Banner with Image */}
-            <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${images.projects.hotTopicsBackground || images.projects.latestInsights})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              />
+      {/* Services Case Study Banner/Carousel Section - Full Width */}
+      <section className="relative bg-white py-8 md:py-12 w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl"
+        >
+            {/* Background Image - Full Width - Extends entire screen width */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${images.banners.servicesHeroBanner})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                width: '100vw',
+                left: '50%',
+                marginLeft: '-50vw',
+              }}
+            >
+              {/* Enhanced Overlay for better text readability with blue tint */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-transparent to-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-900/20 to-transparent"></div>
+            </div>
 
-              {/* White Content Card - Left Side */}
-              <div className="absolute inset-0 flex items-center justify-start px-4 md:px-8 lg:px-12">
-                <motion.div
-                  key={currentServiceIndex}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-2xl p-8 md:p-10 lg:p-12 max-w-xl md:max-w-2xl w-full shadow-2xl -ml-2 md:ml-0 lg:ml-4"
-                >
-                  <div className="flex items-center gap-4 mb-4 md:mb-6">
-                    <div className={`p-4 rounded-xl bg-gradient-to-br ${servicesData[currentServiceIndex].color} text-white`}>
-                      {(() => {
-                        const Icon = servicesData[currentServiceIndex].icon;
-                        return <Icon className="w-8 h-8 md:w-10 md:h-10" />;
-                      })()}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                      {servicesData[currentServiceIndex].title}
-                    </h3>
-                  </div>
-                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    {servicesData[currentServiceIndex].description}
-                  </p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
-                  >
-                    Learn more
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </motion.div>
-              </div>
+            {/* Content Container - Centered with max-width */}
+            <div className="relative z-10 h-full flex items-center">
+              <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
+                <div className="flex items-center justify-start">
+                  {/* White Text Box with Enhanced Styling - Dynamic Content */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentServiceIndex}
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 50 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
+                    >
+                      {/* Headline */}
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
+                        {servicesData[currentServiceIndex].title}
+                      </h3>
+                      
+                      {/* Body Text */}
+                      <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
+                        {servicesData[currentServiceIndex].description}
+                      </p>
 
-              {/* Navigation Carousel Indicator */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-                <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 flex items-center gap-4 shadow-lg border border-gray-200">
-                  {/* Previous Button */}
-                  <button
-                    onClick={prevService}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Previous service"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-700" />
-                  </button>
-
-                  {/* Dots Indicator */}
-                  <div className="flex items-center gap-2">
-                    {servicesData.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => goToService(index)}
-                        className={`transition-all rounded-full ${
-                          index === currentServiceIndex
-                            ? 'bg-blue-600 w-8 h-2.5'
-                            : 'bg-white border-2 border-white w-2.5 h-2.5 hover:bg-gray-200'
-                        }`}
-                        aria-label={`Go to service ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Next Button */}
-                  <button
-                    onClick={nextService}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Next service"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-700" />
-                  </button>
+                      {/* Learn More Button */}
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-700 transition-all duration-300 shadow-sm group/btn"
+                      >
+                        <span className="group-hover/btn:translate-x-1 transition-transform duration-300">Learn more</span>
+                        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </motion.button>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
+
+            {/* Carousel Navigation - Bottom Right */}
+            <div className="absolute bottom-6 right-4 md:right-6 z-20">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+              >
+                {/* Previous Button (Left Arrow) */}
+                <button
+                  onClick={prevService}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="flex items-center gap-1.5 px-1">
+                  {servicesData.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToService(index)}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        index === currentServiceIndex
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Next Button (Right Arrow) */}
+                <button
+                  onClick={nextService}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+                </button>
+              </motion.div>
+            </div>
           </motion.div>
-        </div>
       </section>
 
       {/* Learn more by service Section */}
