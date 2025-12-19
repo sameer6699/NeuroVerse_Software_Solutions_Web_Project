@@ -55,7 +55,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <section className="relative pt-32 pb-20 px-4">
+      <section className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

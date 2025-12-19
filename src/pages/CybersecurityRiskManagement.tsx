@@ -155,7 +155,7 @@ export default function CybersecurityRiskManagement() {
       <section 
         id="home"
         ref={heroRef}
-        className="relative pt-32 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
+        className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
         {/* Background Image with Improved Positioning and Zoom Effect */}
         <motion.div 

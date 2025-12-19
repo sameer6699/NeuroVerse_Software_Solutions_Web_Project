@@ -16,6 +16,7 @@ export const logos = {
   withBackground: new URL('./logos/logo_bg.svg', import.meta.url).href,
   withBackgroundPng: new URL('./logos/logo_bg.png', import.meta.url).href,
   main: new URL('./logos/Main-logo-NV.png', import.meta.url).href,
+  navbar: new URL('./logos/NV-TM-Logo-bg-removed.png', import.meta.url).href,
   seedLink: new URL('./logos/SeedLink-1.png', import.meta.url).href,
   seedLinkLogo: new URL('./logos/logo copy.png', import.meta.url).href,
 } as const;

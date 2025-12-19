@@ -507,7 +507,7 @@ export default function Home() {
       {/* Hero Section */}
       <section 
         id="home" 
-        className="relative pt-32 pb-12 md:pb-16 px-4 min-h-[80vh] flex items-center"
+        className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-12 md:pb-16 px-4 min-h-[80vh] flex items-center"
         style={{
           backgroundImage: `url(${images.hero.background})`,
           backgroundSize: 'cover',

@@ -278,16 +278,13 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center"
-              style={{ gap: '2px' }}
             >
               <img
-                src={images.logos.main}
+                src={images.logos.navbar}
                 alt="NeuroVerse Logo"
-                className="w-12 h-12 md:w-14 md:h-14 object-contain"
+                className="h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain"
+                loading="eager"
               />
-              <span className="font-bold text-xl md:text-2xl whitespace-nowrap text-black transition-colors duration-300" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontWeight: 700, letterSpacing: '-0.02em' }}>
-                NeuroVerse
-              </span>
             </motion.div>
           </Link>
 
