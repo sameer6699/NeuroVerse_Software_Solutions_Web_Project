@@ -193,9 +193,9 @@ export default function Navbar() {
       description: "Learn about our mission, vision, values, and the team behind NeuroVerse's innovative solutions.",
       menuItems: [
         "Our Story",
-        "Management and governance",
         "Company Values",
         "Our Culture",
+        "Management and governance",
         "Partners & Alliances"
       ],
       featuredTitle: "About NeuroVerse",
