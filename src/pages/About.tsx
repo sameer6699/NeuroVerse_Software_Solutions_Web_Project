@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud, Users, Target, Heart, Award, Handshake, Lightbulb, Cpu } from "lucide-react";
+import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, Twitter, Github, Users, Target, Heart, Award, Handshake, Lightbulb, Cpu, FileText } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
@@ -395,14 +395,15 @@ export default function About() {
       </section>
 
       {/* Trusted By Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
+      <section className="relative bg-white py-12 md:py-16">
+        {/* Full-width background container */}
+        <div className="w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full overflow-hidden shadow-2xl"
           >
             {/* Background Image */}
             <div 
@@ -420,7 +421,7 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-blue-900/10"></div>
               
               {/* White Overlay Box - Left Side */}
-              <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 lg:w-2/5 flex items-center p-8 md:p-12 lg:p-16">
+              <div className="absolute left-4 md:left-8 lg:left-12 xl:left-16 top-0 bottom-0 w-full md:w-1/2 lg:w-2/5 flex items-center p-8 md:p-12 lg:p-16">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentSlide}
@@ -444,14 +445,15 @@ export default function About() {
               </div>
 
               {/* Carousel Navigation - Bottom Right */}
-              <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 flex items-center gap-3 md:gap-4 z-20">
+              <div className="absolute bottom-6 md:bottom-8 right-4 md:right-8 lg:right-12 xl:right-16 flex items-center gap-3 md:gap-4 z-20">
                 {/* Left Arrow */}
                 <motion.button
                   onClick={handlePrevious}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
                   aria-label="Previous"
+                  type="button"
                 >
                   <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 rotate-180 group-hover:text-blue-600 transition-colors" />
                 </motion.button>
@@ -462,12 +464,13 @@ export default function About() {
                     <button
                       key={index}
                       onClick={() => handleDotClick(index)}
-                      className={`rounded-full transition-all duration-300 ${
+                      className={`rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
                         index === currentSlide
                           ? 'bg-blue-600 w-8 md:w-10 h-2 md:h-2.5 shadow-md' 
                           : 'bg-white border-2 border-gray-300 hover:border-blue-400 hover:bg-blue-50 w-2 h-2 md:w-2.5 md:h-2.5'
                       }`}
                       aria-label={`Slide ${index + 1}`}
+                      type="button"
                     />
                   ))}
                 </div>
@@ -477,8 +480,9 @@ export default function About() {
                   onClick={handleNext}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
                   aria-label="Next"
+                  type="button"
                 >
                   <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 group-hover:text-blue-600 transition-colors" />
                 </motion.button>
@@ -760,19 +764,6 @@ export default function About() {
 
               {/* Right Side - Social Media Icons */}
               <div className="flex items-center gap-4 md:gap-6 lg:gap-8 flex-wrap justify-center md:justify-end">
-                {/* Facebook Icon */}
-                <motion.a
-                  href="https://www.facebook.com/neuroverse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-
                 {/* LinkedIn Icon */}
                 <motion.a
                   href="https://www.linkedin.com/company/neuroverse"
@@ -780,23 +771,36 @@ export default function About() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="LinkedIn"
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="LinkedIn - Connect with us on LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.a>
 
-                {/* SoundCloud/Cloud Icon */}
+                {/* Facebook Icon */}
                 <motion.a
-                  href="https://soundcloud.com/neuroverse"
+                  href="https://www.facebook.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="SoundCloud"
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="Facebook - Follow us on Facebook"
                 >
-                  <Cloud className="w-5 h-5 md:w-6 md:h-6" />
+                  <Facebook className="w-5 h-5 md:w-6 md:h-6" />
+                </motion.a>
+
+                {/* Twitter Icon */}
+                <motion.a
+                  href="https://www.twitter.com/neuroverse"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.15, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="Twitter - Follow us on Twitter"
+                >
+                  <Twitter className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.a>
 
                 {/* Instagram Icon */}
@@ -806,49 +810,36 @@ export default function About() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="Instagram"
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="Instagram - Follow us on Instagram"
                 >
                   <Instagram className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.a>
 
-                {/* Grid/Portfolio Icon */}
-                <motion.a
-                  href="https://www.behance.net/neuroverse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="Portfolio"
-                >
-                  <Grid3x3 className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-
-                {/* Document/File Icon */}
-                <motion.a
-                  href="https://www.medium.com/@neuroverse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="Blog"
-                >
-                  <FileText className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
-
-                {/* YouTube/Play Button Icon */}
+                {/* YouTube Icon */}
                 <motion.a
                   href="https://www.youtube.com/@neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group"
-                  aria-label="YouTube"
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="YouTube - Subscribe to our YouTube channel"
                 >
                   <Youtube className="w-5 h-5 md:w-6 md:h-6" />
+                </motion.a>
+
+                {/* GitHub Icon */}
+                <motion.a
+                  href="https://github.com/neuroverse"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.15, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 md:w-12 md:h-12 border-2 border-white rounded-lg flex items-center justify-center text-white hover:bg-white hover:text-blue-900 transition-all duration-300 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-900"
+                  aria-label="GitHub - View our code repositories on GitHub"
+                >
+                  <Github className="w-5 h-5 md:w-6 md:h-6" />
                 </motion.a>
               </div>
             </div>

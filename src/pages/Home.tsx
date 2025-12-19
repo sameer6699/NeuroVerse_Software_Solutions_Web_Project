@@ -103,7 +103,7 @@ function ClientStoriesCarousel() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-lg overflow-hidden shadow-xl"
+      className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden shadow-xl"
     >
       {/* Yellow Industrial Background */}
       <div
@@ -136,7 +136,7 @@ function ClientStoriesCarousel() {
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 lg:w-[45%] flex items-center p-6 md:p-8 lg:p-10 z-10"
+        className="absolute left-4 md:left-8 lg:left-12 xl:left-16 top-0 bottom-0 w-full md:w-1/2 lg:w-[45%] flex items-center p-6 md:p-8 lg:p-10 z-10"
       >
         <div className="bg-white rounded-lg shadow-2xl p-6 md:p-8 lg:p-10 w-full max-w-lg">
           <h3 className="font-heading font-bold text-xl md:text-2xl lg:text-3xl mb-4 text-gray-900 dark:text-gray-100 leading-tight">
@@ -158,7 +158,7 @@ function ClientStoriesCarousel() {
       </motion.div>
 
       {/* Carousel Navigation - Pill-shaped Control */}
-      <div className="absolute bottom-6 right-6 z-20">
+      <div className="absolute bottom-6 right-4 md:right-8 lg:right-12 xl:right-16 z-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -171,33 +171,36 @@ function ClientStoriesCarousel() {
           {/* Previous Button (Left Arrow) */}
           <button
             onClick={prevStory}
-            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
             aria-label="Previous story"
+            type="button"
           >
             <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
           </button>
 
           {/* Dots Indicator */}
           <div className="flex items-center gap-1.5 px-1">
-            {clientStories.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToStory(index)}
-                className={`transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-blue-600 w-8 h-2 rounded-full'
-                    : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
-                }`}
-                aria-label={`Go to story ${index + 1}`}
-              />
-            ))}
+                  {clientStories.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToStory(index)}
+                      className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
+                        index === currentIndex
+                          ? 'bg-blue-600 w-8 h-2 rounded-full'
+                          : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to story ${index + 1}`}
+                      type="button"
+                    />
+                  ))}
           </div>
 
           {/* Next Button (Right Arrow) */}
           <button
             onClick={nextStory}
-            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+            className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
             aria-label="Next story"
+            type="button"
           >
             <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
           </button>
@@ -336,33 +339,36 @@ function AnnualReportCarousel() {
             {/* Previous Button (Left Arrow) */}
             <button
               onClick={prevReport}
-              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
               aria-label="Previous report"
+              type="button"
             >
               <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
             </button>
 
             {/* Dots Indicator */}
             <div className="flex items-center gap-1.5 px-1">
-              {annualReports.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToReport(index)}
-                  className={`transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'bg-blue-600 w-8 h-2 rounded-full'
-                      : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
-                  }`}
-                  aria-label={`Go to report ${index + 1}`}
-                />
-              ))}
+                  {annualReports.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToReport(index)}
+                      className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
+                        index === currentIndex
+                          ? 'bg-blue-600 w-8 h-2 rounded-full'
+                          : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
+                      }`}
+                      aria-label={`Go to report ${index + 1}`}
+                      type="button"
+                    />
+                  ))}
             </div>
 
             {/* Next Button (Right Arrow) */}
             <button
               onClick={nextReport}
-              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+              className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
               aria-label="Next report"
+              type="button"
             >
               <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
             </button>
@@ -582,8 +588,9 @@ export default function Home() {
               <div className="relative w-full max-w-2xl">
                 <img
                   src={images.hero.image}
-                  alt="Hero Illustration"
+                  alt="NeuroVerse - Engineering the Next Generation of Smart Software"
                   className="w-full h-auto object-contain"
+                  loading="eager"
                 />
               </div>
             </motion.div>
@@ -723,7 +730,7 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-8 md:py-10 px-4 bg-white">
+      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Highlights">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -775,8 +782,9 @@ export default function Home() {
                 <div className="w-full h-48 md:h-56 overflow-hidden relative">
                   <img
                     src={highlight.image}
-                    alt={highlight.alt}
+                    alt={highlight.alt || highlight.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-300"></div>
                 </div>
@@ -829,7 +837,7 @@ export default function Home() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      <section className="py-12 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="What We Do">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1021,7 +1029,7 @@ export default function Home() {
       <ScrollTopButton />
 
       {/* Latest Insights Section */}
-      <section className="py-8 md:py-10 px-4 bg-white relative">
+      <section className="py-12 md:py-16 px-4 bg-white relative" aria-label="Latest Insights">
         <div className="max-w-7xl mx-auto max-w-5k-content relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1053,6 +1061,8 @@ export default function Home() {
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                 }}
+                role="img"
+                aria-label="The Future of AI-Driven Software Development 2025"
               >
                 {/* Optional overlay for better text readability on image */}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
@@ -1178,25 +1188,32 @@ export default function Home() {
       </section>
 
       {/* Recent Client Stories Section */}
-      <section className="py-8 md:py-10 px-4 bg-white">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8 flex justify-end"
-          >
-            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-right">
-              Recent client stories
-            </h2>
-          </motion.div>
-
-          <ClientStoriesCarousel />
+      <section className="py-12 md:py-16 bg-white" aria-label="Recent Client Stories">
+        {/* Full-width background container */}
+        <div className="w-full">
+          {/* Content container with padding */}
+          <div className="max-w-7xl mx-auto max-w-5k-content px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-6 md:mb-8 flex justify-end"
+            >
+              <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-right">
+                Recent client stories
+              </h2>
+            </motion.div>
+          </div>
+          
+          {/* Full-width carousel container */}
+          <div className="w-full px-0">
+            <ClientStoriesCarousel />
+          </div>
         </div>
       </section>
 
       {/* Latest News Section */}
-      <section className="py-8 md:py-10 px-4 bg-white">
+      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Latest News">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1320,7 +1337,7 @@ export default function Home() {
       </section>
 
       {/* Inside Stories Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Inside Stories">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1345,8 +1362,9 @@ export default function Home() {
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden">
                 <img
                   src={images.banners.aiFuture || images.projects.latestInsights}
-                  alt="AI-Powered Innovation"
+                  alt="Build the future with AI - Transforming businesses through intelligent software solutions"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               </div>
@@ -1376,8 +1394,9 @@ export default function Home() {
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
                     src={images.banners.innovation || images.projects.latestInsights}
-                    alt="How to power innovation"
+                    alt="How to power innovation - Why AI technology is at the core of digital transformation"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
@@ -1405,8 +1424,9 @@ export default function Home() {
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
                     src={images.banners.techLesson || images.projects.latestInsights}
-                    alt="Tech lessons for positive futures"
+                    alt="Tech lessons for positive futures - The lasting value of collaborative AI development"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
