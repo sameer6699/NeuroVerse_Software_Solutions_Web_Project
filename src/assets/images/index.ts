@@ -188,6 +188,8 @@ export const bannerImages = {
   powerBiAnalytics: new URL('./banner-Images/power-bi-analytics.png', import.meta.url).href,
   insightsHeroSection: new URL('./banner-Images/insights-hero-section.png', import.meta.url).href,
   industriesHeroSection: new URL('./banner-Images/Industries-hero-section-image.png', import.meta.url).href,
+  industry40Banner: new URL('./banner-Images/Industry-4.0 Banner.jpg', import.meta.url).href,
+  industry40FooterBanner: new URL('./banner-Images/industry-4.0-footer-baneer.jpg', import.meta.url).href,
   servicesHeroBanner: new URL('./banner-Images/services-hero-banner-img.jpg', import.meta.url).href,
   aboutUsBanner: new URL('./banner-Images/about-us.jpeg', import.meta.url).href,
   ourStoryCardImg: new URL('./banner-Images/our-story-card-img.jpg', import.meta.url).href,
@@ -197,6 +199,12 @@ export const bannerImages = {
   innovationTechnology: new URL('./banner-Images/innovation-technology.jpg', import.meta.url).href,
   partnership: new URL('./banner-Images/partnership.jpg', import.meta.url).href,
   techPartner: new URL('./banner-Images/tech-partner.jpg', import.meta.url).href,
+  productHeroBanner: new URL('./banner-Images/product-hero-banner.jpg', import.meta.url).href,
+  careerOperationAtNeuroverse: new URL('./banner-Images/career-operation-at-neuroverse.jpg', import.meta.url).href,
+  collaborativeCardImg: new URL('./banner-Images/collobarative-card-img.jpg', import.meta.url).href,
+  innovationCardImg: new URL('./banner-Images/innovation-card-img.jpg', import.meta.url).href,
+  teamImg: new URL('./banner-Images/team-img.jpg', import.meta.url).href,
+  aboutUsSecondBanner: new URL('./banner-Images/about-us-second-banner-img.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

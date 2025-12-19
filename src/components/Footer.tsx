@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import { images } from "@/assets";
 import { motion } from "framer-motion";
-import { Linkedin, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Youtube, Twitter, Mail } from "lucide-react";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -84,6 +84,17 @@ export default function Footer() {
             <p className="font-sans text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
               Transforming the future of technology and business through innovation, expertise, and collaboration.
             </p>
+            
+            {/* Email Address */}
+            <div className="mb-6">
+              <a
+                href="mailto:info@neuroversesoftwaresolutions.com"
+                className="font-sans text-sm md:text-base text-gray-600 hover:text-blue-600 transition-colors duration-200 inline-flex items-center gap-2 group"
+              >
+                <Mail className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+                <span className="group-hover:underline">info@neuroversesoftwaresolutions.com</span>
+              </a>
+            </div>
             
             {/* Social Media Icons */}
             <div className="flex items-center gap-4">

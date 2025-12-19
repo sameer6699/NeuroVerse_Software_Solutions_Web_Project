@@ -22,42 +22,8 @@ export default function Products() {
 
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
-  // Typewriter effect hook with infinite loop
-  const useTypewriter = (text: string, speed: number = 100, deleteSpeed: number = 50, pauseTime: number = 2000) => {
-    const [displayedText, setDisplayedText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-      let timeout: NodeJS.Timeout;
-
-      if (!isDeleting && displayedText.length < text.length) {
-        // Typing forward
-        timeout = setTimeout(() => {
-          setDisplayedText(text.slice(0, displayedText.length + 1));
-        }, speed);
-      } else if (!isDeleting && displayedText.length === text.length) {
-        // Finished typing, wait then start deleting
-        timeout = setTimeout(() => {
-          setIsDeleting(true);
-        }, pauseTime);
-      } else if (isDeleting && displayedText.length > 0) {
-        // Deleting backward
-        timeout = setTimeout(() => {
-          setDisplayedText(displayedText.slice(0, -1));
-        }, deleteSpeed);
-      } else if (isDeleting && displayedText.length === 0) {
-        // Finished deleting, start typing again
-        setIsDeleting(false);
-      }
-
-      return () => clearTimeout(timeout);
-    }, [displayedText, text, speed, deleteSpeed, pauseTime, isDeleting]);
-
-    return displayedText;
-  };
-
-  const typewriterText = useTypewriter("Products.", 150, 80, 2000);
 
   // Handle navigation to products section
   useEffect(() => {
@@ -138,83 +104,39 @@ export default function Products() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
       <section 
+        id="home"
         ref={heroRef}
-        className="relative pt-32 pb-20 px-4 min-h-[85vh] md:min-h-[90vh] flex items-end overflow-hidden"
-        style={{
-          backgroundImage: `url(${images.projects.insightsHero || images.hero.background})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
+        className="relative pt-32 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
-        {/* Subtle Parallax Effect - No Overlay */}
+        {/* Background Image with Improved Positioning and Zoom Effect */}
+        <motion.div 
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            scale: backgroundScale,
+            y: backgroundY,
+            backgroundImage: `url(${images.banners.productHeroBanner})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        
+        {/* Subtle Parallax Effect */}
         <motion.div
           style={{ y: backgroundY }}
           className="absolute inset-0"
         >
-          {/* Very subtle gradient for slight depth - almost transparent */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5"></div>
+          {/* Enhanced gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"></div>
         </motion.div>
-
-        {/* Content Container */}
-        <div className="max-w-7xl mx-auto max-w-5k-content relative z-10 w-full pb-0 -mb-12 md:-mb-16 lg:-mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full md:w-2/3 lg:w-1/2"
-          >
-            {/* Large "Products" Text with Typewriter Effect */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-              className="font-bold text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] leading-[0.9] mb-6 relative z-10 whitespace-nowrap"
-              style={{
-                fontFamily: "'Poppins', 'Montserrat', sans-serif",
-                fontWeight: 700,
-                letterSpacing: '-0.02em',
-                whiteSpace: 'nowrap',
-                mixBlendMode: 'normal',
-              }}
-            >
-              <span 
-                className="whitespace-nowrap inline-block"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.75) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  textShadow: '0 4px 30px rgba(0, 0, 0, 0.4), 0 8px 60px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.08)',
-                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15))',
-                }}
-              >
-                {typewriterText}
-                <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="inline-block w-0.5 h-[0.9em] ml-1 align-middle"
-                  style={{
-                    verticalAlign: 'middle',
-                    background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%)',
-                    boxShadow: '0 0 8px rgba(0, 0, 0, 0.6)',
-                  }}
-                />
-              </span>
-            </motion.h1>
-          </motion.div>
-        </div>
 
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20"
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -229,6 +151,41 @@ export default function Products() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Products Card - Positioned outside hero section, extending from hero */}
+      <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
+        <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
+          <div className="flex justify-start">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative"
+            >
+              {/* Blue Background Box - Overlay on left side */}
+              <div 
+                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
+              >
+                {/* Products Text - Centered in the box */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Poppins', 'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                  }}
+                >
+                  Products
+                </motion.h1>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       {/* Content Section Below Hero */}
       <section className="relative bg-white py-8 md:py-10 px-4">

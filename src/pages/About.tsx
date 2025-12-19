@@ -408,11 +408,16 @@ export default function About() {
             <div 
               className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `url(${images.projects.insightsHero || images.hero.background})`,
+                backgroundImage: `url(${images.banners.aboutUsSecondBanner})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
             >
-              {/* Overlay for better text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent"></div>
+              {/* Enhanced Gradient Overlays for better text readability and visual consistency */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/10 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-blue-900/10"></div>
               
               {/* White Overlay Box - Left Side */}
               <div className="absolute left-0 top-0 bottom-0 w-full md:w-1/2 lg:w-2/5 flex items-center p-8 md:p-12 lg:p-16">
@@ -423,7 +428,7 @@ export default function About() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 50 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="bg-white rounded-xl p-8 md:p-10 lg:p-12 shadow-2xl max-w-lg w-full"
+                    className="bg-white/95 backdrop-blur-sm rounded-xl p-8 md:p-10 lg:p-12 shadow-2xl max-w-lg w-full border border-white/20"
                   >
                     {/* Heading */}
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
@@ -439,28 +444,28 @@ export default function About() {
               </div>
 
               {/* Carousel Navigation - Bottom Right */}
-              <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 flex items-center gap-3 md:gap-4">
+              <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 flex items-center gap-3 md:gap-4 z-20">
                 {/* Left Arrow */}
                 <motion.button
                   onClick={handlePrevious}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300 cursor-pointer group"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20"
                   aria-label="Previous"
                 >
-                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 rotate-180 group-hover:text-gray-900 transition-colors" />
+                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 rotate-180 group-hover:text-blue-600 transition-colors" />
                 </motion.button>
 
                 {/* Carousel Dots */}
-                <div className="flex items-center gap-2 md:gap-3 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+                <div className="flex items-center gap-2 md:gap-3 bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-xl border border-white/20">
                   {carouselItems.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => handleDotClick(index)}
                       className={`rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? 'bg-blue-600 w-8 md:w-10 h-2 md:h-2.5' 
-                          : 'bg-white border-2 border-gray-300 hover:border-gray-400 w-2 h-2 md:w-2.5 md:h-2.5'
+                          ? 'bg-blue-600 w-8 md:w-10 h-2 md:h-2.5 shadow-md' 
+                          : 'bg-white border-2 border-gray-300 hover:border-blue-400 hover:bg-blue-50 w-2 h-2 md:w-2.5 md:h-2.5'
                       }`}
                       aria-label={`Slide ${index + 1}`}
                     />
@@ -472,10 +477,10 @@ export default function About() {
                   onClick={handleNext}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg hover:bg-white transition-colors duration-300 cursor-pointer group"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-xl hover:bg-white hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-white/20"
                   aria-label="Next"
                 >
-                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 group-hover:text-gray-900 transition-colors" />
+                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-700 group-hover:text-blue-600 transition-colors" />
                 </motion.button>
               </div>
             </div>
@@ -555,7 +560,7 @@ export default function About() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                    src={images.projects.latestInsights || images.hero.background}
                     alt="Our Culture"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -616,7 +621,7 @@ export default function About() {
                 {/* Image Section */}
                 <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                   <img
-                    src={images.banners.techPartner}
+                    src={images.projects.latestInsights || images.hero.background}
                     alt="Technology partners"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />

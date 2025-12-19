@@ -345,11 +345,11 @@ export default function SmartManufacturingIndustry4() {
           transition={{ duration: 0.8 }}
           className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl"
         >
-          {/* Background Image - Full Width with Manufacturing Theme */}
+          {/* Background Image - Full Width with Industry 4.0 Banner */}
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.banners.manufacturingHeroBanner})`,
+              backgroundImage: `url(${images.banners.industry40Banner})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -654,10 +654,10 @@ export default function SmartManufacturingIndustry4() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center relative overflow-hidden group hover:from-blue-800 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 min-h-[400px] md:min-h-[500px]">
               {/* Animated background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
@@ -696,10 +696,10 @@ export default function SmartManufacturingIndustry4() {
               </motion.div>
             </div>
 
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
+            {/* Right Section - Image (40% - 2 columns) - Height matches content section */}
+            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] overflow-hidden">
               <img
-                src={images.banners.researchBanner}
+                src={images.banners.industry40FooterBanner}
                 alt="NeuroVerse smart manufacturing leadership recognition"
                 className="w-full h-full object-cover object-center"
               />

@@ -34,7 +34,7 @@ export default function Careers() {
       {/* Hero Section with Background Image */}
       <section 
         ref={heroRef}
-        className="relative pt-32 pb-20 px-4 min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden"
+        className="relative pt-40 md:pt-48 lg:pt-56 pb-20 px-4 min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${images.projects.insightsHero || images.hero.background})`,
           backgroundSize: 'cover',
@@ -461,6 +461,29 @@ export default function Careers() {
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.div>
+
+            {/* Card 6: Benefits & Perks - Solid Blue Background (same style as Diversity and Inclusion) */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
+              onClick={() => {
+                // Navigate to benefits section or scroll to benefits
+                const benefitsSection = document.getElementById('benefits-section');
+                if (benefitsSection) {
+                  benefitsSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <span className="text-base md:text-lg lg:text-xl font-heading font-bold text-white">
+                Benefits & Perks
+              </span>
+              <div className="flex justify-end">
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -546,13 +569,13 @@ export default function Careers() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative h-[500px] md:h-[600px] lg:h-full min-h-[500px] md:min-h-[600px] overflow-hidden"
+              className="lg:col-span-3 relative h-[500px] md:h-[600px] lg:h-full min-h-[500px] md:min-h-[600px] overflow-hidden group"
             >
               {/* Background Image - Office/People Image */}
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
                 style={{
-                  backgroundImage: `url(${images.projects.latestInsights})`,
+                  backgroundImage: `url(${images.banners.careerOperationAtNeuroverse})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
@@ -595,7 +618,7 @@ export default function Careers() {
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.latestInsights}
+                src={images.banners.collaborativeCardImg}
                 alt="Collaborative Workspaces"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -616,7 +639,7 @@ export default function Careers() {
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                src={images.banners.innovationCardImg}
                 alt="Innovation Hub"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -637,7 +660,7 @@ export default function Careers() {
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.insightsHero || images.projects.latestInsights}
+                src={images.banners.teamImg}
                 alt="Team Building Events"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
