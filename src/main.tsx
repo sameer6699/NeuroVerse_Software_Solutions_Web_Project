@@ -35,6 +35,7 @@ import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import OurStory from "./pages/OurStory.tsx";
+import CompanyValues from "./pages/CompanyValues.tsx";
 import ManagementGovernance from "./pages/ManagementGovernance.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
@@ -107,6 +108,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/news" element={<News />} />
               <Route path="/about" element={<About />} />
               <Route path="/about/our-story" element={<OurStory />} />
+              <Route path="/about/company-value" element={<CompanyValues />} />
               <Route path="/about/management-governance" element={<ManagementGovernance />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />

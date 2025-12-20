@@ -703,6 +703,8 @@ export default function About() {
                   onClick={() => {
                     if (item.title === "Our Story") {
                       navigate("/about/our-story");
+                    } else if (item.title === "Company Values") {
+                      navigate("/about/company-value");
                     }
                   }}
                 >
