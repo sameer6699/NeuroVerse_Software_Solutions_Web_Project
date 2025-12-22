@@ -19,9 +19,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const { scrollY } = useScroll();
-  
-  // Check if we're on the contact page
-  const isOnContactPage = location.pathname === "/contact";
 
   // Handle search
   const handleSearch = (e: React.FormEvent) => {
@@ -835,13 +832,14 @@ export default function Navbar() {
 
           {/* Right Section: Utility Links and Actions */}
           <div className="hidden lg:flex items-center gap-6 ml-auto">
-            {/* Contact Us */}
-            <Link
-              to="/contact"
-              className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200"
+            {/* Login Button */}
+            <Button
+              onClick={() => navigate("/auth")}
+              variant="outline"
+              className="text-sm font-medium text-gray-900 hover:text-blue-600 hover:border-blue-600 transition-all duration-200 border-gray-300 bg-white hover:bg-blue-50"
             >
-              Contact us
-            </Link>
+              Login
+            </Button>
 
             {/* Search and Theme Toggle */}
             <div className="flex items-center gap-4 border-l border-gray-200 pl-4 transition-colors duration-300">
@@ -919,15 +917,6 @@ export default function Navbar() {
                 className="w-full transition-all duration-200 text-gray-900 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-600"
               >
                 Sign In
-              </Button>
-              <Button
-                onClick={() => {
-                  navigate("/contact");
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200"
-              >
-                Request Callback
               </Button>
             </div>
           </div>

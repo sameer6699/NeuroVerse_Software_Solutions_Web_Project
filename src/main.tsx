@@ -7,7 +7,6 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
 import Home from "./pages/Home.tsx";
-import Contact from "./pages/Contact.tsx";
 import Insights from "./pages/Insights.tsx";
 import HotTopic from "./pages/HotTopic.tsx";
 import ResearchAndDevelopment from "./pages/ResearchAndDevelopment.tsx";
@@ -110,7 +109,6 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/about/our-story" element={<OurStory />} />
               <Route path="/about/company-value" element={<CompanyValues />} />
               <Route path="/about/management-governance" element={<ManagementGovernance />} />
-              <Route path="/contact" element={<Contact />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             {/* Auth route - can be outside layout if needed, or keep it inside for consistency */}

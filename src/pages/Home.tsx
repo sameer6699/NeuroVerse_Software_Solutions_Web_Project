@@ -257,8 +257,8 @@ function AnnualReportCarousel() {
       // Navigate to about page with hash and state to scroll to vision section
       navigate("/about#vision", { state: { scrollToVision: true } });
     } else if (currentReport.buttonText === "Partner with us") {
-      // Navigate to contact page for partnership
-      navigate("/contact");
+      // Navigate to about page for partnership
+      navigate("/about");
     } else if (currentReport.buttonText === "Learn more") {
       // Navigate to insights or about page
       navigate("/insights");

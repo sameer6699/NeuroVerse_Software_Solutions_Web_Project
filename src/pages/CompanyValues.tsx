@@ -620,7 +620,6 @@ export default function CompanyValues() {
                   We guarantee fair investigation, complete confidentiality, and protection from retaliation for all reporters. Your voice matters, and we are here to listen.
                 </p>
                 <motion.button
-                  onClick={() => navigate("/contact")}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-colors duration-300 w-fit"

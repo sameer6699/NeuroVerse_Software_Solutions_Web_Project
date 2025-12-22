@@ -49,6 +49,11 @@ export default function News() {
       description: "Resources for journalists and media professionals including logos, press materials, and contact information.",
       image: images.projects.hotTopicsBackground || images.projects.latestInsights,
     },
+    {
+      title: "Newsletters",
+      description: "Subscribe to our monthly newsletters for curated insights, industry trends, and exclusive updates delivered to your inbox.",
+      image: images.projects.insightsHero || images.projects.latestInsights,
+    },
   ];
 
   return (

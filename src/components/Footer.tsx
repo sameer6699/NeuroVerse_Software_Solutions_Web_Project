@@ -14,7 +14,6 @@ export default function Footer() {
     { label: "Careers", href: "/careers" },
     { label: "News", href: "/news" },
     { label: "About us", href: "/about" },
-    { label: "Contact us", href: "/contact" },
   ];
 
   // Legal & Compliance Links

@@ -439,9 +439,6 @@ export default function Careers() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
-              onClick={() => {
-                navigate("/contact");
-              }}
             >
               {/* Background Image */}
               <div
@@ -820,9 +817,6 @@ export default function Careers() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="relative cursor-pointer group"
-              onClick={() => {
-                navigate("/contact");
-              }}
             >
               {/* Image */}
               <div className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-lg mb-4 md:mb-6">
