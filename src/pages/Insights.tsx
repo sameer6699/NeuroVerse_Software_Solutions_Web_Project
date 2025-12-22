@@ -269,8 +269,8 @@ export default function Insights() {
       </section>
 
       {/* Hot Topics Section */}
-      <section className="relative bg-white py-8 md:py-10 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
+      <section className="relative bg-white py-8 md:py-10">
+        <div className="max-w-7xl mx-auto max-w-5k-content px-4">
           {/* Hot Topics Heading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -283,37 +283,39 @@ export default function Insights() {
               Hot topics
             </h2>
           </motion.div>
+        </div>
 
-          {/* Carousel Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Background Banner with Image */}
-            <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${images.projects.hotTopicsBackground})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              />
+        {/* Carousel Container - Full Width Background */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full"
+        >
+          {/* Background Banner with Image - Full Width */}
+          <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+            {/* Background Image - Full Width */}
+            <div 
+              className="absolute inset-0 w-full"
+              style={{
+                backgroundImage: `url(${images.projects.hotTopicsBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
 
               {/* White Content Card - Left Side */}
-              <div className="absolute inset-0 flex items-center justify-start px-4 md:px-8 lg:px-12">
-                <motion.div
-                  key={currentTopicIndex}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-2xl max-w-xl md:max-w-2xl w-full -ml-2 md:ml-0 lg:ml-4 group"
-                >
+              <div className="absolute inset-0 flex items-center justify-start">
+                <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-8 lg:px-12">
+                  <motion.div
+                    key={currentTopicIndex}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-xl overflow-hidden border border-gray-200 shadow-2xl max-w-xl md:max-w-2xl w-full group"
+                  >
                   {/* Card Content */}
                   <div className="p-6 md:p-8 flex-1 flex flex-col">
                     {/* Title */}
@@ -342,11 +344,12 @@ export default function Insights() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               </div>
 
               {/* Carousel Navigation - Bottom Right */}
-              <div className="absolute bottom-6 right-4 md:right-6 z-20">
+              <div className="absolute bottom-6 right-4 md:right-6 lg:right-8 xl:right-12 z-20">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -390,7 +393,6 @@ export default function Insights() {
               </div>
             </div>
           </motion.div>
-        </div>
       </section>
 
       {/* Initiatives for Research and Development Section */}
