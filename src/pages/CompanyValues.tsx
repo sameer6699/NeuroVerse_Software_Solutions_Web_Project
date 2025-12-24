@@ -80,13 +80,13 @@ export default function CompanyValues() {
     },
     {
       title: "Environment, social and governance",
-      image: images.banners.csrBannerImg || images.banners.companyValues || images.hero.background,
-      description: "Our commitment to sustainable and responsible business practices"
+      image: images.banners.ourEnvironmentBannerImg || images.banners.csrBannerImg || images.banners.companyValues || images.hero.background,
+      description: "Discover our commitment to sustainable and responsible business practices"
     },
     {
       title: "Corporate social responsibility",
-      image: images.banners.csrBannerImg || images.banners.ourCulture || images.hero.background,
-      description: "Making a positive impact on society and communities"
+      image: images.banners.corporateSocialResponsibilityBannerImg || images.banners.csrBannerImg || images.banners.ourCulture || images.hero.background,
+      description: "Discover our commitment to making a positive impact on society and communities"
     }
   ];
 
@@ -104,7 +104,7 @@ export default function CompanyValues() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.companyValues || images.banners.aboutUsBanner || images.hero.background})`,
+            backgroundImage: `url(${images.banners.valuesHeroSectionBg || images.banners.companyValues || images.banners.aboutUsBanner || images.hero.background})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -353,7 +353,7 @@ export default function CompanyValues() {
             <div className="order-1 lg:order-2">
               <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src={images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
+                  src={images.banners.ethicsBannerImage || images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
                   alt="Honoring human rights"
                   className="w-full h-full object-cover"
                 />
@@ -400,7 +400,7 @@ export default function CompanyValues() {
               {/* Image */}
               <div className="relative w-full h-48 md:h-56 lg:h-64 rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src={images.banners.innovationTechnology || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.responsibleAiDevelopmentBannerImg || images.banners.innovationTechnology || images.banners.aboutUsBanner || images.hero.background}
                   alt="Championing responsible AI development"
                   className="w-full h-full object-cover"
                 />
@@ -420,7 +420,7 @@ export default function CompanyValues() {
               {/* Image */}
               <div className="relative w-full h-48 md:h-56 lg:h-64 rounded-lg overflow-hidden shadow-lg">
                 <img
-                  src={images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.integrityBannerImg || images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background}
                   alt="Ensuring transparency and integrity"
                   className="w-full h-full object-cover"
                 />
@@ -471,7 +471,7 @@ export default function CompanyValues() {
             >
               <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.culturalImgBanner || images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background}
                   alt="Ethical culture"
                   className="w-full h-full object-cover"
                 />
@@ -542,7 +542,7 @@ export default function CompanyValues() {
             >
               <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.ourStoryBannerImg || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.objectivesBannerImg || images.banners.ourStoryBannerImg || images.banners.aboutUsBanner || images.hero.background}
                   alt="Our objectives"
                   className="w-full h-full object-cover"
                 />
@@ -587,7 +587,7 @@ export default function CompanyValues() {
             >
               <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
+                  src={images.banners.humanRightBannerImg || images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
                   alt="Honoring human rights"
                   className="w-full h-full object-cover"
                 />
@@ -640,7 +640,7 @@ export default function CompanyValues() {
             >
               <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.ourStoryCardImg || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.speakUpBannerImg || images.banners.ourStoryCardImg || images.banners.aboutUsBanner || images.hero.background}
                   alt="Speaking up"
                   className="w-full h-full object-cover"
                 />
@@ -698,7 +698,6 @@ export default function CompanyValues() {
                   <div className="text-2xl md:text-3xl font-semibold mb-2">WORLD'S MOST</div>
                   <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">ETHICAL</div>
                   <div className="text-2xl md:text-3xl font-semibold mb-6">COMPANIES</div>
-                  <div className="text-lg md:text-xl font-medium mb-4">ETHISPHERE</div>
                   <div className="text-sm md:text-base opacity-90">ETHICAL LEADERSHIP RECOGNITION</div>
                 </div>
               </div>

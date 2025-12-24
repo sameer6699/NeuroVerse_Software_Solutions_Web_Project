@@ -436,6 +436,8 @@ export default function Navbar() {
                                 itemHref = "/about/our-story";
                               } else if (item === "Company Values") {
                                 itemHref = "/about/company-value";
+                              } else if (item === "Our Culture") {
+                                itemHref = "/about/our-culture";
                               } else if (item === "Management and governance") {
                                 itemHref = "/about/management-governance";
                               }
@@ -513,6 +515,9 @@ export default function Navbar() {
                                     } else if (link.sectionId === "about" && item === "Company Values") {
                                       e.preventDefault();
                                       navigate("/about/company-value");
+                                    } else if (link.sectionId === "about" && item === "Our Culture") {
+                                      e.preventDefault();
+                                      navigate("/about/our-culture");
                                     } else if (link.sectionId === "about" && item === "Management and governance") {
                                       e.preventDefault();
                                       navigate("/about/management-governance");

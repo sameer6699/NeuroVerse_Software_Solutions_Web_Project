@@ -560,6 +560,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="group cursor-pointer"
+              onClick={() => navigate("/about/our-culture")}
             >
               <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 {/* Image Section */}
@@ -705,6 +706,8 @@ export default function About() {
                       navigate("/about/our-story");
                     } else if (item.title === "Company Values") {
                       navigate("/about/company-value");
+                    } else if (item.title === "Our Culture") {
+                      navigate("/about/our-culture");
                     }
                   }}
                 >

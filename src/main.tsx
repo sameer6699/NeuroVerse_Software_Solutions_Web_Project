@@ -35,6 +35,7 @@ import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import OurStory from "./pages/OurStory.tsx";
 import CompanyValues from "./pages/CompanyValues.tsx";
+import OurCulture from "./pages/OurCulture.tsx";
 import ManagementGovernance from "./pages/ManagementGovernance.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
@@ -108,6 +109,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/about" element={<About />} />
               <Route path="/about/our-story" element={<OurStory />} />
               <Route path="/about/company-value" element={<CompanyValues />} />
+              <Route path="/about/our-culture" element={<OurCulture />} />
               <Route path="/about/management-governance" element={<ManagementGovernance />} />
               <Route path="*" element={<NotFound />} />
             </Route>
