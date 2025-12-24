@@ -237,6 +237,9 @@ export const bannerImages = {
   ourCultureHeroBannerSection: new URL('./banner-Images/our-culture-hero-banner-section.jpg', import.meta.url).href,
   strategicPartnershipBannerImage: new URL('./banner-Images/stratergic-partnership-baneer-image.jpg', import.meta.url).href,
   peopleInvestingBannerImg: new URL('./banner-Images/people-investing-banner-img.jpg', import.meta.url).href,
+  partnersAndAllianceHeroBanner: new URL('./banner-Images/partners-and-alliance-hero-banner.jpg', import.meta.url).href,
+  awardsBannerImages: new URL('./banner-Images/awards-banner-images.jpg', import.meta.url).href,
+  eventsBannerImage: new URL('./banner-Images/events-banner-image.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

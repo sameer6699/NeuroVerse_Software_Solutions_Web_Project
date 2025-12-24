@@ -722,9 +722,11 @@ export default function About() {
                       {/* Overlay on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       {/* Icon overlay */}
-                      <div className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Icon className="w-5 h-5 text-blue-600" />
-                      </div>
+                      {Icon && (
+                        <div className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Icon className="w-5 h-5 text-blue-600" />
+                        </div>
+                      )}
                     </div>
                     
                     {/* Content Section */}

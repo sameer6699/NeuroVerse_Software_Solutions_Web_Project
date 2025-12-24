@@ -108,20 +108,20 @@ export default function PartnersAndAlliances() {
   const latestUpdates = [
     {
       type: "Client story",
-      title: "NeuroVerse, Mistral AI and SAP combine forces to offer secure, scalable gen AI-powered solutions for regulated industries",
-      description: "This unique collaboration provides a trusted and secure environment to deploy custom AI solutions within SAP for those industries with strict data requirements such as financial services, public sector, aerospace & defense, and energy & utilities.",
+      title: "Transforming businesses through strategic technology partnerships",
+      description: "Our collaborative approach with leading technology partners enables us to deliver innovative solutions that drive digital transformation. By combining cutting-edge technologies with industry expertise, we help organizations unlock new possibilities and achieve their strategic objectives. This partnership-driven model allows us to provide comprehensive solutions tailored to meet the unique needs of businesses across various industries.",
       image: images.banners.innovationCardImg || images.banners.aboutUsBanner
     },
     {
       type: "Press release",
-      title: "We expand our strategic partnership with Google Cloud to revolutionize CX across industries with agentic AI",
-      description: "",
+      title: "Strengthening our cloud partnerships to deliver scalable solutions",
+      description: "We are committed to expanding our strategic alliances with leading cloud providers to offer enterprise-grade solutions that enable businesses to scale efficiently. These partnerships allow us to leverage the latest cloud technologies and best practices, ensuring our clients have access to secure, reliable, and innovative cloud infrastructure that supports their growth and digital transformation journey.",
       image: images.banners.technologyInnovation || images.banners.aboutUsBanner
     },
     {
       type: "Press release",
-      title: "We accelerate the enterprise adoption of agentic AI for industries with NVIDIA",
-      description: "",
+      title: "Accelerating innovation through technology alliances",
+      description: "Our focus on building strong technology partnerships positions us to deliver next-generation solutions that address the evolving needs of modern businesses. By collaborating with industry leaders, we combine innovative technologies with deep domain expertise to create transformative solutions that drive competitive advantage and enable organizations to stay ahead in an increasingly digital world.",
       image: images.banners.aiFuture || images.banners.aboutUsBanner
     }
   ];
@@ -154,21 +154,6 @@ export default function PartnersAndAlliances() {
       description: "Leverage IBM's enterprise-grade cloud infrastructure and AI capabilities for mission-critical applications."
     },
     {
-      name: "Alibaba Cloud",
-      logo: "Alibaba Cloud",
-      description: "Empower your business with Alibaba Cloud's comprehensive suite of cloud computing services."
-    },
-    {
-      name: "Salesforce",
-      logo: "Salesforce",
-      description: "Transform customer relationships with Salesforce's cloud-based CRM and business applications."
-    },
-    {
-      name: "VMware Cloud",
-      logo: "VMware",
-      description: "Modernize your infrastructure with VMware's hybrid cloud solutions and multi-cloud management."
-    },
-    {
       name: "Red Hat OpenShift",
       logo: "Red Hat",
       description: "Deploy and scale containerized applications with Red Hat's enterprise Kubernetes platform."
@@ -179,17 +164,17 @@ export default function PartnersAndAlliances() {
   const clientStories = [
     {
       title: "Wind Tre calls in new marketing capabilities in support of customer experience",
-      description: "By engaging with NeuroVerse, Wind Tre develops and implements a solution based on Pega, Adobe and Google Cloud components that enables more personalized inbound and outbound customer communication.",
+      description: "By engaging with NeuroVerse, Wind Tre develops and implements a solution based on Pega, Adobe and Google Cloud components that enables more personalized inbound and outbound customer communication. This innovative approach showcases our commitment to leveraging cutting-edge technology partnerships to deliver transformative solutions that enhance customer engagement and drive measurable business outcomes.",
       image: images.banners.teamImg || images.banners.aboutUsBanner
     },
     {
-      title: "Transforming digital experiences through strategic partnerships",
-      description: "Leveraging our technology partnerships to deliver innovative solutions that drive business transformation.",
+      title: "Driving innovation through strategic technology partnerships",
+      description: "Our focus on innovation drives us to collaborate with leading technology partners to create breakthrough solutions that transform businesses. Through strategic alliances, we combine cutting-edge technologies with deep industry expertise to deliver innovative platforms that enable organizations to stay ahead in an ever-evolving digital landscape. This commitment to innovation ensures our clients benefit from the latest advancements in AI, cloud computing, and digital transformation.",
       image: images.banners.collaborativeCardImg || images.banners.aboutUsBanner
     },
     {
-      title: "Accelerating cloud migration with trusted partners",
-      description: "Working with leading cloud providers to enable seamless digital transformation for enterprise clients.",
+      title: "Innovation at the forefront: Accelerating digital transformation",
+      description: "Innovation is at the heart of everything we do. By partnering with industry-leading cloud providers and technology innovators, we enable enterprises to embrace next-generation solutions that revolutionize their operations. Our innovation-driven approach combines advanced technologies, strategic partnerships, and deep domain knowledge to deliver transformative digital experiences that drive competitive advantage and sustainable growth for our clients.",
       image: images.banners.cloudNativeBannerImg || images.banners.aboutUsBanner
     }
   ];
@@ -200,7 +185,7 @@ export default function PartnersAndAlliances() {
     {
       title: "Awards and recognition",
       description: "Each year we are recognized as a global business and IT Innovator with our partners.",
-      image: images.banners.excellenceInExecutionBannerImg || images.banners.aboutUsBanner,
+      image: images.banners.awardsBannerImages || images.banners.excellenceInExecutionBannerImg || images.banners.aboutUsBanner,
       link: "/about"
     },
     {
@@ -212,7 +197,7 @@ export default function PartnersAndAlliances() {
     {
       title: "Events",
       description: "Join us at our partners' events where we share insights on our services and solutions.",
-      image: images.banners.innovationCardImg || images.banners.aboutUsBanner,
+      image: images.banners.eventsBannerImage || images.banners.innovationCardImg || images.banners.aboutUsBanner,
       link: "/about"
     }
   ];
@@ -239,7 +224,7 @@ export default function PartnersAndAlliances() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.strategicPartnershipBannerImage || images.banners.aboutUsBanner})`,
+            backgroundImage: `url(${images.banners.partnersAndAllianceHeroBanner || images.banners.strategicPartnershipBannerImage || images.banners.aboutUsBanner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
