@@ -36,7 +36,7 @@ export default function OurCulture() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background})`,
+            backgroundImage: `url(${images.banners.ourCultureHeroBannerSection || images.banners.ourCulture || images.banners.aboutUsBanner || images.hero.background})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -167,11 +167,12 @@ export default function OurCulture() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Column - Image */}
             <div className="order-1">
-              <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
+              <div className="relative w-full aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.ourStoryBannerImg || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.excellenceInExecutionBannerImg || images.banners.ourStoryBannerImg || images.banners.aboutUsBanner || images.hero.background}
                   alt="Excellence in execution"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -230,11 +231,12 @@ export default function OurCulture() {
 
             {/* Right Column - Image */}
             <div className="order-1 lg:order-2">
-              <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
+              <div className="relative w-full aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.innovationTechnology || images.banners.aboutUsBanner || images.hero.background}
+                  src={images.banners.strategicPartnershipBannerImage || images.banners.innovationTechnology || images.banners.aboutUsBanner || images.hero.background}
                   alt="Partnering for transformation"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -248,11 +250,12 @@ export default function OurCulture() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Column - Image */}
             <div className="order-1">
-              <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-xl">
+              <div className="relative w-full aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
                 <img
-                  src={images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
+                  src={images.banners.peopleInvestingBannerImg || images.banners.lifeAtBanner || images.banners.ourCulture || images.hero.background}
                   alt="Investing in our people"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
                 />
               </div>
             </div>
