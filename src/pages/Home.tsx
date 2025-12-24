@@ -17,7 +17,8 @@ import {
   Code,
   Shield,
   Network,
-  Cpu
+  Cpu,
+  Download
 } from "lucide-react";
 
 // Typewriter animation hook with loop
@@ -98,13 +99,7 @@ function ClientStoriesCarousel() {
   const currentStory = clientStories[currentIndex];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden shadow-xl"
-    >
+    <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden shadow-xl">
       {/* Yellow Industrial Background */}
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -131,11 +126,8 @@ function ClientStoriesCarousel() {
       </div>
 
       {/* White Card on Left Side */}
-      <motion.div
+      <div
         key={currentIndex}
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
         className="absolute left-4 md:left-8 lg:left-12 xl:left-16 top-0 bottom-0 w-full md:w-1/2 lg:w-[45%] flex items-center p-6 md:p-8 lg:p-10 z-10"
       >
         <div className="bg-white rounded-lg shadow-2xl p-6 md:p-8 lg:p-10 w-full max-w-lg">
@@ -155,15 +147,11 @@ function ClientStoriesCarousel() {
             <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Carousel Navigation - Pill-shaped Control */}
       <div className="absolute bottom-6 right-4 md:right-8 lg:right-12 xl:right-16 z-20">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-          className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+        <div className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
           style={{
             background: 'linear-gradient(135deg, #faf9f7 0%, #f5f4f2 100%)',
           }}
@@ -202,11 +190,11 @@ function ClientStoriesCarousel() {
             aria-label="Next story"
             type="button"
           >
-            <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-          </button>
-        </motion.div>
+              <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+            </button>
+          </div>
+        </div>
       </div>
-    </motion.div>
   );
 }
 
@@ -272,11 +260,8 @@ function AnnualReportCarousel() {
       <div className="flex flex-col md:flex-row h-auto md:h-[600px] lg:h-[700px] relative">
         {/* Left Side - Blue Background with Content (60%) */}
         <div className="w-full md:w-[60%] bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex items-center justify-center relative">
-          <motion.div
+          <div
             key={currentIndex}
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
             className="max-w-2xl z-10"
           >
             <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 text-white leading-tight">
@@ -294,16 +279,13 @@ function AnnualReportCarousel() {
               {currentReport.buttonText}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right Side - Abstract Image (40%) */}
         <div className="w-full md:w-[40%] relative h-[400px] md:h-auto overflow-hidden">
-          <motion.div
+          <div
             key={currentIndex}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
             className="w-full h-full relative"
           >
             {/* Abstract painting background - using gradient to simulate the painting */}
@@ -322,16 +304,12 @@ function AnnualReportCarousel() {
               alt={currentReport.title}
               className="w-full h-full object-cover mix-blend-overlay opacity-60"
             />
-          </motion.div>
+          </div>
         </div>
 
         {/* Carousel Navigation - Pill-shaped Control */}
         <div className="absolute bottom-6 right-6 z-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3 }}
-            className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+          <div className="bg-[#faf9f7] backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
             style={{
               background: 'linear-gradient(135deg, #faf9f7 0%, #f5f4f2 100%)',
             }}
@@ -372,7 +350,7 @@ function AnnualReportCarousel() {
             >
               <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
             </button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -405,13 +383,7 @@ function PlainVideoPlayer() {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="relative"
-    >
+    <div className="relative">
       <div className="bg-black rounded-lg shadow-2xl overflow-hidden aspect-video relative">
         {/* Plain Video Element - No Controls */}
         <video
@@ -428,7 +400,7 @@ function PlainVideoPlayer() {
           Your browser does not support the video tag.
         </video>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -521,18 +493,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10 w-full">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="w-full"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mb-6"
-              >
+            <div className="w-full">
+              <div className="mb-6">
                 <Badge variant="outline" className="bg-[#faf9f7] border-border/50 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow flex items-center gap-2 w-fit">
                   <Rocket className="w-4 h-4 text-primary" />
                   <span>
@@ -540,7 +502,7 @@ export default function Home() {
                     <span className="inline-block w-0.5 h-4 bg-primary ml-1 animate-pulse">|</span>
                   </span>
                 </Badge>
-              </motion.div>
+              </div>
               
               <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-2 leading-tight text-left">
                 Engineering the <span className="gradient-text-animated">Next Generation</span> of Smart Software.
@@ -576,15 +538,10 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div> */}
-            </motion.div>
+            </div>
 
             {/* Right Side - SVG Illustration */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="w-full flex items-center justify-center"
-            >
+            <div className="w-full flex items-center justify-center">
               <div className="relative w-full max-w-2xl">
                 <img
                   src={images.hero.image}
@@ -593,7 +550,7 @@ export default function Home() {
                   loading="eager"
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* 
@@ -732,16 +689,11 @@ export default function Home() {
       {/* Highlights Section */}
       <section className="py-12 md:py-16 px-4 bg-white" aria-label="Highlights">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
               Highlights
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {[
@@ -767,16 +719,8 @@ export default function Home() {
                 alt: "Industry Insights"
               }
             ].map((highlight, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
                 className="bg-white border border-border/50 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer group"
               >
                 <div className="w-full h-48 md:h-56 overflow-hidden relative">
@@ -801,7 +745,7 @@ export default function Home() {
                     {highlight.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -814,20 +758,14 @@ export default function Home() {
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Side - Text Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-gray-900"
-              >
+              <div className="text-gray-900">
                 <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
                   We Deliver <span className="gradient-text">Real Value</span>
                 </h2>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium mb-6">
                   Through our people centric approach and unique human AI chemistry, we transform businesses by combining cutting-edge artificial intelligence with deep human expertise. Our solutions don't just automate they amplify human potential, creating intelligent systems that learn, adapt, and evolve with your organization.
                 </p>
-              </motion.div>
+              </div>
 
               {/* Right Side - Plain Video Player */}
               <PlainVideoPlayer />
@@ -839,34 +777,18 @@ export default function Home() {
       {/* What We Do Section */}
       <section className="py-12 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="What We Do">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 md:mb-16 text-center"
-          >
+          <div className="mb-12 md:mb-16 text-center">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
               What we do
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
               Comprehensive technology solutions that drive innovation and transform businesses
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Cloud & Infrastructure */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Cloud className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -881,20 +803,10 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Our solutions ensure high availability, enable flexible infrastructure, improve performance, and ensure security compliance for competitive agility in the evolving technology landscape.
               </p>
-            </motion.div>
+            </div>
 
             {/* AI & Machine Learning */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Brain className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -909,20 +821,10 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Our solutions support both predictive analytics and real-time intelligence, ensuring seamless integration and continuity of AI capabilities across all business functions.
               </p>
-            </motion.div>
+            </div>
 
             {/* Software Engineering */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Code className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -937,20 +839,10 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Data and AI-enhanced innovation, cloud-native development, and agile practices are driving transformation. Organizations breaking down barriers fastest will lead the next generation of technology.
               </p>
-            </motion.div>
+            </div>
 
             {/* Blockchain */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Cpu className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -965,20 +857,10 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Our solutions ensure immutability, enable transparent transactions, improve security, and ensure compliance for competitive advantage in the evolving digital economy landscape.
               </p>
-            </motion.div>
+            </div>
 
             {/* Cybersecurity */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-red-500 to-orange-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Shield className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -993,20 +875,10 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Our solutions support both proactive threat prevention and real-time security monitoring, ensuring seamless protection and continuity of security operations across all digital infrastructure.
               </p>
-            </motion.div>
+            </div>
 
             {/* IoT & Edge Computing */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer"
-            >
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                   <Network className="w-6 h-6 md:w-7 md:h-7 text-white" />
@@ -1021,7 +893,7 @@ export default function Home() {
               <p className="text-sm text-gray-600 leading-relaxed">
                 Data processing at the edge, low-latency computing, and AI-enhanced IoT capabilities are driving transformation. Organizations leveraging edge intelligence fastest will lead the next generation of connected technology.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -1031,27 +903,16 @@ export default function Home() {
       {/* Latest Insights Section */}
       <section className="py-12 md:py-16 px-4 bg-white relative" aria-label="Latest Insights">
         <div className="max-w-7xl mx-auto max-w-5k-content relative">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest insights
             </h2>
-          </motion.div>
+          </div>
 
           {/* Three Card Layout */}
           <div className="space-y-6 md:space-y-8 relative z-0">
             {/* Card 1: Large Background Image with White Overlay Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl z-10"
-            >
+            <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl z-10">
               {/* Background Image */}
               <div
                 className="absolute inset-0 w-full h-full bg-cover bg-center"
@@ -1069,13 +930,7 @@ export default function Home() {
               </div>
 
               {/* White Overlay Card - Positioned on Right Side */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-11/12 md:w-1/2 lg:w-[45%] flex items-center justify-center p-6 md:p-8 lg:p-10 z-20"
-              >
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-11/12 md:w-1/2 lg:w-[45%] flex items-center justify-center p-6 md:p-8 lg:p-10 z-20">
                 <div className="bg-white rounded-lg shadow-xl p-6 md:p-8 lg:p-10 w-full max-w-md relative z-30">
                   <p className="text-sm text-gray-600 dark:text-gray-500 mb-2 font-medium relative z-10 opacity-100 visible">
                     — Research Report
@@ -1087,17 +942,13 @@ export default function Home() {
                     NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Card 2 and Card 3 Container */}
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 relative z-10">
               {/* Card 2: Solid Blue Background with White Text */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+              <div
                 className="relative bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 rounded-lg p-8 md:p-10 lg:p-12 shadow-xl hover:shadow-2xl transition-shadow duration-300 cursor-pointer group z-10"
                 onClick={() => navigate("/insights")}
               >
@@ -1114,14 +965,10 @@ export default function Home() {
                     NEUROVERSE RESEARCH INSTITUTE
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Card 3: White Background with Abstract Background Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+              <div
                 className="relative bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 cursor-pointer group z-10"
                 onClick={() => navigate("/insights")}
               >
@@ -1158,18 +1005,12 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
 
           {/* More Insights Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-6 md:mt-8 relative z-0 isolate"
-          >
+          <div className="mt-6 md:mt-8 relative z-0 isolate">
             <Button
               variant="outline"
               size="lg"
@@ -1183,7 +1024,137 @@ export default function Home() {
               More Insights
               <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Reports Section */}
+      <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="Latest Reports">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
+          {/* Section Header */}
+          <div className="mb-8 md:mb-12">
+            <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
+              The latest reports from NEUROVERSE RESEARCH INSTITUTE
+            </h2>
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl leading-relaxed">
+              Comprehensive research and insights on emerging trends, industry transformations, and technological innovations shaping the future of business and society.
+            </p>
+          </div>
+
+          {/* Reports Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
+            {/* Report 1: Finance & Investment */}
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <div className="mb-4">
+                <Badge variant="outline" className="text-xs font-medium mb-3">
+                  Finance & Investment
+                </Badge>
+                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                  January 2025
+                </p>
+              </div>
+              <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
+                Investment trends 2025
+              </h3>
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                Navigating uncertainty with confidence: Investment priorities for 2025. NeuroVerse's data-driven insights help organizations make informed investment decisions in AI and digital transformation.
+              </p>
+              <p className="text-xs text-primary font-semibold mb-4">
+                NEUROVERSE RESEARCH INSTITUTE
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                onClick={() => navigate("/insights")}
+              >
+                Read Report
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Report 2: Sustainability */}
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <div className="mb-4">
+                <Badge variant="outline" className="text-xs font-medium mb-3">
+                  Sustainability
+                </Badge>
+                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                  December 2025
+                </p>
+              </div>
+              <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
+                Sustainable Gen AI
+              </h3>
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                The environmental Impact of Gen AI and a roadmap for developing sustainable Gen AI practices. NeuroVerse is leading the way in creating energy-efficient AI solutions and sustainable machine learning frameworks.
+              </p>
+              <p className="text-xs text-primary font-semibold mb-4">
+                NEUROVERSE RESEARCH INSTITUTE
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                onClick={() => navigate("/insights")}
+              >
+                Read Report
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Report 3: Consumer Insights */}
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+              <div className="mb-4">
+                <Badge variant="outline" className="text-xs font-medium mb-3">
+                  Consumer Insights
+                </Badge>
+                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                  November 2025
+                </p>
+              </div>
+              <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
+                What matters to today's consumer
+              </h3>
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                Consumer preferences and purchasing behaviors are constantly evolving. NeuroVerse's AI-powered analytics provide deep insights into consumer behavior and enable personalized customer experiences.
+              </p>
+              <p className="text-xs text-primary font-semibold mb-4">
+                NEUROVERSE RESEARCH INSTITUTE
+              </p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                onClick={() => navigate("/insights")}
+              >
+                Read Report
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-8 py-6 text-base group"
+              onClick={() => navigate("/insights")}
+            >
+              See all our reports
+              <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-8 py-6 text-base group"
+              onClick={() => navigate("/insights")}
+            >
+              Download Report Bundle
+              <Download className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-y-0.5 transition-transform" />
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -1193,16 +1164,11 @@ export default function Home() {
         <div className="w-full">
           {/* Content container with padding */}
           <div className="max-w-7xl mx-auto max-w-5k-content px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6 md:mb-8 flex justify-end"
-            >
+            <div className="mb-6 md:mb-8 flex justify-end">
               <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-right">
                 Recent client stories
               </h2>
-            </motion.div>
+            </div>
           </div>
           
           {/* Full-width carousel container */}
@@ -1215,26 +1181,15 @@ export default function Home() {
       {/* Latest News Section */}
       <section className="py-12 md:py-16 px-4 bg-white" aria-label="Latest News">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest news
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Column - Featured News Item */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
+            <div className="space-y-6">
               <div className="bg-white border border-border/50 rounded-lg p-6 md:p-8 lg:p-10 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
                   — Awards and recognition
@@ -1252,12 +1207,7 @@ export default function Home() {
               </div>
 
               {/* See all news Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-              >
+              <div>
                 <Button
                   variant="outline"
                   size="lg"
@@ -1267,19 +1217,13 @@ export default function Home() {
                   See all news
                   <ArrowRight className="ml-2 h-5 w-5 text-gray-900 group-hover:text-black group-hover:translate-x-1 transition-all duration-300" />
                 </Button>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Right Column - Three News Items */}
             <div className="space-y-6 md:space-y-8">
               {/* News Item 1 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-              >
+              <div className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
                   — Client news
                 </p>
@@ -1290,16 +1234,10 @@ export default function Home() {
                   <Calendar className="w-4 h-4" />
                   <span>Nov 4, 2025</span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* News Item 2 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-              >
+              <div className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
                   — Corporate news
                 </p>
@@ -1310,16 +1248,10 @@ export default function Home() {
                   <Calendar className="w-4 h-4" />
                   <span>Nov 3, 2025</span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* News Item 3 */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-              >
+              <div className="bg-white border border-border/50 rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <p className="text-sm text-gray-600 dark:text-gray-500 mb-3 font-medium">
                   — Partners
                 </p>
@@ -1330,7 +1262,7 @@ export default function Home() {
                   <Calendar className="w-4 h-4" />
                   <span>Oct 30, 2025</span>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
@@ -1339,26 +1271,15 @@ export default function Home() {
       {/* Inside Stories Section */}
       <section className="py-12 md:py-16 px-4 bg-white" aria-label="Inside Stories">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
+          <div className="mb-12">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8 text-left">
               Inside stories
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             {/* Left Column - Large Story Block */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-            >
+            <div className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden">
                 <img
                   src={images.banners.aiFuture || images.projects.latestInsights}
@@ -1375,22 +1296,19 @@ export default function Home() {
                 <h3 className="font-heading font-bold text-2xl md:text-3xl lg:text-4xl mb-4 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                   Build the future with AI
                 </h3>
-                <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Transforming businesses through intelligent software solutions and cutting-edge AI technology
+                <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                  Transforming businesses through intelligent software solutions and cutting-edge AI technology. Our comprehensive approach combines advanced machine learning algorithms, natural language processing, and predictive analytics to create systems that not only automate processes but also learn and adapt to evolving business needs.
+                </p>
+                <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                  We specialize in developing custom AI solutions that integrate seamlessly with existing infrastructure, enabling organizations to unlock new levels of efficiency, innovation, and competitive advantage. From intelligent automation to advanced data analytics, our AI-powered platforms help businesses make data-driven decisions faster and more accurately.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Column - Two Story Blocks */}
             <div className="space-y-6 md:space-y-8">
               {/* Top Story Block */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-              >
+              <div className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
                     src={images.banners.innovation || images.projects.latestInsights}
@@ -1411,16 +1329,10 @@ export default function Home() {
                     Why AI technology is at the core of digital transformation
                   </p>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Bottom Story Block */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group"
-              >
+              <div className="bg-white rounded-lg overflow-hidden border border-border/50 hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
                 <div className="relative w-full h-[250px] md:h-[280px] lg:h-[300px] overflow-hidden">
                   <img
                     src={images.banners.techLesson || images.projects.latestInsights}
@@ -1441,7 +1353,7 @@ export default function Home() {
                     The lasting value of collaborative AI development
                   </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

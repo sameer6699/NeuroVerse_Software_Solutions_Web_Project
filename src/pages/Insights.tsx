@@ -487,155 +487,12 @@ export default function Insights() {
 
           {/* Report Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-8 md:mb-12">
-            {/* Report Card 1: Reindustrialization of Europe and US */}
+            {/* Report Card 1: Investment trends 2025 */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
-            >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700">
-                <div className="absolute inset-0 opacity-90">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px)`,
-                  }}></div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Factory className="w-20 h-20 text-white/80 group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
-                    Manufacturing
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
-                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
-                  <Calendar className="w-4 h-4" />
-                  <span>January 2025</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
-                  Reindustrialization of Europe and US
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
-                  The resurgence of manufacturing: Reindustrialization strategies in Europe and the US - 2025. NeuroVerse's AI-driven solutions are transforming manufacturing operations and enabling smart industrial ecosystems.
-                </p>
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
-                    >
-                      Read Report
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Report Card 2: The B2B Pulse */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
-            >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-teal-500 via-cyan-600 to-blue-700">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-32 h-32 rounded-full border-4 border-white/30 animate-pulse"></div>
-                    <div className="absolute w-24 h-24 rounded-full border-4 border-white/20"></div>
-                    <Network className="w-16 h-16 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
-                    Telecommunications
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
-                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
-                  <Calendar className="w-4 h-4" />
-                  <span>December 2025</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-teal-600 transition-colors duration-300 leading-tight">
-                  The B2B Pulse
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
-                  Top six expectations of telecom's business customers. NeuroVerse's intelligent automation and AI solutions are reshaping B2B telecommunications and customer engagement strategies.
-                </p>
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
-                    >
-                      Read Report
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Report Card 3: The battery revolution */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
-            >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-gray-800 via-gray-900 to-black">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-40 h-40 border-2 border-blue-400/50 rounded-lg transform rotate-45 group-hover:rotate-90 transition-transform duration-500"></div>
-                  <div className="absolute w-32 h-32 border-2 border-blue-300/30 rounded-lg transform rotate-45"></div>
-                  <Battery className="w-16 h-16 text-blue-400/80 absolute group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="absolute top-4 left-4">
-                  <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
-                    Energy Storage
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
-                <div className="mb-3 flex items-center gap-2 text-sm text-gray-500">
-                  <Calendar className="w-4 h-4" />
-                  <span>November 2025</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
-                  The battery revolution
-                </h3>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 flex-1">
-                  Exploring the future of energy storage and sustainable power solutions. NeuroVerse's predictive analytics and AI optimization are driving innovation in energy management and sustainable technology.
-                </p>
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wide">NEUROVERSE RESEARCH INSTITUTE</span>
-                    <motion.button
-                      whileHover={{ x: 5 }}
-                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm group/btn"
-                    >
-                      Read Report
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Report Card 4: Investment trends 2025 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
               <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
@@ -680,12 +537,12 @@ export default function Insights() {
               </div>
             </motion.div>
 
-            {/* Report Card 5: Sustainable Gen AI */}
+            {/* Report Card 2: Sustainable Gen AI */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
               <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-green-500 via-emerald-600 to-teal-700">
@@ -737,12 +594,12 @@ export default function Insights() {
               </div>
             </motion.div>
 
-            {/* Report Card 6: What matters to today's consumer */}
+            {/* Report Card 3: What matters to today's consumer */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
               <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700">
@@ -793,7 +650,7 @@ export default function Insights() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-200"
           >
             <motion.button
