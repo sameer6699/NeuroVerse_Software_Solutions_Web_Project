@@ -37,6 +37,7 @@ import OurStory from "./pages/OurStory.tsx";
 import CompanyValues from "./pages/CompanyValues.tsx";
 import OurCulture from "./pages/OurCulture.tsx";
 import ManagementGovernance from "./pages/ManagementGovernance.tsx";
+import PartnersAndAlliances from "./pages/PartnersAndAlliances.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
 import { LenisScroll } from "@/components/LenisScroll";
@@ -111,6 +112,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/about/company-value" element={<CompanyValues />} />
               <Route path="/about/our-culture" element={<OurCulture />} />
               <Route path="/about/management-governance" element={<ManagementGovernance />} />
+              <Route path="/about/partner-and-alliance" element={<PartnersAndAlliances />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             {/* Auth route - can be outside layout if needed, or keep it inside for consistency */}

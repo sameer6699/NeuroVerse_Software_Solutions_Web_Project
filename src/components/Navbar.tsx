@@ -440,6 +440,8 @@ export default function Navbar() {
                                 itemHref = "/about/our-culture";
                               } else if (item === "Management and governance") {
                                 itemHref = "/about/management-governance";
+                              } else if (item === "Partners & Alliances") {
+                                itemHref = "/about/partner-and-alliance";
                               }
                             }
                             
@@ -521,6 +523,9 @@ export default function Navbar() {
                                     } else if (link.sectionId === "about" && item === "Management and governance") {
                                       e.preventDefault();
                                       navigate("/about/management-governance");
+                                    } else if (link.sectionId === "about" && item === "Partners & Alliances") {
+                                      e.preventDefault();
+                                      navigate("/about/partner-and-alliance");
                                     } else {
                                       handleSectionClick(link.href, link.sectionId, e);
                                     }
