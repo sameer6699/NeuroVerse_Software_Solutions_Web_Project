@@ -109,7 +109,7 @@ export default function Products() {
         className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
         {/* Background Image with Improved Positioning and Zoom Effect */}
-        <motion.div 
+        <div 
           className="absolute inset-0 overflow-hidden"
           style={{
             scale: backgroundScale,
@@ -122,41 +122,41 @@ export default function Products() {
         />
         
         {/* Subtle Parallax Effect */}
-        <motion.div
+        <div
           style={{ y: backgroundY }}
           className="absolute inset-0"
         >
           {/* Enhanced gradient overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"></div>
-        </motion.div>
+        </div>
 
         {/* Scroll Indicator */}
-        <motion.div
+        <div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
           className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30"
         >
-          <motion.div
+          <div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="w-6 h-10 border-2 border-gray-400/70 rounded-full flex items-start justify-center p-2 bg-white/80 backdrop-blur-sm shadow-md"
           >
-            <motion.div
+            <div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="w-1.5 h-1.5 bg-gray-600 rounded-full"
             />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Products Card - Positioned outside hero section, extending from hero */}
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-start">
-            <motion.div
+            <div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
@@ -167,7 +167,7 @@ export default function Products() {
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* Products Text - Centered in the box */}
-                <motion.h1
+                <h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
@@ -180,9 +180,9 @@ export default function Products() {
                   }}
                 >
                   Products
-                </motion.h1>
+                </h1>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -198,14 +198,14 @@ export default function Products() {
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10">
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6 lg:gap-8">
             {/* Social Media Icons - Left Side */}
-            <motion.div
+            <div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
               className="flex flex-col gap-5 md:gap-6 flex-shrink-0"
             >
               {/* LinkedIn Icon */}
-              <motion.a
+              <a
                 href="https://www.linkedin.com/company/neuroverse"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -214,15 +214,15 @@ export default function Products() {
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-blue-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 cursor-pointer group relative overflow-hidden"
                 aria-label="LinkedIn"
               >
-                <motion.div
+                <div
                   className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
                 />
                 <Linkedin className="w-7 h-7 md:w-8 md:h-8 text-gray-600 group-hover:text-white transition-colors relative z-10" />
-              </motion.a>
+              </a>
 
               {/* Facebook Icon */}
-              <motion.a
+              <a
                 href="https://www.facebook.com/neuroverse"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -231,7 +231,7 @@ export default function Products() {
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-blue-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 cursor-pointer group relative overflow-hidden"
                 aria-label="Facebook"
               >
-                <motion.div
+                <div
                   className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={false}
                 />
@@ -243,11 +243,11 @@ export default function Products() {
                 >
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
-              </motion.a>
-            </motion.div>
+              </a>
+            </div>
 
             {/* Description Text - Right Side */}
-            <motion.div
+            <div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
@@ -264,7 +264,7 @@ export default function Products() {
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -277,7 +277,7 @@ export default function Products() {
       >
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Products Heading */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -287,117 +287,130 @@ export default function Products() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900">
               Our Products
             </h2>
-          </motion.div>
+          </div>
+        </div>
 
-          {/* Carousel Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            {/* Background Banner with Image */}
-            <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden">
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${images.projects.hotTopicsBackground || images.projects.latestInsights})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }}
-              />
+        {/* Carousel Container - Full Width */}
+        <div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full"
+        >
+          {/* Background Banner with Image - Full Width */}
+          <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl">
+            {/* Background Image - Full Width */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${images.projects.hotTopicsBackground || images.projects.latestInsights})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                width: '100vw',
+                left: '50%',
+                marginLeft: '-50vw',
+              }}
+            >
+              {/* Enhanced Overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-transparent to-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-900/20 to-transparent"></div>
+            </div>
 
-              {/* White Content Card - Left Side */}
-              <div className="absolute inset-0 flex items-center justify-start px-4 md:px-8 lg:px-12">
-                <motion.div
-                  key={currentProductIndex}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-2xl p-8 md:p-10 lg:p-12 max-w-xl md:max-w-2xl w-full shadow-2xl -ml-2 md:ml-0 lg:ml-4"
-                >
-                  <div className="flex items-center gap-4 mb-4 md:mb-6">
-                    <div className={`p-4 rounded-xl bg-gradient-to-br ${productsData[currentProductIndex].color} text-white`}>
-                      {(() => {
-                        const Icon = productsData[currentProductIndex].icon;
-                        return <Icon className="w-8 h-8 md:w-10 md:h-10" />;
-                      })()}
+            {/* Content Container - Centered with max-width */}
+            <div className="relative z-10 h-full flex items-center">
+              <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
+                <div className="flex items-center justify-start">
+                  {/* White Content Card - Left Side */}
+                  <div
+                    key={currentProductIndex}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white rounded-2xl p-8 md:p-10 lg:p-12 max-w-xl md:max-w-2xl w-full shadow-2xl"
+                  >
+                    <div className="flex items-center gap-4 mb-4 md:mb-6">
+                      <div className={`p-4 rounded-xl bg-gradient-to-br ${productsData[currentProductIndex].color} text-white`}>
+                        {(() => {
+                          const Icon = productsData[currentProductIndex].icon;
+                          return <Icon className="w-8 h-8 md:w-10 md:h-10" />;
+                        })()}
+                      </div>
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+                        {productsData[currentProductIndex].title}
+                      </h3>
                     </div>
-                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                      {productsData[currentProductIndex].title}
-                    </h3>
-                  </div>
-                  <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    {productsData[currentProductIndex].description}
-                  </p>
-                  
-                  {/* Features List */}
-                  <div className="mb-6 md:mb-8">
-                    <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Key Features</h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {productsData[currentProductIndex].features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
-                          <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${productsData[currentProductIndex].color}`}></div>
-                          <span className="text-sm md:text-base text-gray-700">{feature}</span>
-                        </div>
-                      ))}
+                    <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 md:mb-8">
+                      {productsData[currentProductIndex].description}
+                    </p>
+                    
+                    {/* Features List */}
+                    <div className="mb-6 md:mb-8">
+                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Key Features</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {productsData[currentProductIndex].features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${productsData[currentProductIndex].color}`}></div>
+                            <span className="text-sm md:text-base text-gray-700">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
+
+                    <button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
+                    >
+                      Learn more
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
                   </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-300"
-                  >
-                    Learn more
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </motion.div>
-              </div>
-
-              {/* Navigation Carousel Indicator */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-                <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-3 flex items-center gap-4 shadow-lg border border-gray-200">
-                  {/* Previous Button */}
-                  <button
-                    onClick={prevProduct}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Previous product"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-700" />
-                  </button>
-
-                  {/* Dots Indicator */}
-                  <div className="flex items-center gap-2">
-                    {productsData.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => goToProduct(index)}
-                        className={`transition-all rounded-full ${
-                          index === currentProductIndex
-                            ? 'bg-blue-600 w-8 h-2.5'
-                            : 'bg-white border-2 border-white w-2.5 h-2.5 hover:bg-gray-200'
-                        }`}
-                        aria-label={`Go to product ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Next Button */}
-                  <button
-                    onClick={nextProduct}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Next product"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-700" />
-                  </button>
                 </div>
               </div>
             </div>
-          </motion.div>
+
+            {/* Navigation Carousel Indicator - Right Side */}
+            <div className="absolute bottom-6 right-4 md:right-6 z-20">
+              <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50">
+                {/* Previous Button (Left Arrow) */}
+                <button
+                  onClick={prevProduct}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="flex items-center gap-1.5 px-1">
+                  {productsData.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToProduct(index)}
+                      className={`transition-all duration-300 rounded-full cursor-pointer ${
+                        index === currentProductIndex
+                          ? "bg-blue-600 w-8 h-2"
+                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+                      }`}
+                      aria-label={`Slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Next Button (Right Arrow) */}
+                <button
+                  onClick={nextProduct}
+                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95 cursor-pointer"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -405,7 +418,7 @@ export default function Products() {
       <section className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -415,14 +428,14 @@ export default function Products() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Learn more by product
             </h2>
-          </motion.div>
+          </div>
 
           {/* Product Grid - 2 columns for 2 products */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
             {productCards.map((product, index) => {
               const Icon = product.icon;
               return (
-                <motion.div
+                <div
                   key={product.name}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -486,7 +499,7 @@ export default function Products() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -496,7 +509,7 @@ export default function Products() {
       {/* Detailed Product Information Section */}
       <section className="relative bg-gradient-to-br from-gray-50 to-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -509,10 +522,10 @@ export default function Products() {
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
               Explore our comprehensive product offerings designed to transform your business operations.
             </p>
-          </motion.div>
+          </div>
 
           {/* SeedLink Detailed Section */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -567,21 +580,21 @@ export default function Products() {
                     </div>
                   </div>
 
-                  <motion.button
+                  <button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-purple-500 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all duration-300 w-fit"
                   >
                     Explore SeedLink
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* WealthWise Detailed Section */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -626,14 +639,14 @@ export default function Products() {
                     </div>
                   </div>
 
-                  <motion.button
+                  <button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-blue-500 to-cyan-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 w-fit"
                   >
                     Explore WealthWise
                     <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </div>
 
                 {/* Right Side - Image */}
@@ -642,65 +655,13 @@ export default function Products() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Choose NeuroVerse for Products Section */}
-      <section className="relative py-8 md:py-10 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="grid grid-cols-1 lg:grid-cols-5 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Left Column - Blue Background (2/5 width) */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center"
-            >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 md:mb-8">
-                Why Choose NeuroVerse Products
-              </h2>
-              <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed mb-8 md:mb-10">
-                With cutting-edge technology and innovative solutions, we deliver products that transform businesses. Our comprehensive approach ensures you get solutions tailored to your unique challenges and opportunities.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 w-fit"
-              >
-                Get started
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </motion.div>
-
-            {/* Right Column - Image (3/5 width) */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative h-64 md:h-80 lg:h-full min-h-[400px] overflow-hidden"
-            >
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${images.projects.latestInsights})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'blur(0.5px)',
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Contact Section - Full Width */}
       <section className="relative pt-8 md:pt-10 pb-4 md:pb-6 w-full">
-        <motion.div
+        <div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -721,18 +682,18 @@ export default function Products() {
 
               {/* Right Side - Contact Button */}
               <div className="flex-shrink-0">
-                <motion.button
+                <button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                 >
                   Contact Us
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

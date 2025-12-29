@@ -603,7 +603,7 @@ export default function SeedLink() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
             <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
@@ -637,11 +637,12 @@ export default function SeedLink() {
             </div>
 
             {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center">
+            <div className="md:col-span-2 relative bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-6 md:p-8 lg:p-10 min-h-[300px] md:min-h-0">
               <img
                 src={images.logos.seedLink}
                 alt="SeedLink"
-                className="max-w-full max-h-full object-contain p-8"
+                className="w-full h-full object-contain"
+                style={{ maxWidth: '100%', maxHeight: '100%' }}
               />
             </div>
           </motion.div>

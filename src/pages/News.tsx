@@ -1,4 +1,3 @@
-import { motion, useScroll, useTransform } from "framer-motion";
 import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud } from "lucide-react";
 import { images } from "@/assets";
 import { useRef } from "react";
@@ -12,15 +11,7 @@ import { useNavigate } from "react-router";
  */
 export default function News() {
   const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
   const navigate = useNavigate();
-
-  // Parallax effects
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   // Latest News Articles
   const latestNews = [
@@ -65,11 +56,9 @@ export default function News() {
         className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
         {/* Background Image with Improved Positioning and Zoom Effect */}
-        <motion.div 
+        <div 
           className="absolute inset-0 overflow-hidden"
           style={{
-            scale: backgroundScale,
-            y: backgroundY,
             backgroundImage: `url(${images.projects.insightsHero || images.projects.hotTopicsBackground})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
@@ -78,55 +67,24 @@ export default function News() {
         />
         
         {/* Subtle Parallax Effect */}
-        <motion.div
-          style={{ y: backgroundY }}
-          className="absolute inset-0"
-        >
+        <div className="absolute inset-0">
           {/* Enhanced gradient overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent"></div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-gray-400/70 rounded-full flex items-start justify-center p-2 bg-white/80 backdrop-blur-sm shadow-md"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gray-600 rounded-full"
-            />
-          </motion.div>
-        </motion.div>
+        </div>
       </section>
 
       {/* News Card - Positioned outside hero section, extending from hero */}
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-end">
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
-            >
+            <div className="relative">
               {/* Blue Background Box - Overlay on right side */}
               <div 
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* News Text - Centered in the box */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                <h1
                   className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
                   style={{
                     fontFamily: "'Poppins', 'Montserrat', sans-serif",
@@ -136,9 +94,9 @@ export default function News() {
                   }}
                 >
                   Latest News
-                </motion.h1>
+                </h1>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -154,42 +112,31 @@ export default function News() {
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10">
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6 lg:gap-8">
             {/* Social Media Icons - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col gap-5 md:gap-6 flex-shrink-0"
-            >
+            <div className="flex flex-col gap-5 md:gap-6 flex-shrink-0">
               {/* LinkedIn Icon */}
-              <motion.a
+              <a
                 href="https://www.linkedin.com/company/neuroverse"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-blue-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 cursor-pointer group relative overflow-hidden"
                 aria-label="LinkedIn"
               >
-                <motion.div
+                <div
                   className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
                 />
                 <Linkedin className="w-7 h-7 md:w-8 md:h-8 text-gray-600 group-hover:text-white transition-colors relative z-10" />
-              </motion.a>
+              </a>
 
               {/* Facebook Icon */}
-              <motion.a
+              <a
                 href="https://www.facebook.com/neuroverse"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-gray-200 hover:border-blue-600 bg-white shadow-md hover:shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-50 hover:to-blue-100 cursor-pointer group relative overflow-hidden"
                 aria-label="Facebook"
               >
-                <motion.div
+                <div
                   className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={false}
                 />
                 <svg
                   className="w-7 h-7 md:w-8 md:h-8 text-gray-600 group-hover:text-white transition-colors relative z-10"
@@ -199,16 +146,11 @@ export default function News() {
                 >
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
-              </motion.a>
-            </motion.div>
+              </a>
+            </div>
 
             {/* Description Text - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-              className="flex-1"
-            >
+            <div className="flex-1">
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
                   Stay Updated
@@ -220,7 +162,7 @@ export default function News() {
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -229,27 +171,15 @@ export default function News() {
       <section className="relative bg-gradient-to-br from-gray-50 via-white to-gray-50 py-16 md:py-20 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 md:mb-16"
-          >
+          <div className="mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
               Recent client stories
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
-          </motion.div>
+          </div>
 
           {/* Featured Client Story Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
-          >
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-shadow duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
               {/* Left Side - Image */}
               <div className="relative h-64 md:h-80 lg:h-full min-h-[400px] overflow-hidden">
@@ -264,71 +194,40 @@ export default function News() {
               {/* Right Side - Content */}
               <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                 {/* Category Badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="mb-6"
-                >
+                <div className="mb-6">
                   <div className="w-16 h-0.5 bg-gray-400 mb-3"></div>
                   <span className="text-sm md:text-base text-gray-600 font-semibold uppercase tracking-wide">
                     Client Success Story
                   </span>
-                </motion.div>
+                </div>
 
                 {/* Headline */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-6 leading-tight"
-                >
+                <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-gray-900 mb-6 leading-tight">
                   NeuroVerse supports enterprise transformation in spearheading AI-powered digital infrastructure modernization
-                </motion.h3>
+                </h3>
 
                 {/* Description */}
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-base md:text-lg text-gray-700 leading-relaxed mb-8"
-                >
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
                   The company worked with NeuroVerse, its long-term partner, to move from a legacy system to a modern AI-driven platform by establishing a Data Integration Center of Excellence (DICoE) underpinned by advanced machine learning solutions.
-                </motion.p>
+                </p>
 
                 {/* Read More Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                <div>
+                  <button
                     className="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-900 text-gray-900 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all duration-300 group"
                   >
                     Read more
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
-                </motion.div>
+                  </button>
+                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Additional Client Stories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16">
             {/* Story 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
-            >
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={images.projects.hotTopicsBackground || images.projects.latestInsights}
@@ -344,25 +243,17 @@ export default function News() {
                   NeuroVerse enables financial services leader to revolutionize customer experience through intelligent automation
                 </h4>
                 <p className="text-sm text-gray-500 mb-4">Nov 4, 2025</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                </button>
               </div>
-            </motion.div>
+            </div>
 
             {/* Story 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300"
-            >
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300">
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={images.projects.insightsHero || images.projects.latestInsights}
@@ -378,16 +269,14 @@ export default function News() {
                   NeuroVerse transforms healthcare provider's operations with predictive analytics and intelligent systems
                 </h4>
                 <p className="text-sm text-gray-500 mb-4">Oct 28, 2025</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 group"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -396,28 +285,18 @@ export default function News() {
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="mb-8 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Latest news
             </h2>
-          </motion.div>
+          </div>
 
           {/* Two Column Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Left Column - Featured News */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex flex-col"
-            >
+            <div className="flex flex-col">
               {/* Category with horizontal line */}
               <div className="mb-4">
                 <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
@@ -438,7 +317,7 @@ export default function News() {
               <p className="text-sm md:text-base text-gray-500 mb-8">Nov 6, 2025</p>
 
               {/* CTA Button */}
-              <motion.button
+              <button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -449,7 +328,7 @@ export default function News() {
               >
                 See all press releases
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
+              </button>
 
               {/* Additional Generic News Items */}
               <div className="space-y-6 mt-8 pt-8 border-t border-gray-200">
@@ -483,16 +362,10 @@ export default function News() {
                   <p className="text-sm text-gray-500">Oct 18, 2025</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Column - Smaller News Items */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col space-y-8"
-            >
+            <div className="flex flex-col space-y-8">
               {/* News Item 1 */}
               <div className="pb-4 border-b border-gray-200">
                 <div className="w-16 h-0.5 bg-gray-400 mb-2"></div>
@@ -555,7 +428,7 @@ export default function News() {
                 </h4>
                 <p className="text-xs md:text-sm text-gray-500">Oct 15, 2025</p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -564,26 +437,18 @@ export default function News() {
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <div
             className="mb-8 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Latest research and insights
             </h2>
-          </motion.div>
+          </div>
 
           {/* Research Articles List */}
           <div className="space-y-6 md:space-y-8">
             {/* Article 1: World Energy Markets Outlook */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+            <div
               className="flex flex-col md:flex-row gap-4 md:gap-6 pb-6 md:pb-8 border-b border-gray-200"
             >
               {/* Image Thumbnail */}
@@ -613,24 +478,18 @@ export default function News() {
 
                 {/* Read More Button */}
                 <div className="flex-shrink-0">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
                   >
                     Read More
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Article 2: Could AI unlock great customer service in the public sector? */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="flex flex-col md:flex-row gap-4 md:gap-6 pb-6 md:pb-8 border-b border-gray-200"
             >
               {/* Image Thumbnail */}
@@ -660,24 +519,18 @@ export default function News() {
 
                 {/* Read More Button */}
                 <div className="flex-shrink-0">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
                   >
                     Read More
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Article 3: Rewiring today's factories to code tomorrow's cars */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <div
               className="flex flex-col md:flex-row gap-4 md:gap-6 pb-6 md:pb-8 border-b border-gray-200"
             >
               {/* Image Thumbnail */}
@@ -711,24 +564,18 @@ export default function News() {
 
                 {/* Read More Button */}
                 <div className="flex-shrink-0">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
                   >
                     Read More
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Article 4: Agentic AI powered by integration */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div
               className="flex flex-col md:flex-row gap-4 md:gap-6 pb-6 md:pb-8"
             >
               {/* Image Thumbnail */}
@@ -758,28 +605,22 @@ export default function News() {
 
                 {/* Read More Button */}
                 <div className="flex-shrink-0">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                  <button
                     className="inline-flex items-center gap-2 px-6 py-3 border border-gray-400 text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 group"
                   >
                     Read More
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </motion.button>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* See All Reports Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+          <div
             className="mt-8 md:mt-12"
           >
-            <motion.button
+            <button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -790,8 +631,8 @@ export default function News() {
             >
               See all reports
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -799,7 +640,7 @@ export default function News() {
       <section className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
+          <div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -809,17 +650,13 @@ export default function News() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Explore News Categories
             </h2>
-          </motion.div>
+          </div>
 
           {/* News Categories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {latestNews.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
                 <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
@@ -855,7 +692,7 @@ export default function News() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -863,11 +700,7 @@ export default function News() {
 
       {/* Social Media Banner Section */}
       <section className="relative w-full py-8 md:py-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+        <div
           className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full p-8 md:p-12 lg:p-16"
         >
           <div className="max-w-7xl mx-auto max-w-5k-content">
@@ -882,7 +715,7 @@ export default function News() {
               {/* Right Side - Social Media Icons */}
               <div className="flex items-center gap-4 md:gap-6 lg:gap-8 flex-wrap justify-center md:justify-end">
                 {/* Facebook Icon */}
-                <motion.a
+                <a
                   href="https://www.facebook.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -892,10 +725,10 @@ export default function News() {
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* LinkedIn Icon */}
-                <motion.a
+                <a
                   href="https://www.linkedin.com/company/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -905,10 +738,10 @@ export default function News() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* SoundCloud/Cloud Icon */}
-                <motion.a
+                <a
                   href="https://soundcloud.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -918,10 +751,10 @@ export default function News() {
                   aria-label="SoundCloud"
                 >
                   <Cloud className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* Instagram Icon */}
-                <motion.a
+                <a
                   href="https://www.instagram.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -931,10 +764,10 @@ export default function News() {
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* Grid/Portfolio Icon */}
-                <motion.a
+                <a
                   href="https://www.behance.net/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -944,10 +777,10 @@ export default function News() {
                   aria-label="Portfolio"
                 >
                   <Grid3x3 className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* Document/File Icon */}
-                <motion.a
+                <a
                   href="https://www.medium.com/@neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -957,10 +790,10 @@ export default function News() {
                   aria-label="Blog"
                 >
                   <FileText className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
 
                 {/* YouTube/Play Button Icon */}
-                <motion.a
+                <a
                   href="https://www.youtube.com/@neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -970,11 +803,11 @@ export default function News() {
                   aria-label="YouTube"
                 >
                   <Youtube className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.a>
+                </a>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

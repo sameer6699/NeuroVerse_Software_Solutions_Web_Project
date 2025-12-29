@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Cloud, Users, Shield, Database, Building2, Factory, Leaf, Code } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
@@ -127,37 +127,44 @@ export default function Services() {
     {
       name: "Cloud Services & Infrastructure",
       description: "Comprehensive cloud transformation services including migration, architecture design, DevOps implementation, and cloud-native application development. Multi-cloud strategies and hybrid solutions.",
-      technologies: ["AWS", "Azure", "GCP"]
+      technologies: ["AWS", "Azure", "GCP"],
+      image: images.banners.cloudInfraCardImg || images.banners.cloudInfraImg || images.banners.cloudNativeBannerImg
     },
     {
       name: "Customer Experience & Engagement",
       description: "End-to-end customer experience transformation through CRM implementation, customer analytics, personalization engines, and omnichannel engagement platforms.",
-      technologies: ["CRM", "AI/ML", "Analytics"]
+      technologies: ["CRM", "AI/ML", "Analytics"],
+      image: images.banners.customerExperience || images.banners.userExperience || images.banners.customerSatisfaction
     },
     {
       name: "Cybersecurity & Risk Management",
       description: "Advanced security solutions including threat intelligence, penetration testing, security architecture, compliance management, and incident response services.",
-      technologies: ["SIEM", "Zero Trust", "Encryption"]
+      technologies: ["SIEM", "Zero Trust", "Encryption"],
+      image: images.banners.cybersecurityCardImgNew || images.banners.cybersecurityCardImg || images.banners.cyberSecurityCardImg
     },
     {
       name: "Data Analytics & AI Solutions",
       description: "AI and ML solutions including data engineering, machine learning model development, MLOps, predictive analytics, and intelligent automation platforms.",
-      technologies: ["Python", "TensorFlow", "PyTorch"]
+      technologies: ["Python", "TensorFlow", "PyTorch"],
+      image: images.banners.aiAndMlImg || images.banners.aiMlBannerImg || images.banners.aiPoweredAnalytics || images.banners.dataAnalyticsBannerImg
     },
     {
       name: "Enterprise Resource Planning",
       description: "Enterprise resource planning, business process optimization, system integration, and digital transformation consulting services.",
-      technologies: ["ERP", "Integration", "Process Automation"]
+      technologies: ["ERP", "Integration", "Process Automation"],
+      image: images.banners.erpCardImg || images.banners.erpBannerCardImg || images.banners.enterpriseSoftwareDevelopmentBannerImg
     },
     {
       name: "Smart Manufacturing & Industry 4.0",
       description: "Industry 4.0 solutions including IoT implementation, smart manufacturing, predictive maintenance, and industrial automation systems.",
-      technologies: ["IoT", "Edge Computing", "Predictive Analytics"]
+      technologies: ["IoT", "Edge Computing", "Predictive Analytics"],
+      image: images.banners.smartFactoryImg || images.banners.industry40Img || images.banners.factoryAutomation || images.banners.iotEdgeComputing
     },
     {
       name: "Software Development & Engineering",
       description: "Custom software development services including web applications, mobile apps, microservices architecture, and API development for scalable and modern solutions.",
-      technologies: ["React", "Node.js", "Microservices"]
+      technologies: ["React", "Node.js", "Microservices"],
+      image: images.banners.swDevelopmentCardImg || images.banners.swEngineeringImg || images.banners.customSoftwareDevelopment || images.banners.fullStackDevelopmentBannerImg
     },
   ];
 
@@ -217,21 +224,13 @@ export default function Services() {
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-start">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
-            >
+            <div className="relative">
               {/* Blue Background Box - Overlay on left side */}
               <div 
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* Services Text - Centered in the box */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                <h1
                   className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
                   style={{
                     fontFamily: "'Poppins', 'Montserrat', sans-serif",
@@ -241,9 +240,9 @@ export default function Services() {
                   }}
                 >
                   Services
-                </motion.h1>
+                </h1>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -259,12 +258,7 @@ export default function Services() {
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10">
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6 lg:gap-8">
             {/* Social Media Icons - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col gap-5 md:gap-6 flex-shrink-0"
-            >
+            <div className="flex flex-col gap-5 md:gap-6 flex-shrink-0">
               {/* LinkedIn Icon */}
               <motion.a
                 href="https://www.linkedin.com/company/neuroverse"
@@ -305,15 +299,10 @@ export default function Services() {
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </motion.a>
-            </motion.div>
+            </div>
 
             {/* Description Text - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-              className="flex-1"
-            >
+            <div className="flex-1">
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
                   Comprehensive Technology Services
@@ -325,7 +314,7 @@ export default function Services() {
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -338,29 +327,17 @@ export default function Services() {
       >
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Services Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 md:mb-6"
-          >
+          <div className="mb-4 md:mb-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900">
               Our Services
             </h2>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Services Case Study Banner/Carousel Section - Full Width */}
       <section className="relative bg-white py-8 md:py-12 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl"
-        >
+        <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden rounded-xl">
             {/* Background Image - Full Width - Extends entire screen width */}
             <div 
               className="absolute inset-0"
@@ -385,15 +362,10 @@ export default function Services() {
               <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
                 <div className="flex items-center justify-start">
                   {/* White Text Box with Enhanced Styling - Dynamic Content */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentServiceIndex}
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 50 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
-                    >
+                  <div
+                    key={currentServiceIndex}
+                    className="bg-white/95 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-10 shadow-2xl max-w-2xl border border-white/20 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] transition-all duration-500 group"
+                  >
                       {/* Headline */}
                       <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight group-hover:text-blue-900 transition-colors duration-300">
                         {servicesData[currentServiceIndex].title}
@@ -405,28 +377,20 @@ export default function Services() {
                       </p>
 
                       {/* Learn More Button */}
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                      <button
                         className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-700 transition-all duration-300 shadow-sm group/btn"
                       >
                         <span className="group-hover/btn:translate-x-1 transition-transform duration-300">Learn more</span>
                         <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </motion.button>
-                    </motion.div>
-                  </AnimatePresence>
+                      </button>
+                    </div>
                 </div>
               </div>
             </div>
 
             {/* Carousel Navigation - Bottom Right */}
             <div className="absolute bottom-6 right-4 md:right-6 z-20">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
-              >
+              <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50">
                 {/* Previous Button (Left Arrow) */}
                 <button
                   onClick={prevService}
@@ -460,43 +424,33 @@ export default function Services() {
                 >
                   <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
                 </button>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+        </div>
       </section>
 
       {/* Learn more by service Section */}
       <section className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Learn more by service
             </h2>
-          </motion.div>
+          </div>
 
           {/* Service Grid - 3 columns for 8 cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {serviceCards.map((service, index) => (
-              <motion.div
+              <div
                 key={service.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="group cursor-pointer"
               >
                 <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   {/* Image Section */}
                   <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
                     <img
-                      src={images.projects.latestInsights}
+                      src={service.image || images.projects.latestInsights}
                       alt={service.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -537,7 +491,7 @@ export default function Services() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -548,37 +502,23 @@ export default function Services() {
         <div className="max-w-7xl mx-auto max-w-5k-content">
           <div className="grid grid-cols-1 lg:grid-cols-5 rounded-2xl overflow-hidden shadow-2xl">
             {/* Left Column - Blue Background (2/5 width) */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center"
-            >
+            <div className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 md:mb-8">
                 Why Choose NeuroVerse
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed mb-8 md:mb-10">
                 With deep expertise and cutting-edge technology, we deliver comprehensive services that transform businesses. Our end-to-end approach ensures you get solutions tailored to your unique challenges and opportunities.
               </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 w-fit"
               >
                 Get started
                 <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
             {/* Right Column - Image (3/5 width) */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative h-64 md:h-80 lg:h-full min-h-[400px] overflow-hidden"
-            >
+            <div className="lg:col-span-3 relative h-64 md:h-80 lg:h-full min-h-[400px] overflow-hidden">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -590,20 +530,14 @@ export default function Services() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section - Full Width */}
       <section className="relative pt-8 md:pt-10 pb-4 md:pb-6 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full p-8 md:p-12 lg:p-16"
-        >
+        <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full p-8 md:p-12 lg:p-16">
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
               {/* Left Side - Text Content */}
@@ -618,18 +552,16 @@ export default function Services() {
 
               {/* Right Side - Contact Button */}
               <div className="flex-shrink-0">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   className="flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 shadow-lg"
                 >
                   Contact Us
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

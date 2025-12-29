@@ -180,12 +180,7 @@ export default function Careers() {
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10">
           <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6 lg:gap-8">
             {/* Social Media Icons - Left Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="flex flex-col gap-5 md:gap-6 flex-shrink-0"
-            >
+            <div className="flex flex-col gap-5 md:gap-6 flex-shrink-0">
               {/* LinkedIn Icon */}
               <motion.a
                 href="https://www.linkedin.com/company/neuroverse"
@@ -226,15 +221,10 @@ export default function Careers() {
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </motion.a>
-            </motion.div>
+            </div>
 
             {/* Description Text - Right Side */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-              className="flex-1"
-            >
+            <div className="flex-1">
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
                   Join NeuroVerse
@@ -246,7 +236,7 @@ export default function Careers() {
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -254,17 +244,11 @@ export default function Careers() {
       {/* Why Join NeuroVerse Section */}
       <section id="why-join-section" className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Why join NeuroVerse
             </h2>
-          </motion.div>
+          </div>
 
           {/* Content Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -294,12 +278,8 @@ export default function Careers() {
                 description: "Connect with talented professionals and work on projects with global reach and impact.",
               },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-lg p-6 md:p-8 border border-gray-200 hover:shadow-xl transition-all duration-300"
               >
                 <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3">
@@ -308,7 +288,7 @@ export default function Careers() {
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">
                   {item.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -318,26 +298,16 @@ export default function Careers() {
       <section className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 md:mb-8"
-          >
+          <div className="mb-6 md:mb-8">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Explore NeuroVerse
             </h2>
-          </motion.div>
+          </div>
 
           {/* Cards Grid - 3 columns, 2 rows */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Card 1: Why join NeuroVerse - Image with white overlay */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
               onClick={() => {
                 navigate("/careers/WhyJoinNeuroVerse");
@@ -360,14 +330,10 @@ export default function Careers() {
                 </span>
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 2: Life at NeuroVerse - Solid Blue Background */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
               onClick={() => {
                 navigate("/careers/lifeAtNeuroVerse");
@@ -379,29 +345,22 @@ export default function Careers() {
               <div className="flex justify-end">
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 3: Career paths - Image with white overlay */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
               onClick={() => {
                 // Navigate to career paths section
                 console.log("Navigate to Career paths");
               }}
             >
-              {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
-                style={{
-                  backgroundImage: `url(${images.projects.hotTopicsBackground || images.projects.latestInsights})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              ></div>
+              {/* Image - Same as Why join NeuroVerse */}
+              <img
+                src={images.banners.careerOperationAtNeuroverse || images.banners.ourCultureHeroBannerSection || images.banners.teamImg || images.banners.collaborativeCardImg || images.projects.latestInsights}
+                alt="Career paths"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
               
               {/* White Overlay Box at Bottom */}
               <div className="absolute bottom-0 left-0 right-0 bg-white p-4 md:p-6 flex items-center justify-between">
@@ -410,14 +369,10 @@ export default function Careers() {
                 </span>
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 4: Diversity and Inclusion - Solid Blue Background */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
               onClick={() => {
                 // Navigate to diversity and inclusion section
@@ -430,14 +385,10 @@ export default function Careers() {
               <div className="flex justify-end">
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 5: Let's connect - Image with white overlay */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
             >
               {/* Background Image */}
@@ -457,14 +408,10 @@ export default function Careers() {
                 </span>
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 6: Benefits & Perks - Solid Blue Background (same style as Diversity and Inclusion) */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex flex-col justify-between p-6 md:p-8 hover:shadow-xl transition-shadow duration-300"
               onClick={() => {
                 // Navigate to benefits section or scroll to benefits
@@ -480,7 +427,7 @@ export default function Careers() {
               <div className="flex justify-end">
                 <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -490,43 +437,19 @@ export default function Careers() {
         <div className="w-full">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 overflow-hidden shadow-2xl">
             {/* Left Column - Dark Blue Background (40-45% width) */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[500px] md:min-h-[600px]"
-            >
+            <div className="lg:col-span-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-12 lg:p-16 flex flex-col justify-center min-h-[500px] md:min-h-[600px]">
               {/* Main Heading */}
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 md:mb-8"
-              >
+              <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-white mb-6 md:mb-8">
                 Careers at NeuroVerse
-              </motion.h2>
+              </h2>
 
               {/* Paragraph Text */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-base md:text-lg lg:text-xl text-white leading-relaxed mb-8 md:mb-10 max-w-xl"
-              >
+              <p className="text-base md:text-lg lg:text-xl text-white leading-relaxed mb-8 md:mb-10 max-w-xl">
                 Get the future you want – for yourself, for our clients, and for society as a whole.
-              </motion.p>
+              </p>
 
               {/* Brand/Logo */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mb-8 md:mb-10"
-              >
+              <div className="mb-8 md:mb-10">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-white" style={{ fontFamily: "'Poppins', 'Montserrat', sans-serif", fontStyle: 'italic', letterSpacing: '-0.02em' }}>
                     NeuroVerse
@@ -536,16 +459,10 @@ export default function Careers() {
                     invent
                   </span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Call to Action Button */}
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 onClick={() => {
                   // Navigate to jobs or scroll to jobs section
                   const jobsSection = document.getElementById('jobs-section');
@@ -555,19 +472,13 @@ export default function Careers() {
                 }}
                 className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 w-fit group"
               >
-                <span>Find your future at NeuroVerse</span>
+                <span>Create Career Profile</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
             {/* Right Column - Image (55-60% width) */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:col-span-3 relative h-[500px] md:h-[600px] lg:h-full min-h-[500px] md:min-h-[600px] overflow-hidden group"
-            >
+            <div className="lg:col-span-3 relative h-[500px] md:h-[600px] lg:h-full min-h-[500px] md:min-h-[600px] overflow-hidden group">
               {/* Background Image - Office/People Image */}
               <div
                 className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
@@ -580,7 +491,7 @@ export default function Careers() {
                 {/* Subtle overlay for better visual effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-transparent"></div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -589,29 +500,19 @@ export default function Careers() {
       <section id="life-at-neuroverse-gallery" className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12 text-center"
-          >
+          <div className="mb-8 md:mb-12 text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 mb-4 md:mb-6">
               Life at NeuroVerse
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
               Explore our vibrant work culture, collaborative environment, and the people who make NeuroVerse unique.
             </p>
-          </motion.div>
+          </div>
 
           {/* Gallery Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
             {/* Gallery Item 1: Collaborative Workspaces */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
@@ -625,14 +526,10 @@ export default function Careers() {
                   Collaborative Workspaces
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Gallery Item 2: Innovation Hub */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
@@ -646,14 +543,10 @@ export default function Careers() {
                   Innovation Hub
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Gallery Item 3: Team Building Events */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
@@ -667,18 +560,14 @@ export default function Careers() {
                   Team Building Events
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Gallery Item 4: Learning & Development */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.latestInsights}
+                src={images.banners.peopleInvestingBannerImg || images.banners.responsibleAiDevelopmentBannerImg || images.banners.ourCultureHeroBannerSection || images.projects.latestInsights}
                 alt="Learning & Development"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -688,18 +577,14 @@ export default function Careers() {
                   Learning & Development
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Gallery Item 5: Diverse Perspectives */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                src={images.banners.teamImg || images.banners.collaborativeCardImg || images.banners.ourCulture || images.banners.culturalImgBanner || images.projects.latestInsights}
                 alt="Diverse Perspectives"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -709,18 +594,14 @@ export default function Careers() {
                   Diverse Perspectives
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Gallery Item 6: Community Engagement */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+            <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-xl group cursor-pointer"
             >
               <img
-                src={images.projects.insightsHero || images.projects.latestInsights}
+                src={images.banners.corporateSocialResponsibilityBannerImg || images.banners.csrBannerImg || images.banners.eventsBannerImage || images.banners.partnership || images.projects.latestInsights}
                 alt="Community Engagement"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -730,7 +611,7 @@ export default function Careers() {
                   Community Engagement
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -739,26 +620,16 @@ export default function Careers() {
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Explore NeuroVerse
             </h2>
-          </motion.div>
+          </div>
 
           {/* Three Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Card 1: Why join NeuroVerse */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+            <div
               className="relative cursor-pointer group"
               onClick={() => {
                 navigate("/careers/WhyJoinNeuroVerse");
@@ -767,7 +638,7 @@ export default function Careers() {
               {/* Image */}
               <div className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-lg mb-4 md:mb-6">
                 <img
-                  src={images.projects.latestInsights}
+                  src={images.banners.careerOperationAtNeuroverse || images.banners.ourCultureHeroBannerSection || images.banners.teamImg || images.banners.collaborativeCardImg || images.projects.latestInsights}
                   alt="Why join NeuroVerse"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -779,14 +650,10 @@ export default function Careers() {
                   Why join NeuroVerse
                 </h3>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 2: Professions */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <div
               className="relative cursor-pointer group"
               onClick={() => {
                 // Navigate to professions section or page
@@ -796,7 +663,7 @@ export default function Careers() {
               {/* Image */}
               <div className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-lg mb-4 md:mb-6">
                 <img
-                  src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                  src={images.banners.peopleInvestingBannerImg || images.banners.innovationCardImg || images.banners.excellenceInExecutionBannerImg || images.banners.technologyInnovation || images.projects.latestInsights}
                   alt="Professions"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -808,20 +675,16 @@ export default function Careers() {
                   Professions
                 </h3>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 3: Join us */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <div
               className="relative cursor-pointer group"
             >
               {/* Image */}
               <div className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden shadow-lg mb-4 md:mb-6">
                 <img
-                  src={images.projects.insightsHero || images.projects.latestInsights}
+                  src={images.banners.teamImg || images.banners.collaborativeCardImg || images.banners.lifeAtBanner || images.banners.ourCulture || images.projects.latestInsights}
                   alt="Join us"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -833,20 +696,14 @@ export default function Careers() {
                   Join us
                 </h3>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section - Full Width */}
       <section className="relative pt-8 md:pt-10 pb-4 md:pb-6 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full p-8 md:p-12 lg:p-16"
-        >
+        <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full p-8 md:p-12 lg:p-16">
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
               {/* Left Side - Text Content */}
@@ -861,9 +718,7 @@ export default function Careers() {
 
               {/* Right Side - Browse Open Opportunities Button */}
               <div className="flex-shrink-0">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={() => {
                     // Scroll to jobs section or navigate to jobs page
                     const jobsSection = document.getElementById('jobs-section');
@@ -878,11 +733,11 @@ export default function Careers() {
                 >
                   Browse Open Opportunities
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
+                </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

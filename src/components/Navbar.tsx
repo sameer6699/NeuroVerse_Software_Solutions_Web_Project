@@ -842,14 +842,13 @@ export default function Navbar() {
 
           {/* Right Section: Utility Links and Actions */}
           <div className="hidden lg:flex items-center gap-6 ml-auto">
-            {/* Login Button */}
-            <Button
-              onClick={() => navigate("/auth")}
-              variant="outline"
-              className="text-sm font-medium text-gray-900 hover:text-blue-600 hover:border-blue-600 transition-all duration-200 border-gray-300 bg-white hover:bg-blue-50"
+            {/* Login Text */}
+            <Link
+              to="/auth"
+              className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
             >
               Login
-            </Button>
+            </Link>
 
             {/* Search and Theme Toggle */}
             <div className="flex items-center gap-4 border-l border-gray-200 pl-4 transition-colors duration-300">
@@ -918,16 +917,13 @@ export default function Navbar() {
               );
             })}
             <div className="pt-4 space-y-2">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  navigate("/auth");
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full transition-all duration-200 text-gray-900 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-600"
+              <Link
+                to="/auth"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-200 cursor-pointer py-2"
               >
-                Sign In
-              </Button>
+                Login
+              </Link>
             </div>
           </div>
         </motion.div>

@@ -266,21 +266,13 @@ export default function PartnersAndAlliances() {
       <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
         <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
           <div className="flex justify-start">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
-            >
+            <div className="relative">
               {/* Blue Background Box */}
               <div 
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* Title Text */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                <h1
                   className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight"
                   style={{
                     fontFamily: "'Poppins', 'Montserrat', sans-serif",
@@ -290,9 +282,9 @@ export default function PartnersAndAlliances() {
                   }}
                 >
                   Partners & Alliances
-                </motion.h1>
+                </h1>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -300,13 +292,7 @@ export default function PartnersAndAlliances() {
       {/* Main Content Section - Introduction */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 mb-6 leading-tight">
               We partner with leading technology companies to power business transformation for our clients.
             </h2>
@@ -316,37 +302,27 @@ export default function PartnersAndAlliances() {
                 Explore how we accompany our clients in harnessing the potential of technology, to optimize the operation of their systems and processes, and offer their customers exceptional personalized experiences at the cutting-edge of Innovation.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Our Global Partners Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
               Our Trusted Partners
             </h2>
             <p className="text-base md:text-lg text-gray-600 mb-8">
               We identify and execute growth initiatives with our partners for specific market segments.
             </p>
-          </motion.div>
+          </div>
 
           {/* Partners Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {globalPartners.map((partner, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-16 mb-4 flex items-center">
@@ -357,7 +333,7 @@ export default function PartnersAndAlliances() {
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   {partner.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -366,27 +342,15 @@ export default function PartnersAndAlliances() {
       {/* Latest Updates Section */}
       <section className="relative bg-gray-50 py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-8">
               Latest updates
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Main Story - Left */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-1"
-            >
+            <div className="md:col-span-1">
               <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full">
                 <div className="relative w-full h-64 overflow-hidden">
                   <img
@@ -407,17 +371,13 @@ export default function PartnersAndAlliances() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Column - Two Stories */}
             <div className="md:col-span-1 space-y-6 md:space-y-8">
               {latestUpdates.slice(1).map((update, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
                   className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="relative w-full h-48 overflow-hidden">
@@ -435,7 +395,7 @@ export default function PartnersAndAlliances() {
                       {update.title}
                     </h3>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -445,30 +405,20 @@ export default function PartnersAndAlliances() {
       {/* Our Cloud Partners Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
               Our Cloud Partners
             </h2>
             <p className="text-base md:text-lg text-gray-600 mb-8">
               We collaborate with leading cloud providers to deliver scalable, secure, and innovative cloud solutions that drive digital transformation.
             </p>
-          </motion.div>
+          </div>
 
           {/* Cloud Partners Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {cloudPartners.map((partner, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
                 className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-all duration-300"
               >
                 <div className="h-16 mb-4 flex items-center">
@@ -479,7 +429,7 @@ export default function PartnersAndAlliances() {
                 <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   {partner.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -488,17 +438,11 @@ export default function PartnersAndAlliances() {
       {/* Client Stories Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-8">
               Client stories
             </h2>
-          </motion.div>
+          </div>
 
           {/* Carousel */}
           <div className="relative">
@@ -521,14 +465,12 @@ export default function PartnersAndAlliances() {
                     <p className="text-base md:text-lg text-white/90 mb-6 leading-relaxed">
                       {clientStories[currentStoryIndex].description}
                     </p>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <button
                       className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300"
                     >
                       <span>Read more</span>
                       <ArrowRight className="w-5 h-5" />
-                    </motion.button>
+                    </button>
                   </div>
 
                   {/* Right Side - Navigation Arrows */}
@@ -571,26 +513,16 @@ export default function PartnersAndAlliances() {
       {/* Explore Further Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
+          <div className="mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-8">
               Explore further
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {exploreFurther.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer"
                 onClick={() => navigate(item.link)}
               >
@@ -612,7 +544,7 @@ export default function PartnersAndAlliances() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
