@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Linkedin, ArrowRight, Facebook, Instagram, Youtube, FileText, Grid3x3, Cloud } from "lucide-react";
 import { images } from "@/assets";
 import { useRef } from "react";
@@ -317,7 +318,7 @@ export default function News() {
               <p className="text-sm md:text-base text-gray-500 mb-8">Nov 6, 2025</p>
 
               {/* CTA Button */}
-              <button
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
@@ -328,7 +329,7 @@ export default function News() {
               >
                 See all press releases
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              </motion.button>
 
               {/* Additional Generic News Items */}
               <div className="space-y-6 mt-8 pt-8 border-t border-gray-200">
@@ -620,7 +621,7 @@ export default function News() {
           <div
             className="mt-8 md:mt-12"
           >
-            <button
+            <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
@@ -631,7 +632,7 @@ export default function News() {
             >
               See all reports
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </section>
@@ -640,7 +641,7 @@ export default function News() {
       <section className="relative bg-white py-8 md:py-10 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
-          <div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -650,7 +651,7 @@ export default function News() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
               Explore News Categories
             </h2>
-          </div>
+          </motion.div>
 
           {/* News Categories Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
@@ -715,7 +716,7 @@ export default function News() {
               {/* Right Side - Social Media Icons */}
               <div className="flex items-center gap-4 md:gap-6 lg:gap-8 flex-wrap justify-center md:justify-end">
                 {/* Facebook Icon */}
-                <a
+                <motion.a
                   href="https://www.facebook.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -725,10 +726,10 @@ export default function News() {
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* LinkedIn Icon */}
-                <a
+                <motion.a
                   href="https://www.linkedin.com/company/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -738,10 +739,10 @@ export default function News() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* SoundCloud/Cloud Icon */}
-                <a
+                <motion.a
                   href="https://soundcloud.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -751,10 +752,10 @@ export default function News() {
                   aria-label="SoundCloud"
                 >
                   <Cloud className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* Instagram Icon */}
-                <a
+                <motion.a
                   href="https://www.instagram.com/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -764,10 +765,10 @@ export default function News() {
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* Grid/Portfolio Icon */}
-                <a
+                <motion.a
                   href="https://www.behance.net/neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -777,10 +778,10 @@ export default function News() {
                   aria-label="Portfolio"
                 >
                   <Grid3x3 className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* Document/File Icon */}
-                <a
+                <motion.a
                   href="https://www.medium.com/@neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -790,10 +791,10 @@ export default function News() {
                   aria-label="Blog"
                 >
                   <FileText className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
 
                 {/* YouTube/Play Button Icon */}
-                <a
+                <motion.a
                   href="https://www.youtube.com/@neuroverse"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -803,7 +804,7 @@ export default function News() {
                   aria-label="YouTube"
                 >
                   <Youtube className="w-5 h-5 md:w-6 md:h-6" />
-                </a>
+                </motion.a>
               </div>
             </div>
           </div>

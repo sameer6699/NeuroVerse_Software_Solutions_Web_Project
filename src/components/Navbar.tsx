@@ -298,7 +298,10 @@ export default function Navbar() {
                 >
                   <Link 
                     to={link.href}
-                    onClick={(e) => handleSectionClick(link.href, link.sectionId, e)}
+                    onClick={(e) => {
+                      handleSectionClick(link.href, link.sectionId, e);
+                      setHoveredMenu(null); // Close dropdown immediately on click
+                    }}
                     className="relative"
                   >
                     <span 

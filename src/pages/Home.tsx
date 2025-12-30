@@ -408,9 +408,8 @@ export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Typewriter animation for badge text (faster speed, loops continuously)
+  // Badge text (static, no typewriter effect)
   const badgeText = "Where Innovation Meets Passion..!";
-  const { displayedText } = useTypewriter(badgeText, 40, 25, 1500);
 
 
   // Handle path-based navigation and scroll to sections
@@ -498,8 +497,7 @@ export default function Home() {
                 <Badge variant="outline" className="bg-[#faf9f7] border-border/50 px-4 py-2 text-sm font-medium shadow-sm hover:shadow-md transition-shadow flex items-center gap-2 w-fit">
                   <Rocket className="w-4 h-4 text-primary" />
                   <span>
-                    {displayedText}
-                    <span className="inline-block w-0.5 h-4 bg-primary ml-1 animate-pulse">|</span>
+                    {badgeText}
                   </span>
                 </Badge>
               </div>
@@ -540,15 +538,20 @@ export default function Home() {
               </div> */}
             </div>
 
-            {/* Right Side - SVG Illustration */}
+            {/* Right Side - Transparent Video */}
             <div className="w-full flex items-center justify-center">
               <div className="relative w-full max-w-2xl">
-                <img
-                  src={images.hero.image}
-                  alt="NeuroVerse - Engineering the Next Generation of Smart Software"
+                <video
+                  src={images.hero.transparentVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-auto object-contain"
-                  loading="eager"
-                />
+                  aria-label="NeuroVerse - Engineering the Next Generation of Smart Software"
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
           </div>

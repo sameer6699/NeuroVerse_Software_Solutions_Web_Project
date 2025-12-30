@@ -27,6 +27,7 @@ export const heroImages = {
   background: new URL('./hero/hero-bg.jpg', import.meta.url).href,
   image: new URL('./hero/hero-img.svg', import.meta.url).href,
   pattern: new URL('./hero/hero-pattern.svg', import.meta.url).href,
+  transparentVideo: new URL('./hero/transparentvideo1-Search-bar.webm', import.meta.url).href,
 } as const;
 
 // Feature images
@@ -240,6 +241,12 @@ export const bannerImages = {
   partnersAndAllianceHeroBanner: new URL('./banner-Images/partners-and-alliance-hero-banner.jpg', import.meta.url).href,
   awardsBannerImages: new URL('./banner-Images/awards-banner-images.jpg', import.meta.url).href,
   eventsBannerImage: new URL('./banner-Images/events-banner-image.jpg', import.meta.url).href,
+  investmentTrends2025: new URL('./banner-Images/Investment trends 2025.jpg', import.meta.url).href,
+  sustainableGenAi: new URL('./banner-Images/Sustainable Gen AI.jpg', import.meta.url).href,
+  whatMattersToTodaysConsumer: new URL('./banner-Images/What matters to today\'s consumer.jpg', import.meta.url).href,
+  researchLibrary: new URL('./banner-Images/Research library.jpg', import.meta.url).href,
+  expertPerspectives: new URL('./banner-Images/Expert perspectives.jpg', import.meta.url).href,
+  analystReports: new URL('./banner-Images/Analyst reports.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience

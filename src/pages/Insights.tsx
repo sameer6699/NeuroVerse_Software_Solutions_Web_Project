@@ -1,8 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Factory, Network, Battery, TrendingUp, Leaf, ShoppingCart, Calendar, FileText, Download } from "lucide-react";
+import { Linkedin, ChevronLeft, ChevronRight, ArrowRight, Factory, Network, Battery, TrendingUp, Leaf, ShoppingCart, Calendar, FileText, Download, CheckCircle2 } from "lucide-react";
 import { images } from "@/assets";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 /**
  * Insights Page Component
@@ -13,6 +21,11 @@ import { useNavigate } from "react-router";
 export default function Insights() {
   const navigate = useNavigate();
   const heroRef = useRef<HTMLElement>(null);
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [email, setEmail] = useState("");
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [subscribedEmail, setSubscribedEmail] = useState("");
+  const emailInputRef = useRef<HTMLInputElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -34,6 +47,20 @@ export default function Insights() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Handle subscribe
+  const handleSubscribe = () => {
+    if (email.trim()) {
+      // Here you can add your subscription logic
+      console.log("Subscribing email:", email);
+      // You can add API call here
+      // Show custom success dialog
+      setSubscribedEmail(email);
+      setShowSuccessDialog(true);
+      setEmail("");
+      setIsSubscribing(false);
+    }
+  };
 
   // Hot Topics Carousel State
   const [currentTopicIndex, setCurrentTopicIndex] = useState(0);
@@ -495,17 +522,15 @@ export default function Insights() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 50%),
-                                     radial-gradient(circle at 70% 70%, rgba(255,255,255,0.15) 0%, transparent 50%)`,
-                  }}></div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <TrendingUp className="w-20 h-20 text-white/80 group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="absolute top-4 left-4">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden">
+                <img
+                  src={images.banners.investmentTrends2025}
+                  alt="Investment trends 2025"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 z-10">
                   <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
                     Finance & Investment
                   </span>
@@ -545,24 +570,15 @@ export default function Insights() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-green-500 via-emerald-600 to-teal-700">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {[10, 20, 30, 40, 50, 60, 70, 80, 15, 25, 35, 45, 55, 65, 75, 85, 12, 22, 32, 42].map((pos, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-2 h-2 bg-white/40 rounded-full"
-                        style={{
-                          left: `${pos}%`,
-                          top: `${(pos * 1.3) % 100}%`,
-                          transform: `scale(${0.5 + (i % 3) * 0.2})`,
-                        }}
-                      ></div>
-                    ))}
-                    <Leaf className="w-20 h-20 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                </div>
-                <div className="absolute top-4 left-4">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden">
+                <img
+                  src={images.banners.sustainableGenAi}
+                  alt="Sustainable Gen AI"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 z-10">
                   <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
                     Sustainability
                   </span>
@@ -602,17 +618,15 @@ export default function Insights() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer group h-full flex flex-col"
             >
-              <div className="relative w-full h-56 md:h-64 overflow-hidden bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0" style={{
-                    background: `conic-gradient(from 0deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,255,0,0.3), rgba(0,0,255,0.3), rgba(255,0,0,0.3))`,
-                    filter: 'blur(20px)',
-                  }}></div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <ShoppingCart className="w-20 h-20 text-white/80 absolute group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="absolute top-4 left-4">
+              <div className="relative w-full h-56 md:h-64 overflow-hidden">
+                <img
+                  src={images.banners.whatMattersToTodaysConsumer}
+                  alt="What matters to today's consumer"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent"></div>
+                <div className="absolute top-4 left-4 z-10">
                   <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/30">
                     Consumer Insights
                   </span>
@@ -926,17 +940,13 @@ export default function Insights() {
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 lg:h-80 overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-                  style={{
-                    backgroundImage: `url(${images.projects.latestInsights})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  {/* Dark overlay for better text contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                </div>
+                <img
+                  src={images.banners.researchLibrary}
+                  alt="Research library"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Dark overlay for better text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
               </div>
               
               {/* Content */}
@@ -959,18 +969,14 @@ export default function Insights() {
               className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer group"
             >
               {/* Image */}
-              <div className="relative w-full h-64 md:h-72 lg:h-80 overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
-                <div
-                  className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-                  style={{
-                    backgroundImage: `url(${images.projects.latestInsights})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  {/* Light overlay for portrait effect */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent"></div>
-                </div>
+              <div className="relative w-full h-64 md:h-72 lg:h-80 overflow-hidden">
+                <img
+                  src={images.banners.expertPerspectives}
+                  alt="Expert perspectives"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Light overlay for portrait effect */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-transparent"></div>
               </div>
               
               {/* Content */}
@@ -994,17 +1000,13 @@ export default function Insights() {
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 lg:h-80 overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-                  style={{
-                    backgroundImage: `url(${images.projects.latestInsights})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  {/* Subtle overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent"></div>
-                </div>
+                <img
+                  src={images.banners.analystReports}
+                  alt="Analyst reports"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent"></div>
               </div>
               
               {/* Content */}
@@ -1042,21 +1044,92 @@ export default function Insights() {
                 </p>
               </div>
 
-              {/* Right Side - Subscribe Button */}
+              {/* Right Side - Subscribe Button / Email Input */}
               <div className="flex-shrink-0">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 shadow-lg"
-                >
-                  Subscribe
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                {!isSubscribing ? (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setIsSubscribing(true);
+                      // Focus the input after a brief delay to allow the transition
+                      setTimeout(() => {
+                        emailInputRef.current?.focus();
+                      }, 100);
+                    }}
+                    className="flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-300 shadow-lg"
+                  >
+                    Subscribe
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.button>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex items-stretch rounded-lg shadow-lg overflow-hidden"
+                  >
+                    <input
+                      ref={emailInputRef}
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="px-6 py-4 bg-white text-gray-900 font-medium outline-none border-none min-w-[250px] md:min-w-[300px] flex-1"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          handleSubscribe();
+                        }
+                      }}
+                    />
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={handleSubscribe}
+                      className="px-6 py-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center flex-shrink-0"
+                      aria-label="Submit email"
+                    >
+                      <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
+                    </motion.button>
+                  </motion.div>
+                )}
               </div>
             </div>
           </div>
         </motion.div>
       </section>
+
+      {/* Custom Success Dialog */}
+      <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100"
+            >
+              <CheckCircle2 className="h-10 w-10 text-blue-600" strokeWidth={2} />
+            </motion.div>
+            <DialogTitle className="text-center text-2xl font-bold text-gray-900">
+              Thank you for subscribing!
+            </DialogTitle>
+            <DialogDescription className="text-center text-base text-gray-600 pt-2">
+              We'll send the latest reports from the <span className="font-semibold text-blue-600">NEUROVERSE RESEARCH INSTITUTE</span> to
+              <br />
+              <span className="font-medium text-gray-900">{subscribedEmail}</span>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center pt-4">
+            <Button
+              onClick={() => setShowSuccessDialog(false)}
+              className="px-8 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300"
+            >
+              Got it
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
