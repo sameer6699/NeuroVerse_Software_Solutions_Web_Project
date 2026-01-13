@@ -101,6 +101,7 @@ export default function Insights() {
     {
       id: 1,
       personName: "Dr. Luc Julia",
+      indianAuthor: "Dr. Ramesh Kumar",
       image: images.projects.latestInsights, // Placeholder - can be replaced with actual headshot
       bgText: ["ewir", "ay's", "code", "cars"],
       title: "Rewiring today's factories to code tomorrow's cars",
@@ -109,6 +110,7 @@ export default function Insights() {
     {
       id: 2,
       personName: "Daniela Rus",
+      indianAuthor: "Dr. Priya Sharma",
       image: images.projects.latestInsights, // Placeholder - can be replaced with actual headshot
       bgText: ["When", "Al", "meets", "robotics"],
       title: "When AI meets robotics",
@@ -117,6 +119,7 @@ export default function Insights() {
     {
       id: 3,
       personName: "Jeremy Utley",
+      indianAuthor: "Prof. Anil Patel",
       image: images.projects.latestInsights, // Placeholder - can be replaced with actual headshot
       bgText: ["Creativity", "in the", "age of", "Al"],
       title: "Creativity in the age of AI",
@@ -819,9 +822,15 @@ export default function Insights() {
                   <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                     {article.title}
                   </h3>
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-3">
                     {article.description}
                   </p>
+                  {/* Indian Author Name */}
+                  <div className="pt-3 border-t border-gray-200">
+                    <p className="text-sm md:text-base text-gray-600 font-semibold">
+                      <span className="text-gray-500">Indian Author:</span> {article.indianAuthor}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}

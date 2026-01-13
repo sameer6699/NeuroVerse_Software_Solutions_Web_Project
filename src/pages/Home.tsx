@@ -17,8 +17,7 @@ import {
   Code,
   Shield,
   Network,
-  Cpu,
-  Download
+  Cpu
 } from "lucide-react";
 
 // Typewriter animation hook with loop
@@ -70,12 +69,12 @@ function ClientStoriesCarousel() {
     },
     {
       headline: "NeuroVerse enables financial services leader to revolutionize customer experience through intelligent automation",
-      body: "A leading financial institution partnered with NeuroVerse to implement AI-powered fraud detection and customer service automation, resulting in 60% reduction in false positives and 40% improvement in customer satisfaction",
+      body: "A leading financial institution partnered with NeuroVerse to implement AI-powered fraud detection and customer service automation, resulting in 60% reduction in false positives and 40% improvement in customer satisfaction. School of stock Market Information",
       backgroundImage: images.projects.latestInsights,
     },
     {
       headline: "NeuroVerse transforms healthcare provider's operations with predictive analytics and intelligent systems",
-      body: "A major healthcare network collaborated with NeuroVerse to deploy AI-driven patient risk prediction and resource optimization systems, achieving 30% cost reduction and 45% improvement in operational efficiency",
+      body: "A major healthcare network collaborated with NeuroVerse to deploy AI-driven patient risk prediction and resource optimization systems, achieving 30% cost reduction and 45% improvement in operational efficiency. About unisec management services: How Our Custom CRM Portal Help Their Business To Run the Faster and Smoother for second univest",
       backgroundImage: images.projects.latestInsights,
     },
   ];
@@ -1047,116 +1046,121 @@ export default function Home() {
           {/* Reports Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
             {/* Report 1: Finance & Investment */}
-            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col h-full">
+              {/* Badge and Date Section */}
               <div className="mb-4">
                 <Badge variant="outline" className="text-xs font-medium mb-3">
                   Finance & Investment
                 </Badge>
-                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                <p className="text-sm text-gray-600 dark:text-gray-500">
                   January 2025
                 </p>
               </div>
+              
+              {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 Investment trends 2025
               </h3>
-              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+              
+              {/* Description Section - Flex-1 to push button to bottom */}
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 Navigating uncertainty with confidence: Investment priorities for 2025. NeuroVerse's data-driven insights help organizations make informed investment decisions in AI and digital transformation.
               </p>
+              
+              {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
+              
+              {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                className="w-full bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold mt-auto group"
                 onClick={() => navigate("/insights")}
               >
                 Read Report
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 
             {/* Report 2: Sustainability */}
-            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col h-full">
+              {/* Badge and Date Section */}
               <div className="mb-4">
                 <Badge variant="outline" className="text-xs font-medium mb-3">
                   Sustainability
                 </Badge>
-                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                <p className="text-sm text-gray-600 dark:text-gray-500">
                   December 2025
                 </p>
               </div>
+              
+              {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 Sustainable Gen AI
               </h3>
-              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+              
+              {/* Description Section - Flex-1 to push button to bottom */}
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 The environmental Impact of Gen AI and a roadmap for developing sustainable Gen AI practices. NeuroVerse is leading the way in creating energy-efficient AI solutions and sustainable machine learning frameworks.
               </p>
+              
+              {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
+              
+              {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                className="w-full bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold mt-auto group"
                 onClick={() => navigate("/insights")}
               >
                 Read Report
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 
             {/* Report 3: Consumer Insights */}
-            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+            <div className="bg-white rounded-lg border border-border/50 p-6 md:p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col h-full">
+              {/* Badge and Date Section */}
               <div className="mb-4">
                 <Badge variant="outline" className="text-xs font-medium mb-3">
                   Consumer Insights
                 </Badge>
-                <p className="text-sm text-gray-600 dark:text-gray-500 mb-2">
+                <p className="text-sm text-gray-600 dark:text-gray-500">
                   November 2025
                 </p>
               </div>
+              
+              {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 What matters to today's consumer
               </h3>
-              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+              
+              {/* Description Section - Flex-1 to push button to bottom */}
+              <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 Consumer preferences and purchasing behaviors are constantly evolving. NeuroVerse's AI-powered analytics provide deep insights into consumer behavior and enable personalized customer experiences.
               </p>
+              
+              {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
+              
+              {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
                 size="sm"
-                className="w-full border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-colors"
+                className="w-full bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold mt-auto group"
                 onClick={() => navigate("/insights")}
               >
                 Read Report
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-8 py-6 text-base group"
-              onClick={() => navigate("/insights")}
-            >
-              See all our reports
-              <ArrowRight className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-white border-2 border-gray-900 hover:bg-gray-50 hover:border-gray-700 !text-gray-900 hover:!text-gray-900 font-semibold px-8 py-6 text-base group"
-              onClick={() => navigate("/insights")}
-            >
-              Download Report Bundle
-              <Download className="ml-2 h-5 w-5 !text-gray-900 group-hover:!text-gray-900 group-hover:translate-y-0.5 transition-transform" />
-            </Button>
           </div>
         </div>
       </section>

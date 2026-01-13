@@ -59,6 +59,7 @@ export const projectImages = {
   latestInsights: new URL('./projects/17973908.jpg', import.meta.url).href,
   insightsHero: new URL('./projects/Flat_openSpace_offices_13.jpg', import.meta.url).href,
   hotTopicsBackground: new URL('./projects/empty-square-modern-architecture.jpg', import.meta.url).href,
+  seedLinkVideo: new URL('./projects/transparentvideo2-seedlink.webm', import.meta.url).href,
 } as const;
 
 // Banner images

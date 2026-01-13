@@ -82,24 +82,6 @@ export default function Products() {
     setCurrentProductIndex(index);
   };
 
-  // Product cards data
-  const productCards = [
-    {
-      name: "SeedLink",
-      description: "Connect startups with investors through intelligent matchmaking. Our platform uses advanced algorithms to match startups with the right investors based on industry, stage, and investment criteria.",
-      technologies: ["AI Matching", "Analytics", "CRM"],
-      icon: Sparkles,
-      color: "from-purple-500 to-pink-600"
-    },
-    {
-      name: "WealthWise",
-      description: "Transform your wealth management with AI-driven insights. Get personalized investment recommendations, portfolio analysis, and real-time market intelligence to make informed financial decisions.",
-      technologies: ["AI/ML", "Analytics", "Real-time Data"],
-      icon: TrendingUp,
-      color: "from-blue-500 to-cyan-600"
-    },
-  ];
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
@@ -412,98 +394,6 @@ export default function Products() {
         </motion.div>
       </section>
 
-      {/* Learn more by product Section */}
-      <section className="relative bg-white py-8 md:py-10 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 md:mb-8"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left">
-              Learn more by product
-            </h2>
-          </motion.div>
-
-          {/* Product Grid - 2 columns for 2 products */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
-            {productCards.map((product, index) => {
-              const Icon = product.icon;
-              return (
-                <motion.div
-                  key={product.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group cursor-pointer"
-                >
-                  <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                    {/* Image Section */}
-                    <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
-                      {product.name === "SeedLink" ? (
-                        <img
-                          src={images.logos.seedLink}
-                          alt={product.name}
-                          className="w-full h-full object-contain bg-gradient-to-br from-purple-50 to-pink-50 p-8 group-hover:scale-110 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className={`w-full h-full bg-gradient-to-br ${product.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-500`}>
-                          <Icon className="w-24 h-24 text-white opacity-80" />
-                        </div>
-                      )}
-                      {/* Overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    
-                    {/* Content Section */}
-                    <div className="p-4 md:p-6 flex flex-col flex-grow">
-                      {/* Product Name */}
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`p-2 rounded-lg bg-gradient-to-br ${product.color} text-white`}>
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                          {product.name}
-                        </h3>
-                      </div>
-                      
-                      {/* Description */}
-                      <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow line-clamp-3">
-                        {product.description}
-                      </p>
-                      
-                      {/* Technologies Tags */}
-                      <div className="flex flex-wrap gap-2 mt-auto">
-                        {product.technologies.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      {/* Learn More Link */}
-                      <div className="mt-4 pt-4 border-t border-gray-200">
-                        <div className="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
-                          <span>Learn more</span>
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Detailed Product Information Section */}
       <section className="relative bg-gradient-to-br from-gray-50 to-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
@@ -530,63 +420,71 @@ export default function Products() {
             transition={{ duration: 0.8 }}
             className="mb-12 md:mb-16"
           >
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left Side - Image */}
-                <div className="relative h-64 md:h-80 lg:h-full min-h-[400px] bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center p-8">
-                  <img
-                    src={images.logos.seedLink}
-                    alt="SeedLink"
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch min-h-[500px] md:min-h-[600px] lg:min-h-[650px]">
+              {/* Left Side - Video (Full Width, No Card Styling) */}
+              <div className="relative w-full h-full overflow-hidden">
+                <video
+                  src={images.projects.seedLinkVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  aria-label="SeedLink Platform Demo"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
 
-                {/* Right Side - Content */}
-                <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-4 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white">
-                      <Sparkles className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-gray-900">SeedLink</h3>
+              {/* Right Side - Content Card */}
+              <div className="bg-white rounded-r-2xl lg:rounded-l-none rounded-l-2xl shadow-xl border border-gray-200 border-l-0 lg:border-l lg:border-r-0 p-8 md:p-10 lg:p-12 flex flex-col justify-center h-full">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-4 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 text-white">
+                    <Sparkles className="w-8 h-8" />
                   </div>
-                  
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
-                    SeedLink is a revolutionary platform that connects startups with investors, providing seamless matchmaking, comprehensive analytics, and intelligent insights to accelerate funding and growth opportunities.
-                  </p>
+                  <h3 className="text-3xl md:text-4xl font-heading font-bold text-gray-900">SeedLink</h3>
+                </div>
+                
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+                  SeedLink is a revolutionary platform that connects startups with investors, providing seamless matchmaking, comprehensive analytics, and intelligent insights to accelerate funding and growth opportunities.
+                </p>
 
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-start gap-3">
-                      <Zap className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Intelligent Matching</h4>
-                        <p className="text-sm text-gray-600">AI-powered algorithms match startups with the most suitable investors based on industry, stage, and investment criteria.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <BarChart3 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Analytics Dashboard</h4>
-                        <p className="text-sm text-gray-600">Comprehensive analytics and insights to track performance, investor engagement, and funding progress.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Shield className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Secure Platform</h4>
-                        <p className="text-sm text-gray-600">Enterprise-grade security ensures your data and communications remain protected throughout the funding process.</p>
-                      </div>
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-3">
+                    <Zap className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Intelligent Matching</h4>
+                      <p className="text-sm text-gray-600">AI-powered algorithms match startups with the most suitable investors based on industry, stage, and investment criteria.</p>
                     </div>
                   </div>
-
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-purple-500 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all duration-300 w-fit"
-                  >
-                    Explore SeedLink
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
+                  <div className="flex items-start gap-3">
+                    <BarChart3 className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Analytics Dashboard</h4>
+                      <p className="text-sm text-gray-600">Comprehensive analytics and insights to track performance, investor engagement, and funding progress.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-purple-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">Secure Platform</h4>
+                      <p className="text-sm text-gray-600">Enterprise-grade security ensures your data and communications remain protected throughout the funding process.</p>
+                    </div>
+                  </div>
                 </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-br from-purple-500 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-600 hover:to-pink-700 transition-all duration-300 w-fit"
+                >
+                  Explore SeedLink
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
               </div>
             </div>
           </motion.div>
