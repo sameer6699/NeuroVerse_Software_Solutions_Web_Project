@@ -1,10 +1,33 @@
 import { Link, useNavigate } from "react-router";
 import { images } from "@/assets";
 import { motion } from "framer-motion";
-import { Linkedin, Facebook, Instagram, Youtube, Twitter, Mail } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Youtube, Twitter, Mail, Globe, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Footer() {
   const navigate = useNavigate();
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        languageDropdownRef.current &&
+        !languageDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageOpen(false);
+      }
+    };
+
+    if (isLanguageOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLanguageOpen]);
 
   // Navigation Links
   const navigationLinks = [
@@ -212,9 +235,114 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section - Copyright and Additional Info */}
+        {/* Bottom Section - Footer Options and Copyright */}
         <div className="border-t border-gray-200 pt-8 md:pt-10">
-          <div className="flex flex-col md:flex-row items-center justify-end gap-4 md:gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
+            {/* Left Side - Footer Options */}
+            <div className="flex flex-wrap items-center gap-4 md:gap-6 justify-center md:justify-start">
+              {/* NeuroVerse Logo */}
+              <div className="flex items-center">
+                <Link
+                  to="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/");
+                  }}
+                  className="cursor-pointer transition-opacity duration-200 hover:opacity-80"
+                >
+                  <img
+                    src={images.logos.navbar}
+                    alt="NeuroVerse Logo"
+                    className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+                  />
+                </Link>
+              </div>
+
+              {/* Privacy Link */}
+              <Link
+                to="/privacy"
+                className="font-sans text-xs md:text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/privacy");
+                }}
+              >
+                Privacy
+              </Link>
+
+              {/* Terms Link */}
+              <Link
+                to="/terms"
+                className="font-sans text-xs md:text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/terms");
+                }}
+              >
+                Terms
+              </Link>
+
+              {/* Help Link */}
+              <Link
+                to="/help"
+                className="font-sans text-xs md:text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/help");
+                }}
+              >
+                Help
+              </Link>
+
+              {/* Language Selector */}
+              <div className="relative" ref={languageDropdownRef}>
+                <button
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className="flex items-center gap-1 font-sans text-xs md:text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
+                  aria-label="Select language"
+                  aria-expanded={isLanguageOpen}
+                >
+                  <Globe className="w-4 h-4" />
+                  <span>English</span>
+                  <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLanguageOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {/* Language Dropdown */}
+                {isLanguageOpen && (
+                  <div className="absolute bottom-full left-0 mb-2 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[120px] z-50">
+                    <button
+                      onClick={() => {
+                        setIsLanguageOpen(false);
+                        // Handle language change here
+                      }}
+                      className="w-full text-left px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    >
+                      English
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsLanguageOpen(false);
+                        // Handle language change here
+                      }}
+                      className="w-full text-left px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    >
+                      Español
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsLanguageOpen(false);
+                        // Handle language change here
+                      }}
+                      className="w-full text-left px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                    >
+                      Français
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right Side - Copyright */}
             <p className="font-sans text-xs md:text-sm text-gray-500 text-center md:text-right">
               © {new Date().getFullYear()} NeuroVerse. All rights reserved.
             </p>

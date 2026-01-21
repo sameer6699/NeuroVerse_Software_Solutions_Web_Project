@@ -2,115 +2,62 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Lock, ArrowRight, Loader2, Shield, ArrowLeft } from "lucide-react";
-import { useState, useRef } from "react";
+import { Mail, Lock, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { images } from "@/assets";
 import { toast } from "sonner";
-import AdvancedCaptcha from "@/components/AdvancedCaptcha";
-
-interface AuthProps {
-  redirectAfterAuth?: string;
-}
 
 /**
- * Internal Login Page for NeuroVerse CRM Portal
+ * Login Page Component for NeuroVerse Careers
  * 
- * Two-column layout with:
- * - Left: Employee ID, Password, and Captcha login form
- * - Right: Company tagline about internal CRM portal
+ * Beautiful two-column login page with:
+ * - Left: Login form with email, password, and Google sign-in
+ * - Right: Inspirational tagline and branding
  */
-export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
+export default function Login() {
   const navigate = useNavigate();
-  const [employeeId, setEmployeeId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const captchaCodeRef = useRef<string>("");
-  const captchaAttemptsRef = useRef<number>(0);
-  const lastCaptchaTimeRef = useRef<number>(Date.now());
-
-  // CAPTCHA verification handler
-  const handleCaptchaVerify = (inputCode: string): boolean => {
-    const isValid = inputCode.toUpperCase() === captchaCodeRef.current.toUpperCase();
-    if (isValid) {
-      setIsCaptchaValid(true);
-      captchaAttemptsRef.current = 0;
-    } else {
-      setIsCaptchaValid(false);
-      captchaAttemptsRef.current += 1;
-      
-      // Rate limiting: if too many attempts, show warning
-      if (captchaAttemptsRef.current >= 5) {
-        toast.error("Too many failed CAPTCHA attempts. Please wait before trying again.");
-      }
-    }
-    return isValid;
-  };
-
-  // Handle CAPTCHA refresh
-  const handleCaptchaRefresh = () => {
-    captchaCodeRef.current = "";
-    setIsCaptchaValid(false);
-    // The AdvancedCaptcha component will generate a new code
-  };
-
-  // Update CAPTCHA code when AdvancedCaptcha generates it
-  const handleCaptchaCodeGenerated = (code: string) => {
-    captchaCodeRef.current = code;
-    lastCaptchaTimeRef.current = Date.now();
-    setIsCaptchaValid(false); // Reset validation when code changes
-  };
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Validate fields
-    if (!employeeId || !password) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
-    // Validate CAPTCHA
-    if (!isCaptchaValid) {
-      toast.error("Please complete the CAPTCHA verification correctly");
-      return;
-    }
-
-    // Additional security: Check if CAPTCHA is too old (expires after 5 minutes)
-    const captchaAge = Date.now() - lastCaptchaTimeRef.current;
-    if (captchaAge > 5 * 60 * 1000) {
-      toast.error("CAPTCHA has expired. Please refresh and try again.");
-      handleCaptchaRefresh();
-      return;
-    }
-
-    // Rate limiting check
-    if (captchaAttemptsRef.current >= 10) {
-      toast.error("Too many failed login attempts. Please wait a few minutes before trying again.");
-      return;
-    }
-
     setIsLoading(true);
     
     // Simulate login process
     setTimeout(() => {
       setIsLoading(false);
-      toast.success("Login successful! Redirecting to CRM portal...");
-      // Navigate to dashboard or home after successful login
+      toast.success("Login successful! Redirecting...");
+      // Navigate to careers page or dashboard after successful login
       setTimeout(() => {
-        navigate(redirectAfterAuth);
+        navigate("/careers");
+      }, 1000);
+    }, 1500);
+  };
+
+  const handleGoogleLogin = async () => {
+    setIsGoogleLoading(true);
+    
+    // Simulate Google OAuth process
+    setTimeout(() => {
+      setIsGoogleLoading(false);
+      toast.success("Google authentication successful! Redirecting...");
+      // Navigate to careers page or dashboard after successful login
+      setTimeout(() => {
+        navigate("/careers");
       }, 1000);
     }, 1500);
   };
 
   return (
     <div className="min-h-screen flex relative">
-      {/* Back Button and Logo - Top Left Corner */}
+      {/* Logo and Back Button - Top Left Corner */}
       <div className="absolute top-6 left-6 md:top-8 md:left-8 lg:top-12 lg:left-12 z-20 flex items-center gap-4">
         {/* Back Arrow Button */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/careers")}
           className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-200 hover:border-blue-600 hover:bg-blue-50 transition-all duration-300 shadow-md hover:shadow-lg group"
           aria-label="Go back"
         >
@@ -137,32 +84,32 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
           <div className="space-y-4 pt-16 md:pt-20">
             <div>
               <h1 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-2">
-                Employee Login
+                Welcome Back
               </h1>
               <p className="text-base text-gray-600">
-                Access your NeuroVerse employee portal account
+                Sign in to create your career profile and explore opportunities
               </p>
             </div>
           </div>
 
           {/* Login Form */}
           <form onSubmit={handleLogin} className="space-y-6">
-            {/* Employee ID Field */}
+            {/* Email Field */}
             <div className="space-y-2">
-              <Label htmlFor="employeeId" className="text-sm font-medium text-gray-700">
-                Employee ID
+              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                Email Address
               </Label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
-                  id="employeeId"
-                  type="text"
-                  placeholder="Enter your Employee ID"
-                  value={employeeId}
-                  onChange={(e) => setEmployeeId(e.target.value)}
+                  id="email"
+                  type="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 h-12 border-gray-300 focus:border-blue-600 focus:ring-blue-600"
                   required
-                  disabled={isLoading}
+                  disabled={isLoading || isGoogleLoading}
                 />
               </div>
             </div>
@@ -176,7 +123,7 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
                 <button
                   type="button"
                   className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
-                  onClick={() => toast.info("Password reset feature coming soon")}
+                  onClick={() => toast.info("Forgot password feature coming soon")}
                 >
                   Forgot password?
                 </button>
@@ -191,40 +138,16 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 h-12 border-gray-300 focus:border-blue-600 focus:ring-blue-600"
                   required
-                  disabled={isLoading}
+                  disabled={isLoading || isGoogleLoading}
                 />
               </div>
-            </div>
-
-            {/* Advanced CAPTCHA Field */}
-            <div className="space-y-2">
-              <Label htmlFor="captcha" className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                <Shield className="h-4 w-4 text-gray-500" />
-                Enter captcha code
-              </Label>
-              <AdvancedCaptcha
-                onVerify={(code) => {
-                  return handleCaptchaVerify(code);
-                }}
-                onRefresh={handleCaptchaRefresh}
-                onCodeGenerated={handleCaptchaCodeGenerated}
-                onValidationChange={(isValid) => setIsCaptchaValid(isValid)}
-                width={220}
-                height={70}
-                disabled={isLoading}
-              />
-              {captchaAttemptsRef.current >= 3 && captchaAttemptsRef.current < 5 && (
-                <p className="text-xs text-amber-600 font-medium">
-                  ⚠️ Multiple failed attempts detected. Please verify the CAPTCHA carefully.
-                </p>
-              )}
             </div>
 
             {/* Login Button */}
             <Button
               type="submit"
               className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-lg hover:shadow-xl transition-all duration-300"
-              disabled={isLoading}
+              disabled={isLoading || isGoogleLoading}
             >
               {isLoading ? (
                 <>
@@ -233,17 +156,72 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
                 </>
               ) : (
                 <>
-                  Sign In to Employee Portal
+                  Sign In
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </>
               )}
             </Button>
           </form>
 
-          {/* Security Notice */}
-          <div className="pt-4 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              This is a secure portal for NeuroVerse employees only. Unauthorized access is prohibited.
+          {/* Divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-gray-300"></span>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-4 text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
+          {/* Google Sign In Button */}
+          <Button
+            type="button"
+            variant="outline"
+            className="w-full h-12 border-2 border-gray-300 hover:border-blue-600 hover:bg-blue-50 font-semibold text-base transition-all duration-300"
+            onClick={handleGoogleLogin}
+            disabled={isLoading || isGoogleLoading}
+          >
+            {isGoogleLoading ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                Connecting...
+              </>
+            ) : (
+              <>
+                <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
+                </svg>
+                Continue with Google
+              </>
+            )}
+          </Button>
+
+          {/* Sign Up Link */}
+          <div className="text-center pt-4">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <button
+                type="button"
+                className="text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                onClick={() => toast.info("Sign up feature coming soon")}
+              >
+                Create one now
+              </button>
             </p>
           </div>
         </motion.div>
@@ -273,7 +251,7 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <h2 className="text-4xl md:text-5xl xl:text-6xl font-heading font-bold text-white leading-tight mb-4 whitespace-nowrap">
-                NeuroVerse Employee Portal
+                Get the future you want
               </h2>
               <div className="h-1 w-24 bg-blue-400 rounded-full"></div>
             </motion.div>
@@ -285,12 +263,15 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="space-y-4"
             >
-              <p className="text-xl md:text-2xl text-blue-100 leading-relaxed font-semibold">
-                Your Gateway to Internal Excellence
+              <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
+                For yourself, for our clients, and for society as a whole.
+              </p>
+              <p className="text-lg text-blue-200 leading-relaxed">
+                Join NeuroVerse and be part of a team that's transforming the future of technology and business. Create your career profile today and discover opportunities that match your passion.
               </p>
             </motion.div>
 
-            {/* Key Features */}
+            {/* Key Points */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -300,34 +281,21 @@ export default function Auth({ redirectAfterAuth = "/" }: AuthProps) {
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p className="text-base text-blue-100">
-                  Streamlined project management and collaboration
+                  Access exclusive career opportunities
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p className="text-base text-blue-100">
-                  Real-time access to company resources and tools
+                  Connect with industry leaders
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                 <p className="text-base text-blue-100">
-                  Secure and centralized employee workspace
+                  Shape the future of innovation
                 </p>
               </div>
-            </motion.div>
-
-            {/* Security Badge */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="pt-8 flex items-center gap-2"
-            >
-              <Shield className="w-6 h-6 text-blue-300" />
-              <span className="text-sm text-blue-200 font-medium">
-                Secure • Encrypted • Internal Use Only
-              </span>
             </motion.div>
           </div>
         </motion.div>

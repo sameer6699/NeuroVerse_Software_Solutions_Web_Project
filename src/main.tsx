@@ -31,6 +31,7 @@ import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineeri
 import Careers from "./pages/Careers.tsx";
 import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
 import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
+import Login from "./pages/Login.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import OurStory from "./pages/OurStory.tsx";
@@ -115,8 +116,9 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/about/partner-and-alliance" element={<PartnersAndAlliances />} />
               <Route path="*" element={<NotFound />} />
             </Route>
-            {/* Auth route - can be outside layout if needed, or keep it inside for consistency */}
-            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
+            {/* Auth routes - outside layout for cleaner login experience */}
+            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
+            <Route path="/careers/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </LenisScroll>

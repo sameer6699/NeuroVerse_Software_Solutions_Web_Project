@@ -464,11 +464,8 @@ export default function Careers() {
               {/* Call to Action Button */}
               <button
                 onClick={() => {
-                  // Navigate to jobs or scroll to jobs section
-                  const jobsSection = document.getElementById('jobs-section');
-                  if (jobsSection) {
-                    jobsSection.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  // Navigate to login page
+                  navigate("/careers/login");
                 }}
                 className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300 w-fit group"
               >
