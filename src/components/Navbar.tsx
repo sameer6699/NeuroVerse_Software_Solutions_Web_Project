@@ -208,7 +208,8 @@ export default function Navbar() {
         "WelthWise"
       ],
       featuredTitle: "Our Products",
-      featuredDescription: "Cutting-edge technology products for modern businesses"
+      featuredDescription: "Cutting-edge technology products for modern businesses",
+      hidden: true // Hide Products section from navbar
     },
     { 
       label: "Careers", 
@@ -219,7 +220,6 @@ export default function Navbar() {
         "Why join NeuroVerse",
         "Life at NeuroVerse",
         "Career paths",
-        "Let's connect",
         "Join us"
       ],
       featuredTitle: "Join Our Team",
@@ -287,7 +287,7 @@ export default function Navbar() {
 
           {/* Center Section: Main Navigation Links */}
           <div className="hidden lg:flex items-center gap-6 relative flex-1 justify-center">
-            {navLinks.map((link) => {
+            {navLinks.filter(link => !link.hidden).map((link) => {
               const isActive = location.pathname === link.href || location.pathname.includes(link.sectionId);
               return (
                 <div
@@ -341,7 +341,7 @@ export default function Navbar() {
                 onMouseLeave={() => setHoveredMenu(null)}
               >
                 {(() => {
-                  const link = navLinks.find(l => l.sectionId === hoveredMenu);
+                  const link = navLinks.find(l => l.sectionId === hoveredMenu && !l.hidden);
                   if (!link) return null;
                   return (
                     <div className="grid grid-cols-3 h-full" style={{ height: '100%' }}>
@@ -435,6 +435,8 @@ export default function Navbar() {
                                 itemHref = "/careers/lifeAtNeuroVerse";
                               } else if (item === "Career paths") {
                                 itemHref = "/careers/career-path";
+                              } else if (item === "Join us") {
+                                itemHref = "/careers/join-us";
                               }
                             } else if (link.sectionId === "about") {
                               if (item === "Our Story") {
@@ -519,6 +521,9 @@ export default function Navbar() {
                                     } else if (link.sectionId === "careers" && item === "Career paths") {
                                       e.preventDefault();
                                       navigate("/careers/career-path");
+                                    } else if (link.sectionId === "careers" && item === "Join us") {
+                                      e.preventDefault();
+                                      navigate("/careers/join-us");
                                     } else if (link.sectionId === "about" && item === "Our Story") {
                                       e.preventDefault();
                                       navigate("/about/our-story");
@@ -900,7 +905,7 @@ export default function Navbar() {
           className="lg:hidden bg-white border-t border-gray-200"
         >
           <div className="px-4 py-4 space-y-2">
-            {navLinks.map((link) => {
+            {navLinks.filter(link => !link.hidden).map((link) => {
               const isActive = location.pathname === link.href || location.pathname.includes(link.sectionId);
               return (
                 <Link 

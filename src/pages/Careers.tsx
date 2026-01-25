@@ -99,11 +99,8 @@ export default function Careers() {
               transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
               className="flex items-center justify-center gap-2 cursor-pointer group"
               onClick={() => {
-                // Scroll to jobs section or navigate
-                const jobsSection = document.getElementById('jobs-section');
-                if (jobsSection) {
-                  jobsSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                // Navigate to job listings page
+                navigate("/careers/join-us");
               }}
             >
               <span className="text-white text-lg md:text-xl font-medium group-hover:text-blue-200 transition-colors duration-300">

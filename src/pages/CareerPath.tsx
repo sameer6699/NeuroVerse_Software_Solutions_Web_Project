@@ -111,39 +111,6 @@ export default function CareerPath() {
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-blue-900/10"></div>
         </motion.div>
 
-        {/* Title Overlay - Similar to Why Join NeuroVerse */}
-        <div className="max-w-7xl mx-auto max-w-5k-content w-full relative z-10">
-          <div className="flex justify-end">
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
-            >
-              {/* Blue Background Box - Overlay on right side */}
-              <div 
-                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
-              >
-                {/* Career Path Text - Centered in the box */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap"
-                  style={{
-                    fontFamily: "'Poppins', 'Montserrat', sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: '-0.02em',
-                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-                  }}
-                >
-                  Career paths
-                </motion.h1>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -164,6 +131,36 @@ export default function CareerPath() {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* Career paths Card - Positioned outside hero section, extending from hero */}
+      <div className="relative -mt-24 md:-mt-32 lg:-mt-40 z-30">
+        <div className="max-w-7xl mx-auto max-w-5k-content px-4 md:px-6 lg:px-8">
+          <div className="flex justify-end">
+            <div className="relative">
+              {/* Blue Background Box - Overlay on right side */}
+              <div 
+                className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 cursor-pointer group hover:shadow-3xl transition-shadow duration-300"
+                onClick={() => {
+                  navigate("/careers/career-path");
+                }}
+              >
+                {/* Career paths Text - Centered in the box */}
+                <h1
+                  className="relative z-10 font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-tight whitespace-nowrap group-hover:scale-105 transition-transform duration-300"
+                  style={{
+                    fontFamily: "'Poppins', 'Montserrat', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    textShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                  }}
+                >
+                  Career paths
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Hero/Introductory Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">

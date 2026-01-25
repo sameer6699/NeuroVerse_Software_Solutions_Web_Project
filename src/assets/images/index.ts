@@ -260,6 +260,7 @@ export const bannerImages = {
   coreValuesBanner: new URL('./banner-Images/core-values.jpg', import.meta.url).href,
   collaborativeEnvironmentBanner: new URL('./banner-Images/collaborative-environment.jpg', import.meta.url).href,
   growthDevelopmentBanner: new URL('./banner-Images/growth-development.jpg', import.meta.url).href,
+  joinUsHeroBanner: new URL('./banner-Images/join-us-hero-banner.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
