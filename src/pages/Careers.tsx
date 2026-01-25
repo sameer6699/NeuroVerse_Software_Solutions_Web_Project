@@ -351,8 +351,7 @@ export default function Careers() {
             <div
               className="relative h-64 md:h-72 lg:h-80 rounded-lg overflow-hidden cursor-pointer group"
               onClick={() => {
-                // Navigate to career paths section
-                console.log("Navigate to Career paths");
+                navigate("/careers/career-path");
               }}
             >
               {/* Image - Same as Why join NeuroVerse */}

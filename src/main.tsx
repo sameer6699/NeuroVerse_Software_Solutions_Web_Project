@@ -31,7 +31,10 @@ import SoftwareDevelopmentEngineering from "./pages/SoftwareDevelopmentEngineeri
 import Careers from "./pages/Careers.tsx";
 import WhyJoinNeuroVerse from "./pages/WhyJoinNeuroVerse.tsx";
 import LifeAtNeuroVerse from "./pages/LifeAtNeuroVerse.tsx";
+import CareerPath from "./pages/CareerPath.tsx";
 import Login from "./pages/Login.tsx";
+import SignUp from "./pages/SignUp.tsx";
+import ForgotPassword from "./pages/ForgotPassword.tsx";
 import News from "./pages/News.tsx";
 import About from "./pages/About.tsx";
 import OurStory from "./pages/OurStory.tsx";
@@ -87,6 +90,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/careers" element={<Careers />} />
               <Route path="/careers/WhyJoinNeuroVerse" element={<WhyJoinNeuroVerse />} />
               <Route path="/careers/lifeAtNeuroVerse" element={<LifeAtNeuroVerse />} />
+              <Route path="/careers/career-path" element={<CareerPath />} />
               <Route path="/capabilities" element={<Home />} />
               <Route path="/industries" element={<Industries />} />
               <Route path="/industries/healthcare" element={<Healthcare />} />
@@ -119,6 +123,8 @@ createRoot(document.getElementById("root")!).render(
             {/* Auth routes - outside layout for cleaner login experience */}
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
             <Route path="/careers/login" element={<Login />} />
+            <Route path="/careers/signup" element={<SignUp />} />
+            <Route path="/careers/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </BrowserRouter>
       </LenisScroll>

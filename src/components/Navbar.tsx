@@ -433,6 +433,8 @@ export default function Navbar() {
                                 itemHref = "/careers/WhyJoinNeuroVerse";
                               } else if (item === "Life at NeuroVerse") {
                                 itemHref = "/careers/lifeAtNeuroVerse";
+                              } else if (item === "Career paths") {
+                                itemHref = "/careers/career-path";
                               }
                             } else if (link.sectionId === "about") {
                               if (item === "Our Story") {
@@ -514,6 +516,9 @@ export default function Navbar() {
                                     } else if (link.sectionId === "careers" && item === "Life at NeuroVerse") {
                                       e.preventDefault();
                                       navigate("/careers/lifeAtNeuroVerse");
+                                    } else if (link.sectionId === "careers" && item === "Career paths") {
+                                      e.preventDefault();
+                                      navigate("/careers/career-path");
                                     } else if (link.sectionId === "about" && item === "Our Story") {
                                       e.preventDefault();
                                       navigate("/about/our-story");

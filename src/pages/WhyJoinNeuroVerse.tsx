@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Users, TrendingUp, CheckCircle2, BarChart3, Linkedin, ChevronLeft, ChevronRight, Heart, Award, Zap, Target, Globe, Lightbulb } from "lucide-react";
 import { images } from "@/assets";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 /**
  * Why Join NeuroVerse Page Component
@@ -19,6 +19,47 @@ export default function WhyJoinNeuroVerse() {
   // Parallax effects
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
+  // Carousel state
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel content data
+  const carouselSlides = [
+    {
+      id: 1,
+      title: "Build your future with NeuroVerse",
+      description: "NeuroVerse empowers talented individuals to achieve their career goals through innovative projects, continuous learning, and a supportive work environment. Our team of experts works on cutting-edge solutions that transform businesses and create lasting impact.",
+      buttonText: "Explore opportunities",
+      buttonLink: "/careers"
+    },
+    {
+      id: 2,
+      title: "Grow with cutting-edge technology",
+      description: "Join a team that works with the latest technologies in AI, cloud computing, and digital transformation. We provide the resources, training, and mentorship you need to stay ahead in your field and build expertise in emerging technologies.",
+      buttonText: "View technology stack",
+      buttonLink: "/careers"
+    },
+    {
+      id: 3,
+      title: "Shape the future of innovation",
+      description: "Be part of groundbreaking projects that make a real difference. At NeuroVerse, you'll work on solutions that transform industries, solve complex challenges, and create meaningful impact for clients and communities worldwide.",
+      buttonText: "Discover our projects",
+      buttonLink: "/careers"
+    }
+  ];
+
+  // Carousel navigation functions
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   // Why Join NeuroVerse Benefits
   const benefits = [
@@ -78,30 +119,6 @@ export default function WhyJoinNeuroVerse() {
     },
   ];
 
-  // Success Stories / Use Cases
-  const successStories = [
-    {
-      title: "Innovation Labs",
-      description: "Join our innovation labs where you can experiment with emerging technologies, prototype new solutions, and bring groundbreaking ideas to life.",
-      technologies: ["AI/ML", "Cloud Computing", "IoT", "Blockchain"]
-    },
-    {
-      title: "Global Projects",
-      description: "Work on projects that span continents, collaborating with international teams to deliver solutions for Fortune 500 companies and startups alike.",
-      technologies: ["Enterprise Solutions", "Digital Transformation", "Consulting", "Strategy"]
-    },
-    {
-      title: "Research & Development",
-      description: "Contribute to cutting-edge research initiatives that push the boundaries of technology and create solutions for tomorrow's challenges.",
-      technologies: ["R&D", "Innovation", "Technology Research", "Future Tech"]
-    },
-    {
-      title: "Startup Incubation",
-      description: "Be part of our startup incubation program, where you can turn your ideas into reality with support, resources, and mentorship from industry experts.",
-      technologies: ["Entrepreneurship", "Startups", "Innovation", "Business Development"]
-    },
-  ];
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
@@ -116,7 +133,7 @@ export default function WhyJoinNeuroVerse() {
           style={{
             scale: backgroundScale,
             y: backgroundY,
-            backgroundImage: `url(${images.projects.insightsHero || images.hero.background})`,
+            backgroundImage: `url(${images.banners.whyNvHeroBanner})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -284,94 +301,105 @@ export default function WhyJoinNeuroVerse() {
           transition={{ duration: 0.8 }}
           className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
         >
-          {/* Background Image with Blur - Full Width */}
+          {/* Background Image - Consistent, doesn't change with slides */}
           <div 
             className="absolute inset-0 w-full"
             style={{
-              backgroundImage: `url(${images.projects.latestInsights || images.hero.background})`,
+              backgroundImage: `url(${images.banners.careerOperationAtNeuroverse})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              filter: 'blur(2px)',
+              filter: 'blur(1.5px)',
             }}
           >
             {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
           </div>
 
-          {/* Content Container - Centered with max-width */}
+          {/* Content Container - Animated carousel cards */}
           <div className="relative z-10 h-full flex items-center">
             <div className="max-w-7xl mx-auto max-w-5k-content w-full px-4 md:px-6 lg:px-8 xl:px-12">
               <div className="flex items-center justify-start">
-                {/* White Text Box - Centered */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
-                >
-                  {/* Headline */}
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-                    Build your future with NeuroVerse
-                  </h3>
-                  
-                  {/* Body Text */}
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
-                    NeuroVerse empowers talented individuals to achieve their career goals through innovative projects, continuous learning, and a supportive work environment. Our team of experts works on cutting-edge solutions that transform businesses and create lasting impact.
-                  </p>
-
-                  {/* Read More Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm"
+                {/* Carousel Content - AnimatePresence for smooth transitions */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="bg-white rounded-xl p-6 md:p-8 lg:p-10 shadow-xl max-w-2xl"
                   >
-                    <span>Explore opportunities</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                </motion.div>
+                    {/* Headline */}
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+                      {carouselSlides[currentSlide].title}
+                    </h3>
+                    
+                    {/* Body Text */}
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
+                      {carouselSlides[currentSlide].description}
+                    </p>
+
+                    {/* Action Button */}
+                    <motion.a
+                      href={carouselSlides[currentSlide].buttonLink}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 shadow-sm"
+                    >
+                      <span>{carouselSlides[currentSlide].buttonText}</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.a>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
 
           {/* Carousel Navigation - Bottom Right */}
           <div className="absolute bottom-6 right-4 md:right-6 z-20">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+            >
+              {/* Previous Button (Left Arrow) */}
+              <button
+                onClick={prevSlide}
+                className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                aria-label="Previous"
               >
-                {/* Previous Button (Left Arrow) */}
-                <button
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
-                  aria-label="Previous"
-                >
-                  <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-                </button>
+                <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+              </button>
 
-                {/* Dots Indicator */}
-                <div className="flex items-center gap-1.5 px-1">
+              {/* Dots Indicator */}
+              <div className="flex items-center gap-1.5 px-1">
+                {carouselSlides.map((_, index) => (
                   <button
-                    className="bg-blue-600 w-8 h-2 rounded-full transition-all duration-300"
-                    aria-label="Slide 1"
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`rounded-full transition-all duration-300 ${
+                      index === currentSlide
+                        ? 'bg-blue-600 w-8 h-2'
+                        : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
+                    }`}
+                    aria-label={`Slide ${index + 1}`}
                   />
-                  <button
-                    className="bg-white border-2 border-gray-300 w-2 h-2 rounded-full hover:bg-gray-200 transition-all duration-300"
-                    aria-label="Slide 2"
-                  />
-                </div>
+                ))}
+              </div>
 
-                {/* Next Button (Right Arrow) */}
-                <button
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
-                  aria-label="Next"
-                >
-                  <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-                </button>
-              </motion.div>
-            </div>
+              {/* Next Button (Right Arrow) */}
+              <button
+                onClick={nextSlide}
+                className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+              </button>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
@@ -399,20 +427,22 @@ export default function WhyJoinNeuroVerse() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.projects.latestInsights || images.hero.background}
+                  src={images.banners.innovationBanner}
                   alt="Innovation & Growth"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
               <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                   Innovation & Growth
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
@@ -432,20 +462,22 @@ export default function WhyJoinNeuroVerse() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.projects.hotTopicsBackground || images.projects.latestInsights}
+                  src={images.banners.learningDevelopmentBanner}
                   alt="Learning & Development"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
               <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                   Learning & Development
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
@@ -465,20 +497,22 @@ export default function WhyJoinNeuroVerse() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group"
             >
               {/* Image */}
               <div className="relative w-full h-64 md:h-72 overflow-hidden">
                 <img
-                  src={images.projects.insightsHero || images.projects.latestInsights}
+                  src={images.banners.workLifeBalanceBanner}
                   alt="Work-Life Balance"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               {/* Content */}
               <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
+                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                   Work-Life Balance
                 </h3>
                 <div className="space-y-3 text-gray-700 leading-relaxed">
@@ -524,18 +558,18 @@ export default function WhyJoinNeuroVerse() {
       {/* Benefits Grid Section */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Section Title */}
+          {/* Section Title - Left Aligned */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
+            className="mb-8 md:mb-12 text-left"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 mb-4">
               Key Benefits
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl text-left">
               Discover what makes NeuroVerse a great place to work
             </p>
           </motion.div>
@@ -571,87 +605,6 @@ export default function WhyJoinNeuroVerse() {
         </div>
       </section>
 
-      {/* Success Stories Section */}
-      <section className="relative bg-white py-12 md:py-16 px-4">
-        <div className="max-w-7xl mx-auto max-w-5k-content">
-          {/* Section Title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 text-left mb-4">
-              Opportunities at NeuroVerse
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl">
-              Explore the diverse opportunities and projects you can be part of
-            </p>
-          </motion.div>
-
-          {/* Success Stories Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {successStories.map((story, index) => (
-              <motion.div
-                key={story.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                  {/* Image Section */}
-                  <div className="relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
-                    <img
-                      src={images.projects.latestInsights || images.hero.background}
-                      alt={story.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  
-                  {/* Content Section */}
-                  <div className="p-4 md:p-6 flex flex-col flex-grow">
-                    {/* Title */}
-                    <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                      {story.title}
-                    </h3>
-                    
-                    {/* Description */}
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow line-clamp-3">
-                      {story.description}
-                    </p>
-                    
-                    {/* Technologies Tags */}
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {story.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 py-1 text-xs font-medium bg-blue-50 text-blue-700 rounded-md group-hover:bg-blue-100 transition-colors duration-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* Learn More Link */}
-                    <div className="mt-4 pt-4 border-t border-gray-200">
-                      <div className="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
-                        <span>Learn more</span>
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Leadership Recognition Banner Section - Full Width */}
       <section className="relative bg-white py-8 md:py-12 w-full overflow-hidden">
         <motion.div
@@ -659,10 +612,10 @@ export default function WhyJoinNeuroVerse() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-5 w-full"
+          className="grid grid-cols-1 md:grid-cols-5 w-full min-h-[400px]"
         >
             {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 xl:p-16 flex flex-col justify-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -692,15 +645,21 @@ export default function WhyJoinNeuroVerse() {
               </motion.div>
             </div>
 
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-64 md:h-80 lg:h-96 overflow-hidden">
-              <img
-                src={images.projects.latestInsights || images.hero.background}
-                alt="NeuroVerse team"
-                className="w-full h-full object-cover object-center"
+            {/* Right Section - Image (40% - 2 columns) - Matches Left Card Height */}
+            <div className="md:col-span-2 relative h-64 md:h-full overflow-hidden group">
+              <motion.img
+                initial={{ opacity: 0, scale: 1.1 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                src={images.banners.futureTechnologyBanner}
+                alt="NeuroVerse team - Future Technology"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
+              {/* Subtle overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-l from-black/5 via-transparent to-blue-900/10"></div>
+              {/* Hover overlay effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           </motion.div>
       </section>

@@ -248,6 +248,18 @@ export const bannerImages = {
   researchLibrary: new URL('./banner-Images/Research library.jpg', import.meta.url).href,
   expertPerspectives: new URL('./banner-Images/Expert perspectives.jpg', import.meta.url).href,
   analystReports: new URL('./banner-Images/Analyst reports.jpg', import.meta.url).href,
+  whyNvHeroBanner: new URL('./banner-Images/why-NV-hero-banner-img.jpg', import.meta.url).href,
+  innovationBanner: new URL('./banner-Images/innovation-banner-img.jpg', import.meta.url).href,
+  learningDevelopmentBanner: new URL('./banner-Images/Learning-development.jpg', import.meta.url).href,
+  workLifeBalanceBanner: new URL('./banner-Images/work-life-balance.jpg', import.meta.url).href,
+  worklifeBalanceBanner: new URL('./banner-Images/worklife-balance.jpg', import.meta.url).href,
+  futureTechnologyBanner: new URL('./banner-Images/future-technology.jpg', import.meta.url).href,
+  lifeAtNvBanner: new URL('./banner-Images/life-at-NV.jpg', import.meta.url).href,
+  networkingBanner: new URL('./banner-Images/networking.jpg', import.meta.url).href,
+  contributeCommunityBanner: new URL('./banner-Images/contribute-community.jpg', import.meta.url).href,
+  coreValuesBanner: new URL('./banner-Images/core-values.jpg', import.meta.url).href,
+  collaborativeEnvironmentBanner: new URL('./banner-Images/collaborative-environment.jpg', import.meta.url).href,
+  growthDevelopmentBanner: new URL('./banner-Images/growth-development.jpg', import.meta.url).href,
 } as const;
 
 // Export all images as a single object for convenience
