@@ -76,9 +76,9 @@ export default function Footer() {
     <footer className="relative bg-white text-gray-900 mt-4 md:mt-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 max-w-5k-content">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 lg:gap-16 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 lg:gap-16 mb-12">
           {/* Left Column - Company Branding */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <Link
               to="/"
               className="flex items-center cursor-pointer flex-shrink-0 w-fit mb-6 group"
@@ -106,7 +106,7 @@ export default function Footer() {
             <p className="font-sans text-gray-600 text-sm md:text-base leading-relaxed max-w-md mb-6">
               Transforming the future of technology and business through innovation, expertise, and collaboration.
             </p>
-            
+
             {/* Email Address */}
             <div className="mb-6">
               <a
@@ -117,7 +117,7 @@ export default function Footer() {
                 <span className="group-hover:underline">info@neuroversesoftwaresolutions.com</span>
               </a>
             </div>
-            
+
             {/* Social Media Icons */}
             <div className="flex items-center gap-4">
               {socialLinks.map((social, index) => {
@@ -213,7 +213,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            
+
             {/* Other Links */}
             <div className="space-y-2 md:space-y-3">
               {otherLinks.map((link) => (
@@ -306,7 +306,7 @@ export default function Footer() {
                   <span>English</span>
                   <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLanguageOpen ? 'rotate-180' : ''}`} />
                 </button>
-                
+
                 {/* Language Dropdown */}
                 {isLanguageOpen && (
                   <div className="absolute bottom-full left-0 mb-2 bg-white border border-gray-200 rounded-md shadow-lg py-2 min-w-[120px] z-50">
