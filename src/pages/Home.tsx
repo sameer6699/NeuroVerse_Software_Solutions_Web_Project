@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router";
 import { useRef, useState, useEffect } from "react";
 import { images } from "@/assets";
-import { 
+import {
   ArrowRight,
   CheckCircle2,
   Rocket,
@@ -113,7 +113,7 @@ function ClientStoriesCarousel() {
         {/* Yellow overlay to create industrial yellow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/40 via-yellow-300/30 to-yellow-500/40"></div>
         {/* Industrial pattern overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `
@@ -167,19 +167,18 @@ function ClientStoriesCarousel() {
 
           {/* Dots Indicator */}
           <div className="flex items-center gap-1.5 px-1">
-                  {clientStories.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToStory(index)}
-                      className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
-                        index === currentIndex
-                          ? 'bg-blue-600 w-8 h-2 rounded-full'
-                          : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
-                      }`}
-                      aria-label={`Go to story ${index + 1}`}
-                      type="button"
-                    />
-                  ))}
+            {clientStories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToStory(index)}
+                className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${index === currentIndex
+                  ? 'bg-blue-600 w-8 h-2 rounded-full'
+                  : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
+                  }`}
+                aria-label={`Go to story ${index + 1}`}
+                type="button"
+              />
+            ))}
           </div>
 
           {/* Next Button (Right Arrow) */}
@@ -189,11 +188,11 @@ function ClientStoriesCarousel() {
             aria-label="Next story"
             type="button"
           >
-              <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-            </button>
-          </div>
+            <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+          </button>
         </div>
       </div>
+    </div>
   );
 }
 
@@ -238,7 +237,7 @@ function AnnualReportCarousel() {
   // Handle button click based on current report
   const handleButtonClick = () => {
     const currentReport = annualReports[currentIndex];
-    
+
     // Navigate to vision section if it's the "Explore our vision" button
     if (currentReport.buttonText === "Explore our vision") {
       // Navigate to about page with hash and state to scroll to vision section
@@ -325,19 +324,18 @@ function AnnualReportCarousel() {
 
             {/* Dots Indicator */}
             <div className="flex items-center gap-1.5 px-1">
-                  {annualReports.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToReport(index)}
-                      className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
-                        index === currentIndex
-                          ? 'bg-blue-600 w-8 h-2 rounded-full'
-                          : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
-                      }`}
-                      aria-label={`Go to report ${index + 1}`}
-                      type="button"
-                    />
-                  ))}
+              {annualReports.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToReport(index)}
+                  className={`transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${index === currentIndex
+                    ? 'bg-blue-600 w-8 h-2 rounded-full'
+                    : 'bg-gray-300 w-2 h-2 rounded-full hover:bg-gray-400'
+                    }`}
+                  aria-label={`Go to report ${index + 1}`}
+                  type="button"
+                />
+              ))}
             </div>
 
             {/* Next Button (Right Arrow) */}
@@ -369,10 +367,10 @@ function PlainVideoPlayer() {
     video.autoplay = true;
     video.loop = true;
     video.muted = true; // Required for autoplay in most browsers
-    
+
     // Try to play the video
     const playPromise = video.play();
-    
+
     if (playPromise !== undefined) {
       playPromise.catch((error) => {
         // Autoplay was prevented
@@ -406,7 +404,7 @@ function PlainVideoPlayer() {
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   // Badge text (static, no typewriter effect)
   const badgeText = "Where Innovation Meets Passion..!";
 
@@ -446,7 +444,7 @@ export default function Home() {
           }
         }
       }, 100);
-    } 
+    }
     // Handle path-based navigation
     else if (location.pathname !== "/" && pathToSectionId[location.pathname]) {
       const sectionId = pathToSectionId[location.pathname];
@@ -475,9 +473,9 @@ export default function Home() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section */}
-      <section 
-        id="home" 
-        className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-12 md:pb-16 px-4 min-h-[80vh] flex items-center"
+      <section
+        id="home"
+        className="relative pt-32 md:pt-40 lg:pt-48 xl:pt-56 pb-8 md:pb-12 px-4 min-h-[80vh] flex items-center"
         style={{
           backgroundImage: `url(${images.hero.background})`,
           backgroundSize: 'cover',
@@ -487,7 +485,7 @@ export default function Home() {
       >
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-white/60"></div>
-        
+
         <div className="max-w-7xl mx-auto max-w-5k-content relative z-10 w-full">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Content */}
@@ -500,11 +498,11 @@ export default function Home() {
                   </span>
                 </Badge>
               </div>
-              
+
               <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-2 leading-tight text-left">
                 Engineering the <span className="gradient-text-animated">Next Generation</span> of Smart Software.
               </h1>
-              
+
               <p className="text-lg md:text-xl text-muted-foreground mb-8 text-left font-medium max-w-xl">
                 Transforming businesses through cutting-edge AI solutions and innovative software development
               </p>
@@ -523,7 +521,7 @@ export default function Home() {
                   <span className="text-sm text-muted-foreground whitespace-nowrap">Enterprise Solutions</span>
                 </div>
               </div>
-              
+
               {/* Request Callback Button - Commented Out */}
               {/* <div className="flex flex-col sm:flex-row gap-4 mb-0">
                 <Button
@@ -581,7 +579,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-2 md:mt-3"
           >
-            <div className="relative w-full overflow-hidden py-6 md:py-8">
+            <div className="relative w-full overflow-hidden py-3 md:py-4">
               <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 lg:w-40 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
               <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 lg:w-40 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
               
@@ -689,9 +687,9 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Highlights">
+      <section className="py-8 md:py-12 px-4 bg-white" aria-label="Highlights">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="mb-6 md:mb-8">
+          <div className="mb-4 md:mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
               Highlights
             </h2>
@@ -756,12 +754,12 @@ export default function Home() {
       {/* We Deliver Real Value Section */}
       <section className="relative overflow-hidden">
         {/* Top Section - Light Blue Background (70%) */}
-        <div className="relative bg-gradient-to-br from-blue-50 via-primary/10 to-cyan-50 py-12 md:py-16 px-4">
+        <div className="relative bg-gradient-to-br from-blue-50 via-primary/10 to-cyan-50 py-8 md:py-12 px-4">
           <div className="max-w-7xl mx-auto max-w-5k-content">
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Side - Text Content */}
               <div className="text-gray-900">
-                <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+                <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight">
                   We Deliver <span className="gradient-text">Real Value</span>
                 </h2>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl font-medium mb-6">
@@ -777,23 +775,20 @@ export default function Home() {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="What We Do">
+      <section className="py-8 md:py-12 lg:py-16 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="What We Do">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="mb-12 md:mb-16 text-center">
+          <div className="mb-4 md:mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">
               What we do
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive technology solutions that drive innovation and transform businesses
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Cloud & Infrastructure */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Cloud className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Cloud className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   Cloud & Infrastructure
@@ -808,10 +803,10 @@ export default function Home() {
             </div>
 
             {/* AI & Machine Learning */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Brain className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Brain className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   AI & Machine Learning
@@ -826,10 +821,10 @@ export default function Home() {
             </div>
 
             {/* Software Engineering */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Code className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Code className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   Software Engineering
@@ -844,10 +839,10 @@ export default function Home() {
             </div>
 
             {/* Blockchain */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Cpu className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Network className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   Blockchain
@@ -862,10 +857,10 @@ export default function Home() {
             </div>
 
             {/* Cybersecurity */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-red-500 to-orange-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Shield className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Shield className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   Cybersecurity
@@ -880,10 +875,10 @@ export default function Home() {
             </div>
 
             {/* IoT & Edge Computing */}
-            <div className="bg-white rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+            <div className="bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50 group cursor-pointer">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                  <Network className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <div className="p-3 bg-primary/5 rounded-lg group-hover:bg-primary/10 transition-colors duration-300">
+                  <Cpu className="w-6 h-6 md:w-7 md:h-7 text-primary" />
                 </div>
                 <h3 className="font-heading font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors">
                   IoT & Edge Computing
@@ -903,9 +898,9 @@ export default function Home() {
       <ScrollTopButton />
 
       {/* Latest Insights Section */}
-      <section className="py-12 md:py-16 px-4 bg-white relative" aria-label="Latest Insights">
+      <section className="py-8 md:py-12 px-4 bg-white relative" aria-label="Latest Insights">
         <div className="max-w-7xl mx-auto max-w-5k-content relative">
-          <div className="mb-6 md:mb-8">
+          <div className="mb-4 md:mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest insights
             </h2>
@@ -992,7 +987,7 @@ export default function Home() {
 
                   {/* Right Side - Abstract Background Image */}
                   <div className="w-1/3 md:w-2/5 lg:w-2/5 relative overflow-hidden z-0">
-                    <div 
+                    <div
                       className="absolute inset-0 opacity-80"
                       style={{
                         background: 'linear-gradient(90deg, #fbbf24 0%, #f97316 20%, #ef4444 40%, #ec4899 60%, #a855f7 80%, #3b82f6 100%)',
@@ -1031,10 +1026,10 @@ export default function Home() {
       </section>
 
       {/* Latest Reports Section */}
-      <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="Latest Reports">
+      <section className="py-8 md:py-12 px-4 bg-gradient-to-br from-gray-50 via-white to-blue-50/30" aria-label="Latest Reports">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Header */}
-          <div className="mb-8 md:mb-12">
+          <div className="mb-4 md:mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               The latest reports from NEUROVERSE RESEARCH INSTITUTE
             </h2>
@@ -1056,22 +1051,22 @@ export default function Home() {
                   January 2025
                 </p>
               </div>
-              
+
               {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 Investment trends 2025
               </h3>
-              
+
               {/* Description Section - Flex-1 to push button to bottom */}
               <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 Navigating uncertainty with confidence: Investment priorities for 2025. NeuroVerse's data-driven insights help organizations make informed investment decisions in AI and digital transformation.
               </p>
-              
+
               {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
-              
+
               {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
@@ -1095,22 +1090,22 @@ export default function Home() {
                   December 2025
                 </p>
               </div>
-              
+
               {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 Sustainable Gen AI
               </h3>
-              
+
               {/* Description Section - Flex-1 to push button to bottom */}
               <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 The environmental Impact of Gen AI and a roadmap for developing sustainable Gen AI practices. NeuroVerse is leading the way in creating energy-efficient AI solutions and sustainable machine learning frameworks.
               </p>
-              
+
               {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
-              
+
               {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
@@ -1134,22 +1129,22 @@ export default function Home() {
                   November 2025
                 </p>
               </div>
-              
+
               {/* Title Section */}
               <h3 className="font-heading font-bold text-xl md:text-2xl mb-3 text-gray-900 dark:text-gray-100 leading-tight group-hover:text-primary transition-colors">
                 What matters to today's consumer
               </h3>
-              
+
               {/* Description Section - Flex-1 to push button to bottom */}
               <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 flex-1">
                 Consumer preferences and purchasing behaviors are constantly evolving. NeuroVerse's AI-powered analytics provide deep insights into consumer behavior and enable personalized customer experiences.
               </p>
-              
+
               {/* Institute Name Section */}
               <p className="text-xs text-primary font-semibold mb-4">
                 NEUROVERSE RESEARCH INSTITUTE
               </p>
-              
+
               {/* Button Section - Always at bottom */}
               <Button
                 variant="outline"
@@ -1166,18 +1161,18 @@ export default function Home() {
       </section>
 
       {/* Recent Client Stories Section */}
-      <section className="py-12 md:py-16 bg-white" aria-label="Recent Client Stories">
+      <section className="py-8 md:py-12 bg-white" aria-label="Recent Client Stories">
         {/* Full-width background container */}
         <div className="w-full">
           {/* Content container with padding */}
           <div className="max-w-7xl mx-auto max-w-5k-content px-4 sm:px-6 lg:px-8">
-            <div className="mb-6 md:mb-8 flex justify-end">
+            <div className="mb-4 md:mb-6 flex justify-end">
               <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-right">
                 Recent client stories
               </h2>
             </div>
           </div>
-          
+
           {/* Full-width carousel container */}
           <div className="w-full px-0">
             <ClientStoriesCarousel />
@@ -1186,9 +1181,9 @@ export default function Home() {
       </section>
 
       {/* Latest News Section */}
-      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Latest News">
+      <section className="py-8 md:py-12 px-4 bg-white" aria-label="Latest News">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="mb-6 md:mb-8">
+          <div className="mb-4 md:mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6 text-left">
               Latest news
             </h2>
@@ -1276,9 +1271,9 @@ export default function Home() {
       </section>
 
       {/* Inside Stories Section */}
-      <section className="py-12 md:py-16 px-4 bg-white" aria-label="Inside Stories">
+      <section className="py-8 md:py-12 px-4 bg-white" aria-label="Inside Stories">
         <div className="max-w-7xl mx-auto max-w-5k-content">
-          <div className="mb-12">
+          <div className="mb-6">
             <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-8 text-left">
               Inside stories
             </h2>

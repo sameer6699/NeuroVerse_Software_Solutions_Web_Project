@@ -42,10 +42,10 @@ export default function Navbar() {
 
     // Initial calculation
     updateDropdownPosition();
-    
+
     // Update on resize
     window.addEventListener('resize', updateDropdownPosition);
-    
+
     // Update on scroll (navbar position might change)
     const handleScroll = () => {
       requestAnimationFrame(updateDropdownPosition);
@@ -61,21 +61,21 @@ export default function Navbar() {
       clearTimeout(timeoutId);
     };
   }, [isVisible]);
-  
+
   // Initial check for hero section visibility on mount and route change
   useEffect(() => {
     const checkHeroSection = () => {
       // Find hero section element - universal detection for all pages
       let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
-      
+
       if (!heroSection) {
         heroSection = document.querySelector('section[class*="hero"], section[class*="Hero"]');
       }
-      
+
       if (!heroSection) {
         heroSection = document.querySelector('section:first-of-type');
       }
-      
+
       if (heroSection) {
         const heroTop = heroSection.offsetTop;
         const heroHeight = heroSection.offsetHeight;
@@ -87,41 +87,41 @@ export default function Navbar() {
         setIsVisible(false);
       }
     };
-    
+
     // Check immediately
     checkHeroSection();
-    
+
     // Also check after a short delay to ensure DOM is fully loaded
     const timeoutId = setTimeout(checkHeroSection, 100);
-    
+
     return () => clearTimeout(timeoutId);
   }, [location.pathname]);
 
   // Show navbar only when user is in hero section - works across all pages
   useMotionValueEvent(scrollY, "change", (latest) => {
     const currentScrollY = latest;
-    
+
     // Find hero section element - universal detection for all pages
     // Priority 1: Check for 'home' id (most common pattern)
     let heroSection = document.getElementById('home') || document.querySelector('section[id="home"]');
-    
+
     // Priority 2: If not found, check for first section with hero-related classes or attributes
     if (!heroSection) {
       heroSection = document.querySelector('section[class*="hero"], section[class*="Hero"]');
     }
-    
+
     // Priority 3: If still not found, use the first section on the page (universal fallback)
     // This works for all pages: Home, Industries, Healthcare, Finance, RetailEcommerce, 
     // Manufacturing, Insights, Services, Careers, News, About, Contact
     if (!heroSection) {
       heroSection = document.querySelector('section:first-of-type');
     }
-    
+
     if (heroSection) {
       const heroTop = heroSection.offsetTop;
       const heroHeight = heroSection.offsetHeight;
       const heroBottom = heroTop + heroHeight;
-      
+
       // Show navbar only if scroll position is within hero section
       // Adding navbar height (96px) to account for fixed positioning
       const isInHeroSection = currentScrollY >= 0 && currentScrollY <= (heroBottom - 96);
@@ -131,15 +131,15 @@ export default function Navbar() {
       // This ensures navbar only shows when we can detect a hero section
       setIsVisible(false);
     }
-    
+
     setLastScrollY(currentScrollY);
   });
 
   // Filter navLinks to match image (Insights, Industries, Services, About us, Products, Careers, News)
   const navLinks = [
-    { 
-      label: "Insights", 
-      href: "/insights", 
+    {
+      label: "Insights",
+      href: "/insights",
       sectionId: "insights",
       description: "Explore our latest thought leadership, ideas, and insights on the issues that are shaping the future of business and society.",
       menuItems: [
@@ -151,24 +151,24 @@ export default function Navbar() {
       featuredTitle: "Capgemini Research Institute",
       featuredDescription: "Our number one ranked think-tank"
     },
-    { 
-      label: "Industries", 
-      href: "/industries", 
+    {
+      label: "Industries",
+      href: "/industries",
       sectionId: "industries",
       description: "Discover industry-specific solutions and insights tailored to your sector.",
       menuItems: [
         "Healthcare",
         "Finance",
         "Retail & E-commerce",
-        "Manufacturing",
+
         "Technology"
       ],
       featuredTitle: "Industry Solutions",
       featuredDescription: "Tailored solutions for every industry"
     },
-    { 
-      label: "Services", 
-      href: "/services", 
+    {
+      label: "Services",
+      href: "/services",
       sectionId: "services",
       description: "Comprehensive services to help you achieve your business goals through innovative technology solutions.",
       menuItems: [
@@ -183,9 +183,9 @@ export default function Navbar() {
       featuredTitle: "Our Services",
       featuredDescription: "End-to-end solutions for your business transformation"
     },
-    { 
-      label: "About us", 
-      href: "/about", 
+    {
+      label: "About us",
+      href: "/about",
       sectionId: "about",
       description: "Learn about our mission, vision, values, and the team behind NeuroVerse's innovative solutions.",
       menuItems: [
@@ -198,9 +198,9 @@ export default function Navbar() {
       featuredTitle: "About NeuroVerse",
       featuredDescription: "Building the future of technology"
     },
-    { 
-      label: "Products", 
-      href: "/products", 
+    {
+      label: "Products",
+      href: "/products",
       sectionId: "products",
       description: "Innovative technology products and platforms designed to accelerate your digital transformation and drive business growth.",
       menuItems: [
@@ -211,9 +211,9 @@ export default function Navbar() {
       featuredDescription: "Cutting-edge technology products for modern businesses",
       hidden: true // Hide Products section from navbar
     },
-    { 
-      label: "Careers", 
-      href: "/careers", 
+    {
+      label: "Careers",
+      href: "/careers",
       sectionId: "careers",
       description: "Become part of a diverse collective of free-thinkers, entrepreneurs and experts – and help us to make a difference.",
       menuItems: [
@@ -225,9 +225,9 @@ export default function Navbar() {
       featuredTitle: "Join Our Team",
       featuredDescription: "Build the future with us"
     },
-    { 
-      label: "News", 
-      href: "/news", 
+    {
+      label: "News",
+      href: "/news",
       sectionId: "news",
       description: "Stay updated with our latest news and announcements.",
       menuItems: [
@@ -256,15 +256,15 @@ export default function Navbar() {
     <motion.nav
       ref={navbarRef}
       initial={{ y: 0, opacity: 1 }}
-      animate={{ 
+      animate={{
         y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0,
       }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 transition-all duration-300"
-      style={{ 
+      style={{
         backgroundColor: '#ffffff',
-        pointerEvents: isVisible ? 'auto' : 'none' 
+        pointerEvents: isVisible ? 'auto' : 'none'
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-5k-content">
@@ -296,7 +296,7 @@ export default function Navbar() {
                   onMouseEnter={() => setHoveredMenu(link.sectionId)}
                   onMouseLeave={() => setHoveredMenu(null)}
                 >
-                  <Link 
+                  <Link
                     to={link.href}
                     onClick={(e) => {
                       handleSectionClick(link.href, link.sectionId, e);
@@ -304,10 +304,9 @@ export default function Navbar() {
                     }}
                     className="relative"
                   >
-                    <span 
-                      className={`text-sm font-medium transition-colors duration-200 relative group ${
-                        isActive ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
-                      }`}
+                    <span
+                      className={`text-sm font-medium transition-colors duration-200 relative group ${isActive ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'
+                        }`}
                     >
                       {link.label}
                       {isActive && (
@@ -330,8 +329,8 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2 }}
                 className="fixed left-0 right-0 w-screen bg-white shadow-2xl border-t border-gray-200 overflow-hidden z-50"
-                style={{ 
-                  backgroundColor: '#ffffff', 
+                style={{
+                  backgroundColor: '#ffffff',
                   top: `${dropdownTop}px`,
                   height: '480px', // Fixed height for consistent dropdown size
                   minHeight: '480px',
@@ -451,9 +450,9 @@ export default function Navbar() {
                                 itemHref = "/about/partner-and-alliance";
                               }
                             }
-                            
+
                             return (
-                              <li 
+                              <li
                                 key={index}
                                 className="relative"
                               >
@@ -570,7 +569,7 @@ export default function Navbar() {
                                 Discover cutting-edge insights and thought leadership that drive innovation and shape the future of business.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Latest Research
@@ -608,7 +607,7 @@ export default function Navbar() {
                                 Tailored solutions and deep industry knowledge to help your business thrive in today's competitive landscape.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Sector Solutions
@@ -646,7 +645,7 @@ export default function Navbar() {
                                 End-to-end technology services designed to transform your business operations and drive sustainable growth.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Technology Expertise
@@ -684,7 +683,7 @@ export default function Navbar() {
                                 Learn about our mission, vision, and the values that drive our commitment to innovation and excellence.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Our Mission
@@ -722,7 +721,7 @@ export default function Navbar() {
                                 Cutting-edge technology products designed to accelerate your digital transformation and drive measurable business growth.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Technology Solutions
@@ -760,7 +759,7 @@ export default function Navbar() {
                                 Be part of a diverse collective of innovators, entrepreneurs, and experts working together to shape the future of technology.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Career Growth
@@ -798,7 +797,7 @@ export default function Navbar() {
                                 Keep up with our latest news, announcements, and insights from the world of technology and innovation.
                               </p>
                             </div>
-                            
+
                             <div className="border-t border-gray-200 pt-4">
                               <h5 className="font-semibold text-sm text-gray-900 mb-2">
                                 Latest Updates
@@ -876,9 +875,8 @@ export default function Navbar() {
                     onFocus={() => setIsSearchFocused(true)}
                     onBlur={() => setIsSearchFocused(false)}
                     placeholder="Search..."
-                    className={`pl-10 pr-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                      isSearchFocused ? 'w-64' : 'w-48'
-                    }`}
+                    className={`pl-10 pr-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${isSearchFocused ? 'w-64' : 'w-48'
+                      }`}
                   />
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </div>
@@ -908,8 +906,8 @@ export default function Navbar() {
             {navLinks.filter(link => !link.hidden).map((link) => {
               const isActive = location.pathname === link.href || location.pathname.includes(link.sectionId);
               return (
-                <Link 
-                  key={link.href} 
+                <Link
+                  key={link.href}
                   to={link.href}
                   onClick={(e) => {
                     handleSectionClick(link.href, link.sectionId, e);
@@ -918,11 +916,10 @@ export default function Navbar() {
                 >
                   <Button
                     variant="ghost"
-                    className={`w-full justify-start transition-all duration-200 ${
-                      isActive 
-                        ? 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700' 
+                    className={`w-full justify-start transition-all duration-200 ${isActive
+                        ? 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
                         : 'text-gray-900 hover:text-blue-600 hover:bg-blue-50'
-                    }`}
+                      }`}
                   >
                     {link.label}
                   </Button>

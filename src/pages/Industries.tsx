@@ -22,12 +22,12 @@ export default function Industries() {
   useEffect(() => {
     // Instant scroll to top (no animation)
     window.scrollTo(0, 0);
-    
+
     // Also ensure scroll after a small delay to handle any async rendering
     const timeoutId = setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
-    
+
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -129,12 +129,12 @@ export default function Industries() {
       technologies: ["AI/ML", "Cloud Computing", "Mobile Apps"],
       image: images.banners.ecommerceIndustry
     },
-    {
+    /* {
       name: "Manufacturing",
       description: "Industrial IoT solutions, smart factory systems, and production optimization software. Predictive maintenance, quality control systems, and supply chain management platforms.",
       technologies: ["IoT", "AI/ML", "Cloud Computing"],
       image: images.banners.manufacturingIndustry
-    },
+    }, */
     {
       name: "Technology",
       description: "Software development tools, cloud infrastructure, and enterprise technology solutions. DevOps platforms, microservices architecture, and scalable cloud-native applications.",
@@ -152,13 +152,13 @@ export default function Industries() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
-      <section 
+      <section
         id="home"
         ref={heroRef}
         className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
         {/* Background Image with Improved Positioning and Zoom Effect */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 overflow-hidden"
           style={{
             scale: backgroundScale,
@@ -169,7 +169,7 @@ export default function Industries() {
             backgroundRepeat: 'no-repeat',
           }}
         />
-        
+
         {/* Subtle Parallax Effect */}
         <motion.div
           style={{ y: backgroundY }}
@@ -212,7 +212,7 @@ export default function Industries() {
               className="relative"
             >
               {/* Blue Background Box - Overlay on left side */}
-              <div 
+              <div
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* Industries Text - Centered in the box */}
@@ -345,7 +345,7 @@ export default function Industries() {
             {/* Background Banner with Image */}
             <div className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] rounded-2xl overflow-hidden">
               {/* Background Image */}
-              <div 
+              <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `url(${images.projects.hotTopicsBackground || images.projects.latestInsights})`,
@@ -370,12 +370,12 @@ export default function Industries() {
                     <h3 className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-3 md:mb-4 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                       {industries[currentIndustryIndex].title}
                     </h3>
-                    
+
                     {/* Description */}
                     <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6 flex-1">
                       {industries[currentIndustryIndex].description}
                     </p>
-                    
+
                     {/* Footer with Border and Action Button */}
                     <div className="pt-4 border-t border-gray-100">
                       <div className="flex items-center justify-between">
@@ -418,11 +418,10 @@ export default function Industries() {
                       <button
                         key={index}
                         onClick={() => goToIndustry(index)}
-                        className={`transition-all rounded-full ${
-                          index === currentIndustryIndex
+                        className={`transition-all rounded-full ${index === currentIndustryIndex
                             ? 'bg-blue-600 w-8 h-2'
                             : 'bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200'
-                        }`}
+                          }`}
                         aria-label={`Go to industry ${index + 1}`}
                       />
                     ))}
@@ -482,19 +481,19 @@ export default function Industries() {
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  
+
                   {/* Content Section */}
                   <div className="p-4 md:p-6 flex flex-col flex-grow">
                     {/* Industry Name */}
                     <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                       {industry.name}
                     </h3>
-                    
+
                     {/* Description */}
                     <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow line-clamp-3">
                       {industry.description}
                     </p>
-                    
+
                     {/* Technologies Tags */}
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {industry.technologies.slice(0, 3).map((tech, techIndex) => (
@@ -506,7 +505,7 @@ export default function Industries() {
                         </span>
                       ))}
                     </div>
-                    
+
                     {/* Learn More Link */}
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <div className="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
