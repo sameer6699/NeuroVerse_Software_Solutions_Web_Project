@@ -57,63 +57,64 @@ export default function CloudServicesInfrastructure() {
   const cloudSolutions = [
     {
       icon: Cloud,
-      title: "Cloud Migration & Strategy",
-      description: "Comprehensive cloud migration services that help organizations seamlessly transition from on-premises infrastructure to cloud platforms with minimal disruption.",
-      features: ["Cloud Assessment", "Migration Planning", "Data Migration", "Application Modernization"]
-    },
-    {
-      icon: Server,
-      title: "Multi-Cloud Management",
-      description: "Unified management solutions for multi-cloud environments, enabling organizations to leverage the best of AWS, Azure, and GCP while maintaining control and visibility.",
-      features: ["Cloud Orchestration", "Cost Optimization", "Resource Management", "Performance Monitoring"]
-    },
-    {
-      icon: Database,
-      title: "Cloud Infrastructure Services",
-      description: "Scalable and resilient cloud infrastructure solutions including compute, storage, networking, and database services designed for enterprise workloads.",
-      features: ["Infrastructure as Code", "Auto-scaling", "High Availability", "Disaster Recovery"]
-    },
-    {
-      icon: Code,
-      title: "Cloud-Native Development",
-      description: "Modern application development using cloud-native technologies, microservices architecture, and containerization for scalable and agile solutions.",
-      features: ["Kubernetes", "Docker", "Serverless Computing", "CI/CD Pipelines"]
-    },
-    {
-      icon: Shield,
-      title: "Cloud Security & Compliance",
-      description: "Enterprise-grade security solutions for cloud environments, ensuring data protection, compliance, and threat mitigation across all cloud platforms.",
-      features: ["Identity & Access Management", "Data Encryption", "Security Monitoring", "Compliance Management"]
+      title: "Cloud Migration Services",
+      description: "Seamlessly transition to the cloud with our expert migration strategies.",
+      features: [
+        "Legacy system to cloud migration",
+        "On-premise to cloud transition",
+        "Application and database migration",
+        "Zero-downtime migration strategies"
+      ]
     },
     {
       icon: Network,
-      title: "Hybrid Cloud Solutions",
-      description: "Seamless integration between on-premises infrastructure and cloud services, enabling organizations to leverage both environments effectively.",
-      features: ["Hybrid Architecture", "Cloud Connectivity", "Data Synchronization", "Unified Management"]
+      title: "Cloud Integration Services",
+      description: "Connect and unify your systems for a seamless digital ecosystem.",
+      features: [
+        "Integration of cloud services with existing systems",
+        "API and microservices integration",
+        "Hybrid & multi-cloud architecture design"
+      ]
     },
-  ];
-
-  // Key Benefits
-  const benefits = [
     {
-      icon: TrendingUp,
-      title: "Scalability & Flexibility",
-      description: "Cloud infrastructure scales automatically with your business needs, providing flexibility to adapt to changing demands without upfront investments."
+      icon: Database,
+      title: "Cloud Storage & S3 Services",
+      description: "Secure, scalable, and durable storage solutions for your enterprise data.",
+      features: [
+        "Amazon S3 setup and configuration",
+        "Secure data storage and lifecycle management",
+        "Backup, disaster recovery & archival solutions"
+      ]
     },
     {
       icon: Users,
-      title: "Cost Optimization",
-      description: "Reduce IT costs with pay-as-you-go models, eliminating the need for expensive hardware investments and maintenance overhead."
+      title: "Cloud Consulting & Managed Services",
+      description: "Strategic guidance and ongoing management to maximize your cloud investment.",
+      features: [
+        "Cloud strategy and roadmap planning",
+        "Cost optimization and performance tuning",
+        "Security, compliance & governance consulting",
+        "Ongoing monitoring and cloud management"
+      ]
+    },
+  ];
+
+  // Business Value
+  const benefits = [
+    {
+      icon: TrendingUp,
+      title: "Reduced infrastructure costs",
+      description: "Optimize your IT spending with efficient cloud resource management."
     },
     {
       icon: BarChart3,
-      title: "Enhanced Performance",
-      description: "Leverage cloud computing power to improve application performance, reduce latency, and deliver superior user experiences."
+      title: "Improved scalability and performance",
+      description: "Scale resources on-demand to meet fluctuating business needs."
     },
     {
-      icon: CheckCircle2,
-      title: "Business Continuity",
-      description: "Ensure high availability and disaster recovery capabilities with cloud-based backup and redundancy solutions."
+      icon: Shield,
+      title: "Enhanced data security and reliability",
+      description: "Protect your data with robust security measures and high availability."
     },
   ];
 
@@ -148,13 +149,13 @@ export default function CloudServicesInfrastructure() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Hero Section with Background Image */}
-      <section 
+      <section
         id="home"
         ref={heroRef}
         className="relative pt-44 md:pt-52 lg:pt-60 xl:pt-64 pb-20 px-4 min-h-[95vh] md:min-h-[100vh] flex items-end overflow-hidden"
       >
         {/* Background Image with Improved Positioning and Zoom Effect */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 overflow-hidden"
           style={{
             scale: backgroundScale,
@@ -165,7 +166,7 @@ export default function CloudServicesInfrastructure() {
             backgroundRepeat: 'no-repeat',
           }}
         />
-        
+
         {/* Subtle Parallax Effect */}
         <motion.div
           style={{ y: backgroundY }}
@@ -209,7 +210,7 @@ export default function CloudServicesInfrastructure() {
               className="relative"
             >
               {/* Blue Background Box - Overlay on right side */}
-              <div 
+              <div
                 className="relative rounded-lg px-8 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24 xl:py-28 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
               >
                 {/* Cloud Services Text - Centered in the box */}
@@ -301,13 +302,10 @@ export default function CloudServicesInfrastructure() {
             >
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
-                  Cloud Services & Infrastructure Solutions
+                  Cloud Services & Infrastructure
                 </h2>
                 <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed max-w-4xl">
-                  Discover how NeuroVerse delivers comprehensive cloud services and infrastructure solutions that enable organizations to transform their IT operations, reduce costs, and accelerate innovation.
-                </p>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-4xl">
-                  In today's digital-first world, cloud infrastructure has become the foundation for business agility and innovation. Our cloud services solutions are designed to help organizations leverage the full potential of cloud computing, from initial migration to ongoing optimization and management.
+                  We help organizations design, migrate, optimize, and manage cloud environments that are secure, scalable, and cost-efficient.
                 </p>
                 <div className="pt-4">
                   <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"></div>
@@ -328,7 +326,7 @@ export default function CloudServicesInfrastructure() {
           className="relative w-full h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden"
         >
           {/* Background Image with Blur - Full Width */}
-          <div 
+          <div
             className="absolute inset-0 w-full"
             style={{
               backgroundImage: `url(${images.banners.aiBanner})`,
@@ -358,7 +356,7 @@ export default function CloudServicesInfrastructure() {
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
                     {carouselItems[currentCarouselIndex].title}
                   </h3>
-                  
+
                   {/* Body Text */}
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
                     {carouselItems[currentCarouselIndex].description}
@@ -380,51 +378,50 @@ export default function CloudServicesInfrastructure() {
 
           {/* Carousel Navigation - Bottom Right */}
           <div className="absolute bottom-6 right-4 md:right-6 z-20">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-2.5 flex items-center gap-3 shadow-md border border-gray-200/50"
+            >
+              {/* Previous Button (Left Arrow) */}
+              <button
+                onClick={prevCarousel}
+                className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                aria-label="Previous"
               >
-                {/* Previous Button (Left Arrow) */}
-                <button
-                  onClick={prevCarousel}
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
-                  aria-label="Previous"
-                >
-                  <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-                </button>
+                <ChevronLeft className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+              </button>
 
-                {/* Dots Indicator */}
-                <div className="flex items-center gap-1.5 px-1">
-                  {carouselItems.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentCarouselIndex(index)}
-                      className={`transition-all duration-300 rounded-full ${
-                        index === currentCarouselIndex
-                          ? "bg-blue-600 w-8 h-2"
-                          : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
+              {/* Dots Indicator */}
+              <div className="flex items-center gap-1.5 px-1">
+                {carouselItems.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentCarouselIndex(index)}
+                    className={`transition-all duration-300 rounded-full ${index === currentCarouselIndex
+                        ? "bg-blue-600 w-8 h-2"
+                        : "bg-white border-2 border-gray-300 w-2 h-2 hover:bg-gray-200"
                       }`}
-                      aria-label={`Slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
+                    aria-label={`Slide ${index + 1}`}
+                  />
+                ))}
+              </div>
 
-                {/* Next Button (Right Arrow) */}
-                <button
-                  onClick={nextCarousel}
-                  className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
-                  aria-label="Next"
-                >
-                  <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
-                </button>
-              </motion.div>
-            </div>
+              {/* Next Button (Right Arrow) */}
+              <button
+                onClick={nextCarousel}
+                className="p-1.5 hover:bg-gray-200/50 rounded-full transition-all duration-200 active:scale-95"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-4 h-4 text-gray-900" strokeWidth={2.5} />
+              </button>
+            </motion.div>
+          </div>
         </motion.div>
       </section>
 
-      {/* What we do Section */}
+      {/* What we do Section - Dynamic Rendering of cloudSolutions */}
       <section className="relative bg-white py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto max-w-5k-content">
           {/* Section Title */}
@@ -440,106 +437,75 @@ export default function CloudServicesInfrastructure() {
             </h2>
           </motion.div>
 
-          {/* Three Cards Grid */}
+          {/* Cloud Solutions Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {cloudSolutions.map((solution, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              >
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-blue-50 rounded-full text-blue-600">
+                      <solution.icon className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900">
+                      {solution.title}
+                    </h3>
+                  </div>
+
+                  {/* Features List */}
+                  <ul className="space-y-3 mb-4">
+                    {solution.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700 text-sm md:text-base">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Business Value Section */}
+      <section className="relative bg-gray-50 py-12 md:py-16 px-4">
+        <div className="max-w-7xl mx-auto max-w-5k-content">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8 md:mb-12 text-center"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900">
+              Business Value
+            </h2>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Card 1: Cloud Migration */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              {/* Image */}
-              <div className="relative w-full h-64 md:h-72 overflow-hidden">
-                <img
-                  src={images.banners.cloudMigration}
-                  alt="Cloud Migration"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Cloud Migration
-                </h3>
-                <div className="space-y-3 text-gray-700 leading-relaxed">
-                  <p className="text-sm md:text-base">
-                    Comprehensive cloud migration services that help organizations seamlessly transition from on-premises infrastructure to cloud platforms. We leverage proven methodologies and best practices to ensure minimal disruption and maximum value.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions ensure smooth migration, enable flexible infrastructure, improve scalability, and ensure security compliance for competitive agility in the evolving cloud landscape.
-                  </p>
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center hover:shadow-lg transition-all"
+              >
+                <div className="p-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full text-white mb-6">
+                  <benefit.icon className="w-8 h-8" />
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Card 2: Multi-Cloud Management */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              {/* Image */}
-              <div className="relative w-full h-64 md:h-72 overflow-hidden">
-                <img
-                  src={images.banners.multiCloud}
-                  alt="Multi-Cloud Management"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Multi-Cloud Management
-                </h3>
-                <div className="space-y-3 text-gray-700 leading-relaxed">
-                  <p className="text-sm md:text-base">
-                    Unified management solutions for multi-cloud environments, enabling organizations to leverage the best of AWS, Azure, and GCP. We partner with enterprises to develop cloud strategies that optimize costs and performance.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Our solutions support both public and hybrid cloud deployments, ensuring seamless coordination and continuity of operations across all cloud platforms.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Card 3: Cloud-Native Development */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              {/* Image */}
-              <div className="relative w-full h-64 md:h-72 overflow-hidden">
-                <img
-                  src={images.banners.cloudNative}
-                  alt="Cloud-Native Development"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-900 mb-4">
-                  Cloud-Native Development
-                </h3>
-                <div className="space-y-3 text-gray-700 leading-relaxed">
-                  <p className="text-sm md:text-base">
-                    Modern application development using cloud-native technologies, microservices architecture, and containerization. The expansion of cloud capabilities and the disintegration of traditional infrastructure boundaries require innovative approaches.
-                  </p>
-                  <p className="text-sm md:text-base">
-                    Cloud-native development, DevOps practices, and scalable architectures are driving transformation. Organizations adopting cloud-native fastest will lead the next generation of technology.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -611,19 +577,19 @@ export default function CloudServicesInfrastructure() {
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  
+
                   {/* Content Section */}
                   <div className="p-4 md:p-6 flex flex-col flex-grow">
                     {/* Title */}
                     <h3 className="text-base md:text-lg lg:text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                       {useCase.title}
                     </h3>
-                    
+
                     {/* Description */}
                     <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 flex-grow line-clamp-3">
                       {useCase.description}
                     </p>
-                    
+
                     {/* Technologies Tags */}
                     <div className="flex flex-wrap gap-2 mt-auto">
                       {useCase.technologies.map((tech, techIndex) => (
@@ -635,7 +601,7 @@ export default function CloudServicesInfrastructure() {
                         </span>
                       ))}
                     </div>
-                    
+
                     {/* Learn More Link */}
                     <div className="mt-4 pt-4 border-t border-gray-200">
                       <div className="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
@@ -660,48 +626,48 @@ export default function CloudServicesInfrastructure() {
           transition={{ duration: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-5 w-full items-stretch"
         >
-            {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
-            <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
+          {/* Left Section - Dark Blue Text Box (60% - 3 columns) */}
+          <div className="md:col-span-3 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-6"
+            >
+              {/* Headline */}
+              <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
+                NeuroVerse Software Solutions recognized as a leader in Cloud Services
+              </h2>
+
+              {/* Body Text */}
+              <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
+                We have been recognized as a leader in Cloud Infrastructure Services and Multi-Cloud Management by leading industry analysts.
+              </p>
+
+              {/* Read More Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
               >
-                {/* Headline */}
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white leading-tight">
-                  NeuroVerse Software Solutions recognized as a leader in Cloud Services
-                </h2>
-                
-                {/* Body Text */}
-                <p className="text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                  We have been recognized as a leader in Cloud Infrastructure Services and Multi-Cloud Management by leading industry analysts.
-                </p>
+                <span>Read more</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </motion.div>
+          </div>
 
-                {/* Read More Button */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 w-fit mt-4"
-                >
-                  <span>Read more</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            </div>
-
-            {/* Right Section - Image (40% - 2 columns) */}
-            <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
-              <img
-                src={images.banners.cloudFooterBanner}
-                alt="NeuroVerse cloud leadership recognition"
-                className="w-full h-full object-cover object-center"
-              />
-              {/* Subtle overlay for better text contrast if needed */}
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
-            </div>
-          </motion.div>
+          {/* Right Section - Image (40% - 2 columns) */}
+          <div className="md:col-span-2 relative h-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] overflow-hidden">
+            <img
+              src={images.banners.cloudFooterBanner}
+              alt="NeuroVerse cloud leadership recognition"
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Subtle overlay for better text contrast if needed */}
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-transparent"></div>
+          </div>
+        </motion.div>
       </section>
 
     </div>
